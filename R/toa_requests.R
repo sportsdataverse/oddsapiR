@@ -3,7 +3,7 @@
 #' **Find out your usage and remaining calls for your key from The Odds API**
 #' @description
 #' **Get your usage and remaining calls for your key from The Odds API**
-#' ```r
+#' ```
 #'  toa_requests()
 #' ```
 #' @return Returns a tibble of The Odds API key usage with the following columns:
@@ -23,9 +23,6 @@
 #' @importFrom tidyr unnest
 #' @importFrom rlang .data
 #' @export
-#' @examples \donttest{
-#'   try(toa_requests())
-#' }
 #' 
 toa_requests <- function(){
   base_url = glue::glue('https://api.the-odds-api.com/v4/sports')

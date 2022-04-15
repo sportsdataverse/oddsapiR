@@ -14,14 +14,8 @@ Returns a tibble of The Odds API key usage with the following columns:\tabular{l
 }
 }
 \description{
-\strong{Get your usage and remaining calls for your key from The Odds API}\if{html}{\out{<div class="sourceCode r">}}\preformatted{ toa_requests()
-}\if{html}{\out{</div>}}
+\strong{Get your usage and remaining calls for your key from The Odds API}\preformatted{ toa_requests()
 }
-\examples{
-\donttest{
-  try(toa_requests())
-}
-
 }
 \keyword{Betting}
 \keyword{Lines}
