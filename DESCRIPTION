@@ -1,5 +1,5 @@
 Package: oddsapiR
-Title: Access Live Sports Odds from The Odds API
+Title: Access Live Sports Odds
 Version: 0.0.1
 Authors@R: c(person("Saiem", "Gilani", email = "saiem.gilani@gmail.com", role = c("aut", "cre")))
 Description: A utility to quickly obtain clean and tidy sports
