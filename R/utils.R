@@ -160,10 +160,6 @@ NULL
 utils::globalVariables(c("where"))
 
 
-#' @importFrom Rcpp getRcppVersion
-#' @importFrom RcppParallel defaultNumThreads
-NULL
-
 `%c%` <- function(x,y){
   ifelse(!is.na(x),x,y)
 }
