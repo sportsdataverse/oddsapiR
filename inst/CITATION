@@ -1,0 +1,16 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+citHeader("To cite the oddsapiR R package in publications, use:")
+
+citEntry(entry = "Misc",
+         author = personList(as.person("Saiem Gilani")),
+         title = "oddsapiR: The SportsDataverse's R Package for The Odds API.",
+         url = c("https://oddsapiR.sportsdataverse.org"),
+         year = year,
+         note = note,
+         textVersion = paste(
+    "Saiem Gilani. oddsapiR: The SportsDataverse's R Package for The Odds API.",
+    "Retrieved from https://oddsapiR.sportsdataverse.org"
+  )
+)

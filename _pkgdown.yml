@@ -1,0 +1,143 @@
+url: https://oddsapiR.sportsdataverse.org/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+  bslib:
+    primary: "#F1EDEE"
+    secondary: "#F57196"
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem
+  opengraph:
+    image:
+      src: https://raw.githubusercontent.com/saiemgilani/oddsapiR/main/man/figures/logo.png
+    twitter:
+      creator: "@saiemgilani"
+      card: summary
+      
+
+toc:
+  depth: 3
+
+authors:
+  Saiem Gilani:
+   href: https://twitter.com/saiemgilani
+   
+code:
+  width: 72
+  
+development:
+  mode: auto       
+   
+home:
+  title: oddsapiR
+  description: Functions to Access Sports Odds Data
+  icon: fa-home
+  href: index.html
+  links:
+  - text: oddsapiR beginner's guide
+    href: articles/oddsapiR.html
+  - text: SportsDataverse.org
+    href: https://sportsdataverse.org
+    
+    
+navbar:
+  structure:
+    left:  [home, reference, articles, news, network, repo]
+    right: [twitter, github]
+  title: "oddsapiR"
+  components:
+    home:
+      title: oddsapiR
+      description: Functions to Access Sports Odds Data
+      icon: fa-home
+      href: index.html
+    reference:
+      icon: "fas fa-code"
+      text: " Funcs"
+      menu:
+      - text: "Function Index"
+        href: reference/index.html
+    articles:
+      icon: "fas fa-book-reader"
+      text: " Articles"
+      menu:
+      - text: Vignettes
+        href: articles/index.html
+      - text: oddsapiR beginner's guide
+        href: articles/oddsapiR.html
+    news:
+      icon: "fas fa-newspaper"
+      text: " News"
+      href: news/index.html
+    network:
+      icon: "fas fa-project-diagram"
+      text: " SDV"
+      menu:
+      - text: SportsDataverse
+        href: https://sportsdataverse.org/
+      - text: --------------------------------
+      - text: R Packages
+      - text: sportsdataverse-R
+        href: https://r.sportsdataverse.org/
+      - text: cfbfastR
+        href: https://cfbfastR.sportsdataverse.org/
+      - text: hoopR
+        href: https://hoopR.sportsdataverse.org/
+      - text: wehoop
+        href: https://wehoop.sportsdataverse.org/
+      - text: fastRhockey
+        href: https://fastRhockey.sportsdataverse.org/
+      - text: worldfootballR
+        href: https://jaseziv.github.io/worldfootballR/
+      - text: baseballr
+        href: https://BillPetti.github.io/baseballr/
+      - text: cfbplotR
+        href: https://kazink36.github.io/cfbplotR/
+      - text: cfb4th
+        href: https://kazink36.github.io/cfb4th/
+      - text: recruitR
+        href: https://recruitR.sportsdataverse.org/
+      - text: gamezoneR
+        href: https://jacklich10.github.io/gamezoneR/
+      - text: puntr
+        href: https://puntalytics.github.io/puntr/
+      - text: --------------------------------
+      - text: Python Packages
+      - text: sportsdataverse-py
+        href: https://py.sportsdataverse.org/
+      - text: --------------------------------
+      - text: Node.js Packages
+      - text: sportsdataverse.js
+        href: https://js.sportsdataverse.org/
+      - text: nfl-nerd
+        href: https://github.com/nntrn/nfl-nerd/
+    twitter:
+      icon: "fab fa-twitter fa-lg"
+      href: http://twitter.com/saiemgilani
+      aria-label: Twitter
+    github:
+      icon: "fab fa-github fa-lg"
+      href: https://github.com/saiemgilani/oddsapiR/
+repo:
+  url:
+    home: https://github.com//saiemgilani/oddsapiR/
+    source: https://github.com/saiemgilani/oddsapiR/blob/main/
+    issue: https://github.com/saiemgilani/oddsapiR/issues/
+    user: https://github.com/saiemgilani/
+reference:
+  - title: Exported Functions
+    desc: Functions exported by oddsapiR
+    contents:
+      - '`toa_sports`'
+      - '`toa_sports_odds`'
+      - '`toa_sports_scores`'
+      - '`toa_requests`'
+  - title: Internals
+    desc: Internal functions and data
+    contents:
+      - '`register_toa`'
+      - '`toa_sports_keys`'
+      - '`progressively`'
+      - '`csv_from_url`'
+      - '`rds_from_url`'

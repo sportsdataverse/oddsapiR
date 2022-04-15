@@ -1,0 +1,11 @@
+^oddsapiR\.Rproj$
+^\.Rproj\.user$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^README\.Rmd$
+^\.github$
+^vignettes
+^data-raw$
+^logo\.png
+^LICENSE\.md$

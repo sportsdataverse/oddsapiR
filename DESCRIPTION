@@ -5,7 +5,7 @@ Authors@R: c(person("Saiem", "Gilani", email = "saiem.gilani@gmail.com", role = 
 Description: A utility to quickly obtain clean and tidy sports
     odds from The Odds API <https://the-odds-api.com>.
 License: MIT + file LICENSE
-URL: https://github.com/saiemgilani/oddsapiR
+URL: https://saiemgilani.github.io/oddsapiR (docs), https://github.com/saiemgilani/oddsapiR (repo)
 BugReports: https://github.com/saiemgilani/oddsapiR/issues
 SystemRequirements: pandoc (>= 1.12.3), pandoc-citeproc
 Depends: 

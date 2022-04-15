@@ -1,0 +1,127 @@
+---
+title: "Getting started with oddsapiR"
+author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+opengraph:
+  image: 
+    src: "https://github.com/saiemgilani/oddsapiR/blob/main/logo.png?raw=true"
+  twitter:
+    card: summary
+    creator: "@saiemgilani"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width=16, 
+  fig.height=8
+)
+library(gtExtras)
+library(gt)
+library(knitr)
+library(dplyr)
+```
+
+Welcome folks,
+
+I'm Saiem Gilani, one of the [authors](https://saiemgilani.github.io/oddsapiR/authors.html "Authors and contributors to oddsapiR") of [`oddsapiR`](https://saiemgilani.github.io/oddsapiR/), and I hope to give the community a high-quality resource for accessing [**`The Odds API`**](https://the-odds-api.com/).
+
+## **Install** [**`oddsapiR`**](https://saiemgilani.github.io/oddsapiR/)
+```{r install_oddsapiR_gs, message=FALSE,eval=FALSE}
+# You can install using the pacman package using the following code:
+if (!requireNamespace('pacman', quietly = TRUE)){
+  install.packages('pacman')
+}
+pacman::p_load_current_gh("saiemgilani/oddsapiR", dependencies = TRUE, update = TRUE)
+pacman::p_load_current_gh("jthomasmock/gtExtras", dependencies = TRUE, update = TRUE)
+pacman::p_load(dplyr, knitr, gt)
+```
+
+
+#### **Odds API Keys**
+
+The [Odds API](https://the-odds-api.com) requires an API key, here's a quick run-down:
+
+* Using the key: You can save the key for consistent usage by adding `ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .Renviron file (easily accessed via [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)). Run [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html), a new script will pop open named `.Renviron`, **THEN** paste the following in the new script that pops up (with**out** quotations)
+```r
+ODDS_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
+```
+Save the script and **restart your RStudio session**, by clicking `Session` (in between `Plots` and `Build`) and click `Restart R` (there also exists the shortcut `Ctrl + Shift + F10` to restart your session). If set correctly, from then on you should be able to use any of the functions without any other changes.
+
+* For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable `ODDS_API_KEY` (with quotations) using a command like the following.
+
+```{r setenv_ex, message=FALSE, eval = FALSE}
+Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
+```
+
+
+
+### **The included data**
+
+```toa_sports_keys``` - The sports for which `The Odds API` provides coverage
+```{r toa_sports_keys_table}
+oddsapiR::toa_sports_keys %>%
+  gt() %>% 
+  gtExtras::gt_theme_538(table.width = px(650))
+
+```
+
+### **Three core functions**
+One endpoint for looking up the sports the API provides (including currently `active` status): ```toa_sports```
+```{r toa_sports_call}
+
+oddsapiR::toa_sports(all_sports = TRUE) %>%
+  head(n=10) %>% 
+  gt() %>% 
+  gtExtras::gt_theme_538(table.width = px(550))
+
+```
+
+One endpoint for looking up the current odds from the API: ```toa_sports_odds```
+```{r toa_sports_odds_call}
+oddsapiR::toa_sports_odds(sport_key = 'baseball_mlb', 
+                          regions = 'us', 
+                          markets = 'spreads', 
+                          odds_format = 'decimal',
+                          date_format = 'iso') %>% 
+  dplyr::select(c("bookmaker","market_key", "outcomes_name","outcomes_price","outcomes_point","home_team","away_team","commence_time")) %>% 
+  head(n=20) %>% 
+  knitr::kable()
+```
+Note: There are two entries per event per bookmaker for the spreads for both sides of the event.
+
+One endpoint for looking up the current scores from the API: ```toa_sports_scores```
+```{r toa_sports_scores_call}
+oddsapiR::toa_sports_scores(sport_key = 'baseball_mlb', 
+                            days_from = NULL,
+                            date_format = 'iso') %>% 
+  head(n=20) %>% 
+  knitr::kable()
+
+```
+
+
+
+## **Our Authors**
+
+-   [Saiem Gilani](https://twitter.com/saiemgilani)       
+<a href="https://twitter.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=twitter&style=for-the-badge" alt="@saiemgilani" /></a>
+<a href="https://github.com/saiemgilani" target="blank"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge" alt="@saiemgilani" /></a>
+
+
+## **Citations**
+
+To cite the [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org) R package
+in publications, use:
+
+BibTex Citation
+
+``` bibtex
+@misc{gilani_2022_oddsapiR,
+  author = {Gilani, Saiem},
+  title = {oddsapiR: The SportsDataverse's R Package for The Odds API.},
+  url = {https://oddsapiR.sportsdataverse.org},
+  year = {2022}
+}
+```
