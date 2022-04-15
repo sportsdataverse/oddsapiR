@@ -6,6 +6,7 @@ cols <- c(
 
 test_that("The Odds API - Requests", {
   skip_on_cran()
+  # skip_on_ci()
   x <- toa_requests()
   expect_equal(colnames(x), cols)
   expect_s3_class(x, "data.frame")

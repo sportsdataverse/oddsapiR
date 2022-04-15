@@ -17,6 +17,7 @@ cols <- c(
 
 test_that("The Odds API - Odds", {
   skip_on_cran()
+  # skip_on_ci()
   x <- toa_sports_odds(sport_key = 'baseball_mlb', 
                        regions = 'us', 
                        markets = 'spreads', 
