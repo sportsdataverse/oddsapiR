@@ -31,7 +31,7 @@ development:
    
 home:
   title: oddsapiR
-  description: Functions to Access Sports Odds Data
+  description: Access Sports Odds Data from the Odds API
   icon: fa-home
   href: index.html
   links:
@@ -49,7 +49,7 @@ navbar:
   components:
     home:
       title: oddsapiR
-      description: Functions to Access Sports Odds Data
+      description: Access Sports Odds Data from the Odds API
       icon: fa-home
       href: index.html
     reference:
