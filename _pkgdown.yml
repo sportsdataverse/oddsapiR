@@ -35,6 +35,8 @@ home:
   icon: fa-home
   href: index.html
   links:
+  - text: oddsapiR beginner's guide
+    href: articles/oddsapiR.html
   - text: SportsDataverse.org
     href: https://sportsdataverse.org
     
@@ -56,6 +58,14 @@ navbar:
       menu:
       - text: "Function Index"
         href: reference/index.html
+    articles:
+      icon: "fas fa-book-reader"
+      text: " Articles"
+      menu:
+      - text: Vignettes
+        href: articles/index.html
+      - text: oddsapiR beginner's guide
+        href: articles/oddsapiR.html
     news:
       icon: "fas fa-newspaper"
       text: " News"
