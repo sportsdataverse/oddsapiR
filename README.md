@@ -5,10 +5,10 @@
 
 <!-- badges: start -->
 
-[![Version-Number](https://img.shields.io/github/r-package/v/saiemgilani/oddsapiR?label=oddsapiR&logo=R&style=for-the-badge)](https://github.com/saiemgilani/oddsapiR/)
-[![R-CMD-check](https://img.shields.io/github/workflow/status/saiemgilani/oddsapiR/R-CMD-check?label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/saiemgilani/oddsapiR/actions/workflows/R-CMD-check.yaml)
-[![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/saiemgilani/oddsapiR/)
-[![Contributors](https://img.shields.io/github/contributors/saiemgilani/oddsapiR?style=for-the-badge)](https://github.com/saiemgilani/oddsapiR/graphs/contributors)
+[![Version-Number](https://img.shields.io/github/r-package/v/saiemgilani/oddsapiR?label=oddsapiR&logo=R&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR)
+[![R-CMD-check](https://img.shields.io/github/workflow/status/saiemgilani/oddsapiR/R-CMD-check?label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/oddsapiR)
+[![Contributors](https://img.shields.io/github/contributors/saiemgilani/oddsapiR?style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/graphs/contributors)
 [![Twitter
 Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=twitter&style=for-the-badge)](https://twitter.com/SportsDataverse)
 
@@ -21,25 +21,31 @@ Installation & Usage
 ## **Installation**
 
 You can install the released version of
-[**`oddsapiR`**](https://github.com/saiemgilani/oddsapiR) from
-[GitHub](https://github.com/saiemgilani/oddsapiR) with:
+[**`oddsapiR`**](https://github.com/sportsdataverse/oddsapiR) from
+[GitHub](https://github.com/sportsdataverse/oddsapiR) with:
 
-    # You can install using the pacman package using the following code:
-    if (!requireNamespace('pacman', quietly = TRUE)){
-      install.packages('pacman')
-    }
-    pacman::p_load_current_gh("saiemgilani/oddsapiR")
+``` r
+# You can install using the pacman package using the following code:
+if (!requireNamespace('pacman', quietly = TRUE)){
+  install.packages('pacman')
+}
+pacman::p_load_current_gh("sportsdataverse/oddsapiR")
+```
 
-    # if you would prefer devtools installation
-    if (!requireNamespace('devtools', quietly = TRUE)){
-      install.packages('devtools')
-    }
-    # Alternatively, using the devtools package:
-    devtools::install_github(repo = "saiemgilani/oddsapiR")
+``` r
+# if you would prefer devtools installation
+if (!requireNamespace('devtools', quietly = TRUE)){
+  install.packages('devtools')
+}
+# Alternatively, using the devtools package:
+devtools::install_github(repo = "sportsdataverse/oddsapiR")
+```
 
-    git clone https://github.com/saiemgilani/oddsapi
-    cd oddsapi
-    Rscript -e "devtools::install()"
+``` r
+git clone https://github.com/sportsdataverse/oddsapi
+cd oddsapi
+Rscript -e "devtools::install()"
+```
 
 #### **Odds API Keys**
 
@@ -91,7 +97,7 @@ Releases**](https://oddsapiR.sportsdataverse.org/news/index.html)
 Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=twitter&style=for-the-badge)](https://twitter.com/SportsDataverse)
 
 [![GitHub
-stars](https://img.shields.io/github/stars/saiemgilani/oddsapiR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20oddsapiR&maxAge=2592000)](https://github.com/saiemgilani/oddsapiR/stargazers/)
+stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20oddsapiR&maxAge=2592000)](https://github.com/sportsdataverse/oddsapiR/stargazers/)
 
 ## **Our Authors**
 

@@ -23,7 +23,6 @@
 #' @importFrom tidyr unnest
 #' @importFrom rlang .data
 #' @export
-#' 
 toa_requests <- function(){
   base_url = glue::glue('https://api.the-odds-api.com/v4/sports')
   query_params <- list(

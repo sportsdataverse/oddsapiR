@@ -5,8 +5,8 @@ Authors@R: c(person("Saiem", "Gilani", email = "saiem.gilani@gmail.com", role = 
 Description: A utility to quickly obtain clean and tidy sports
     odds from The Odds API <https://the-odds-api.com>.
 License: MIT + file LICENSE
-URL: https://saiemgilani.github.io/oddsapiR (docs), https://github.com/saiemgilani/oddsapiR (repo)
-BugReports: https://github.com/saiemgilani/oddsapiR/issues
+URL: https://oddsapiR.sportsdataverse.org/ (docs), https://github.com/sportsdataverse/oddsapiR (repo)
+BugReports: https://github.com/sportsdataverse/oddsapiR/issues
 SystemRequirements: pandoc (>= 1.12.3), pandoc-citeproc
 Depends: 
     R (>= 4.0.0)
@@ -19,11 +19,8 @@ Imports:
     janitor,
     jsonlite,
     magrittr,
-    progressr (>= 0.6.0),
-    purrr (>= 0.3.0),
     rlang (>= 0.4.0),
     rvest (>= 1.0.0),
-    stringr (>= 1.3.0),
     tidyr (>= 1.0.0)
 Suggests: 
     crayon (>= 1.3.4),
@@ -33,6 +30,8 @@ Suggests:
     ggrepel,
     gt,
     knitr,
+    progressr (>= 0.6.0),
+    purrr (>= 0.3.0),
     qs (>= 0.25.1),
     Rcpp (>= 1.0.7),
     RcppParallel (>= 5.1.4),
@@ -40,6 +39,7 @@ Suggests:
     RSQLite,
     stats,
     stringi,
+    stringr (>= 1.3.0),
     testthat,
     tibble (>= 3.0),
     usethis (>= 1.6.0),
@@ -47,4 +47,4 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0

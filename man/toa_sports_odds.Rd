@@ -63,7 +63,9 @@ Sports for which The Odds API provides betting information for as a tibble:\tabu
 }
 }
 \description{
-\strong{Get the odds for the sports which the Odds API provides coverage}\if{html}{\out{<div class="sourceCode r">}}\preformatted{   try(toa_sports_odds(sport_key = 'baseball_mlb', 
+\strong{Get the odds for the sports which the Odds API provides coverage}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{   try(toa_sports_odds(sport_key = 'baseball_mlb', 
                        regions = 'us', 
                        markets = 'spreads', 
                        odds_format = 'decimal',

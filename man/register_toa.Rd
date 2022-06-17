@@ -23,7 +23,9 @@ To get access to an API key, follow the instructions at \url{https://the-odds-ap
 You can save the key for consistent usage by adding \code{ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX} to your .Renviron file (easily accessed via \href{https://usethis.r-lib.org/reference/edit.html}{\strong{\code{usethis::edit_r_environ()}}}). \cr
 Run \href{https://usethis.r-lib.org/reference/edit.html}{\strong{\code{usethis::edit_r_environ()}}},
 a new script will pop open named \code{.Renviron}, \strong{THEN} \cr
-paste the following in the new script that pops up (with\strong{out} quotations)\if{html}{\out{<div class="sourceCode r">}}\preformatted{ODDS_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
+paste the following in the new script that pops up (with\strong{out} quotations)
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{ODDS_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
 }\if{html}{\out{</div>}}
 
 Save the script and restart your RStudio session, by clicking \code{Session} (in between \code{Plots} and \code{Build}) and click \verb{Restart R} \cr
@@ -34,6 +36,8 @@ If set correctly, from then on you should be able to use any of the \code{toa_} 
 \strong{For less consistent usage:} \cr
 At the beginning of every session or within an R environment,
 save your API key as the environment variable \code{ODDS_API_KEY} (\strong{with} quotations)
-using a command like the following.\if{html}{\out{<div class="sourceCode r">}}\preformatted{Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
+using a command like the following.
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 }\if{html}{\out{</div>}}
 }

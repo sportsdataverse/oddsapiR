@@ -32,7 +32,9 @@ Sports scores which The Odds API provides scores information for as a tibble:\ta
 }
 }
 \description{
-\strong{Get the scores for the sports which the Odds API provides coverage}\if{html}{\out{<div class="sourceCode r">}}\preformatted{   try(toa_sports_scores(sport_key = 'baseball_mlb', 
+\strong{Get the scores for the sports which the Odds API provides coverage}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{   try(toa_sports_scores(sport_key = 'baseball_mlb', 
                          days_from = NULL,
                          date_format = 'iso'))
 }\if{html}{\out{</div>}}

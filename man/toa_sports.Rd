@@ -21,7 +21,9 @@ Sports for which The Odds API provides betting information for as a tibble:\tabu
 }
 }
 \description{
-\strong{Get the Sports for which the Odds API provides coverage}\if{html}{\out{<div class="sourceCode r">}}\preformatted{ toa_sports(all_sports=TRUE)
+\strong{Get the Sports for which the Odds API provides coverage}
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{ toa_sports(all_sports=TRUE)
 }\if{html}{\out{</div>}}
 }
 \examples{
