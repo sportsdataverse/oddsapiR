@@ -20,12 +20,10 @@ Installation & Usage
 
 ## **Installation**
 
-You can install the CRAN version of
-[**`oddsapiR`**](https://CRAN.R-project.org/package=oddsapiR) with:
-
-``` r
-install.packages("oddsapiR")
-```
+<!-- You can install the CRAN version of [**```oddsapiR```** ](https://CRAN.R-project.org/package=oddsapiR) with: -->
+<!-- ```{r readme_cran_install, eval=FALSE} -->
+<!-- install.packages("oddsapiR") -->
+<!-- ``` -->
 
 You can install the released version of
 [**`oddsapiR`**](https://github.com/sportsdataverse/oddsapiR) from
