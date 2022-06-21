@@ -26,6 +26,8 @@
 #' @name register_toa
 NULL
 #' @rdname register_toa
+#' @return Called as a side-effect to ensure that a user has an API key stored in their environment
+#' before making a call to the Odds API service.
 #' @export
 toa_key <- function() {
   key <- Sys.getenv("ODDS_API_KEY")

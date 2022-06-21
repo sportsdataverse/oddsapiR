@@ -13,6 +13,10 @@ has_toa_key()
 
 check_toa_key()
 }
+\value{
+Called as a side-effect to ensure that a user has an API key stored in their environment
+before making a call to the Odds API service.
+}
 \description{
 Save your API Key as a system environment variable \code{ODDS_API_KEY}
 }
