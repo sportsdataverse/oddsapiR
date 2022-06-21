@@ -1,6 +1,6 @@
 ## Release summary
 
-This is an initial release.
+This is an initial release with corrections based on CRAN feedback.
 
 ## R CMD check results
 
