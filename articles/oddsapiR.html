@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Getting started with oddsapiR">
@@ -142,10 +142,13 @@
 
 
 
-<script src="oddsapiR_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Getting started with oddsapiR</h1>
-                        <h4 data-toc-skip class="author">Saiem Gilani <br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a> <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+                        <h4 data-toc-skip class="author">Saiem Gilani
+<br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
 </h4>
             
       
@@ -156,52 +159,70 @@
     
     
 <p>Welcome folks,</p>
-<p>I’m Saiem Gilani, one of the <a href="https://saiemgilani.github.io/oddsapiR/authors.html" title="Authors and contributors to oddsapiR" class="external-link">authors</a> of <a href="https://saiemgilani.github.io/oddsapiR/" class="external-link"><code>oddsapiR</code></a>, and I hope to give the community a high-quality resource for accessing <a href="https://the-odds-api.com/" class="external-link"><strong><code>The Odds API</code></strong></a>.</p>
+<p>I’m Saiem Gilani, one of the <a href="https://saiemgilani.github.io/oddsapiR/authors.html" title="Authors and contributors to oddsapiR" class="external-link">authors</a> of <a href="https://saiemgilani.github.io/oddsapiR/" class="external-link"><code>oddsapiR</code></a>,
+and I hope to give the community a high-quality resource for accessing
+<a href="https://the-odds-api.com/" class="external-link"><strong><code>The Odds API</code></strong></a>.</p>
 <div class="section level2">
 <h2 id="install-oddsapir">
 <strong>Install</strong> <a href="https://saiemgilani.github.io/oddsapiR/" class="external-link"><strong><code>oddsapiR</code></strong></a><a class="anchor" aria-label="anchor" href="#install-oddsapir"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># You can install using the pacman package using the following code:</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load_current_gh</span><span class="op">(</span><span class="st">"saiemgilani/oddsapiR"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load_current_gh</span><span class="op">(</span><span class="st">"jthomasmock/gtExtras"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">pacman</span><span class="fu">::</span><span class="fu">p_load</span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">knitr</span>, <span class="va">gt</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># You can install using the pacman package using the following code:</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pacman'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pacman'</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"sportsdataverse/oddsapiR"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"jthomasmock/gtExtras"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">knitr</span>, <span class="va">gt</span><span class="op">)</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="odds-api-keys">
 <strong>Odds API Keys</strong><a class="anchor" aria-label="anchor" href="#odds-api-keys"></a>
 </h4>
-<p>The <a href="https://the-odds-api.com" class="external-link">Odds API</a> requires an API key, here’s a quick run-down:</p>
+<p>The <a href="https://the-odds-api.com" class="external-link">Odds API</a> requires an API
+key, here’s a quick run-down:</p>
 <ul>
-<li>Using the key: You can save the key for consistent usage by adding <code>ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .Renviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>, a new script will pop open named <code>.Renviron</code>, <strong>THEN</strong> paste the following in the new script that pops up (with<strong>out</strong> quotations)</li>
+<li>Using the key: You can save the key for consistent usage by adding
+<code>ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .Renviron
+file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>).
+Run <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>,
+a new script will pop open named <code>.Renviron</code>,
+<strong>THEN</strong> paste the following in the new script that pops up
+(with<strong>out</strong> quotations)</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ODDS_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></code></pre></div>
-<p>Save the script and <strong>restart your RStudio session</strong>, by clicking <code>Session</code> (in between <code>Plots</code> and <code>Build</code>) and click <code>Restart R</code> (there also exists the shortcut <code>Ctrl + Shift + F10</code> to restart your session). If set correctly, from then on you should be able to use any of the functions without any other changes.</p>
+<code class="sourceCode R"><span><span class="va">ODDS_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></span></code></pre></div>
+<p>Save the script and <strong>restart your RStudio session</strong>, by
+clicking <code>Session</code> (in between <code>Plots</code> and
+<code>Build</code>) and click <code>Restart R</code> (there also exists
+the shortcut <code>Ctrl + Shift + F10</code> to restart your session).
+If set correctly, from then on you should be able to use any of the
+functions without any other changes.</p>
 <ul>
-<li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>ODDS_API_KEY</code> (with quotations) using a command like the following.</li>
+<li>For less consistent usage: At the beginning of every session or
+within an R environment, save your API key as the environment variable
+<code>ODDS_API_KEY</code> (with quotations) using a command like the
+following.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>ODDS_API_KEY <span class="op">=</span> <span class="st">"XXXX-YOUR-API-KEY-HERE-XXXXX"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>ODDS_API_KEY <span class="op">=</span> <span class="st">"XXXX-YOUR-API-KEY-HERE-XXXXX"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="the-included-data">
 <strong>The included data</strong><a class="anchor" aria-label="anchor" href="#the-included-data"></a>
 </h3>
-<p><code>toa_sports_keys</code> - The sports for which <code>The Odds API</code> provides coverage</p>
+<p><code>toa_sports_keys</code> - The sports for which
+<code>The Odds API</code> provides coverage</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">oddsapiR</span><span class="fu">::</span><span class="va"><a href="../reference/toa_sports_keys.html">toa_sports_keys</a></span> <span class="op">%&gt;%</span>
-  <span class="fu">gt</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">gtExtras</span><span class="fu">::</span><span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_theme_538.html" class="external-link">gt_theme_538</a></span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">650</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="ldfzvnhtjg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<code class="sourceCode R"><span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="va"><a href="../reference/toa_sports_keys.html">toa_sports_keys</a></span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">gt</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">gtExtras</span><span class="fu">::</span><span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_theme_538.html" class="external-link">gt_theme_538</a></span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">650</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div id="tztjrencyj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html {
   font-family: Chivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#ldfzvnhtjg .gt_table {
+#tztjrencyj .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -226,7 +247,7 @@ html {
   border-left-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_heading {
+#tztjrencyj .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -238,7 +259,12 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_title {
+#tztjrencyj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tztjrencyj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -250,7 +276,7 @@ html {
   border-bottom-width: 0;
 }
 
-#ldfzvnhtjg .gt_subtitle {
+#tztjrencyj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -262,13 +288,13 @@ html {
   border-top-width: 0;
 }
 
-#ldfzvnhtjg .gt_bottom_border {
+#tztjrencyj .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_col_headings {
+#tztjrencyj .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -283,7 +309,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_col_heading {
+#tztjrencyj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -303,7 +329,7 @@ html {
   overflow-x: hidden;
 }
 
-#ldfzvnhtjg .gt_column_spanner_outer {
+#tztjrencyj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -315,15 +341,15 @@ html {
   padding-right: 4px;
 }
 
-#ldfzvnhtjg .gt_column_spanner_outer:first-child {
+#tztjrencyj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ldfzvnhtjg .gt_column_spanner_outer:last-child {
+#tztjrencyj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ldfzvnhtjg .gt_column_spanner {
+#tztjrencyj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -335,7 +361,7 @@ html {
   width: 100%;
 }
 
-#ldfzvnhtjg .gt_group_heading {
+#tztjrencyj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,9 +384,10 @@ html {
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
-#ldfzvnhtjg .gt_empty_group_heading {
+#tztjrencyj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -375,15 +402,15 @@ html {
   vertical-align: middle;
 }
 
-#ldfzvnhtjg .gt_from_md > :first-child {
+#tztjrencyj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ldfzvnhtjg .gt_from_md > :last-child {
+#tztjrencyj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ldfzvnhtjg .gt_row {
+#tztjrencyj .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -402,7 +429,7 @@ html {
   overflow-x: hidden;
 }
 
-#ldfzvnhtjg .gt_stub {
+#tztjrencyj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -415,7 +442,7 @@ html {
   padding-right: 5px;
 }
 
-#ldfzvnhtjg .gt_stub_row_group {
+#tztjrencyj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -429,11 +456,11 @@ html {
   vertical-align: top;
 }
 
-#ldfzvnhtjg .gt_row_group_first td {
+#tztjrencyj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ldfzvnhtjg .gt_summary_row {
+#tztjrencyj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -443,16 +470,16 @@ html {
   padding-right: 5px;
 }
 
-#ldfzvnhtjg .gt_first_summary_row {
+#tztjrencyj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_first_summary_row.thick {
+#tztjrencyj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ldfzvnhtjg .gt_last_summary_row {
+#tztjrencyj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -462,7 +489,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_grand_summary_row {
+#tztjrencyj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -472,7 +499,7 @@ html {
   padding-right: 5px;
 }
 
-#ldfzvnhtjg .gt_first_grand_summary_row {
+#tztjrencyj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -482,11 +509,11 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_striped {
+#tztjrencyj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ldfzvnhtjg .gt_table_body {
+#tztjrencyj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -495,7 +522,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_footnotes {
+#tztjrencyj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -509,7 +536,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_footnote {
+#tztjrencyj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -518,7 +545,7 @@ html {
   padding-right: 5px;
 }
 
-#ldfzvnhtjg .gt_sourcenotes {
+#tztjrencyj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -532,7 +559,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#ldfzvnhtjg .gt_sourcenote {
+#tztjrencyj .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -540,72 +567,65 @@ html {
   padding-right: 5px;
 }
 
-#ldfzvnhtjg .gt_left {
+#tztjrencyj .gt_left {
   text-align: left;
 }
 
-#ldfzvnhtjg .gt_center {
+#tztjrencyj .gt_center {
   text-align: center;
 }
 
-#ldfzvnhtjg .gt_right {
+#tztjrencyj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ldfzvnhtjg .gt_font_normal {
+#tztjrencyj .gt_font_normal {
   font-weight: normal;
 }
 
-#ldfzvnhtjg .gt_font_bold {
+#tztjrencyj .gt_font_bold {
   font-weight: bold;
 }
 
-#ldfzvnhtjg .gt_font_italic {
+#tztjrencyj .gt_font_italic {
   font-style: italic;
 }
 
-#ldfzvnhtjg .gt_super {
+#tztjrencyj .gt_super {
   font-size: 65%;
 }
 
-#ldfzvnhtjg .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
-#ldfzvnhtjg .gt_footnote_marks {
+#tztjrencyj .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#ldfzvnhtjg .gt_asterisk {
+#tztjrencyj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ldfzvnhtjg .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#tztjrencyj .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#ldfzvnhtjg .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#tztjrencyj .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#ldfzvnhtjg .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#tztjrencyj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#tztjrencyj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#tztjrencyj .gt_indent_5 {
+  text-indent: 25px;
 }
 
 tbody tr:last-child {
@@ -614,551 +634,551 @@ tbody tr:last-child {
 </style>
 <table class="table gt_table">
 <thead class="gt_col_headings"><tr>
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">key</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">group</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">title</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">description</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">has_outrights</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="key">key</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="group">group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="title">title</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="description">description</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="has_outrights">has_outrights</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td class="gt_row gt_left">americanfootball_ncaaf</td>
-<td class="gt_row gt_left">American Football</td>
-<td class="gt_row gt_left">NCAAF</td>
-<td class="gt_row gt_left">US College Football</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">americanfootball_ncaaf</td>
+<td headers="group" class="gt_row gt_left">American Football</td>
+<td headers="title" class="gt_row gt_left">NCAAF</td>
+<td headers="description" class="gt_row gt_left">US College Football</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">americanfootball_nfl</td>
-<td class="gt_row gt_left">American Football</td>
-<td class="gt_row gt_left">NFL</td>
-<td class="gt_row gt_left">US Football</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">americanfootball_nfl</td>
+<td headers="group" class="gt_row gt_left">American Football</td>
+<td headers="title" class="gt_row gt_left">NFL</td>
+<td headers="description" class="gt_row gt_left">US Football</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">americanfootball_nfl_super_bowl_winner</td>
-<td class="gt_row gt_left">American Football</td>
-<td class="gt_row gt_left">NFL Super Bowl Winner</td>
-<td class="gt_row gt_left">Super Bowl Winner 2022/2023</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">americanfootball_nfl_super_bowl_winner</td>
+<td headers="group" class="gt_row gt_left">American Football</td>
+<td headers="title" class="gt_row gt_left">NFL Super Bowl Winner</td>
+<td headers="description" class="gt_row gt_left">Super Bowl Winner 2022/2023</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">aussierules_afl</td>
-<td class="gt_row gt_left">Aussie Rules</td>
-<td class="gt_row gt_left">AFL</td>
-<td class="gt_row gt_left">Aussie Football</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">aussierules_afl</td>
+<td headers="group" class="gt_row gt_left">Aussie Rules</td>
+<td headers="title" class="gt_row gt_left">AFL</td>
+<td headers="description" class="gt_row gt_left">Aussie Football</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">baseball_mlb</td>
-<td class="gt_row gt_left">Baseball</td>
-<td class="gt_row gt_left">MLB</td>
-<td class="gt_row gt_left">Major League Baseball</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">baseball_mlb</td>
+<td headers="group" class="gt_row gt_left">Baseball</td>
+<td headers="title" class="gt_row gt_left">MLB</td>
+<td headers="description" class="gt_row gt_left">Major League Baseball</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">baseball_mlb_world_series_winner</td>
-<td class="gt_row gt_left">Baseball</td>
-<td class="gt_row gt_left">MLB World Series Winner</td>
-<td class="gt_row gt_left">World Series Winner 2022</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">baseball_mlb_world_series_winner</td>
+<td headers="group" class="gt_row gt_left">Baseball</td>
+<td headers="title" class="gt_row gt_left">MLB World Series Winner</td>
+<td headers="description" class="gt_row gt_left">World Series Winner 2022</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">basketball_euroleague</td>
-<td class="gt_row gt_left">Basketball</td>
-<td class="gt_row gt_left">Basketball Euroleague</td>
-<td class="gt_row gt_left">Basketball Euroleague</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">basketball_euroleague</td>
+<td headers="group" class="gt_row gt_left">Basketball</td>
+<td headers="title" class="gt_row gt_left">Basketball Euroleague</td>
+<td headers="description" class="gt_row gt_left">Basketball Euroleague</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">basketball_nba</td>
-<td class="gt_row gt_left">Basketball</td>
-<td class="gt_row gt_left">NBA</td>
-<td class="gt_row gt_left">US Basketball</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">basketball_nba</td>
+<td headers="group" class="gt_row gt_left">Basketball</td>
+<td headers="title" class="gt_row gt_left">NBA</td>
+<td headers="description" class="gt_row gt_left">US Basketball</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">basketball_nba_championship_winner</td>
-<td class="gt_row gt_left">Basketball</td>
-<td class="gt_row gt_left">NBA Championship Winner</td>
-<td class="gt_row gt_left">Championship Winner 2021/2022</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">basketball_nba_championship_winner</td>
+<td headers="group" class="gt_row gt_left">Basketball</td>
+<td headers="title" class="gt_row gt_left">NBA Championship Winner</td>
+<td headers="description" class="gt_row gt_left">Championship Winner 2021/2022</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">basketball_ncaab</td>
-<td class="gt_row gt_left">Basketball</td>
-<td class="gt_row gt_left">NCAAB</td>
-<td class="gt_row gt_left">US College Basketball</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">basketball_ncaab</td>
+<td headers="group" class="gt_row gt_left">Basketball</td>
+<td headers="title" class="gt_row gt_left">NCAAB</td>
+<td headers="description" class="gt_row gt_left">US College Basketball</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">basketball_wnba</td>
-<td class="gt_row gt_left">Basketball</td>
-<td class="gt_row gt_left">WNBA</td>
-<td class="gt_row gt_left">US Basketball</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">basketball_wnba</td>
+<td headers="group" class="gt_row gt_left">Basketball</td>
+<td headers="title" class="gt_row gt_left">WNBA</td>
+<td headers="description" class="gt_row gt_left">US Basketball</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">cricket_big_bash</td>
-<td class="gt_row gt_left">Cricket</td>
-<td class="gt_row gt_left">Big Bash</td>
-<td class="gt_row gt_left">Big Bash League</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">cricket_big_bash</td>
+<td headers="group" class="gt_row gt_left">Cricket</td>
+<td headers="title" class="gt_row gt_left">Big Bash</td>
+<td headers="description" class="gt_row gt_left">Big Bash League</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">cricket_icc_world_cup</td>
-<td class="gt_row gt_left">Cricket</td>
-<td class="gt_row gt_left">ICC World Cup</td>
-<td class="gt_row gt_left">ICC World Cup</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">cricket_icc_world_cup</td>
+<td headers="group" class="gt_row gt_left">Cricket</td>
+<td headers="title" class="gt_row gt_left">ICC World Cup</td>
+<td headers="description" class="gt_row gt_left">ICC World Cup</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">cricket_ipl</td>
-<td class="gt_row gt_left">Cricket</td>
-<td class="gt_row gt_left">IPL</td>
-<td class="gt_row gt_left">Indian Premier League</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">cricket_ipl</td>
+<td headers="group" class="gt_row gt_left">Cricket</td>
+<td headers="title" class="gt_row gt_left">IPL</td>
+<td headers="description" class="gt_row gt_left">Indian Premier League</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">cricket_odi</td>
-<td class="gt_row gt_left">Cricket</td>
-<td class="gt_row gt_left">One Day Internationals</td>
-<td class="gt_row gt_left">One Day Internationals</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">cricket_odi</td>
+<td headers="group" class="gt_row gt_left">Cricket</td>
+<td headers="title" class="gt_row gt_left">One Day Internationals</td>
+<td headers="description" class="gt_row gt_left">One Day Internationals</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">cricket_test_match</td>
-<td class="gt_row gt_left">Cricket</td>
-<td class="gt_row gt_left">Test Matches</td>
-<td class="gt_row gt_left">International Test Matches</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">cricket_test_match</td>
+<td headers="group" class="gt_row gt_left">Cricket</td>
+<td headers="title" class="gt_row gt_left">Test Matches</td>
+<td headers="description" class="gt_row gt_left">International Test Matches</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">golf_masters_tournament_winner</td>
-<td class="gt_row gt_left">Golf</td>
-<td class="gt_row gt_left">Masters Tournament Winner</td>
-<td class="gt_row gt_left">2023 Winner</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">golf_masters_tournament_winner</td>
+<td headers="group" class="gt_row gt_left">Golf</td>
+<td headers="title" class="gt_row gt_left">Masters Tournament Winner</td>
+<td headers="description" class="gt_row gt_left">2023 Winner</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">golf_pga_championship_winner</td>
-<td class="gt_row gt_left">Golf</td>
-<td class="gt_row gt_left">PGA Championship Winner</td>
-<td class="gt_row gt_left">2022 Winner</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">golf_pga_championship_winner</td>
+<td headers="group" class="gt_row gt_left">Golf</td>
+<td headers="title" class="gt_row gt_left">PGA Championship Winner</td>
+<td headers="description" class="gt_row gt_left">2022 Winner</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">golf_the_open_championship_winner</td>
-<td class="gt_row gt_left">Golf</td>
-<td class="gt_row gt_left">The Open Winner</td>
-<td class="gt_row gt_left">2022 Winner</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">golf_the_open_championship_winner</td>
+<td headers="group" class="gt_row gt_left">Golf</td>
+<td headers="title" class="gt_row gt_left">The Open Winner</td>
+<td headers="description" class="gt_row gt_left">2022 Winner</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">golf_us_open_winner</td>
-<td class="gt_row gt_left">Golf</td>
-<td class="gt_row gt_left">US Open Winner</td>
-<td class="gt_row gt_left">2022 Winner</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">golf_us_open_winner</td>
+<td headers="group" class="gt_row gt_left">Golf</td>
+<td headers="title" class="gt_row gt_left">US Open Winner</td>
+<td headers="description" class="gt_row gt_left">2022 Winner</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">icehockey_nhl</td>
-<td class="gt_row gt_left">Ice Hockey</td>
-<td class="gt_row gt_left">NHL</td>
-<td class="gt_row gt_left">US Ice Hockey</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">icehockey_nhl</td>
+<td headers="group" class="gt_row gt_left">Ice Hockey</td>
+<td headers="title" class="gt_row gt_left">NHL</td>
+<td headers="description" class="gt_row gt_left">US Ice Hockey</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">icehockey_nhl_championship_winner</td>
-<td class="gt_row gt_left">Ice Hockey</td>
-<td class="gt_row gt_left">NHL Championship Winner</td>
-<td class="gt_row gt_left">Stanley Cup Winner 2021/2022</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">icehockey_nhl_championship_winner</td>
+<td headers="group" class="gt_row gt_left">Ice Hockey</td>
+<td headers="title" class="gt_row gt_left">NHL Championship Winner</td>
+<td headers="description" class="gt_row gt_left">Stanley Cup Winner 2021/2022</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">icehockey_sweden_allsvenskan</td>
-<td class="gt_row gt_left">Ice Hockey</td>
-<td class="gt_row gt_left">HockeyAllsvenskan</td>
-<td class="gt_row gt_left">Swedish Hockey Allsvenskan</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">icehockey_sweden_allsvenskan</td>
+<td headers="group" class="gt_row gt_left">Ice Hockey</td>
+<td headers="title" class="gt_row gt_left">HockeyAllsvenskan</td>
+<td headers="description" class="gt_row gt_left">Swedish Hockey Allsvenskan</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">icehockey_sweden_hockey_league</td>
-<td class="gt_row gt_left">Ice Hockey</td>
-<td class="gt_row gt_left">SHL</td>
-<td class="gt_row gt_left">Swedish Hockey League</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">icehockey_sweden_hockey_league</td>
+<td headers="group" class="gt_row gt_left">Ice Hockey</td>
+<td headers="title" class="gt_row gt_left">SHL</td>
+<td headers="description" class="gt_row gt_left">Swedish Hockey League</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">mma_mixed_martial_arts</td>
-<td class="gt_row gt_left">Mixed Martial Arts</td>
-<td class="gt_row gt_left">MMA</td>
-<td class="gt_row gt_left">Mixed Martial Arts</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">mma_mixed_martial_arts</td>
+<td headers="group" class="gt_row gt_left">Mixed Martial Arts</td>
+<td headers="title" class="gt_row gt_left">MMA</td>
+<td headers="description" class="gt_row gt_left">Mixed Martial Arts</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">politics_us_presidential_election_winner</td>
-<td class="gt_row gt_left">Politics</td>
-<td class="gt_row gt_left">US Presidential Elections Winner</td>
-<td class="gt_row gt_left">2024 US Presidential Election Winner</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">politics_us_presidential_election_winner</td>
+<td headers="group" class="gt_row gt_left">Politics</td>
+<td headers="title" class="gt_row gt_left">US Presidential Elections Winner</td>
+<td headers="description" class="gt_row gt_left">2024 US Presidential Election Winner</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">rugbyleague_nrl</td>
-<td class="gt_row gt_left">Rugby League</td>
-<td class="gt_row gt_left">NRL</td>
-<td class="gt_row gt_left">Aussie Rugby League</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">rugbyleague_nrl</td>
+<td headers="group" class="gt_row gt_left">Rugby League</td>
+<td headers="title" class="gt_row gt_left">NRL</td>
+<td headers="description" class="gt_row gt_left">Aussie Rugby League</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_africa_cup_of_nations</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Africa Cup of Nations</td>
-<td class="gt_row gt_left">Africa Cup of Nations</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_africa_cup_of_nations</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Africa Cup of Nations</td>
+<td headers="description" class="gt_row gt_left">Africa Cup of Nations</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_argentina_primera_division</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Primera División - Argentina</td>
-<td class="gt_row gt_left">Argentine Primera División</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_argentina_primera_division</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Primera División - Argentina</td>
+<td headers="description" class="gt_row gt_left">Argentine Primera División</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_australia_aleague</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">A-League</td>
-<td class="gt_row gt_left">Aussie Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_australia_aleague</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">A-League</td>
+<td headers="description" class="gt_row gt_left">Aussie Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_belgium_first_div</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Belgium First Div</td>
-<td class="gt_row gt_left">Belgian First Division A</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_belgium_first_div</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Belgium First Div</td>
+<td headers="description" class="gt_row gt_left">Belgian First Division A</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_brazil_campeonato</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Brazil Série A</td>
-<td class="gt_row gt_left">Brasileirão Série A</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_brazil_campeonato</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Brazil Série A</td>
+<td headers="description" class="gt_row gt_left">Brasileirão Série A</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_china_superleague</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Super League - China</td>
-<td class="gt_row gt_left"></td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_china_superleague</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Super League - China</td>
+<td headers="description" class="gt_row gt_left"></td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_conmebol_copa_libertadores</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Copa Libertadores</td>
-<td class="gt_row gt_left">CONMEBOL Copa Libertadores</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_conmebol_copa_libertadores</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Copa Libertadores</td>
+<td headers="description" class="gt_row gt_left">CONMEBOL Copa Libertadores</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_denmark_superliga</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Denmark Superliga</td>
-<td class="gt_row gt_left"></td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_denmark_superliga</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Denmark Superliga</td>
+<td headers="description" class="gt_row gt_left"></td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_efl_champ</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Championship</td>
-<td class="gt_row gt_left">EFL Championship</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_efl_champ</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Championship</td>
+<td headers="description" class="gt_row gt_left">EFL Championship</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_england_efl_cup</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">EFL Cup</td>
-<td class="gt_row gt_left">League Cup</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_england_efl_cup</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">EFL Cup</td>
+<td headers="description" class="gt_row gt_left">League Cup</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_england_league1</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">League 1</td>
-<td class="gt_row gt_left">EFL League 1</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_england_league1</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">League 1</td>
+<td headers="description" class="gt_row gt_left">EFL League 1</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_england_league2</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">League 2</td>
-<td class="gt_row gt_left">EFL League 2 </td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_england_league2</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">League 2</td>
+<td headers="description" class="gt_row gt_left">EFL League 2 </td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_epl</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">EPL</td>
-<td class="gt_row gt_left">English Premier League</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_epl</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">EPL</td>
+<td headers="description" class="gt_row gt_left">English Premier League</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_fa_cup</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">FA Cup</td>
-<td class="gt_row gt_left">Football Association Challenge Cup</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_fa_cup</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">FA Cup</td>
+<td headers="description" class="gt_row gt_left">Football Association Challenge Cup</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_fifa_world_cup</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">FIFA World Cup</td>
-<td class="gt_row gt_left">FIFA World Cup 2022</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_fifa_world_cup</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">FIFA World Cup</td>
+<td headers="description" class="gt_row gt_left">FIFA World Cup 2022</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_fifa_world_cup_winner</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">FIFA World Cup Winner</td>
-<td class="gt_row gt_left">FIFA World Cup Winner 2022</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">soccer_fifa_world_cup_winner</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">FIFA World Cup Winner</td>
+<td headers="description" class="gt_row gt_left">FIFA World Cup Winner 2022</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_finland_veikkausliiga</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Veikkausliiga - Finland</td>
-<td class="gt_row gt_left"></td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_finland_veikkausliiga</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Veikkausliiga - Finland</td>
+<td headers="description" class="gt_row gt_left"></td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_france_ligue_one</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Ligue 1 - France</td>
-<td class="gt_row gt_left"></td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_france_ligue_one</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Ligue 1 - France</td>
+<td headers="description" class="gt_row gt_left"></td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_france_ligue_two</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Ligue 2 - France</td>
-<td class="gt_row gt_left">French Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_france_ligue_two</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Ligue 2 - France</td>
+<td headers="description" class="gt_row gt_left">French Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_germany_bundesliga</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Bundesliga - Germany</td>
-<td class="gt_row gt_left">German Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_germany_bundesliga</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Bundesliga - Germany</td>
+<td headers="description" class="gt_row gt_left">German Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_germany_bundesliga2</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Bundesliga 2 - Germany</td>
-<td class="gt_row gt_left">German Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_germany_bundesliga2</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Bundesliga 2 - Germany</td>
+<td headers="description" class="gt_row gt_left">German Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_italy_serie_a</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Serie A - Italy</td>
-<td class="gt_row gt_left">Italian Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_italy_serie_a</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Serie A - Italy</td>
+<td headers="description" class="gt_row gt_left">Italian Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_italy_serie_b</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Serie B - Italy</td>
-<td class="gt_row gt_left">Italian Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_italy_serie_b</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Serie B - Italy</td>
+<td headers="description" class="gt_row gt_left">Italian Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_japan_j_league</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">J League</td>
-<td class="gt_row gt_left">Japan Soccer League</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_japan_j_league</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">J League</td>
+<td headers="description" class="gt_row gt_left">Japan Soccer League</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_korea_kleague1</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">K League 1</td>
-<td class="gt_row gt_left">Korean Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_korea_kleague1</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">K League 1</td>
+<td headers="description" class="gt_row gt_left">Korean Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_league_of_ireland</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">League of Ireland</td>
-<td class="gt_row gt_left">Airtricity League Premier Division</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_league_of_ireland</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">League of Ireland</td>
+<td headers="description" class="gt_row gt_left">Airtricity League Premier Division</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_mexico_ligamx</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Liga MX</td>
-<td class="gt_row gt_left">Mexican Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_mexico_ligamx</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Liga MX</td>
+<td headers="description" class="gt_row gt_left">Mexican Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_netherlands_eredivisie</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Dutch Eredivisie</td>
-<td class="gt_row gt_left">Dutch Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_netherlands_eredivisie</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Dutch Eredivisie</td>
+<td headers="description" class="gt_row gt_left">Dutch Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_norway_eliteserien</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Eliteserien - Norway</td>
-<td class="gt_row gt_left">Norwegian Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_norway_eliteserien</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Eliteserien - Norway</td>
+<td headers="description" class="gt_row gt_left">Norwegian Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_portugal_primeira_liga</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Primeira Liga - Portugal</td>
-<td class="gt_row gt_left">Portugese Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_portugal_primeira_liga</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Primeira Liga - Portugal</td>
+<td headers="description" class="gt_row gt_left">Portugese Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_russia_premier_league</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Premier League - Russia</td>
-<td class="gt_row gt_left">Russian Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_russia_premier_league</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Premier League - Russia</td>
+<td headers="description" class="gt_row gt_left">Russian Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_spain_la_liga</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">La Liga - Spain</td>
-<td class="gt_row gt_left">Spanish Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_spain_la_liga</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">La Liga - Spain</td>
+<td headers="description" class="gt_row gt_left">Spanish Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_spain_segunda_division</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">La Liga 2 - Spain</td>
-<td class="gt_row gt_left">Spanish Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_spain_segunda_division</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">La Liga 2 - Spain</td>
+<td headers="description" class="gt_row gt_left">Spanish Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_spl</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Premiership - Scotland</td>
-<td class="gt_row gt_left">Scottish Premiership</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_spl</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Premiership - Scotland</td>
+<td headers="description" class="gt_row gt_left">Scottish Premiership</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_sweden_allsvenskan</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Allsvenskan - Sweden</td>
-<td class="gt_row gt_left">Swedish Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_sweden_allsvenskan</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Allsvenskan - Sweden</td>
+<td headers="description" class="gt_row gt_left">Swedish Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_sweden_superettan</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Superettan - Sweden</td>
-<td class="gt_row gt_left">Swedish Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_sweden_superettan</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Superettan - Sweden</td>
+<td headers="description" class="gt_row gt_left">Swedish Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_switzerland_superleague</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Swiss Superleague</td>
-<td class="gt_row gt_left">Swiss Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_switzerland_superleague</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Swiss Superleague</td>
+<td headers="description" class="gt_row gt_left">Swiss Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_turkey_super_league</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">Turkey Super League</td>
-<td class="gt_row gt_left">Turkish Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_turkey_super_league</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">Turkey Super League</td>
+<td headers="description" class="gt_row gt_left">Turkish Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_uefa_champs_league</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">UEFA Champions</td>
-<td class="gt_row gt_left">European Champions League</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_uefa_champs_league</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">UEFA Champions</td>
+<td headers="description" class="gt_row gt_left">European Champions League</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_uefa_europa_league</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">UEFA Europa</td>
-<td class="gt_row gt_left">European Europa League</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_uefa_europa_league</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">UEFA Europa</td>
+<td headers="description" class="gt_row gt_left">European Europa League</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_uefa_nations_league</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">UEFA Nations League</td>
-<td class="gt_row gt_left">UEFA Nations League</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_uefa_nations_league</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">UEFA Nations League</td>
+<td headers="description" class="gt_row gt_left">UEFA Nations League</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">soccer_usa_mls</td>
-<td class="gt_row gt_left">Soccer</td>
-<td class="gt_row gt_left">MLS</td>
-<td class="gt_row gt_left">Major League Soccer</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">soccer_usa_mls</td>
+<td headers="group" class="gt_row gt_left">Soccer</td>
+<td headers="title" class="gt_row gt_left">MLS</td>
+<td headers="description" class="gt_row gt_left">Major League Soccer</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">tennis_atp_aus_open_singles</td>
-<td class="gt_row gt_left">Tennis</td>
-<td class="gt_row gt_left">ATP Australian Open</td>
-<td class="gt_row gt_left">Men's Singles</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">tennis_atp_aus_open_singles</td>
+<td headers="group" class="gt_row gt_left">Tennis</td>
+<td headers="title" class="gt_row gt_left">ATP Australian Open</td>
+<td headers="description" class="gt_row gt_left">Men's Singles</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">tennis_atp_french_open</td>
-<td class="gt_row gt_left">Tennis</td>
-<td class="gt_row gt_left">ATP French Open</td>
-<td class="gt_row gt_left">Men's Singles</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">tennis_atp_french_open</td>
+<td headers="group" class="gt_row gt_left">Tennis</td>
+<td headers="title" class="gt_row gt_left">ATP French Open</td>
+<td headers="description" class="gt_row gt_left">Men's Singles</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">tennis_atp_us_open</td>
-<td class="gt_row gt_left">Tennis</td>
-<td class="gt_row gt_left">ATP US Open</td>
-<td class="gt_row gt_left">Men's Singles</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">tennis_atp_us_open</td>
+<td headers="group" class="gt_row gt_left">Tennis</td>
+<td headers="title" class="gt_row gt_left">ATP US Open</td>
+<td headers="description" class="gt_row gt_left">Men's Singles</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">tennis_atp_wimbledon</td>
-<td class="gt_row gt_left">Tennis</td>
-<td class="gt_row gt_left">ATP Wimbledon</td>
-<td class="gt_row gt_left">Men's Singles</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">tennis_atp_wimbledon</td>
+<td headers="group" class="gt_row gt_left">Tennis</td>
+<td headers="title" class="gt_row gt_left">ATP Wimbledon</td>
+<td headers="description" class="gt_row gt_left">Men's Singles</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">tennis_wta_aus_open_singles</td>
-<td class="gt_row gt_left">Tennis</td>
-<td class="gt_row gt_left">WTA Australian Open</td>
-<td class="gt_row gt_left">Women's Singles</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">tennis_wta_aus_open_singles</td>
+<td headers="group" class="gt_row gt_left">Tennis</td>
+<td headers="title" class="gt_row gt_left">WTA Australian Open</td>
+<td headers="description" class="gt_row gt_left">Women's Singles</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">tennis_wta_french_open</td>
-<td class="gt_row gt_left">Tennis</td>
-<td class="gt_row gt_left">WTA French Open</td>
-<td class="gt_row gt_left">Women's Singles</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">tennis_wta_french_open</td>
+<td headers="group" class="gt_row gt_left">Tennis</td>
+<td headers="title" class="gt_row gt_left">WTA French Open</td>
+<td headers="description" class="gt_row gt_left">Women's Singles</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">tennis_wta_us_open</td>
-<td class="gt_row gt_left">Tennis</td>
-<td class="gt_row gt_left">WTA US Open</td>
-<td class="gt_row gt_left">Women's Singles</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">tennis_wta_us_open</td>
+<td headers="group" class="gt_row gt_left">Tennis</td>
+<td headers="title" class="gt_row gt_left">WTA US Open</td>
+<td headers="description" class="gt_row gt_left">Women's Singles</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">tennis_wta_wimbledon</td>
-<td class="gt_row gt_left">Tennis</td>
-<td class="gt_row gt_left">WTA Wimbledon</td>
-<td class="gt_row gt_left">Women's Singles</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">tennis_wta_wimbledon</td>
+<td headers="group" class="gt_row gt_left">Tennis</td>
+<td headers="title" class="gt_row gt_left">WTA Wimbledon</td>
+<td headers="description" class="gt_row gt_left">Women's Singles</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 </tbody>
 </table>
@@ -1168,20 +1188,21 @@ tbody tr:last-child {
 <h3 id="three-core-functions">
 <strong>Three core functions</strong><a class="anchor" aria-label="anchor" href="#three-core-functions"></a>
 </h3>
-<p>One endpoint for looking up the sports the API provides (including currently <code>active</code> status): <code>toa_sports</code></p>
+<p>One endpoint for looking up the sports the API provides (including
+currently <code>active</code> status): <code>toa_sports</code></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu">oddsapiR</span><span class="fu">::</span><span class="fu"><a href="../reference/toa_sports.html">toa_sports</a></span><span class="op">(</span>all_sports <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">gt</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">gtExtras</span><span class="fu">::</span><span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_theme_538.html" class="external-link">gt_theme_538</a></span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">550</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<div id="dfoitntqce" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<code class="sourceCode R"><span></span>
+<span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="fu"><a href="../reference/toa_sports.html">toa_sports</a></span><span class="op">(</span>all_sports <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">gt</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">gtExtras</span><span class="fu">::</span><span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_theme_538.html" class="external-link">gt_theme_538</a></span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">550</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div id="jazqvfzknj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html {
   font-family: Chivo, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dfoitntqce .gt_table {
+#jazqvfzknj .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1206,7 +1227,7 @@ html {
   border-left-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_heading {
+#jazqvfzknj .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -1218,7 +1239,12 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_title {
+#jazqvfzknj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jazqvfzknj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1230,7 +1256,7 @@ html {
   border-bottom-width: 0;
 }
 
-#dfoitntqce .gt_subtitle {
+#jazqvfzknj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1242,13 +1268,13 @@ html {
   border-top-width: 0;
 }
 
-#dfoitntqce .gt_bottom_border {
+#jazqvfzknj .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_col_headings {
+#jazqvfzknj .gt_col_headings {
   border-top-style: none;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1263,7 +1289,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_col_heading {
+#jazqvfzknj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -1283,7 +1309,7 @@ html {
   overflow-x: hidden;
 }
 
-#dfoitntqce .gt_column_spanner_outer {
+#jazqvfzknj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -1295,15 +1321,15 @@ html {
   padding-right: 4px;
 }
 
-#dfoitntqce .gt_column_spanner_outer:first-child {
+#jazqvfzknj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dfoitntqce .gt_column_spanner_outer:last-child {
+#jazqvfzknj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dfoitntqce .gt_column_spanner {
+#jazqvfzknj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -1315,7 +1341,7 @@ html {
   width: 100%;
 }
 
-#dfoitntqce .gt_group_heading {
+#jazqvfzknj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1338,9 +1364,10 @@ html {
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: middle;
+  text-align: left;
 }
 
-#dfoitntqce .gt_empty_group_heading {
+#jazqvfzknj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1355,15 +1382,15 @@ html {
   vertical-align: middle;
 }
 
-#dfoitntqce .gt_from_md > :first-child {
+#jazqvfzknj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dfoitntqce .gt_from_md > :last-child {
+#jazqvfzknj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dfoitntqce .gt_row {
+#jazqvfzknj .gt_row {
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
@@ -1382,7 +1409,7 @@ html {
   overflow-x: hidden;
 }
 
-#dfoitntqce .gt_stub {
+#jazqvfzknj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 80%;
@@ -1395,7 +1422,7 @@ html {
   padding-right: 5px;
 }
 
-#dfoitntqce .gt_stub_row_group {
+#jazqvfzknj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1409,11 +1436,11 @@ html {
   vertical-align: top;
 }
 
-#dfoitntqce .gt_row_group_first td {
+#jazqvfzknj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dfoitntqce .gt_summary_row {
+#jazqvfzknj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1423,16 +1450,16 @@ html {
   padding-right: 5px;
 }
 
-#dfoitntqce .gt_first_summary_row {
+#jazqvfzknj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_first_summary_row.thick {
+#jazqvfzknj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dfoitntqce .gt_last_summary_row {
+#jazqvfzknj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1442,7 +1469,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_grand_summary_row {
+#jazqvfzknj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1452,7 +1479,7 @@ html {
   padding-right: 5px;
 }
 
-#dfoitntqce .gt_first_grand_summary_row {
+#jazqvfzknj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1462,11 +1489,11 @@ html {
   border-top-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_striped {
+#jazqvfzknj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dfoitntqce .gt_table_body {
+#jazqvfzknj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1475,7 +1502,7 @@ html {
   border-bottom-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_footnotes {
+#jazqvfzknj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1489,7 +1516,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_footnote {
+#jazqvfzknj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1498,7 +1525,7 @@ html {
   padding-right: 5px;
 }
 
-#dfoitntqce .gt_sourcenotes {
+#jazqvfzknj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1512,7 +1539,7 @@ html {
   border-right-color: #D3D3D3;
 }
 
-#dfoitntqce .gt_sourcenote {
+#jazqvfzknj .gt_sourcenote {
   font-size: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1520,72 +1547,65 @@ html {
   padding-right: 5px;
 }
 
-#dfoitntqce .gt_left {
+#jazqvfzknj .gt_left {
   text-align: left;
 }
 
-#dfoitntqce .gt_center {
+#jazqvfzknj .gt_center {
   text-align: center;
 }
 
-#dfoitntqce .gt_right {
+#jazqvfzknj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dfoitntqce .gt_font_normal {
+#jazqvfzknj .gt_font_normal {
   font-weight: normal;
 }
 
-#dfoitntqce .gt_font_bold {
+#jazqvfzknj .gt_font_bold {
   font-weight: bold;
 }
 
-#dfoitntqce .gt_font_italic {
+#jazqvfzknj .gt_font_italic {
   font-style: italic;
 }
 
-#dfoitntqce .gt_super {
+#jazqvfzknj .gt_super {
   font-size: 65%;
 }
 
-#dfoitntqce .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
-#dfoitntqce .gt_footnote_marks {
+#jazqvfzknj .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#dfoitntqce .gt_asterisk {
+#jazqvfzknj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dfoitntqce .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
+#jazqvfzknj .gt_indent_1 {
+  text-indent: 5px;
 }
 
-#dfoitntqce .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
+#jazqvfzknj .gt_indent_2 {
+  text-indent: 10px;
 }
 
-#dfoitntqce .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
+#jazqvfzknj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jazqvfzknj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jazqvfzknj .gt_indent_5 {
+  text-indent: 25px;
 }
 
 tbody tr:last-child {
@@ -1594,117 +1614,118 @@ tbody tr:last-child {
 </style>
 <table class="table gt_table">
 <thead class="gt_col_headings"><tr>
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">key</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">group</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">title</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">description</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">active</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;">has_outrights</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="key">key</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="group">group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="title">title</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="description">description</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="active">active</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black;" scope="col" id="has_outrights">has_outrights</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td class="gt_row gt_left">americanfootball_ncaaf</td>
-<td class="gt_row gt_left">American Football</td>
-<td class="gt_row gt_left">NCAAF</td>
-<td class="gt_row gt_left">US College Football</td>
-<td class="gt_row gt_center">TRUE</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">americanfootball_cfl</td>
+<td headers="group" class="gt_row gt_left">American Football</td>
+<td headers="title" class="gt_row gt_left">CFL</td>
+<td headers="description" class="gt_row gt_left">Canadian Football League</td>
+<td headers="active" class="gt_row gt_center">FALSE</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">americanfootball_nfl</td>
-<td class="gt_row gt_left">American Football</td>
-<td class="gt_row gt_left">NFL</td>
-<td class="gt_row gt_left">US Football</td>
-<td class="gt_row gt_center">TRUE</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">americanfootball_ncaaf</td>
+<td headers="group" class="gt_row gt_left">American Football</td>
+<td headers="title" class="gt_row gt_left">NCAAF</td>
+<td headers="description" class="gt_row gt_left">US College Football</td>
+<td headers="active" class="gt_row gt_center">TRUE</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">americanfootball_nfl_super_bowl_winner</td>
-<td class="gt_row gt_left">American Football</td>
-<td class="gt_row gt_left">NFL Super Bowl Winner</td>
-<td class="gt_row gt_left">Super Bowl Winner 2022/2023</td>
-<td class="gt_row gt_center">TRUE</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">americanfootball_nfl</td>
+<td headers="group" class="gt_row gt_left">American Football</td>
+<td headers="title" class="gt_row gt_left">NFL</td>
+<td headers="description" class="gt_row gt_left">US Football</td>
+<td headers="active" class="gt_row gt_center">TRUE</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">aussierules_afl</td>
-<td class="gt_row gt_left">Aussie Rules</td>
-<td class="gt_row gt_left">AFL</td>
-<td class="gt_row gt_left">Aussie Football</td>
-<td class="gt_row gt_center">TRUE</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">americanfootball_nfl_preseason</td>
+<td headers="group" class="gt_row gt_left">American Football</td>
+<td headers="title" class="gt_row gt_left">NFL Preseason</td>
+<td headers="description" class="gt_row gt_left">US Football</td>
+<td headers="active" class="gt_row gt_center">FALSE</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">baseball_mlb</td>
-<td class="gt_row gt_left">Baseball</td>
-<td class="gt_row gt_left">MLB</td>
-<td class="gt_row gt_left">Major League Baseball</td>
-<td class="gt_row gt_center">TRUE</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">americanfootball_nfl_super_bowl_winner</td>
+<td headers="group" class="gt_row gt_left">American Football</td>
+<td headers="title" class="gt_row gt_left">NFL Super Bowl Winner</td>
+<td headers="description" class="gt_row gt_left">Super Bowl Winner 2022/2023</td>
+<td headers="active" class="gt_row gt_center">TRUE</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">baseball_mlb_world_series_winner</td>
-<td class="gt_row gt_left">Baseball</td>
-<td class="gt_row gt_left">MLB World Series Winner</td>
-<td class="gt_row gt_left">World Series Winner 2022</td>
-<td class="gt_row gt_center">TRUE</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">aussierules_afl</td>
+<td headers="group" class="gt_row gt_left">Aussie Rules</td>
+<td headers="title" class="gt_row gt_left">AFL</td>
+<td headers="description" class="gt_row gt_left">Aussie Football</td>
+<td headers="active" class="gt_row gt_center">TRUE</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">basketball_euroleague</td>
-<td class="gt_row gt_left">Basketball</td>
-<td class="gt_row gt_left">Basketball Euroleague</td>
-<td class="gt_row gt_left">Basketball Euroleague</td>
-<td class="gt_row gt_center">FALSE</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">baseball_mlb</td>
+<td headers="group" class="gt_row gt_left">Baseball</td>
+<td headers="title" class="gt_row gt_left">MLB</td>
+<td headers="description" class="gt_row gt_left">Major League Baseball</td>
+<td headers="active" class="gt_row gt_center">FALSE</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">basketball_nba</td>
-<td class="gt_row gt_left">Basketball</td>
-<td class="gt_row gt_left">NBA</td>
-<td class="gt_row gt_left">US Basketball</td>
-<td class="gt_row gt_center">FALSE</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">baseball_mlb_world_series_winner</td>
+<td headers="group" class="gt_row gt_left">Baseball</td>
+<td headers="title" class="gt_row gt_left">MLB World Series Winner</td>
+<td headers="description" class="gt_row gt_left">World Series Winner 2023</td>
+<td headers="active" class="gt_row gt_center">TRUE</td>
+<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">basketball_nba_championship_winner</td>
-<td class="gt_row gt_left">Basketball</td>
-<td class="gt_row gt_left">NBA Championship Winner</td>
-<td class="gt_row gt_left">Championship Winner 2021/2022</td>
-<td class="gt_row gt_center">FALSE</td>
-<td class="gt_row gt_center">TRUE</td>
+<td headers="key" class="gt_row gt_left">basketball_euroleague</td>
+<td headers="group" class="gt_row gt_left">Basketball</td>
+<td headers="title" class="gt_row gt_left">Basketball Euroleague</td>
+<td headers="description" class="gt_row gt_left">Basketball Euroleague</td>
+<td headers="active" class="gt_row gt_center">TRUE</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 <tr>
-<td class="gt_row gt_left">basketball_ncaab</td>
-<td class="gt_row gt_left">Basketball</td>
-<td class="gt_row gt_left">NCAAB</td>
-<td class="gt_row gt_left">US College Basketball</td>
-<td class="gt_row gt_center">FALSE</td>
-<td class="gt_row gt_center">FALSE</td>
+<td headers="key" class="gt_row gt_left">basketball_nba</td>
+<td headers="group" class="gt_row gt_left">Basketball</td>
+<td headers="title" class="gt_row gt_left">NBA</td>
+<td headers="description" class="gt_row gt_left">US Basketball</td>
+<td headers="active" class="gt_row gt_center">TRUE</td>
+<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>One endpoint for looking up the current odds from the API: <code>toa_sports_odds</code></p>
+<p>One endpoint for looking up the current odds from the API:
+<code>toa_sports_odds</code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">oddsapiR</span><span class="fu">::</span><span class="fu"><a href="../reference/toa_sports_odds.html">toa_sports_odds</a></span><span class="op">(</span>sport_key <span class="op">=</span> <span class="st">'baseball_mlb'</span>, 
-                          regions <span class="op">=</span> <span class="st">'us'</span>, 
-                          markets <span class="op">=</span> <span class="st">'spreads'</span>, 
-                          odds_format <span class="op">=</span> <span class="st">'decimal'</span>,
-                          date_format <span class="op">=</span> <span class="st">'iso'</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bookmaker"</span>,<span class="st">"market_key"</span>, <span class="st">"outcomes_name"</span>,<span class="st">"outcomes_price"</span>,<span class="st">"outcomes_point"</span>,<span class="st">"home_team"</span>,<span class="st">"away_team"</span>,<span class="st">"commence_time"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="fu"><a href="../reference/toa_sports_odds.html">toa_sports_odds</a></span><span class="op">(</span>sport_key <span class="op">=</span> <span class="st">'americanfootball_nfl'</span>, </span>
+<span>                          regions <span class="op">=</span> <span class="st">'us'</span>, </span>
+<span>                          markets <span class="op">=</span> <span class="st">'spreads'</span>, </span>
+<span>                          odds_format <span class="op">=</span> <span class="st">'decimal'</span>,</span>
+<span>                          date_format <span class="op">=</span> <span class="st">'iso'</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bookmaker"</span>,<span class="st">"market_key"</span>, <span class="st">"outcomes_name"</span>,<span class="st">"outcomes_price"</span>,<span class="st">"outcomes_point"</span>,<span class="st">"home_team"</span>,<span class="st">"away_team"</span>,<span class="st">"commence_time"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="13%">
-<col width="8%">
 <col width="14%">
-<col width="11%">
-<col width="11%">
-<col width="11%">
+<col width="7%">
 <col width="14%">
-<col width="15%">
+<col width="10%">
+<col width="10%">
+<col width="12%">
+<col width="14%">
+<col width="14%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">bookmaker</th>
@@ -1718,226 +1739,228 @@ tbody tr:last-child {
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">LowVig.ag</td>
-<td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">1.99</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">LowVig.ag</td>
-<td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="right">1.92</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">DraftKings</td>
-<td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">2.00</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">DraftKings</td>
-<td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="right">1.83</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">FOX Bet</td>
-<td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">1.95</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">FOX Bet</td>
-<td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="right">1.87</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="odd">
 <td align="left">William Hill (US)</td>
 <td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">1.95</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">1.87</td>
+<td align="right">6.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 <tr class="even">
 <td align="left">William Hill (US)</td>
 <td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
+<td align="left">New England Patriots</td>
 <td align="right">1.87</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">BetUS</td>
-<td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">2.00</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">BetUS</td>
-<td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="right">1.83</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">BetOnline.ag</td>
-<td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">2.00</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">BetOnline.ag</td>
-<td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="right">1.83</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="right">-6.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 <tr class="odd">
 <td align="left">FanDuel</td>
 <td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">2.02</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">1.88</td>
+<td align="right">2.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 <tr class="even">
 <td align="left">FanDuel</td>
 <td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="right">1.82</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">New England Patriots</td>
+<td align="right">1.87</td>
+<td align="right">-2.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 <tr class="odd">
-<td align="left">GTbets</td>
+<td align="left">DraftKings</td>
 <td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">2.00</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">2.05</td>
+<td align="right">6.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 <tr class="even">
-<td align="left">GTbets</td>
+<td align="left">DraftKings</td>
 <td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="right">1.83</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">New England Patriots</td>
+<td align="right">1.74</td>
+<td align="right">-6.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 <tr class="odd">
-<td align="left">MyBookie.ag</td>
+<td align="left">TwinSpires</td>
 <td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">2.00</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">1.88</td>
+<td align="right">7.0</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 <tr class="even">
-<td align="left">MyBookie.ag</td>
+<td align="left">TwinSpires</td>
 <td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
+<td align="left">New England Patriots</td>
+<td align="right">1.88</td>
+<td align="right">-7.0</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="odd">
+<td align="left">Barstool Sportsbook</td>
+<td align="left">spreads</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">1.85</td>
+<td align="right">7.0</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="even">
+<td align="left">Barstool Sportsbook</td>
+<td align="left">spreads</td>
+<td align="left">New England Patriots</td>
+<td align="right">1.91</td>
+<td align="right">-7.0</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="odd">
+<td align="left">Unibet</td>
+<td align="left">spreads</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">1.88</td>
+<td align="right">7.0</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="even">
+<td align="left">Unibet</td>
+<td align="left">spreads</td>
+<td align="left">New England Patriots</td>
+<td align="right">1.88</td>
+<td align="right">-7.0</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="odd">
+<td align="left">SugarHouse</td>
+<td align="left">spreads</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">1.88</td>
+<td align="right">7.0</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="even">
+<td align="left">SugarHouse</td>
+<td align="left">spreads</td>
+<td align="left">New England Patriots</td>
+<td align="right">1.88</td>
+<td align="right">-7.0</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="odd">
+<td align="left">Bovada</td>
+<td align="left">spreads</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">1.91</td>
+<td align="right">2.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="even">
+<td align="left">Bovada</td>
+<td align="left">spreads</td>
+<td align="left">New England Patriots</td>
 <td align="right">1.83</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="right">-2.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 <tr class="odd">
 <td align="left">BetMGM</td>
 <td align="left">spreads</td>
-<td align="left">Cincinnati Reds</td>
-<td align="right">1.91</td>
-<td align="right">1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">2.05</td>
+<td align="right">6.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 <tr class="even">
 <td align="left">BetMGM</td>
 <td align="left">spreads</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="right">1.91</td>
-<td align="right">-1.5</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">New England Patriots</td>
+<td align="right">1.71</td>
+<td align="right">-6.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="odd">
+<td align="left">Circa Sports</td>
+<td align="left">spreads</td>
+<td align="left">Arizona Cardinals</td>
+<td align="right">1.94</td>
+<td align="right">6.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
+</tr>
+<tr class="even">
+<td align="left">Circa Sports</td>
+<td align="left">spreads</td>
+<td align="left">New England Patriots</td>
+<td align="right">1.87</td>
+<td align="right">-6.5</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 </tr>
 </tbody>
 </table>
-<p>Note: There are two entries per event per bookmaker for the spreads for both sides of the event.</p>
-<p>One endpoint for looking up the current scores from the API: <code>toa_sports_scores</code></p>
+<p>Note: There are two entries per event per bookmaker for the spreads
+for both sides of the event.</p>
+<p>One endpoint for looking up the current scores from the API:
+<code>toa_sports_scores</code></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">oddsapiR</span><span class="fu">::</span><span class="fu"><a href="../reference/toa_sports_scores.html">toa_sports_scores</a></span><span class="op">(</span>sport_key <span class="op">=</span> <span class="st">'baseball_mlb'</span>, 
-                            days_from <span class="op">=</span> <span class="cn">NULL</span>,
-                            date_format <span class="op">=</span> <span class="st">'iso'</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="fu"><a href="../reference/toa_sports_scores.html">toa_sports_scores</a></span><span class="op">(</span>sport_key <span class="op">=</span> <span class="st">'americanfootball_nfl'</span>, </span>
+<span>                            days_from <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>                            date_format <span class="op">=</span> <span class="st">'iso'</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="22%">
-<col width="8%">
-<col width="8%">
 <col width="14%">
-<col width="6%">
-<col width="12%">
-<col width="14%">
+<col width="9%">
+<col width="5%">
+<col width="9%">
 <col width="4%">
-<col width="8%">
+<col width="9%">
+<col width="9%">
+<col width="30%">
+<col width="9%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">id</th>
@@ -1952,168 +1975,168 @@ tbody tr:last-child {
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">142e714d18883681a61a1367ce5375bd</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">fb981ac7a5b551b8ddb08a3ef9a0a72b</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-13T01:15:31Z</td>
 <td align="left">FALSE</td>
-<td align="left">Cincinnati Reds</td>
-<td align="left">Los Angeles Dodgers</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td align="left">Arizona Cardinals</td>
+<td align="left">New England Patriots</td>
+<td align="left">Arizona Cardinals , New England Patriots, 13 , 13</td>
+<td align="left">2022-12-13T03:33:18Z</td>
 </tr>
 <tr class="even">
-<td align="left">04c47ff0f15258f24f6d39ca4e1d401e</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-21T22:41:00Z</td>
+<td align="left">bfc2fff0a1560555340abb96c97a4455</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-16T01:15:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Miami Marlins</td>
-<td align="left">Colorado Rockies</td>
-<td align="left">NA</td>
+<td align="left">Seattle Seahawks</td>
+<td align="left">San Francisco 49ers</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">c74d38ee5c259fb98d99ed1cf99e8264</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-21T23:05:00Z</td>
+<td align="left">097d7cca5a146595a666d09d01061194</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-17T18:00:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Baltimore Orioles</td>
-<td align="left">Washington Nationals</td>
-<td align="left">NA</td>
+<td align="left">Minnesota Vikings</td>
+<td align="left">Indianapolis Colts</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">3fa4d180ce3ecc3a1a70237ee0306708</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-21T23:06:00Z</td>
+<td align="left">39a37abc6b6490e2ce5d096c49ac93c7</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-17T21:30:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Pittsburgh Pirates</td>
-<td align="left">Chicago Cubs</td>
-<td align="left">NA</td>
+<td align="left">Cleveland Browns</td>
+<td align="left">Baltimore Ravens</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">fa81d1b98ecbcf519800990b9084a39e</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-21T23:10:00Z</td>
+<td align="left">009216caaa17dcdd5709632618c4f64e</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-18T01:15:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Tampa Bay Rays</td>
-<td align="left">New York Yankees</td>
-<td align="left">NA</td>
+<td align="left">Buffalo Bills</td>
+<td align="left">Miami Dolphins</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">4b77bb1b03f7636b1a1e6417d023315d</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-21T23:11:00Z</td>
+<td align="left">79b8216e2aa85d1c4d664e0a3c5e4d8a</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-18T18:00:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Boston Red Sox</td>
-<td align="left">Detroit Tigers</td>
-<td align="left">NA</td>
+<td align="left">New Orleans Saints</td>
+<td align="left">Atlanta Falcons</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">cd26b6bbcf454f3bab9151c0553b6013</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-21T23:21:00Z</td>
+<td align="left">b7f6dfdbea980df539ed96c04543f49b</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-18T18:00:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Atlanta Braves</td>
-<td align="left">San Francisco Giants</td>
-<td align="left">NA</td>
+<td align="left">Carolina Panthers</td>
+<td align="left">Pittsburgh Steelers</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">08ffd3b952778a093bfcc7c09099345d</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-21T23:41:00Z</td>
+<td align="left">c64e67fb91447607532599a1fee414a2</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-18T18:00:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Minnesota Twins</td>
-<td align="left">Cleveland Guardians</td>
-<td align="left">NA</td>
+<td align="left">Chicago Bears</td>
+<td align="left">Philadelphia Eagles</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">c0e018c0e5dbf402525d14eb0634b92b</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-22T00:06:00Z</td>
+<td align="left">fe7ef98f1aa49c05a3b85fd964e0edf8</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-18T18:00:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Texas Rangers</td>
-<td align="left">Philadelphia Phillies</td>
-<td align="left">NA</td>
+<td align="left">Jacksonville Jaguars</td>
+<td align="left">Dallas Cowboys</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">8095252f9335c1c4b0a2e262cf094e32</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-22T00:11:00Z</td>
+<td align="left">070de23f577697a18462c7adca31bf1f</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-18T18:00:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Chicago White Sox</td>
-<td align="left">Toronto Blue Jays</td>
-<td align="left">NA</td>
+<td align="left">New York Jets</td>
+<td align="left">Detroit Lions</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">5c942a8684b105e5c6e14fbc2d84b0b2</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-22T00:11:00Z</td>
+<td align="left">e8de5d72c1372f02de119912b64a21c3</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-18T18:00:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Houston Astros</td>
-<td align="left">New York Mets</td>
-<td align="left">NA</td>
+<td align="left">Houston Texans</td>
+<td align="left">Kansas City Chiefs</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">c6f22fee7fe7f9c98b7f7e88749ebd84</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-22T00:12:00Z</td>
+<td align="left">88eb986beb1b5ad3d9d5be6982b4b888</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-18T21:25:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Milwaukee Brewers</td>
-<td align="left">St. Louis Cardinals</td>
-<td align="left">NA</td>
+<td align="left">Tampa Bay Buccaneers</td>
+<td align="left">Cincinnati Bengals</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">fe7eba596c2b1887cbfcd1b412cf1c73</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-22T01:39:00Z</td>
+<td align="left">834d3af92d37a4f63d1420818e82cfe7</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-18T21:25:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Los Angeles Angels</td>
-<td align="left">Kansas City Royals</td>
-<td align="left">NA</td>
+<td align="left">Los Angeles Chargers</td>
+<td align="left">Tennessee Titans</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">c9c99c5af13d0f7ebb7b87c35a63fe3d</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-22T01:41:00Z</td>
+<td align="left">4d39353db40b2b869af399ab45804741</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-19T01:20:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">San Diego Padres</td>
-<td align="left">Arizona Diamondbacks</td>
-<td align="left">NA</td>
+<td align="left">Washington Commanders</td>
+<td align="left">New York Giants</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">1b2992c9053f4a602847a7e258aa91a3</td>
-<td align="left">baseball_mlb</td>
-<td align="left">MLB</td>
-<td align="left">2022-06-22T01:41:00Z</td>
+<td align="left">19e2817e55006588c27a8fe0c3adc6e5</td>
+<td align="left">americanfootball_nfl</td>
+<td align="left">NFL</td>
+<td align="left">2022-12-20T01:15:00Z</td>
 <td align="left">FALSE</td>
-<td align="left">Oakland Athletics</td>
-<td align="left">Seattle Mariners</td>
-<td align="left">NA</td>
+<td align="left">Green Bay Packers</td>
+<td align="left">Los Angeles Rams</td>
+<td align="left">NULL</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -2126,7 +2149,8 @@ tbody tr:last-child {
 </h2>
 <ul>
 <li>
-<a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a><br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a> <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a><br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
 </li>
 </ul>
 </div>
@@ -2134,14 +2158,15 @@ tbody tr:last-child {
 <h2 id="citations">
 <strong>Citations</strong><a class="anchor" aria-label="anchor" href="#citations"></a>
 </h2>
-<p>To cite the <a href="https://oddsapiR.sportsdataverse.org"><strong><code>oddsapiR</code></strong></a> R package in publications, use:</p>
+<p>To cite the <a href="https://oddsapiR.sportsdataverse.org"><strong><code>oddsapiR</code></strong></a>
+R package in publications, use:</p>
 <p>BibTex Citation</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb8-1"><a href="#cb8-1"></a><span class="va">@misc</span>{<span class="ot">gilani_2022_oddsapiR</span>,</span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="dt">author</span> = {Gilani, Saiem},</span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="dt">title</span> = {oddsapiR: The SportsDataverse's R Package for The Odds API.},</span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="dt">url</span> = {https://oddsapiR.sportsdataverse.org},</span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="dt">year</span> = {2022}</span>
-<span id="cb8-6"><a href="#cb8-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">gilani_2022_oddsapiR</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Gilani, Saiem},</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {oddsapiR: The SportsDataverse's R Package for The Odds API.},</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span> = {https://oddsapiR.sportsdataverse.org},</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2022}</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -2156,7 +2181,7 @@ tbody tr:last-child {
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
