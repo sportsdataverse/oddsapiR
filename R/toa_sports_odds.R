@@ -86,13 +86,13 @@ toa_sports_odds <- function(sport_key,
       
       resp <- toa_endpoint %>% 
         toa_api_call() %>% 
-        tidyr::unnest(.data$bookmakers) %>% 
+        tidyr::unnest("bookmakers") %>% 
         dplyr::rename(
-          bookmaker_key = .data$key,
-          bookmaker = .data$title) %>% 
-        tidyr::unnest(.data$markets) %>%
-        dplyr::rename(market_key = .data$key) %>% 
-        tidyr::unnest(.data$outcomes, names_sep = "_") %>% 
+          "bookmaker_key" = "key",
+          "bookmaker" = "title") %>% 
+        tidyr::unnest("markets") %>%
+        dplyr::rename("market_key" = "key") %>% 
+        tidyr::unnest("outcomes", names_sep = "_") %>% 
         make_toa_data("Sports Odds data from the-odds-api.com", Sys.time())
       
     },
