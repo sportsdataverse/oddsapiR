@@ -1,6 +1,8 @@
 ## Release summary
 
-This is a minor release that makes updates for tidyselect deprecation of data masking.
+This is a minor release that:
+* makes updates for tidyselect deprecation of data masking
+* Fixes errors and notes on CRAN checks
 
 ## R CMD check results
 

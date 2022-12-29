@@ -20,7 +20,6 @@
 #' @importFrom cli cli_abort
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
-#' @importFrom tidyr unnest
 #' @importFrom rlang .data
 #' @export
 toa_requests <- function(){

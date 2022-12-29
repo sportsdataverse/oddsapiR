@@ -11,15 +11,16 @@ SystemRequirements: pandoc (>= 1.12.3), pandoc-citeproc
 Depends: 
     R (>= 4.0.0)
 Imports: 
-    cli (>= 1.1.0),
+    cli (>= 3.4.1),
     data.table (>= 1.14.0),
-    dplyr,
+    dplyr (>= 1.0.10),
     glue,
     httr (>= 0.5),
     janitor,
     jsonlite,
     magrittr,
-    rlang (>= 0.4.0),
+    purrr (>= 1.0.0),
+    rlang (>= 1.0.4),
     rvest (>= 1.0.0),
     tidyr (>= 1.0.0)
 Suggests: 
@@ -31,7 +32,6 @@ Suggests:
     gt,
     knitr,
     progressr (>= 0.6.0),
-    purrr (>= 0.3.0),
     qs (>= 0.25.1),
     Rcpp (>= 1.0.7),
     RcppParallel (>= 5.1.4),
@@ -39,9 +39,10 @@ Suggests:
     RSQLite,
     stats,
     stringi,
-    stringr (>= 1.3.0),
+    stringr (>= 1.5.0),
     testthat,
     tibble (>= 3.0),
+    tidyselect (>= 1.2.0),
     usethis (>= 1.6.0),
     xml2 (>= 1.3)
 Encoding: UTF-8

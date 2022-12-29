@@ -54,8 +54,8 @@
 #' @importFrom janitor clean_names
 #' @importFrom glue glue
 #' @importFrom dplyr rename
-#' @importFrom tidyr unnest
 #' @importFrom rlang .data
+#' @import tidyr
 #' @export
 #' @examples \donttest{
 #'    try(toa_sports_odds(sport_key = 'basketball_nba', 
