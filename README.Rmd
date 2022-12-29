@@ -4,11 +4,11 @@ output: github_document
 
 #
 
-# **oddsapiR**  <a href='https://oddsapiR.sportsdataverse.org/'><img src='https://raw.githubusercontent.com/saiemgilani/oddsapiR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
+# **oddsapiR**  <a href='https://oddsapiR.sportsdataverse.org/'><img src='https://raw.githubusercontent.com/sportsdataverse/oddsapiR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
 
 <!-- badges: start -->
-[![Version-Number](https://img.shields.io/github/r-package/v/saiemgilani/oddsapiR?label=oddsapiR&logo=R&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR)
-[![R-CMD-check](https://img.shields.io/github/workflow/status/saiemgilani/oddsapiR/R-CMD-check?label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/actions/workflows/R-CMD-check.yaml) [![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/oddsapiR)  [![Contributors](https://img.shields.io/github/contributors/saiemgilani/oddsapiR?style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/graphs/contributors) 
+[![Version-Number](https://img.shields.io/github/r-package/v/sportsdataverse/oddsapiR?label=oddsapiR&logo=R&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR)
+[![R-CMD-check](https://img.shields.io/github/actions/workflow/status/sportsdataverse/oddsapiR/R-CMD-check.yaml?branch=main&label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/actions/workflows/R-CMD-check.yaml) [![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/oddsapiR)  [![Contributors](https://img.shields.io/github/contributors/sportsdataverse/oddsapiR?style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/graphs/contributors) 
 [![Twitter Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=twitter&style=for-the-badge)](https://twitter.com/SportsDataverse) 
 
 <!-- badges: end -->
