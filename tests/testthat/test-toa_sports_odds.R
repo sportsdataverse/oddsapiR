@@ -8,8 +8,9 @@ cols <- c(
   "away_team",
   "bookmaker_key",
   "bookmaker",
-  "last_update",
+  "bookmaker_last_update",
   "market_key",
+  "market_last_update",
   "outcomes_name",
   "outcomes_price",
   "outcomes_point"

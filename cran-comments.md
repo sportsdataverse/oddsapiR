@@ -1,6 +1,6 @@
 ## Release summary
 
-This is an initial release with corrections based on CRAN feedback.
+This is a minor release that makes updates for tidyselect deprecation of data masking.
 
 ## R CMD check results
 

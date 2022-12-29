@@ -74,7 +74,7 @@ Sports for which The Odds API provides betting information for as a tibble:\tabu
 }
 \examples{
 \donttest{
-   try(toa_sports_odds(sport_key = 'baseball_mlb', 
+   try(toa_sports_odds(sport_key = 'basketball_nba', 
                        regions = 'us', 
                        markets = 'spreads', 
                        odds_format = 'decimal',
