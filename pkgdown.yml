@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   oddsapiR: oddsapiR.html
-last_built: 2022-12-29T04:01Z
+last_built: 2022-12-29T04:27Z
 urls:
   reference: https://oddsapiR.sportsdataverse.org/reference
   article: https://oddsapiR.sportsdataverse.org/articles
