@@ -141,7 +141,7 @@ reference:
       - '`toa_sports_odds`'
       - '`toa_sports_odds_history`'
       - '`toa_sports_scores`'
-      - '`toa_events_odds`'
+      - '`toa_event_odds`'
       - '`toa_requests`'
   - title: Internals
     desc: Internal functions and data
