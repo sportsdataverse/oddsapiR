@@ -19,7 +19,6 @@ Imports:
     janitor,
     jsonlite,
     magrittr,
-    purrr (>= 1.0.0),
     rlang (>= 1.0.4),
     rvest (>= 1.0.0),
     tidyr (>= 1.0.0)
@@ -48,4 +47,4 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3

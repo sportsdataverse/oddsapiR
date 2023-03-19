@@ -14,7 +14,7 @@ cols <- c(
 test_that("The Odds API - Scores", {
   skip_on_cran()
   # skip_on_ci()
-  x <- toa_sports_scores(sport_key = 'americanfootball_nfl', 
+  x <- toa_sports_scores(sport_key = 'basketball_ncaab', 
                          days_from = NULL,
                          date_format = 'iso')
   
