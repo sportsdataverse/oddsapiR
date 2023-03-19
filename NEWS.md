@@ -1,3 +1,7 @@
+# oddsapiR 0.0.3
+* `toa_event_odds()` function added
+* `toa_sports_odds_history()` function added
+
 # oddsapiR 0.0.2
 - Minor under the hood changes for tidyselect deprecation of .data$ masking
 
