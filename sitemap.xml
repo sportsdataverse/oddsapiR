@@ -40,6 +40,9 @@
     <loc>https://oddsapiR.sportsdataverse.org/reference/register_toa.html</loc>
   </url>
   <url>
+    <loc>https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.html</loc>
+  </url>
+  <url>
     <loc>https://oddsapiR.sportsdataverse.org/reference/toa_requests.html</loc>
   </url>
   <url>
@@ -50,6 +53,9 @@
   </url>
   <url>
     <loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.html</loc>
+  </url>
+  <url>
+    <loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds_history.html</loc>
   </url>
   <url>
     <loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_scores.html</loc>
