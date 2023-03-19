@@ -3,6 +3,7 @@
 This is a minor release that:
 * Adds `toa_event_odds()` function
 * Adds `toa_sports_odds_history()` function
+* I am ignoring the note on non-ASCII characters in package data because they are proper names.
 
 ## R CMD check results
 
