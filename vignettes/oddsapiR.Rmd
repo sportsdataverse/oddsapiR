@@ -80,7 +80,7 @@ oddsapiR::toa_sports(all_sports = TRUE) %>%
 
 One endpoint for looking up the current odds from the API: ```toa_sports_odds```
 ```{r toa_sports_odds_call}
-oddsapiR::toa_sports_odds(sport_key = 'americanfootball_nfl', 
+oddsapiR::toa_sports_odds(sport_key = 'basketball_nba', 
                           regions = 'us', 
                           markets = 'spreads', 
                           odds_format = 'decimal',
@@ -93,7 +93,7 @@ Note: There are two entries per event per bookmaker for the spreads for both sid
 
 One endpoint for looking up the current scores from the API: ```toa_sports_scores```
 ```{r toa_sports_scores_call}
-oddsapiR::toa_sports_scores(sport_key = 'americanfootball_nfl', 
+oddsapiR::toa_sports_scores(sport_key = 'basketball_nba', 
                             days_from = NULL,
                             date_format = 'iso') %>% 
   head(n=20) %>% 
