@@ -1,8 +1,8 @@
 ## Release summary
 
 This is a minor release that:
-* makes updates for tidyselect deprecation of data masking
-* Fixes errors and notes on CRAN checks
+* Adds `toa_event_odds()` function
+* Adds `toa_sports_odds_history()` function
 
 ## R CMD check results
 
