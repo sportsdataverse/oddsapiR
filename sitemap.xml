@@ -1,63 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/404.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/articles/oddsapiR.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/index.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/csv_from_url.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/progressively.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/rds_from_url.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/register_toa.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/toa_requests.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_keys.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds_history.html</loc>
-  </url>
-  <url>
-    <loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_scores.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://oddsapiR.sportsdataverse.org/404.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/CLAUDE.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/CONTRIBUTING.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/LICENSE-text.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/LICENSE.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/PULL_REQUEST_TEMPLATE.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/articles/index.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/articles/oddsapiR.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/authors.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/copilot-instructions.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/index.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/news/index.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/csv_from_url.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/index.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/progressively.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/rds_from_url.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/register_toa.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_api_call.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_api_headers.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_api_request.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_event_odds_history.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_quota.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_requests.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_events_history.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_keys.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds_history.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_participants.html</loc></url>
+<url><loc>https://oddsapiR.sportsdataverse.org/reference/toa_sports_scores.html</loc></url>
 </urlset>
+

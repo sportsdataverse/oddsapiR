@@ -1,0 +1,234 @@
+# 
+
+# **oddsapiR**
+
+To access the API, get a free API key from <https://the-odds-api.com>
+
+Installation & Usage
+
+## **Installation**
+
+You can install the released version of
+[**`oddsapiR`**](https://github.com/sportsdataverse/oddsapiR) from
+[GitHub](https://github.com/sportsdataverse/oddsapiR) with:
+
+``` r
+
+# using the pak package (recommended):
+if (!requireNamespace('pak', quietly = TRUE)){
+  install.packages('pak')
+}
+pak::pak("sportsdataverse/oddsapiR")
+```
+
+``` r
+
+# or using the devtools package:
+if (!requireNamespace('devtools', quietly = TRUE)){
+  install.packages('devtools')
+}
+devtools::install_github(repo = "sportsdataverse/oddsapiR")
+```
+
+``` r
+# or clone and install locally
+git clone https://github.com/sportsdataverse/oddsapiR
+cd oddsapiR
+Rscript -e "pak::local_install()"  # or: Rscript -e "devtools::install()"
+```
+
+#### **Odds API Keys**
+
+The [Odds API](https://the-odds-api.com) requires an API key, here’s a
+quick run-down:
+
+- Using the key: You can save the key for consistent usage by adding
+  `ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .Renviron file
+  (easily accessed via
+  [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
+  Run
+  [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html),
+  a new script will pop open named `.Renviron`, **THEN** paste the
+  following in the new script that pops up (with**out** quotations)
+
+``` r
+
+ODDS_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
+```
+
+Save the script and **restart your RStudio session**, by clicking
+`Session` (in between `Plots` and `Build`) and click `Restart R` (there
+also exists the shortcut `Ctrl + Shift + F10` to restart your session).
+If set correctly, from then on you should be able to use any of the
+functions without any other changes.
+
+- For less consistent usage: At the beginning of every session or within
+  an R environment, save your API key as the environment variable
+  `ODDS_API_KEY` (with quotations) using a command like the following.
+
+``` r
+
+Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
+```
+
+## **Documentation**
+
+For more information on the package and function reference, please see
+the [**`oddsapiR`** documentation
+website](https://oddsapiR.sportsdataverse.org).
+
+## **Breaking Changes**
+
+[**Full News on
+Releases**](https://oddsapiR.sportsdataverse.org/news/index.html)
+
+## Follow the [SportsDataverse](https://twitter.com/SportsDataverse) on Twitter and star this repo
+
+[![Twitter
+Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=twitter&style=for-the-badge)](https://twitter.com/SportsDataverse)
+
+[![GitHub
+stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20oddsapiR&maxAge=2592000)](https://github.com/sportsdataverse/oddsapiR/stargazers/)
+
+## **Our Authors**
+
+- [Saiem Gilani](https://twitter.com/saiemgilani)  
+  [![@saiemgilani](https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=twitter&style=for-the-badge)](https://twitter.com/saiemgilani)
+  [![@saiemgilani](https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge)](https://github.com/saiemgilani)
+
+## **Citations**
+
+To cite the [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org) R
+package in publications, use:
+
+BibTex Citation
+
+``` bibtex
+@misc{gilani_2022_oddsapiR,
+  author = {Gilani, Saiem},
+  title = {oddsapiR: The SportsDataverse's R Package for The Odds API.},
+  url = {https://oddsapiR.sportsdataverse.org},
+  year = {2022}
+}
+```
+
+# Package index
+
+## Sports & Events
+
+Discover sports, events, and participants
+
+- [`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md)
+  :
+
+  **Find sports for which odds are accessible through the Odds API**
+
+- [`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md)
+  :
+
+  **Find in-play and upcoming events for a sport through the Odds API**
+
+- [`toa_sports_participants()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_participants.md)
+  :
+
+  **Find the participants (teams or players) for a sport through the
+  Odds API**
+
+- [`toa_sports_scores()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_scores.md)
+  :
+
+  **Find scores for the sports which are accessible through the Odds
+  API**
+
+## Current Odds & Markets
+
+Featured-market odds, single-event odds, and available markets
+
+- [`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
+  :
+
+  **Find odds for the sports which are accessible through the Odds API**
+
+- [`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md)
+  :
+
+  **Find odds for a single event, including player props and other
+  markets**
+
+- [`toa_event_markets()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.md)
+  :
+
+  **Find the available market keys for a single event through the Odds
+  API**
+
+## Historical Odds & Events
+
+Point-in-time snapshots of events and odds (paid plans)
+
+- [`toa_sports_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds_history.md)
+  :
+
+  **Find historical featured-market odds through the Odds API**
+
+- [`toa_sports_events_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events_history.md)
+  :
+
+  **Find historical events for a sport through the Odds API**
+
+- [`toa_event_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds_history.md)
+  :
+
+  **Find historical odds for a single event through the Odds API**
+
+## Account & Usage
+
+API key registration and usage-quota inspection
+
+- [`toa_key()`](https://oddsapiR.sportsdataverse.org/reference/register_toa.md)
+  [`has_toa_key()`](https://oddsapiR.sportsdataverse.org/reference/register_toa.md)
+  [`check_toa_key()`](https://oddsapiR.sportsdataverse.org/reference/register_toa.md)
+  :
+
+  **Odds API Key Registration**
+
+- [`toa_requests()`](https://oddsapiR.sportsdataverse.org/reference/toa_requests.md)
+  :
+
+  **Find out your usage and remaining calls for your key from The Odds
+  API**
+
+- [`toa_quota()`](https://oddsapiR.sportsdataverse.org/reference/toa_quota.md)
+  :
+
+  **Inspect your Odds API usage quota**
+
+## Internals
+
+Internal functions and data
+
+- [`toa_sports_keys`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_keys.md)
+  :
+
+  **Sports for which odds are accessible through the Odds API**
+
+- [`progressively()`](https://oddsapiR.sportsdataverse.org/reference/progressively.md)
+  :
+
+  **Progressively**
+
+- [`csv_from_url()`](https://oddsapiR.sportsdataverse.org/reference/csv_from_url.md)
+  :
+
+  **Load .csv / .csv.gz file from a remote connection**
+
+- [`rds_from_url()`](https://oddsapiR.sportsdataverse.org/reference/rds_from_url.md)
+  :
+
+  **Load .rds file from a remote connection**
+
+# Articles
+
+### All vignettes
+
+- [Getting started with
+  oddsapiR](https://oddsapiR.sportsdataverse.org/articles/oddsapiR.md):
