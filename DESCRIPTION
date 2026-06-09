@@ -33,7 +33,6 @@ Suggests:
     gt,
     knitr,
     progressr (>= 0.6.0),
-    qs (>= 0.25.1),
     Rcpp (>= 1.0.7),
     RcppParallel (>= 5.1.4),
     rmarkdown,
