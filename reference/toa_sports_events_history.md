@@ -106,7 +106,7 @@ Other The Odds API: Historical:
 # \donttest{
    try(toa_sports_events_history(sport_key = 'basketball_nba',
                                  date = '2024-01-15T12:15:00Z'))
-#> ✖ 2026-06-09 18:23:56.857126: Invalid arguments or no historical events available for basketball_nba at 2024-01-15T12:15:00Z!
+#> ✖ 2026-06-09 19:56:22.626281: Invalid arguments or no historical events available for basketball_nba at 2024-01-15T12:15:00Z!
 #> ✖ Error:
 #> Error in `vars_select_eval()`:
 #> ! Can't select columns past the end.

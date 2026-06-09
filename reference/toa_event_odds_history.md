@@ -148,7 +148,7 @@ Other The Odds API: Historical:
                               markets = 'h2h',
                               odds_format = 'decimal',
                               date_format = 'iso'))
-#> ✖ 2026-06-09 18:23:55.421265: Invalid arguments or no historical odds available for event 93af4b300a4c0dded909234ea32e9abd at 2024-01-15T12:15:00Z!
+#> ✖ 2026-06-09 19:56:21.059417: Invalid arguments or no historical odds available for event 93af4b300a4c0dded909234ea32e9abd at 2024-01-15T12:15:00Z!
 #> ✖ Error:
 #> Error in `dplyr::rename()`:
 #> ! Can't rename columns that don't exist.

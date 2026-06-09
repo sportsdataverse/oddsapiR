@@ -57,8 +57,8 @@ Other The Odds API: Sports & Events:
 # \donttest{
   try(toa_sports(all_sports = TRUE))
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-09 18:23:56 UTC
-#> ℹ Odds API quota: 146 used, 354 remaining (last call cost 0)
+#> ℹ Data updated: 2026-06-09 19:56:22 UTC
+#> ℹ Odds API quota: 173 used, 327 remaining (last call cost 0)
 #> # A tibble: 165 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        

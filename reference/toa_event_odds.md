@@ -128,7 +128,7 @@ Other The Odds API: Odds & Markets:
                       markets = 'player_points',
                       odds_format = 'decimal',
                       date_format = 'iso'))
-#> ✖ 2026-06-09 18:23:55.145971: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
+#> ✖ 2026-06-09 19:56:20.767131: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
 #> ✖ Error:
 #> Error in `dplyr::rename()`:
 #> ! Can't rename columns that don't exist.

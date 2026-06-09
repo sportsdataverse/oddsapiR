@@ -137,7 +137,7 @@ Other The Odds API: Historical:
                                markets = 'spreads',
                                odds_format = 'decimal',
                                date_format = 'iso'))
-#> ✖ 2026-06-09 18:23:57.649188: Invalid arguments or no historical odds available for basketball_nba at 2024-01-15T12:15:00Z!
+#> ✖ 2026-06-09 19:56:23.481854: Invalid arguments or no historical odds available for basketball_nba at 2024-01-15T12:15:00Z!
 #> ✖ Error:
 #> Error in `vars_select_eval()`:
 #> ! Can't select columns past the end.
