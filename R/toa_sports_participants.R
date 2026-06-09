@@ -27,6 +27,10 @@
 #' @importFrom dplyr as_tibble mutate select any_of
 #' @importFrom rlang .data .env
 #' @export
+#' @family The Odds API: Sports & Events
+#' @seealso [toa_sports()] to discover `sport_key` values, [toa_sports_events()]
+#'   to list upcoming events, and [toa_sports_scores()] for live/recent scores.
+#'   Part of the \href{https://sportsdataverse.org/}{SportsDataverse}.
 #' @examples \donttest{
 #'    try(toa_sports_participants(sport_key = 'basketball_nba'))
 #' }

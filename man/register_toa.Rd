@@ -45,3 +45,14 @@ using a command like the following.
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 }\if{html}{\out{</div>}}
 }
+\seealso{
+\code{\link[=toa_quota]{toa_quota()}} to inspect your usage credits after any API call,
+\code{\link[=toa_requests]{toa_requests()}} to explicitly query your remaining/used credits, and
+\code{\link[=toa_sports]{toa_sports()}} to start exploring available sports. Part of the
+\href{https://sportsdataverse.org/}{SportsDataverse}.
+
+Other The Odds API: Account & Usage: 
+\code{\link{toa_quota}()},
+\code{\link{toa_requests}()}
+}
+\concept{The Odds API: Account & Usage}

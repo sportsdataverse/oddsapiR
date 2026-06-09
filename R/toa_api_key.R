@@ -23,6 +23,11 @@
 #' ```r
 #' Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 #' ```
+#' @family The Odds API: Account & Usage
+#' @seealso [toa_quota()] to inspect your usage credits after any API call,
+#'   [toa_requests()] to explicitly query your remaining/used credits, and
+#'   [toa_sports()] to start exploring available sports. Part of the
+#'   \href{https://sportsdataverse.org/}{SportsDataverse}.
 #' @name register_toa
 NULL
 #' @rdname register_toa

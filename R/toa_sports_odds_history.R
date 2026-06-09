@@ -71,6 +71,11 @@
 #' @importFrom rlang .data
 #' @import tidyr
 #' @export
+#' @family The Odds API: Historical
+#' @seealso [toa_event_odds_history()] for historical odds on a single event
+#'   (including player props), [toa_sports_events_history()] to list events at a
+#'   historical snapshot, and [toa_sports_odds()] for current featured-market
+#'   odds. Part of the \href{https://sportsdataverse.org/}{SportsDataverse}.
 #' @examples \donttest{
 #'    try(toa_sports_odds_history(sport_key = 'basketball_nba',
 #'                                date = '2024-01-15T12:15:00Z',

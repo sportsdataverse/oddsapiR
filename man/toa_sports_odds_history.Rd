@@ -99,5 +99,16 @@ Snapshots with no events do not count against the quota.
                                date_format = 'iso'))
 }
 }
+\seealso{
+\code{\link[=toa_event_odds_history]{toa_event_odds_history()}} for historical odds on a single event
+(including player props), \code{\link[=toa_sports_events_history]{toa_sports_events_history()}} to list events at a
+historical snapshot, and \code{\link[=toa_sports_odds]{toa_sports_odds()}} for current featured-market
+odds. Part of the \href{https://sportsdataverse.org/}{SportsDataverse}.
+
+Other The Odds API: Historical: 
+\code{\link{toa_event_odds_history}()},
+\code{\link{toa_sports_events_history}()}
+}
+\concept{The Odds API: Historical}
 \keyword{Betting}
 \keyword{Lines}

@@ -21,6 +21,11 @@
 #' @importFrom glue glue
 #' @importFrom rlang .data
 #' @export
+#' @family The Odds API: Account & Usage
+#' @seealso [toa_quota()] to read cached usage from the most recent call without
+#'   a network round-trip, [toa_key()] / [register_toa] to configure your API
+#'   key, and [toa_sports()] to start pulling data. Part of the
+#'   \href{https://sportsdataverse.org/}{SportsDataverse}.
 #' @examples \donttest{
 #'   try(toa_requests())
 #' }

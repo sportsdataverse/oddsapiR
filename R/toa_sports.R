@@ -28,6 +28,11 @@
 #' @importFrom glue glue
 #' @importFrom rlang .data
 #' @export
+#' @family The Odds API: Sports & Events
+#' @seealso [toa_sports_events()] to list upcoming events for a sport,
+#'   [toa_sports_scores()] for live/recent scores, and [toa_sports_odds()]
+#'   to pull featured-market odds. Part of the
+#'   \href{https://sportsdataverse.org/}{SportsDataverse}.
 #' @examples \donttest{
 #'   try(toa_sports(all_sports = TRUE))
 #' }

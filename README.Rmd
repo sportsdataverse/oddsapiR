@@ -2,15 +2,14 @@
 output: github_document
 ---
 
-#
-
 # **oddsapiR**  <a href='https://oddsapiR.sportsdataverse.org/'><img src='https://raw.githubusercontent.com/sportsdataverse/oddsapiR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
 
 <!-- badges: start -->
+[![CRAN version](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=CRAN%20version&prefix=v&query=%24.Version&url=https%3A%2F%2Fcrandb.r-pkg.org%2FoddsapiR)](https://CRAN.R-project.org/package=oddsapiR)
+[![CRAN downloads](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=Downloads&query=%24%5B0%5D.downloads&url=https%3A%2F%2Fcranlogs.r-pkg.org%2Fdownloads%2Ftotal%2F2022-12-29%3Alast-day%2FoddsapiR)](https://CRAN.R-project.org/package=oddsapiR)
+[![R-universe version](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=R-universe&prefix=v&query=%24.Version&url=https%3A%2F%2Fsportsdataverse.r-universe.dev%2Fapi%2Fpackages%2FoddsapiR)](https://sportsdataverse.r-universe.dev/oddsapiR)
 [![Version-Number](https://img.shields.io/github/r-package/v/sportsdataverse/oddsapiR?label=oddsapiR&logo=R&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR)
-[![R-CMD-check](https://img.shields.io/github/actions/workflow/status/sportsdataverse/oddsapiR/R-CMD-check.yaml?branch=main&label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/actions/workflows/R-CMD-check.yaml) [![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/oddsapiR)  [![Contributors](https://img.shields.io/github/contributors/sportsdataverse/oddsapiR?style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/graphs/contributors) 
-[![Twitter Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=twitter&style=for-the-badge)](https://twitter.com/SportsDataverse) 
-
+[![R-CMD-check](https://img.shields.io/github/actions/workflow/status/sportsdataverse/oddsapiR/R-CMD-check.yaml?branch=main&label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/actions/workflows/R-CMD-check.yaml) [![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/oddsapiR)  [![Contributors](https://img.shields.io/github/contributors/sportsdataverse/oddsapiR?style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/graphs/contributors) [![Twitter Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://twitter.com/SportsDataverse)
 <!-- badges: end -->
 
 ```{r setup, include = FALSE}
@@ -22,18 +21,19 @@ knitr::opts_chunk$set(
 )
 ```
 
-To access the API, get a free API key from https://the-odds-api.com
+[**`oddsapiR`**](https://oddsapiR.sportsdataverse.org/) is an R package for accessing live and historical sports betting odds, scores, events, and participants from [**The Odds API**](https://the-odds-api.com/) — spanning dozens of sports and 60+ bookmakers worldwide. Every endpoint returns a clean, tidy `data.frame`/`tibble` ready for analysis, built on a single `httr2`-based request layer with automatic API-key handling and usage-quota tracking.
 
-Installation & Usage
+Part of the [SportsDataverse](https://sportsdataverse.org/) family of R & Python packages for sports analytics. To access the API, get a free API key at <https://the-odds-api.com>.
 
 ## **Installation**
 
-<!-- You can install the CRAN version of [**```oddsapiR```** ](https://CRAN.R-project.org/package=oddsapiR) with: -->
-<!-- ```{r readme_cran_install, eval=FALSE} -->
-<!-- install.packages("oddsapiR") -->
-<!-- ``` -->
+You can install the CRAN version of [**`oddsapiR`**](https://CRAN.R-project.org/package=oddsapiR) with:
 
-You can install the released version of [**`oddsapiR`**](https://github.com/sportsdataverse/oddsapiR) from [GitHub](https://github.com/sportsdataverse/oddsapiR) with:
+```r
+install.packages("oddsapiR")
+```
+
+You can install the development version of [**`oddsapiR`**](https://github.com/sportsdataverse/oddsapiR) from [GitHub](https://github.com/sportsdataverse/oddsapiR) with:
 
 ```r
 # using the pak package (recommended):
@@ -94,9 +94,25 @@ Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%
 stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20oddsapiR&maxAge=2592000)](https://github.com/sportsdataverse/oddsapiR/stargazers/)
 
 
+## **The SportsDataverse**
+
+`oddsapiR` is part of the [**SportsDataverse**](https://sportsdataverse.org/), a family of open-source R, Python, and Node.js packages for sports data. Related packages you can pair odds data with:
+
+| Package | Sport / Scope |
+|---|---|
+| [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) | College football |
+| [**hoopR**](https://hoopR.sportsdataverse.org/) | Men's basketball (NBA & NCAA) |
+| [**wehoop**](https://wehoop.sportsdataverse.org/) | Women's basketball (WNBA & NCAA) |
+| [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) | Hockey (NHL & PWHL) |
+| [**baseballr**](https://billpetti.github.io/baseballr/) | Baseball (MLB, MiLB, NCAA) |
+| [**sportsdataverse-R**](https://r.sportsdataverse.org/) | Umbrella R metapackage |
+| [**sportsdataverse-py**](https://py.sportsdataverse.org/) · [**sportsdataverse.js**](https://js.sportsdataverse.org/) | Python & Node.js |
+
+See the full ecosystem at [sportsdataverse.org](https://sportsdataverse.org/).
+
 ## **Our Authors**
 
--   [Saiem Gilani](https://twitter.com/saiemgilani)       
+-   [Saiem Gilani](https://twitter.com/saiemgilani)
 <a href="https://twitter.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=twitter&style=for-the-badge" alt="@saiemgilani" /></a>
 <a href="https://github.com/saiemgilani" target="blank"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge" alt="@saiemgilani" /></a>
 

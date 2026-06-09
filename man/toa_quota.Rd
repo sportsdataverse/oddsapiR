@@ -30,3 +30,14 @@ by a \verb{toa_*()} function, and are echoed when the tibble is printed.
   try(toa_quota())
 }
 }
+\seealso{
+\code{\link[=toa_requests]{toa_requests()}} to explicitly query usage via an API round-trip,
+\code{\link[=toa_key]{toa_key()}} / \link{register_toa} to set up your API key, and \code{\link[=toa_sports]{toa_sports()}}
+for your first data call. Part of the
+\href{https://sportsdataverse.org/}{SportsDataverse}.
+
+Other The Odds API: Account & Usage: 
+\code{\link{register_toa}},
+\code{\link{toa_requests}()}
+}
+\concept{The Odds API: Account & Usage}

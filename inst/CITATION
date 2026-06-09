@@ -1,16 +1,18 @@
-year <- sub("-.*", "", meta$Date)
+## DESCRIPTION carries no Date field, so fall back to the build year.
+year <- if (!is.null(meta$Date)) sub("-.*", "", meta$Date) else format(Sys.Date(), "%Y")
 note <- sprintf("R package version %s", meta$Version)
 
-citHeader("To cite the oddsapiR R package in publications, use:")
-
-citEntry(entry = "Misc",
-         author = personList(as.person("Saiem Gilani")),
-         title = "oddsapiR: The SportsDataverse's R Package for The Odds API.",
-         url = c("https://oddsapiR.sportsdataverse.org"),
-         year = year,
-         note = note,
-         textVersion = paste(
-    "Saiem Gilani. oddsapiR: The SportsDataverse's R Package for The Odds API.",
-    "Retrieved from https://oddsapiR.sportsdataverse.org"
+bibentry(
+  bibtype  = "Misc",
+  header   = "To cite the oddsapiR R package in publications, use:",
+  key      = "gilani_oddsapiR",
+  author   = c(person("Saiem", "Gilani")),
+  title    = "oddsapiR: The SportsDataverse's R Package for The Odds API.",
+  url      = "https://oddsapiR.sportsdataverse.org",
+  year     = year,
+  note     = note,
+  textVersion = paste0(
+    "Saiem Gilani (", year, "). oddsapiR: The SportsDataverse's R Package for ",
+    "The Odds API. ", note, ". Retrieved from https://oddsapiR.sportsdataverse.org"
   )
 )

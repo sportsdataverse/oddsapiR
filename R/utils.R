@@ -63,6 +63,11 @@ toa_api_request <- function(url, query = NULL, ...){
 #' @return A one-row tibble with columns `requests_remaining`, `requests_used`
 #'  and `requests_last`, or `NULL` if no API call has been made yet this session.
 #' @export
+#' @family The Odds API: Account & Usage
+#' @seealso [toa_requests()] to explicitly query usage via an API round-trip,
+#'   [toa_key()] / [register_toa] to set up your API key, and [toa_sports()]
+#'   for your first data call. Part of the
+#'   \href{https://sportsdataverse.org/}{SportsDataverse}.
 #' @examples \donttest{
 #'   try(toa_sports())
 #'   try(toa_quota())

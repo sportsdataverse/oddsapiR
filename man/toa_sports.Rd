@@ -35,4 +35,16 @@ Returns a list of in-season sports. The \code{key} returned here is the
   try(toa_sports(all_sports = TRUE))
 }
 }
+\seealso{
+\code{\link[=toa_sports_events]{toa_sports_events()}} to list upcoming events for a sport,
+\code{\link[=toa_sports_scores]{toa_sports_scores()}} for live/recent scores, and \code{\link[=toa_sports_odds]{toa_sports_odds()}}
+to pull featured-market odds. Part of the
+\href{https://sportsdataverse.org/}{SportsDataverse}.
+
+Other The Odds API: Sports & Events: 
+\code{\link{toa_sports_events}()},
+\code{\link{toa_sports_participants}()},
+\code{\link{toa_sports_scores}()}
+}
+\concept{The Odds API: Sports & Events}
 \keyword{Sports}
