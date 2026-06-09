@@ -2,100 +2,102 @@
 % Please edit documentation in R/toa_sports_odds_history.R
 \name{toa_sports_odds_history}
 \alias{toa_sports_odds_history}
-\title{\strong{Find odds history for the sports which are accessible through the Odds API}}
+\title{\strong{Find historical featured-market odds through the Odds API}}
 \usage{
 toa_sports_odds_history(
   sport_key,
-  event_ids,
   date,
   regions = "us",
   markets = "spreads",
   odds_format = "decimal",
   date_format = "iso",
+  event_ids = NULL,
   bookmakers = NULL
 )
 }
 \arguments{
-\item{sport_key}{The \code{sport_key} to look up odds for. See \code{toa_sports()} for a full lookup of \code{sport_key} values.}
+\item{sport_key}{(\emph{string}, required): The \code{sport_key} to look up odds for.
+See \code{\link[=toa_sports]{toa_sports()}} for a full lookup of \code{sport_key} values.}
 
-\item{event_ids}{The \code{event_id}'s to look up odds for. See \code{toa_sports_odds()} for a full lookup of \code{event_id} values.}
+\item{date}{(\emph{string}, required): The timestamp of the data snapshot to
+return, in ISO 8601 format (e.g. \verb{2023-03-18T12:15:00Z}). The API returns
+the closest snapshot equal to or earlier than this value.}
 
-\item{date}{The timestamp of the data snapshot to be returned, specified in ISO8601 format. The historical odds API will return the closest snapshot equal to or earlier than the provided date parameter
-Example : 2022-10-10T12:15:00Z}
-
-\item{regions}{The region to pull odds from. Options include:
+\item{regions}{(\emph{string}, required): The region(s) to pull bookmakers from.
+Multiple can be specified if comma delimited. Options include:
 \itemize{
-\item us
-\item uk
-\item us
-\item eu
-\item au
-Multiple can be specified if comma delimited.
+\item \code{us}
+\item \code{us2}
+\item \code{uk}
+\item \code{eu}
+\item \code{au}
 }}
 
-\item{markets}{The type of odds to return. Multiple can be specified if comma delimited. Options include:
-\itemize{
-\item h2h
-\item spreads
-\item totals
-}}
+\item{markets}{(\emph{string}, optional): The featured markets to return. Multiple
+can be specified if comma delimited. Options include \code{h2h}, \code{spreads},
+\code{totals}.}
 
-\item{odds_format}{The format in which to return odds. Options include:
-\itemize{
-\item decimal
-\item american
-}}
+\item{odds_format}{(\emph{string}, optional): Format in which to return odds.
+Options are \code{decimal} (default) or \code{american}.}
 
-\item{date_format}{Date format. Options include:
-\itemize{
-\item iso
-\item unix
-}}
+\item{date_format}{(\emph{string}, optional): Format of returned timestamps.
+Options are \code{iso} (default) or \code{unix}.}
 
-\item{bookmakers}{Comma-separated list of bookmakers to be returned. If both bookmakers and
-regions are specified, bookmakers takes precendence. Bookmakers can be from any region.
-Every group of 10 bookmakers counts as 1 request. For example for a single market,
-specifying up to 10 bookmakers counts as 1 request.
-Specifying between 11 and 20 bookmakers counts as 2 requests}
+\item{event_ids}{(\emph{string}, optional): Comma-separated list of event ids to
+filter the snapshot to. Defaults to \code{NULL} (all events).}
+
+\item{bookmakers}{(\emph{string}, optional): Comma-separated list of bookmakers to
+be returned. If both \code{bookmakers} and \code{regions} are specified, \code{bookmakers}
+takes precedence. Every group of 10 bookmakers counts as 1 region against
+the usage quota.}
 }
 \value{
-Sports for which The Odds API provides betting information for as a tibble:\tabular{ll}{
-   col_name \tab types \cr
-   id \tab character \cr
-   sport_key \tab character \cr
-   sport_title \tab character \cr
-   commence_time \tab character \cr
-   home_team \tab character \cr
-   away_team \tab character \cr
-   bookmaker_key \tab character \cr
-   bookmaker \tab character \cr
-   last_update \tab character \cr
-   market_key \tab character \cr
-   outcomes_name \tab character \cr
-   outcomes_price \tab numeric \cr
-   outcomes_point \tab numeric \cr
+A long-format tibble with one row per bookmaker market outcome:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   timestamp \tab character \tab Snapshot timestamp returned (closest at/before \code{date}). \cr
+   previous_timestamp \tab character \tab Preceding available snapshot; use as \code{date} to page back. \cr
+   next_timestamp \tab character \tab Next available snapshot; use as \code{date} to page forward. \cr
+   id \tab character \tab Unique event id. \cr
+   sport_key \tab character \tab Sport key, e.g. \code{basketball_nba}. \cr
+   sport_title \tab character \tab Human-readable sport title, e.g. \code{NBA}. \cr
+   commence_time \tab character \tab Game start time (ISO 8601 string or unix seconds). \cr
+   home_team \tab character \tab Home team name. \cr
+   away_team \tab character \tab Away team name. \cr
+   bookmaker_key \tab character \tab Bookmaker slug, e.g. \code{draftkings}. \cr
+   bookmaker \tab character \tab Bookmaker display title, e.g. \code{DraftKings}. \cr
+   bookmaker_last_update \tab character \tab When this bookmaker's odds were last updated. \cr
+   market_key \tab character \tab Market key, e.g. \code{spreads}. \cr
+   market_last_update \tab character \tab When this market's odds were last updated. \cr
+   outcomes_name \tab character \tab Outcome label (team name, \code{Over}/\code{Under}, etc.). \cr
+   outcomes_price \tab numeric \tab The price/odds for the outcome. \cr
+   outcomes_point \tab numeric \tab The handicap/total line (\code{spreads}/\code{totals} only). \cr
 }
 }
 \description{
-\strong{Get the odds history for the sports which the Odds API provides coverage}
+\strong{Get historical featured-market odds for a sport which The Odds API covers.}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{   try(toa_sports_odds(sport_key = 'baseball_mlb', 
-                       regions = 'us', 
-                       markets = 'spreads', 
-                       odds_format = 'decimal',
-                       date_format = 'iso'))
-}\if{html}{\out{</div>}}
+Returns the list of events and featured bookmaker odds (\code{h2h}, \code{spreads},
+\code{totals}) as they appeared at the snapshot closest to (and at or before) the
+requested \code{date}. The response is wrapped in a snapshot envelope; the
+returned \code{timestamp}, \code{previous_timestamp} and \code{next_timestamp} columns let
+you page backward/forward in time. This endpoint was previously
+\verb{/v4/sports/\{sport\}/odds-history}, which has been deprecated in favour of
+\verb{/v4/historical/sports/\{sport\}/odds}.
+
+Historical data is available on paid usage plans from June 2020.
+
+\strong{Usage quota cost:} \verb{10 x [number of markets] x [number of regions]}.
+Snapshots with no events do not count against the quota.
 }
-\details{
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{try(toa_sports_odds_history(sport_key = 'basketball_ncaab', 
-                               event_ids = '48db9c3293a52baab881d95d38f37a98',
-                               date = '2023-03-18T12:15:00Z',
-                               regions = 'us', 
-                               markets = 'spreads', 
+\examples{
+\donttest{
+   try(toa_sports_odds_history(sport_key = 'basketball_nba',
+                               date = '2024-01-15T12:15:00Z',
+                               regions = 'us',
+                               markets = 'spreads',
                                odds_format = 'decimal',
-                               date_format = 'iso',
-                               bookmakers = NULL))
-}\if{html}{\out{</div>}}
+                               date_format = 'iso'))
+}
 }
 \keyword{Betting}
 \keyword{Lines}

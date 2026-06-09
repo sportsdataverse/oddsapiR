@@ -4,48 +4,52 @@
 \alias{toa_sports_scores}
 \title{\strong{Find scores for the sports which are accessible through the Odds API}}
 \usage{
-toa_sports_scores(sport_key, days_from = 1, date_format = "iso")
+toa_sports_scores(sport_key, days_from = NULL, date_format = "iso")
 }
 \arguments{
-\item{sport_key}{(\emph{string}, required): The \code{sport_key} to look up odds for. See \code{toa_sports()} for a full lookup of \code{sport_key} values.}
+\item{sport_key}{(\emph{string}, required): The \code{sport_key} to look up scores for.
+See \code{\link[=toa_sports]{toa_sports()}} for a full lookup of \code{sport_key} values.}
 
-\item{days_from}{(\emph{integer}, optional): Integer from 1 to 3. Defaults to 1.}
+\item{days_from}{(\emph{integer}, optional): Number of days in the past from which
+to return completed games, an integer from 1 to 3. If \code{NULL} (default), only
+live and upcoming games are returned.}
 
-\item{date_format}{(\emph{string}, optional): Date format. Options include:
+\item{date_format}{(\emph{string}, optional): Format of returned timestamps.
+Options are:
 \itemize{
-\item iso
-\item unix
+\item \code{iso} (ISO 8601, the default)
+\item \code{unix} (epoch seconds)
 }}
 }
 \value{
-Sports scores which The Odds API provides scores information for as a tibble:\tabular{ll}{
-   col_name \tab types \cr
-   id \tab character \cr
-   sport_key \tab character \cr
-   sport_title \tab character \cr
-   commence_time \tab character \cr
-   completed \tab logical \cr
-   home_team \tab character \cr
-   away_team \tab character \cr
-   scores \tab logical \cr
-   last_update \tab logical \cr
+A tibble of scores for the sport The Odds API provides coverage for:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   id \tab character \tab Unique event id. \cr
+   sport_key \tab character \tab Sport key, e.g. \code{basketball_nba}. \cr
+   sport_title \tab character \tab Human-readable sport title, e.g. \code{NBA}. \cr
+   commence_time \tab character \tab Game start time (ISO 8601 string or unix seconds). \cr
+   completed \tab logical \tab \code{TRUE} if the game has finished. \cr
+   home_team \tab character \tab Home team name. \cr
+   away_team \tab character \tab Away team name. \cr
+   scores \tab list \tab Per-team \code{name}/\code{score} pairs; \code{NULL}/\code{NA} before scores post. \cr
+   last_update \tab character \tab Time the scores were last updated; \code{NA} until a game is live. \cr
 }
 }
 \description{
-\strong{Get the scores for the sports which the Odds API provides coverage}
+\strong{Get the scores for the sports which The Odds API provides coverage.}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{   try(toa_sports_scores(sport_key = 'baseball_mlb', 
-                         days_from = NULL,
-                         date_format = 'iso'))
-}\if{html}{\out{</div>}}
+Returns live and recently completed games for a sport, including scores for
+games completed within the last 3 days. Live scores update roughly every 30
+seconds.
+
+\strong{Usage quota cost:} 1 credit when \code{days_from} is not supplied; 2 credits
+when \code{days_from} is supplied.
 }
 \examples{
 \donttest{
-   try(toa_sports_scores(sport_key = 'baseball_mlb', 
+   try(toa_sports_scores(sport_key = 'basketball_nba',
                          days_from = NULL,
                          date_format = 'iso'))
 }
-
 }
-\keyword{Betting}
-\keyword{Lines}
+\keyword{Scores}

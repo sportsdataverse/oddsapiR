@@ -134,19 +134,34 @@ repo:
     issue: https://github.com/sportsdataverse/oddsapiR/issues/
     user: https://github.com/sportsdataverse/
 reference:
-  - title: Exported Functions
-    desc: Functions exported by oddsapiR
+  - title: Sports & Events
+    desc: Discover sports, events, and participants
     contents:
       - '`toa_sports`'
-      - '`toa_sports_odds`'
-      - '`toa_sports_odds_history`'
+      - '`toa_sports_events`'
+      - '`toa_sports_participants`'
       - '`toa_sports_scores`'
+  - title: Current Odds & Markets
+    desc: Featured-market odds, single-event odds, and available markets
+    contents:
+      - '`toa_sports_odds`'
       - '`toa_event_odds`'
+      - '`toa_event_markets`'
+  - title: Historical Odds & Events
+    desc: Point-in-time snapshots of events and odds (paid plans)
+    contents:
+      - '`toa_sports_odds_history`'
+      - '`toa_sports_events_history`'
+      - '`toa_event_odds_history`'
+  - title: Account & Usage
+    desc: API key registration and usage-quota inspection
+    contents:
+      - '`register_toa`'
       - '`toa_requests`'
+      - '`toa_quota`'
   - title: Internals
     desc: Internal functions and data
     contents:
-      - '`register_toa`'
       - '`toa_sports_keys`'
       - '`progressively`'
       - '`csv_from_url`'

@@ -1,28 +1,30 @@
 Package: oddsapiR
 Title: Access Live Sports Odds from the Odds API
-Version: 0.0.3
-Authors@R: c(person("Saiem", "Gilani", email = "saiem.gilani@gmail.com", role = c("aut", "cre")))
-Description: A utility to quickly obtain clean and tidy sports
-    odds from The Odds API <https://the-odds-api.com>.
+Version: 1.0.0
+Authors@R: 
+    person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7194-9067"))
+Description: A utility to quickly obtain clean and tidy sports odds from
+    The Odds API <https://the-odds-api.com>.
 License: MIT + file LICENSE
-URL: https://oddsapiR.sportsdataverse.org/ (docs), https://github.com/sportsdataverse/oddsapiR (repo)
+URL: https://oddsapiR.sportsdataverse.org/,
+    https://github.com/sportsdataverse/oddsapiR
 BugReports: https://github.com/sportsdataverse/oddsapiR/issues
-SystemRequirements: pandoc (>= 1.12.3), pandoc-citeproc
-Depends: 
+Depends:
     R (>= 4.0.0)
-Imports: 
+Imports:
     cli (>= 3.4.1),
     data.table (>= 1.14.0),
     dplyr (>= 1.0.10),
     glue,
-    httr (>= 0.5),
-    janitor,
+    httr2 (>= 1.0.0),
     jsonlite,
     magrittr,
     rlang (>= 1.0.4),
     rvest (>= 1.0.0),
+    tibble (>= 3.0),
     tidyr (>= 1.0.0)
-Suggests: 
+Suggests:
     crayon (>= 1.3.4),
     curl,
     DBI,
@@ -40,11 +42,11 @@ Suggests:
     stringi,
     stringr (>= 1.5.0),
     testthat,
-    tibble (>= 3.0),
     tidyselect (>= 1.2.0),
     usethis (>= 1.6.0),
     xml2 (>= 1.3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
+SystemRequirements: pandoc (>= 1.12.3), pandoc-citeproc

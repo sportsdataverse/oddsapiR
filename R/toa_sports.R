@@ -2,59 +2,58 @@
 #' @title
 #' **Find sports for which odds are accessible through the Odds API**
 #' @description
-#' **Get the Sports for which the Odds API provides coverage**
-#' ```r
-#'  toa_sports(all_sports=TRUE)
-#' ```
-#' @param all_sports (*Logical* required): If true, returns all sports and if false, returns only active sports. Defaults to true.
-#' @return Sports for which The Odds API provides betting information for as a tibble:
-#'   
-#'    |col_name      |types     |
-#'    |:-------------|:---------|
-#'    |key           |character |
-#'    |group         |character |
-#'    |title         |character |
-#'    |description   |character |
-#'    |active        |logical   |
-#'    |has_outrights |logical   |
-#'   
-#' @keywords Betting Lines
+#' **Get the sports for which The Odds API provides coverage.**
+#'
+#' Returns a list of in-season sports. The `key` returned here is the
+#' `sport_key` consumed by every other `toa_*()` endpoint.
+#'
+#' **Usage quota cost:** Free. This endpoint does not count against your quota.
+#' @param all_sports (*Logical*, optional): If `TRUE`, returns all sports
+#'  (including out-of-season). If `FALSE`, returns only in-season sports.
+#'  Defaults to `TRUE`.
+#' @return A tibble of the sports for which The Odds API provides coverage:
+#'
+#'    |col_name      |types     |description                                            |
+#'    |:-------------|:---------|:------------------------------------------------------|
+#'    |key           |character |Sport key, e.g. `americanfootball_nfl`. Use as `sport_key` elsewhere. |
+#'    |group         |character |Sport group / category, e.g. `American Football`.      |
+#'    |title         |character |Human-readable sport title, e.g. `NFL`.                |
+#'    |description   |character |Description of the sport or competition.               |
+#'    |active        |logical   |`TRUE` if the sport is currently in season.            |
+#'    |has_outrights |logical   |`TRUE` if the sport offers outright (futures) markets. |
+#'
+#' @keywords Sports
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY modify_url
-#' @importFrom utils URLencode
-#' @importFrom cli cli_abort
-#' @importFrom janitor clean_names
+#' @importFrom cli cli_alert_danger
 #' @importFrom glue glue
 #' @importFrom rlang .data
 #' @export
 #' @examples \donttest{
 #'   try(toa_sports(all_sports = TRUE))
 #' }
-#' 
-toa_sports <- function(all_sports=TRUE){
-  base_url = glue::glue('https://api.the-odds-api.com/v4/sports')
+toa_sports <- function(all_sports = TRUE){
+  base_url <- "https://api.the-odds-api.com/v4/sports"
   query_params <- list(
     apiKey = as.character(toa_key()),
-    all = ifelse(is.logical(all_sports),tolower(as.character(all_sports)), all_sports)
+    all = ifelse(is.logical(all_sports), tolower(as.character(all_sports)), all_sports)
   )
-  
-  toa_endpoint <- httr::modify_url(base_url, query = query_params)
-  
+
+  sports <- data.frame()
+
   tryCatch(
     expr = {
-      
-      resp <- toa_endpoint %>% 
-        toa_api_call() %>%
+      sports <- toa_api_call(base_url, query = query_params) %>%
         make_toa_data("Sports coverage data from the-odds-api.com", Sys.time())
-      
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments provided"))
+      cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no sports data available!")
+      cli::cli_alert_danger("Error:\n{e}")
     },
     warning = function(w) {
+      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
     },
     finally = {
     }
   )
-  return(resp)
+  return(sports)
 }

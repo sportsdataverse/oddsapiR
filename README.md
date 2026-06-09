@@ -21,8 +21,11 @@ Installation & Usage
 ## **Installation**
 
 <!-- You can install the CRAN version of [**```oddsapiR```** ](https://CRAN.R-project.org/package=oddsapiR) with: -->
+
 <!-- ```{r readme_cran_install, eval=FALSE} -->
+
 <!-- install.packages("oddsapiR") -->
+
 <!-- ``` -->
 
 You can install the released version of
@@ -30,26 +33,26 @@ You can install the released version of
 [GitHub](https://github.com/sportsdataverse/oddsapiR) with:
 
 ``` r
-# You can install using the pacman package using the following code:
-if (!requireNamespace('pacman', quietly = TRUE)){
-  install.packages('pacman')
+# using the pak package (recommended):
+if (!requireNamespace('pak', quietly = TRUE)){
+  install.packages('pak')
 }
-pacman::p_load_current_gh("sportsdataverse/oddsapiR")
+pak::pak("sportsdataverse/oddsapiR")
 ```
 
 ``` r
-# if you would prefer devtools installation
+# or using the devtools package:
 if (!requireNamespace('devtools', quietly = TRUE)){
   install.packages('devtools')
 }
-# Alternatively, using the devtools package:
 devtools::install_github(repo = "sportsdataverse/oddsapiR")
 ```
 
 ``` r
-git clone https://github.com/sportsdataverse/oddsapi
-cd oddsapi
-Rscript -e "devtools::install()"
+# or clone and install locally
+git clone https://github.com/sportsdataverse/oddsapiR
+cd oddsapiR
+Rscript -e "pak::local_install()"  # or: Rscript -e "devtools::install()"
 ```
 
 #### **Odds API Keys**
@@ -57,7 +60,7 @@ Rscript -e "devtools::install()"
 The [Odds API](https://the-odds-api.com) requires an API key, here’s a
 quick run-down:
 
--   Using the key: You can save the key for consistent usage by adding
+  - Using the key: You can save the key for consistent usage by adding
     `ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .Renviron file
     (easily accessed via
     [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)).
@@ -65,6 +68,8 @@ quick run-down:
     [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html),
     a new script will pop open named `.Renviron`, **THEN** paste the
     following in the new script that pops up (with**out** quotations)
+
+<!-- end list -->
 
 ``` r
 ODDS_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
@@ -76,10 +81,12 @@ also exists the shortcut `Ctrl + Shift + F10` to restart your session).
 If set correctly, from then on you should be able to use any of the
 functions without any other changes.
 
--   For less consistent usage: At the beginning of every session or
+  - For less consistent usage: At the beginning of every session or
     within an R environment, save your API key as the environment
     variable `ODDS_API_KEY` (with quotations) using a command like the
     following.
+
+<!-- end list -->
 
 ``` r
 Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
@@ -106,7 +113,7 @@ stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=ee
 
 ## **Our Authors**
 
--   [Saiem Gilani](https://twitter.com/saiemgilani)  
+  - [Saiem Gilani](https://twitter.com/saiemgilani)  
     <a href="https://twitter.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=twitter&style=for-the-badge" alt="@saiemgilani" /></a>
     <a href="https://github.com/saiemgilani" target="blank"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge" alt="@saiemgilani" /></a>
 

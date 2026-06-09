@@ -45,3 +45,7 @@
 ^CRAN-RELEASE$
 ^\.pre-commit-config\.yaml$
 ^CRAN-SUBMISSION$
+^CLAUDE\.md$
+^CONTRIBUTING\.md$
+^\.claude$
+^\.remember$

@@ -1,24 +1,111 @@
 .datatable.aware <- TRUE
 
-toa_api_call <- function(url){
-  res <-
-    httr::RETRY("GET", url)
-  
-  json <- res$content %>%
-    rawToChar() %>%
-    jsonlite::fromJSON(simplifyVector = T)
-  
-  return(json)
+# Package-local store for the most recent Odds API usage-quota headers. Populated
+# by every successful request and read by make_toa_data() / toa_quota().
+.oddsapiR <- new.env(parent = emptyenv())
+
+# Read the x-requests-* usage headers off a response and cache them for the
+# session. Returns the parsed values invisibly.
+.toa_store_quota <- function(resp){
+  quota <- list(
+    requests_remaining = suppressWarnings(as.integer(httr2::resp_header(resp, "x-requests-remaining"))),
+    requests_used      = suppressWarnings(as.integer(httr2::resp_header(resp, "x-requests-used"))),
+    requests_last      = suppressWarnings(as.integer(httr2::resp_header(resp, "x-requests-last")))
+  )
+  assign("quota", quota, envir = .oddsapiR)
+  invisible(quota)
 }
 
-toa_api_headers <- function(url){
-  res <-
-    httr::RETRY("GET", url)
-  
-  df <- data.frame(
-    requests_remaining = as.integer(res$headers$`x-requests-remaining`),
-    requests_used = as.integer(res$headers$`x-requests-used`))
-  return(df)
+#' @title
+#' **Build and perform a GET request against The Odds API (httr2)**
+#' @description
+#' Internal HTTP layer shared by every `toa_*()` wrapper. Builds an `httr2`
+#' request from a base URL plus a named list of query parameters, applies the
+#' standard user agent + transient-error retry policy, performs it, and caches
+#' the `x-requests-*` usage-quota headers for [toa_quota()]. `NULL` query values
+#' are dropped automatically by [httr2::req_url_query()], so optional parameters
+#' can be threaded through unconditionally.
+#' @param url Base endpoint URL (without query string).
+#' @param query Named list of query parameters. `NULL` elements are omitted.
+#' @param ... Reserved for forward compatibility.
+#' @return An `httr2_response` object.
+#' @keywords internal
+#' @importFrom httr2 request req_url_query req_user_agent req_retry req_error req_perform
+toa_api_request <- function(url, query = NULL, ...){
+  resp <- httr2::request(url) %>%
+    httr2::req_url_query(!!!query) %>%
+    httr2::req_user_agent("oddsapiR (https://github.com/sportsdataverse/oddsapiR)") %>%
+    httr2::req_retry(max_tries = 3) %>%
+    # Do not raise on HTTP errors -- let the calling wrapper's tryCatch handle a
+    # non-200 body (the API returns an error JSON object that fails downstream
+    # parsing, which the wrapper reports via cli).
+    httr2::req_error(is_error = function(resp) FALSE) %>%
+    httr2::req_perform()
+  .toa_store_quota(resp)
+  resp
+}
+
+#' @name toa_quota
+#' @title
+#' **Inspect your Odds API usage quota**
+#' @description
+#' Returns the usage-quota headers reported by The Odds API on the **most
+#' recent** `toa_*()` call made in this R session. The Odds API returns three
+#' headers with every response:
+#'
+#'  * `x-requests-remaining` -- usage credits remaining until the quota resets
+#'  * `x-requests-used` -- usage credits used since the last quota reset
+#'  * `x-requests-last` -- the usage cost of the last API call
+#'
+#' These same values are attached as attributes (`oddsapiR_requests_remaining`,
+#' `oddsapiR_requests_used`, `oddsapiR_requests_last`) to every tibble returned
+#' by a `toa_*()` function, and are echoed when the tibble is printed.
+#' @return A one-row tibble with columns `requests_remaining`, `requests_used`
+#'  and `requests_last`, or `NULL` if no API call has been made yet this session.
+#' @export
+#' @examples \donttest{
+#'   try(toa_sports())
+#'   try(toa_quota())
+#' }
+toa_quota <- function(){
+  quota <- tryCatch(get("quota", envir = .oddsapiR), error = function(e) NULL)
+  if (is.null(quota)) return(NULL)
+  dplyr::as_tibble(data.frame(
+    requests_remaining = quota$requests_remaining,
+    requests_used      = quota$requests_used,
+    requests_last      = quota$requests_last
+  ))
+}
+
+#' @title
+#' **Perform a GET request and parse the JSON body**
+#' @param url Base endpoint URL (without query string).
+#' @param query Named list of query parameters. `NULL` elements are omitted.
+#' @param ... Passed to [toa_api_request()].
+#' @return The parsed JSON body (list / data.frame via [jsonlite::fromJSON()]).
+#' @keywords internal
+#' @importFrom httr2 resp_body_string
+#' @importFrom jsonlite fromJSON
+toa_api_call <- function(url, query = NULL, ...){
+  resp <- toa_api_request(url, query = query, ...)
+  httr2::resp_body_string(resp) %>%
+    jsonlite::fromJSON(simplifyVector = TRUE)
+}
+
+#' @title
+#' **Perform a GET request and return the quota usage headers**
+#' @param url Base endpoint URL (without query string).
+#' @param query Named list of query parameters. `NULL` elements are omitted.
+#' @param ... Passed to [toa_api_request()].
+#' @return A data.frame of `requests_remaining` / `requests_used`.
+#' @keywords internal
+#' @importFrom httr2 resp_header
+toa_api_headers <- function(url, query = NULL, ...){
+  resp <- toa_api_request(url, query = query, ...)
+  data.frame(
+    requests_remaining = as.integer(httr2::resp_header(resp, "x-requests-remaining")),
+    requests_used      = as.integer(httr2::resp_header(resp, "x-requests-used"))
+  )
 }
 
 #' **Progressively**
@@ -146,10 +233,10 @@ rule_footer <- function(x) {
   )
 }
 
-#' @import rvest
+#' @importFrom httr2 resp_status
 check_status <- function(res) {
-  x = httr::status_code(res)
-  if(x != 200) stop("The API returned an error", call. = FALSE)
+  x <- httr2::resp_status(res)
+  if (x != 200) stop("The API returned an error", call. = FALSE)
 }
 
 #' @importFrom magrittr %>%
@@ -170,10 +257,19 @@ utils::globalVariables(c("where"))
 make_toa_data <- function(df,type,timestamp){
   out <- df %>%
     tidyr::as_tibble()
-  
+
   class(out) <- c("oddsapiR_data","tbl_df","tbl","data.table","data.frame")
   attr(out,"oddsapiR_timestamp") <- timestamp
   attr(out,"oddsapiR_type") <- type
+
+  # Attach the usage-quota headers cached from the most recent request so the
+  # remaining/used/last credits travel with the returned data.
+  quota <- tryCatch(get("quota", envir = .oddsapiR), error = function(e) NULL)
+  if (!is.null(quota)) {
+    attr(out,"oddsapiR_requests_remaining") <- quota$requests_remaining
+    attr(out,"oddsapiR_requests_used")      <- quota$requests_used
+    attr(out,"oddsapiR_requests_last")      <- quota$requests_last
+  }
   return(out)
 }
 
@@ -181,13 +277,20 @@ make_toa_data <- function(df,type,timestamp){
 #' @noRd
 print.oddsapiR_data <- function(x,...) {
   cli::cli_rule(left = "{attr(x,'oddsapiR_type')}",right = "{.emph oddsapiR {utils::packageVersion('oddsapiR')}}")
-  
+
   if(!is.null(attr(x,'oddsapiR_timestamp'))) {
     cli::cli_alert_info(
       "Data updated: {.field {format(attr(x,'oddsapiR_timestamp'), tz = Sys.timezone(), usetz = TRUE)}}"
     )
   }
-  
+
+  remaining <- attr(x, "oddsapiR_requests_remaining")
+  if (!is.null(remaining) && !is.na(remaining)) {
+    cli::cli_alert_info(
+      "Odds API quota: {.field {attr(x,'oddsapiR_requests_used')}} used, {.field {remaining}} remaining (last call cost {.field {attr(x,'oddsapiR_requests_last')}})"
+    )
+  }
+
   NextMethod(print,x)
   invisible(x)
 }

@@ -1,55 +1,73 @@
 on:
   push:
-    branches: [main, master]
+    branches:
+      - main
+      - master
   release:
     types: [published]
   workflow_dispatch:
 
 name: pkgdown
 
+permissions:
+  contents: write
+
+concurrency:
+  group: pkgdown-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   pkgdown:
-    runs-on: ubuntu-22.04
+    runs-on: ${{ matrix.config.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: 'ubuntu-latest',   r: 'release'}
+
     env:
+      R_KEEP_PKG_SOURCE: yes
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-      RSPM: "https://packagemanager.rstudio.com/cran/__linux__/jammy/latest"
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repo
+        uses: actions/checkout@v5
 
-      - uses: r-lib/actions/setup-r@v2
+      - name: Setting up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
 
       - uses: r-lib/actions/setup-pandoc@v2
 
-      - uses: r-lib/actions/setup-r-dependencies@v2
+      - name: Setting up R dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 1
           extra-packages: |
             any::pkgdown
-            any::animation
-            any::cfbfastR
-            any::fastRhockey
-            any::ggimage
-            any::hoopR
+            any::dplyr
+            any::gt
             any::knitr
             any::pacman
             any::pak
             any::ragg
             any::remotes
             any::rsconnect
-            any::sportyR
-            any::tictoc
-            any::wehoop
-            any::zoo
             local::.
           needs: website
+
       - name: Install system dependencies
         run: |
           pak::pkg_install("hadley/emo")
           pak::pkg_install("r-lib/pkgapi")
           pak::pkg_install("jthomasmock/gtExtras")
         shell: Rscript {0}
+
       - name: Deploy package
         run: |
           git config --local user.name "$GITHUB_ACTOR"

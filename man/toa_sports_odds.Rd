@@ -13,74 +13,70 @@ toa_sports_odds(
 )
 }
 \arguments{
-\item{sport_key}{The \code{sport_key} to look up odds for. See \code{toa_sports()} for a full lookup of \code{sport_key} values.}
+\item{sport_key}{(\emph{string}, required): The \code{sport_key} to look up odds for.
+See \code{\link[=toa_sports]{toa_sports()}} for a full lookup of \code{sport_key} values.}
 
-\item{regions}{The region to pull odds from. Options include:
+\item{regions}{(\emph{string}, required): The region(s) to pull bookmakers from.
+Multiple can be specified if comma delimited. Options include:
 \itemize{
-\item us
-\item uk
-\item us
-\item eu
-\item au
-Multiple can be specified if comma delimited.
+\item \code{us}
+\item \code{us2}
+\item \code{uk}
+\item \code{eu}
+\item \code{au}
 }}
 
-\item{markets}{The type of odds to return. Multiple can be specified if comma delimited. Options include:
+\item{markets}{(\emph{string}, optional): The featured markets to return. Multiple
+can be specified if comma delimited. Options include:
 \itemize{
-\item h2h
-\item spreads
-\item totals
+\item \code{h2h} (moneyline)
+\item \code{spreads} (points handicaps)
+\item \code{totals} (over/under)
+\item \code{outrights} (futures, select sports only)
 }}
 
-\item{odds_format}{The format in which to return odds. Options include:
-\itemize{
-\item decimal
-\item american
-}}
+\item{odds_format}{(\emph{string}, optional): Format in which to return odds.
+Options are \code{decimal} (default) or \code{american}.}
 
-\item{date_format}{Date format. Options include:
-\itemize{
-\item iso
-\item unix
-}}
+\item{date_format}{(\emph{string}, optional): Format of returned timestamps.
+Options are \code{iso} (default) or \code{unix}.}
 }
 \value{
-Sports for which The Odds API provides betting information for as a tibble:\tabular{ll}{
-   col_name \tab types \cr
-   id \tab character \cr
-   sport_key \tab character \cr
-   sport_title \tab character \cr
-   commence_time \tab character \cr
-   home_team \tab character \cr
-   away_team \tab character \cr
-   bookmaker_key \tab character \cr
-   bookmaker \tab character \cr
-   last_update \tab character \cr
-   market_key \tab character \cr
-   outcomes_name \tab character \cr
-   outcomes_price \tab numeric \cr
-   outcomes_point \tab numeric \cr
+A long-format tibble with one row per bookmaker market outcome:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   id \tab character \tab Unique event id. \cr
+   sport_key \tab character \tab Sport key, e.g. \code{basketball_nba}. \cr
+   sport_title \tab character \tab Human-readable sport title, e.g. \code{NBA}. \cr
+   commence_time \tab character \tab Game start time (ISO 8601 string or unix seconds). \cr
+   home_team \tab character \tab Home team name. \cr
+   away_team \tab character \tab Away team name. \cr
+   bookmaker_key \tab character \tab Bookmaker slug, e.g. \code{draftkings}. \cr
+   bookmaker \tab character \tab Bookmaker display title, e.g. \code{DraftKings}. \cr
+   bookmaker_last_update \tab character \tab When this bookmaker's odds were last updated. \cr
+   market_key \tab character \tab Market key, e.g. \code{spreads}. \cr
+   market_last_update \tab character \tab When this market's odds were last updated. \cr
+   outcomes_name \tab character \tab Outcome label (team name, \code{Over}/\code{Under}, etc.). \cr
+   outcomes_price \tab numeric \tab The price/odds for the outcome. \cr
+   outcomes_point \tab numeric \tab The handicap/total line, when applicable. \cr
 }
 }
 \description{
-\strong{Get the odds for the sports which the Odds API provides coverage}
+\strong{Get the featured-market odds for a sport which The Odds API covers.}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{   try(toa_sports_odds(sport_key = 'baseball_mlb', 
-                       regions = 'us', 
-                       markets = 'spreads', 
-                       odds_format = 'decimal',
-                       date_format = 'iso'))
-}\if{html}{\out{</div>}}
+Returns a list of upcoming and live games with featured bookmaker odds for
+the specified markets and regions. For player props and other additional
+markets, use \code{\link[=toa_event_odds]{toa_event_odds()}} instead.
+
+\strong{Usage quota cost:} \verb{[number of markets] x [number of regions]}.
 }
 \examples{
 \donttest{
-   try(toa_sports_odds(sport_key = 'basketball_ncaab', 
-                       regions = 'us', 
-                       markets = 'spreads', 
+   try(toa_sports_odds(sport_key = 'basketball_nba',
+                       regions = 'us',
+                       markets = 'spreads',
                        odds_format = 'decimal',
                        date_format = 'iso'))
 }
-
 }
 \keyword{Betting}
 \keyword{Lines}

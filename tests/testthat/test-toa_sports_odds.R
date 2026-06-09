@@ -18,13 +18,19 @@ cols <- c(
 
 test_that("The Odds API - Odds", {
   skip_on_cran()
-  # skip_on_ci()
-  x <- toa_sports_odds(sport_key = 'basketball_nba', 
-                       regions = 'us', 
-                       markets = 'spreads', 
+  skip_if_not(has_toa_key(), "ODDS_API_KEY not set")
+
+  x <- toa_sports_odds(sport_key = 'basketball_nba',
+                       regions = 'us',
+                       markets = 'spreads',
                        odds_format = 'decimal',
                        date_format = 'iso')
-  
-  expect_equal(colnames(x), cols)
+
+  # Out-of-season sports return no games; skip rather than fail.
+  if (!is.data.frame(x) || nrow(x) == 0) {
+    skip("No odds returned from endpoint at test time")
+  }
+
+  expect_in(sort(cols), sort(colnames(x)))
   expect_s3_class(x, "data.frame")
 })

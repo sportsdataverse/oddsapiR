@@ -7,30 +7,32 @@
 toa_sports(all_sports = TRUE)
 }
 \arguments{
-\item{all_sports}{(\emph{Logical} required): If true, returns all sports and if false, returns only active sports. Defaults to true.}
+\item{all_sports}{(\emph{Logical}, optional): If \code{TRUE}, returns all sports
+(including out-of-season). If \code{FALSE}, returns only in-season sports.
+Defaults to \code{TRUE}.}
 }
 \value{
-Sports for which The Odds API provides betting information for as a tibble:\tabular{ll}{
-   col_name \tab types \cr
-   key \tab character \cr
-   group \tab character \cr
-   title \tab character \cr
-   description \tab character \cr
-   active \tab logical \cr
-   has_outrights \tab logical \cr
+A tibble of the sports for which The Odds API provides coverage:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   key \tab character \tab Sport key, e.g. \code{americanfootball_nfl}. Use as \code{sport_key} elsewhere. \cr
+   group \tab character \tab Sport group / category, e.g. \verb{American Football}. \cr
+   title \tab character \tab Human-readable sport title, e.g. \code{NFL}. \cr
+   description \tab character \tab Description of the sport or competition. \cr
+   active \tab logical \tab \code{TRUE} if the sport is currently in season. \cr
+   has_outrights \tab logical \tab \code{TRUE} if the sport offers outright (futures) markets. \cr
 }
 }
 \description{
-\strong{Get the Sports for which the Odds API provides coverage}
+\strong{Get the sports for which The Odds API provides coverage.}
 
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{ toa_sports(all_sports=TRUE)
-}\if{html}{\out{</div>}}
+Returns a list of in-season sports. The \code{key} returned here is the
+\code{sport_key} consumed by every other \verb{toa_*()} endpoint.
+
+\strong{Usage quota cost:} Free. This endpoint does not count against your quota.
 }
 \examples{
 \donttest{
   try(toa_sports(all_sports = TRUE))
 }
-
 }
-\keyword{Betting}
-\keyword{Lines}
+\keyword{Sports}

@@ -35,27 +35,27 @@ Installation & Usage
 
 You can install the released version of [**`oddsapiR`**](https://github.com/sportsdataverse/oddsapiR) from [GitHub](https://github.com/sportsdataverse/oddsapiR) with:
 
-```r 
-# You can install using the pacman package using the following code:
-if (!requireNamespace('pacman', quietly = TRUE)){
-  install.packages('pacman')
+```r
+# using the pak package (recommended):
+if (!requireNamespace('pak', quietly = TRUE)){
+  install.packages('pak')
 }
-pacman::p_load_current_gh("sportsdataverse/oddsapiR")
+pak::pak("sportsdataverse/oddsapiR")
 ```
 
 ```r
-# if you would prefer devtools installation
+# or using the devtools package:
 if (!requireNamespace('devtools', quietly = TRUE)){
   install.packages('devtools')
 }
-# Alternatively, using the devtools package:
 devtools::install_github(repo = "sportsdataverse/oddsapiR")
 ```
 
 ```r
-git clone https://github.com/sportsdataverse/oddsapi
-cd oddsapi
-Rscript -e "devtools::install()"
+# or clone and install locally
+git clone https://github.com/sportsdataverse/oddsapiR
+cd oddsapiR
+Rscript -e "pak::local_install()"  # or: Rscript -e "devtools::install()"
 ```
 
 #### **Odds API Keys**

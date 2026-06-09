@@ -7,17 +7,24 @@
 toa_requests()
 }
 \value{
-Returns a tibble of The Odds API key usage with the following columns:\tabular{ll}{
-   col_name \tab types \cr
-   requests_remaining \tab integer \cr
-   requests_used \tab integer \cr
+A tibble of The Odds API key usage with the following columns:\tabular{lll}{
+   col_name \tab types \tab description \cr
+   requests_remaining \tab integer \tab Usage credits remaining until the monthly quota resets. \cr
+   requests_used \tab integer \tab Usage credits consumed since the last quota reset. \cr
 }
 }
 \description{
-\strong{Get your usage and remaining calls for your key from The Odds API}
+\strong{Get your usage and remaining calls for your key from The Odds API.}
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{ toa_requests()
-}\if{html}{\out{</div>}}
+The values are read from the \code{x-requests-remaining} and \code{x-requests-used}
+response headers returned with every API call. This check is performed
+against the free \verb{/v4/sports} endpoint, so it does not consume any quota.
+
+\strong{Usage quota cost:} Free.
 }
-\keyword{Betting}
-\keyword{Lines}
+\examples{
+\donttest{
+  try(toa_requests())
+}
+}
+\keyword{Usage}

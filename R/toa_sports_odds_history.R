@@ -1,131 +1,138 @@
 #' @name toa_sports_odds_history
 #' @title
-#' **Find odds history for the sports which are accessible through the Odds API**
+#' **Find historical featured-market odds through the Odds API**
 #' @description
-#' **Get the odds history for the sports which the Odds API provides coverage**
-#' ```r
-#'    try(toa_sports_odds(sport_key = 'baseball_mlb', 
-#'                        regions = 'us', 
-#'                        markets = 'spreads', 
-#'                        odds_format = 'decimal',
-#'                        date_format = 'iso'))
-#' ```
-#' @param sport_key The `sport_key` to look up odds for. See ```toa_sports()``` for a full lookup of `sport_key` values.
-#' @param event_ids The `event_id`'s to look up odds for. See ```toa_sports_odds()``` for a full lookup of `event_id` values.
-#' @param regions The region to pull odds from. Options include: 
-#'  * us  
-#'  * uk
-#'  * us 
-#'  * eu 
-#'  * au 
-#' Multiple can be specified if comma delimited.
-#' @param markets The type of odds to return. Multiple can be specified if comma delimited. Options include:
-#'  * h2h
-#'  * spreads
-#'  * totals
-#' @param odds_format The format in which to return odds. Options include: 
-#'  * decimal
-#'  * american
-#' @param date The timestamp of the data snapshot to be returned, specified in ISO8601 format. The historical odds API will return the closest snapshot equal to or earlier than the provided date parameter
-#' Example : 2022-10-10T12:15:00Z
-#' @param date_format Date format. Options include:
-#'  * iso
-#'  * unix
-#' @param bookmakers Comma-separated list of bookmakers to be returned. If both bookmakers and
-#'  regions are specified, bookmakers takes precendence. Bookmakers can be from any region. 
-#'  Every group of 10 bookmakers counts as 1 request. For example for a single market, 
-#'  specifying up to 10 bookmakers counts as 1 request. 
-#'  Specifying between 11 and 20 bookmakers counts as 2 requests
-#' @return Sports for which The Odds API provides betting information for as a tibble:
-#'  
-#'    |col_name       |types     |
-#'    |:--------------|:---------|
-#'    |id             |character |
-#'    |sport_key      |character |
-#'    |sport_title    |character |
-#'    |commence_time  |character |
-#'    |home_team      |character |
-#'    |away_team      |character |
-#'    |bookmaker_key  |character |
-#'    |bookmaker      |character |
-#'    |last_update    |character |
-#'    |market_key     |character |
-#'    |outcomes_name  |character |
-#'    |outcomes_price |numeric   |
-#'    |outcomes_point |numeric   |
-#'    
+#' **Get historical featured-market odds for a sport which The Odds API covers.**
+#'
+#' Returns the list of events and featured bookmaker odds (`h2h`, `spreads`,
+#' `totals`) as they appeared at the snapshot closest to (and at or before) the
+#' requested `date`. The response is wrapped in a snapshot envelope; the
+#' returned `timestamp`, `previous_timestamp` and `next_timestamp` columns let
+#' you page backward/forward in time. This endpoint was previously
+#' `/v4/sports/{sport}/odds-history`, which has been deprecated in favour of
+#' `/v4/historical/sports/{sport}/odds`.
+#'
+#' Historical data is available on paid usage plans from June 2020.
+#'
+#' **Usage quota cost:** `10 x [number of markets] x [number of regions]`.
+#' Snapshots with no events do not count against the quota.
+#' @param sport_key (*string*, required): The `sport_key` to look up odds for.
+#'  See [toa_sports()] for a full lookup of `sport_key` values.
+#' @param date (*string*, required): The timestamp of the data snapshot to
+#'  return, in ISO 8601 format (e.g. `2023-03-18T12:15:00Z`). The API returns
+#'  the closest snapshot equal to or earlier than this value.
+#' @param regions (*string*, required): The region(s) to pull bookmakers from.
+#'  Multiple can be specified if comma delimited. Options include:
+#'  * `us`
+#'  * `us2`
+#'  * `uk`
+#'  * `eu`
+#'  * `au`
+#' @param markets (*string*, optional): The featured markets to return. Multiple
+#'  can be specified if comma delimited. Options include `h2h`, `spreads`,
+#'  `totals`.
+#' @param odds_format (*string*, optional): Format in which to return odds.
+#'  Options are `decimal` (default) or `american`.
+#' @param date_format (*string*, optional): Format of returned timestamps.
+#'  Options are `iso` (default) or `unix`.
+#' @param event_ids (*string*, optional): Comma-separated list of event ids to
+#'  filter the snapshot to. Defaults to `NULL` (all events).
+#' @param bookmakers (*string*, optional): Comma-separated list of bookmakers to
+#'  be returned. If both `bookmakers` and `regions` are specified, `bookmakers`
+#'  takes precedence. Every group of 10 bookmakers counts as 1 region against
+#'  the usage quota.
+#' @return A long-format tibble with one row per bookmaker market outcome:
+#'
+#'    |col_name              |types     |description                                       |
+#'    |:---------------------|:---------|:-------------------------------------------------|
+#'    |timestamp             |character |Snapshot timestamp returned (closest at/before `date`). |
+#'    |previous_timestamp    |character |Preceding available snapshot; use as `date` to page back. |
+#'    |next_timestamp        |character |Next available snapshot; use as `date` to page forward. |
+#'    |id                    |character |Unique event id.                                  |
+#'    |sport_key             |character |Sport key, e.g. `basketball_nba`.                 |
+#'    |sport_title           |character |Human-readable sport title, e.g. `NBA`.           |
+#'    |commence_time         |character |Game start time (ISO 8601 string or unix seconds).|
+#'    |home_team             |character |Home team name.                                   |
+#'    |away_team             |character |Away team name.                                   |
+#'    |bookmaker_key         |character |Bookmaker slug, e.g. `draftkings`.                |
+#'    |bookmaker             |character |Bookmaker display title, e.g. `DraftKings`.       |
+#'    |bookmaker_last_update |character |When this bookmaker's odds were last updated.     |
+#'    |market_key            |character |Market key, e.g. `spreads`.                       |
+#'    |market_last_update    |character |When this market's odds were last updated.        |
+#'    |outcomes_name         |character |Outcome label (team name, `Over`/`Under`, etc.).  |
+#'    |outcomes_price        |numeric   |The price/odds for the outcome.                   |
+#'    |outcomes_point        |numeric   |The handicap/total line (`spreads`/`totals` only).|
+#'
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY modify_url
-#' @importFrom utils URLencode
-#' @importFrom cli cli_abort
-#' @importFrom janitor clean_names
+#' @importFrom cli cli_alert_danger
 #' @importFrom glue glue
-#' @importFrom dplyr rename
+#' @importFrom dplyr rename mutate as_tibble
 #' @importFrom rlang .data
 #' @import tidyr
 #' @export
-#' @details 
-#' ```r
-#' try(toa_sports_odds_history(sport_key = 'basketball_ncaab', 
-#'                                event_ids = '48db9c3293a52baab881d95d38f37a98',
-#'                                date = '2023-03-18T12:15:00Z',
-#'                                regions = 'us', 
-#'                                markets = 'spreads', 
+#' @examples \donttest{
+#'    try(toa_sports_odds_history(sport_key = 'basketball_nba',
+#'                                date = '2024-01-15T12:15:00Z',
+#'                                regions = 'us',
+#'                                markets = 'spreads',
 #'                                odds_format = 'decimal',
-#'                                date_format = 'iso',
-#'                                bookmakers = NULL))
-#' ```
-#' 
-toa_sports_odds_history <- function(sport_key, 
-                                    event_ids,
+#'                                date_format = 'iso'))
+#' }
+toa_sports_odds_history <- function(sport_key,
                                     date,
-                                    regions='us', 
-                                    markets = 'spreads', 
-                                    odds_format = 'decimal', 
+                                    regions = 'us',
+                                    markets = 'spreads',
+                                    odds_format = 'decimal',
                                     date_format = 'iso',
+                                    event_ids = NULL,
                                     bookmakers = NULL){
-  
-  base_url = glue::glue('https://api.the-odds-api.com/v4/sports/{sport_key}/odds-history')
+  base_url <- glue::glue('https://api.the-odds-api.com/v4/historical/sports/{sport_key}/odds')
   query_params <- list(
     apiKey = as.character(toa_key()),
-    eventIds = event_ids,
     date = date,
     regions = regions,
     markets = markets,
     oddsFormat = odds_format,
     dateFormat = date_format,
+    eventIds = event_ids,
     bookmakers = bookmakers
   )
-  
-  toa_endpoint <- httr::modify_url(base_url, query = query_params)
-  
+
+  odds_history <- data.frame()
+
   tryCatch(
     expr = {
-      
-      resp <- toa_endpoint %>% 
-        toa_api_call() %>% 
-        dplyr::as_tibble(data = ".") %>% 
-        tidyr::unnest("data") %>% 
-        tidyr::unnest("bookmakers") %>% 
+      raw <- toa_api_call(base_url, query = query_params)
+      odds_history <- raw$data %>%
+        dplyr::as_tibble() %>%
+        dplyr::mutate(
+          timestamp = raw$timestamp,
+          previous_timestamp = raw$previous_timestamp,
+          next_timestamp = raw$next_timestamp,
+          .before = 1
+        ) %>%
+        tidyr::unnest("bookmakers") %>%
         dplyr::rename(
           "bookmaker_key" = "key",
           "bookmaker" = "title",
-          "bookmaker_last_update" = "last_update") %>% 
+          "bookmaker_last_update" = "last_update") %>%
         tidyr::unnest("markets") %>%
-        dplyr::rename("market_key" = "key",
-                      "market_last_update" = "last_update") %>% 
-        tidyr::unnest("outcomes", names_sep = "_") %>% 
-        make_toa_data("Sports Odds data from the-odds-api.com", Sys.time())
-      
+        dplyr::rename(
+          "market_key" = "key",
+          "market_last_update" = "last_update") %>%
+        tidyr::unnest("outcomes", names_sep = "_") %>%
+        make_toa_data("Historical Sports Odds data from the-odds-api.com", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments provided"))
+      cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no historical odds available for {sport_key} at {date}!")
+      cli::cli_alert_danger("Error:\n{e}")
     },
     warning = function(w) {
+      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
     },
     finally = {
     }
   )
-  return(resp)
+  return(odds_history)
 }

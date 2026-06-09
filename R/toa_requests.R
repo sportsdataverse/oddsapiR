@@ -2,50 +2,51 @@
 #' @title
 #' **Find out your usage and remaining calls for your key from The Odds API**
 #' @description
-#' **Get your usage and remaining calls for your key from The Odds API**
-#' ```
-#'  toa_requests()
-#' ```
-#' @return Returns a tibble of The Odds API key usage with the following columns:
-#'   
-#'    |col_name           |types   |
-#'    |:------------------|:-------|
-#'    |requests_remaining |integer |
-#'    |requests_used      |integer |
-#'   
-#' @keywords Betting Lines
-#' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY modify_url
-#' @importFrom utils URLencode
-#' @importFrom cli cli_abort
-#' @importFrom janitor clean_names
+#' **Get your usage and remaining calls for your key from The Odds API.**
+#'
+#' The values are read from the `x-requests-remaining` and `x-requests-used`
+#' response headers returned with every API call. This check is performed
+#' against the free `/v4/sports` endpoint, so it does not consume any quota.
+#'
+#' **Usage quota cost:** Free.
+#' @return A tibble of The Odds API key usage with the following columns:
+#'
+#'    |col_name           |types   |description                                          |
+#'    |:------------------|:-------|:----------------------------------------------------|
+#'    |requests_remaining |integer |Usage credits remaining until the monthly quota resets. |
+#'    |requests_used      |integer |Usage credits consumed since the last quota reset.   |
+#'
+#' @keywords Usage
+#' @importFrom cli cli_alert_danger
 #' @importFrom glue glue
 #' @importFrom rlang .data
 #' @export
+#' @examples \donttest{
+#'   try(toa_requests())
+#' }
 toa_requests <- function(){
-  base_url = glue::glue('https://api.the-odds-api.com/v4/sports')
+  base_url <- "https://api.the-odds-api.com/v4/sports"
   query_params <- list(
     apiKey = as.character(toa_key()),
-    all = 'true'
+    all = "true"
   )
-  
-  toa_endpoint <- httr::modify_url(base_url, query = query_params)
-  
+
+  usage <- data.frame()
+
   tryCatch(
     expr = {
-      
-      resp <- toa_endpoint %>% 
-        toa_api_headers() %>% 
+      usage <- toa_api_headers(base_url, query = query_params) %>%
         make_toa_data("API Key Usage data from the-odds-api.com", Sys.time())
-      
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments provided"))
+      cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no usage data available!")
+      cli::cli_alert_danger("Error:\n{e}")
     },
     warning = function(w) {
+      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
     },
     finally = {
     }
   )
-  return(resp)
+  return(usage)
 }

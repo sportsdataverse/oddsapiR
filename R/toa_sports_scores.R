@@ -2,74 +2,74 @@
 #' @title
 #' **Find scores for the sports which are accessible through the Odds API**
 #' @description
-#' **Get the scores for the sports which the Odds API provides coverage**
-#' ```r
-#'    try(toa_sports_scores(sport_key = 'baseball_mlb', 
-#'                          days_from = NULL,
-#'                          date_format = 'iso'))
-#' ```
-#' @param sport_key (*string*, required): The `sport_key` to look up odds for. See ```toa_sports()``` for a full lookup of `sport_key` values.
-#' @param days_from (*integer*, optional): Integer from 1 to 3. Defaults to 1.
-#' @param date_format (*string*, optional): Date format. Options include:
-#'  * iso
-#'  * unix
-#' @return Sports scores which The Odds API provides scores information for as a tibble:
-#'  
-#'    |col_name      |types     |
-#'    |:-------------|:---------|
-#'    |id            |character |
-#'    |sport_key     |character |
-#'    |sport_title   |character |
-#'    |commence_time |character |
-#'    |completed     |logical   |
-#'    |home_team     |character |
-#'    |away_team     |character |
-#'    |scores        |logical   |
-#'    |last_update   |logical   |
-#'    
-#' @keywords Betting Lines
+#' **Get the scores for the sports which The Odds API provides coverage.**
+#'
+#' Returns live and recently completed games for a sport, including scores for
+#' games completed within the last 3 days. Live scores update roughly every 30
+#' seconds.
+#'
+#' **Usage quota cost:** 1 credit when `days_from` is not supplied; 2 credits
+#' when `days_from` is supplied.
+#' @param sport_key (*string*, required): The `sport_key` to look up scores for.
+#'  See [toa_sports()] for a full lookup of `sport_key` values.
+#' @param days_from (*integer*, optional): Number of days in the past from which
+#'  to return completed games, an integer from 1 to 3. If `NULL` (default), only
+#'  live and upcoming games are returned.
+#' @param date_format (*string*, optional): Format of returned timestamps.
+#'  Options are:
+#'  * `iso` (ISO 8601, the default)
+#'  * `unix` (epoch seconds)
+#' @return A tibble of scores for the sport The Odds API provides coverage for:
+#'
+#'    |col_name      |types     |description                                                |
+#'    |:-------------|:---------|:----------------------------------------------------------|
+#'    |id            |character |Unique event id.                                           |
+#'    |sport_key     |character |Sport key, e.g. `basketball_nba`.                          |
+#'    |sport_title   |character |Human-readable sport title, e.g. `NBA`.                    |
+#'    |commence_time |character |Game start time (ISO 8601 string or unix seconds).         |
+#'    |completed     |logical   |`TRUE` if the game has finished.                           |
+#'    |home_team     |character |Home team name.                                            |
+#'    |away_team     |character |Away team name.                                            |
+#'    |scores        |list      |Per-team `name`/`score` pairs; `NULL`/`NA` before scores post. |
+#'    |last_update   |character |Time the scores were last updated; `NA` until a game is live. |
+#'
+#' @keywords Scores
 #' @importFrom jsonlite fromJSON
-#' @importFrom httr GET RETRY modify_url
-#' @importFrom utils URLencode
-#' @importFrom cli cli_abort
-#' @importFrom janitor clean_names
+#' @importFrom cli cli_alert_danger
 #' @importFrom glue glue
-#' @importFrom dplyr rename
 #' @importFrom rlang .data
 #' @export
 #' @examples \donttest{
-#'    try(toa_sports_scores(sport_key = 'baseball_mlb', 
+#'    try(toa_sports_scores(sport_key = 'basketball_nba',
 #'                          days_from = NULL,
 #'                          date_format = 'iso'))
 #' }
-#' 
-toa_sports_scores <- function(sport_key, 
-                              days_from = 1, 
+toa_sports_scores <- function(sport_key,
+                              days_from = NULL,
                               date_format = 'iso'){
-  base_url = glue::glue('https://api.the-odds-api.com/v4/sports/{sport_key}/scores')
+  base_url <- glue::glue('https://api.the-odds-api.com/v4/sports/{sport_key}/scores')
   query_params <- list(
     apiKey = as.character(toa_key()),
     daysFrom = days_from,
     dateFormat = date_format
   )
-  
-  toa_endpoint <- httr::modify_url(base_url, query = query_params)
-  
+
+  scores <- data.frame()
+
   tryCatch(
     expr = {
-      
-      resp <- toa_endpoint %>% 
-        toa_api_call() %>% 
-        make_toa_data("Sports Odds data from the-odds-api.com", Sys.time())
-      
+      scores <- toa_api_call(base_url, query = query_params) %>%
+        make_toa_data("Sports scores data from the-odds-api.com", Sys.time())
     },
     error = function(e) {
-      message(glue::glue("{Sys.time()}: Invalid arguments provided"))
+      cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no scores data available for {sport_key}!")
+      cli::cli_alert_danger("Error:\n{e}")
     },
     warning = function(w) {
+      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
     },
     finally = {
     }
   )
-  return(resp)
+  return(scores)
 }
