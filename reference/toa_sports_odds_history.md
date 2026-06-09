@@ -113,6 +113,20 @@ A long-format tibble with one row per bookmaker market outcome:
 | outcomes_price | numeric | The price/odds for the outcome. |
 | outcomes_point | numeric | The handicap/total line (`spreads`/`totals` only). |
 
+## See also
+
+[`toa_event_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds_history.md)
+for historical odds on a single event (including player props),
+[`toa_sports_events_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events_history.md)
+to list events at a historical snapshot, and
+[`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
+for current featured-market odds. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Historical:
+[`toa_event_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds_history.md),
+[`toa_sports_events_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events_history.md)
+
 ## Examples
 
 ``` r
@@ -123,7 +137,7 @@ A long-format tibble with one row per bookmaker market outcome:
                                markets = 'spreads',
                                odds_format = 'decimal',
                                date_format = 'iso'))
-#> ✖ 2026-06-09 08:16:26.060225: Invalid arguments or no historical odds available for basketball_nba at 2024-01-15T12:15:00Z!
+#> ✖ 2026-06-09 18:23:57.649188: Invalid arguments or no historical odds available for basketball_nba at 2024-01-15T12:15:00Z!
 #> ✖ Error:
 #> Error in `vars_select_eval()`:
 #> ! Can't select columns past the end.

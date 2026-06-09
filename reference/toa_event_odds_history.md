@@ -123,6 +123,20 @@ A long-format tibble with one row per bookmaker market outcome:
 | outcomes_price | numeric | The price/odds for the outcome. |
 | outcomes_point | numeric | The handicap/total/prop line, when applicable. |
 
+## See also
+
+[`toa_sports_events_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events_history.md)
+to look up historical `event_id` values,
+[`toa_sports_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds_history.md)
+for featured-market odds across all events at a snapshot, and
+[`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md)
+for current event odds. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Historical:
+[`toa_sports_events_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events_history.md),
+[`toa_sports_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds_history.md)
+
 ## Examples
 
 ``` r
@@ -134,7 +148,7 @@ A long-format tibble with one row per bookmaker market outcome:
                               markets = 'h2h',
                               odds_format = 'decimal',
                               date_format = 'iso'))
-#> ✖ 2026-06-09 08:16:23.584581: Invalid arguments or no historical odds available for event 93af4b300a4c0dded909234ea32e9abd at 2024-01-15T12:15:00Z!
+#> ✖ 2026-06-09 18:23:55.421265: Invalid arguments or no historical odds available for event 93af4b300a4c0dded909234ea32e9abd at 2024-01-15T12:15:00Z!
 #> ✖ Error:
 #> Error in `dplyr::rename()`:
 #> ! Can't rename columns that don't exist.

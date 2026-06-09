@@ -49,3 +49,17 @@ API key as the environment variable `ODDS_API_KEY` (**with** quotations)
 using a command like the following.
 
     Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
+
+## See also
+
+[`toa_quota()`](https://oddsapiR.sportsdataverse.org/reference/toa_quota.md)
+to inspect your usage credits after any API call,
+[`toa_requests()`](https://oddsapiR.sportsdataverse.org/reference/toa_requests.md)
+to explicitly query your remaining/used credits, and
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md)
+to start exploring available sports. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Account & Usage:
+[`toa_quota()`](https://oddsapiR.sportsdataverse.org/reference/toa_quota.md),
+[`toa_requests()`](https://oddsapiR.sportsdataverse.org/reference/toa_requests.md)

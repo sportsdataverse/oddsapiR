@@ -36,14 +36,29 @@ A tibble of the sports for which The Odds API provides coverage:
 | active | logical | `TRUE` if the sport is currently in season. |
 | has_outrights | logical | `TRUE` if the sport offers outright (futures) markets. |
 
+## See also
+
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md)
+to list upcoming events for a sport,
+[`toa_sports_scores()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_scores.md)
+for live/recent scores, and
+[`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
+to pull featured-market odds. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Sports & Events:
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md),
+[`toa_sports_participants()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_participants.md),
+[`toa_sports_scores()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_scores.md)
+
 ## Examples
 
 ``` r
 # \donttest{
   try(toa_sports(all_sports = TRUE))
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-09 08:16:24 UTC
-#> ℹ Odds API quota: 39 used, 461 remaining (last call cost 0)
+#> ℹ Data updated: 2026-06-09 18:23:56 UTC
+#> ℹ Odds API quota: 146 used, 354 remaining (last call cost 0)
 #> # A tibble: 165 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        
@@ -56,7 +71,7 @@ A tibble of the sports for which The Odds API provides coverage:
 #>  7 americanfootball_ufl     Amer… UFL   United Foo… TRUE   FALSE        
 #>  8 aussierules_afl          Auss… AFL   Aussie Foo… TRUE   FALSE        
 #>  9 baseball_kbo             Base… KBO   KBO League  TRUE   FALSE        
-#> 10 baseball_milb            Base… MiLB  Minor Leag… FALSE  FALSE        
+#> 10 baseball_milb            Base… MiLB  Minor Leag… TRUE   FALSE        
 #> # ℹ 155 more rows
 # }
 ```

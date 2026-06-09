@@ -86,13 +86,27 @@ A tibble with one row per historical event:
 | home_rotation | integer | Home rotation number (only when `include_rotation_numbers = TRUE`). |
 | away_rotation | integer | Away rotation number (only when `include_rotation_numbers = TRUE`). |
 
+## See also
+
+[`toa_event_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds_history.md)
+to pull odds for a historical event by its `id`,
+[`toa_sports_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds_history.md)
+for featured-market odds at a historical snapshot, and
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md)
+for current events. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Historical:
+[`toa_event_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds_history.md),
+[`toa_sports_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds_history.md)
+
 ## Examples
 
 ``` r
 # \donttest{
    try(toa_sports_events_history(sport_key = 'basketball_nba',
                                  date = '2024-01-15T12:15:00Z'))
-#> ✖ 2026-06-09 08:16:25.215841: Invalid arguments or no historical events available for basketball_nba at 2024-01-15T12:15:00Z!
+#> ✖ 2026-06-09 18:23:56.857126: Invalid arguments or no historical events available for basketball_nba at 2024-01-15T12:15:00Z!
 #> ✖ Error:
 #> Error in `vars_select_eval()`:
 #> ! Can't select columns past the end.

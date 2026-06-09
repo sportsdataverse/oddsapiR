@@ -10,12 +10,14 @@
 Source:
 [`inst/CITATION`](https://github.com/sportsdataverse/oddsapiR/blob/main/inst/CITATION)
 
-Saiem Gilani. oddsapiR: The SportsDataverse's R Package for The Odds
-API. Retrieved from https://oddsapiR.sportsdataverse.org
+Saiem Gilani (2026). oddsapiR: The SportsDataverse's R Package for The
+Odds API. R package version 1.0.0. Retrieved from
+https://oddsapiR.sportsdataverse.org
 
-    @Misc{,
+    @Misc{gilani_oddsapiR,
       author = {Saiem Gilani},
       title = {oddsapiR: The SportsDataverse's R Package for The Odds API.},
       url = {https://oddsapiR.sportsdataverse.org},
+      year = {2026},
       note = {R package version 1.0.0},
     }

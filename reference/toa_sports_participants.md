@@ -34,14 +34,29 @@ A tibble with one row per participant:
 | id | character | Unique participant id, e.g. `par_01hqmkq6fdf1pvq7jgdd7hdmpf`. |
 | full_name | character | Participant name – a team name or player name depending on the sport. |
 
+## See also
+
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md)
+to discover `sport_key` values,
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md)
+to list upcoming events, and
+[`toa_sports_scores()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_scores.md)
+for live/recent scores. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Sports & Events:
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md),
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md),
+[`toa_sports_scores()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_scores.md)
+
 ## Examples
 
 ``` r
 # \donttest{
    try(toa_sports_participants(sport_key = 'basketball_nba'))
 #> ── Sports Participants data from the-odds-api.com ──── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-09 08:16:26 UTC
-#> ℹ Odds API quota: 41 used, 459 remaining (last call cost 1)
+#> ℹ Data updated: 2026-06-09 18:23:57 UTC
+#> ℹ Odds API quota: 148 used, 352 remaining (last call cost 1)
 #> # A tibble: 30 × 3
 #>    sport_key      id                             full_name            
 #>    <chr>          <chr>                          <chr>                

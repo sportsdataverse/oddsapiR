@@ -34,6 +34,7 @@ when days_from is supplied."><meta property="og:image" content="https://raw.gith
   <button class="nav-link dropdown-toggle" type="button" id="dropdown--articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"><span class="fa fas fa-book-reader"></span>  Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown--articles"><li><a class="dropdown-item" href="../articles/index.html">Vignettes</a></li>
     <li><a class="dropdown-item" href="../articles/oddsapiR.html">oddsapiR beginner's guide</a></li>
+    <li><a class="dropdown-item" href="../articles/building-an-odds-pipeline.html">Building a sports-odds pipeline</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
 <li class="nav-item dropdown">
@@ -45,21 +46,27 @@ when days_from is supplied."><meta property="og:image" content="https://raw.gith
     <li><a class="external-link dropdown-item" href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></li>
     <li><a class="external-link dropdown-item" href="https://hoopR.sportsdataverse.org/">hoopR</a></li>
     <li><a class="external-link dropdown-item" href="https://wehoop.sportsdataverse.org/">wehoop</a></li>
-    <li><a class="external-link dropdown-item" href="https://torvik.dev/">toRvik</a></li>
     <li><a class="external-link dropdown-item" href="https://fastRhockey.sportsdataverse.org/">fastRhockey</a></li>
+    <li><a class="external-link dropdown-item" href="https://abhiamishra.github.io/ggshakeR/">ggshakeR</a></li>
     <li><a class="external-link dropdown-item" href="https://BillPetti.github.io/baseballr/">baseballr</a></li>
-    <li><a class="external-link dropdown-item" href="https://jaseziv.github.io/worldfootballR/">worldfootballR</a></li>
+    <li><a class="external-link dropdown-item" href="https://usfootballR.sportsdataverse.org/">usfootballR</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/Dato-Futbol/soccerAnimate/">soccerAnimate</a></li>
     <li><a class="external-link dropdown-item" href="https://jaseziv.github.io/chessR/">chessR</a></li>
+    <li><a class="dropdown-item" href="https://oddsapiR.sportsdataverse.org/">oddsapiR</a></li>
     <li><a class="external-link dropdown-item" href="https://sportyR.sportsdataverse.org/">sportyR</a></li>
-    <li><a class="external-link dropdown-item" href="https://kazink36.github.io/cfbplotR/">cfbplotR</a></li>
-    <li><a class="external-link dropdown-item" href="https://kazink36.github.io/cfb4th/">cfb4th</a></li>
-    <li><a class="external-link dropdown-item" href="https://github.com/camdenk/mlbplotR">mlbplotR</a></li>
+    <li><a class="external-link dropdown-item" href="https://cfbplotR.sportsdataverse.org/">cfbplotR</a></li>
+    <li><a class="external-link dropdown-item" href="https://camdenk.github.io/mlbplotR/">mlbplotR</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/sportsdataverse/softballR/">softballR</a></li>
+    <li><a class="external-link dropdown-item" href="https://cfb4th.sportsdataverse.org/">cfb4th</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslR/">nwslR</a></li>
     <li><a class="external-link dropdown-item" href="https://recruitr.sportsdataverse.org/">recruitR</a></li>
-    <li><a class="external-link dropdown-item" href="https://jacklich10.github.io/gamezoneR/">gamezoneR</a></li>
     <li><a class="external-link dropdown-item" href="https://puntalytics.github.io/puntr/">puntr</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Python Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://py.sportsdataverse.org/">sportsdataverse-py</a></li>
+    <li><a class="external-link dropdown-item" href="https://sportypy.sportsdataverse.org/">sportypy</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslpy/">nwslpy</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/nathanblumenfeld/collegebaseball/">collegebaseball</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Node.js Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://js.sportsdataverse.org/">sportsdataverse.js</a></li>
@@ -118,6 +125,16 @@ Options are:</p><ul><li><p><code>iso</code> (ISO 8601, the default)</p></li>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A tibble of scores for the sport The Odds API provides coverage for:</p><table class="table table"><tr><td>col_name</td><td>types</td><td>description</td></tr><tr><td>id</td><td>character</td><td>Unique event id.</td></tr><tr><td>sport_key</td><td>character</td><td>Sport key, e.g. <code>basketball_nba</code>.</td></tr><tr><td>sport_title</td><td>character</td><td>Human-readable sport title, e.g. <code>NBA</code>.</td></tr><tr><td>commence_time</td><td>character</td><td>Game start time (ISO 8601 string or unix seconds).</td></tr><tr><td>completed</td><td>logical</td><td><code>TRUE</code> if the game has finished.</td></tr><tr><td>home_team</td><td>character</td><td>Home team name.</td></tr><tr><td>away_team</td><td>character</td><td>Away team name.</td></tr><tr><td>scores</td><td>list</td><td>Per-team <code>name</code>/<code>score</code> pairs; <code>NULL</code>/<code>NA</code> before scores post.</td></tr><tr><td>last_update</td><td>character</td><td>Time the scores were last updated; <code>NA</code> until a game is live.</td></tr></table></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="toa_sports.html">toa_sports()</a></code> to discover <code>sport_key</code> values, <code><a href="toa_sports_events.html">toa_sports_events()</a></code>
+to list upcoming events, and <code><a href="toa_sports_odds.html">toa_sports_odds()</a></code> for live/upcoming betting
+lines. Part of the <a href="https://sportsdataverse.org/" class="external-link">SportsDataverse</a>.</p>
+<p>Other The Odds API: Sports &amp; Events:
+<code><a href="toa_sports.html">toa_sports()</a></code>,
+<code><a href="toa_sports_events.html">toa_sports_events()</a></code>,
+<code><a href="toa_sports_participants.html">toa_sports_participants()</a></code></p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -126,8 +143,8 @@ Options are:</p><ul><li><p><code>iso</code> (ISO 8601, the default)</p></li>
 <span class="r-in"><span>                         days_from <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
 <span class="r-in"><span>                         date_format <span class="op">=</span> <span class="st">'iso'</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Sports scores data from the-odds-api.com ────────── <span style="font-style: italic;">oddsapiR 1.0.0</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 08:16:26 UTC</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Odds API quota: <span style="color: #00BB00;">42</span> used, <span style="color: #00BB00;">458</span> remaining (last call cost <span style="color: #00BB00;">1</span>)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-09 18:23:58 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Odds API quota: <span style="color: #00BB00;">149</span> used, <span style="color: #00BB00;">351</span> remaining (last call cost <span style="color: #00BB00;">1</span>)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id             sport_key sport_title commence_time completed home_team</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>

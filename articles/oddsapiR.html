@@ -51,6 +51,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown--articles">
 <li><a class="dropdown-item" href="../articles/index.html">Vignettes</a></li>
     <li><a class="dropdown-item" href="../articles/oddsapiR.html">oddsapiR beginner's guide</a></li>
+    <li><a class="dropdown-item" href="../articles/building-an-odds-pipeline.html">Building a sports-odds pipeline</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
@@ -64,21 +65,27 @@
     <li><a class="external-link dropdown-item" href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></li>
     <li><a class="external-link dropdown-item" href="https://hoopR.sportsdataverse.org/">hoopR</a></li>
     <li><a class="external-link dropdown-item" href="https://wehoop.sportsdataverse.org/">wehoop</a></li>
-    <li><a class="external-link dropdown-item" href="https://torvik.dev/">toRvik</a></li>
     <li><a class="external-link dropdown-item" href="https://fastRhockey.sportsdataverse.org/">fastRhockey</a></li>
+    <li><a class="external-link dropdown-item" href="https://abhiamishra.github.io/ggshakeR/">ggshakeR</a></li>
     <li><a class="external-link dropdown-item" href="https://BillPetti.github.io/baseballr/">baseballr</a></li>
-    <li><a class="external-link dropdown-item" href="https://jaseziv.github.io/worldfootballR/">worldfootballR</a></li>
+    <li><a class="external-link dropdown-item" href="https://usfootballR.sportsdataverse.org/">usfootballR</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/Dato-Futbol/soccerAnimate/">soccerAnimate</a></li>
     <li><a class="external-link dropdown-item" href="https://jaseziv.github.io/chessR/">chessR</a></li>
+    <li><a class="dropdown-item" href="https://oddsapiR.sportsdataverse.org/">oddsapiR</a></li>
     <li><a class="external-link dropdown-item" href="https://sportyR.sportsdataverse.org/">sportyR</a></li>
-    <li><a class="external-link dropdown-item" href="https://kazink36.github.io/cfbplotR/">cfbplotR</a></li>
-    <li><a class="external-link dropdown-item" href="https://kazink36.github.io/cfb4th/">cfb4th</a></li>
-    <li><a class="external-link dropdown-item" href="https://github.com/camdenk/mlbplotR">mlbplotR</a></li>
+    <li><a class="external-link dropdown-item" href="https://cfbplotR.sportsdataverse.org/">cfbplotR</a></li>
+    <li><a class="external-link dropdown-item" href="https://camdenk.github.io/mlbplotR/">mlbplotR</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/sportsdataverse/softballR/">softballR</a></li>
+    <li><a class="external-link dropdown-item" href="https://cfb4th.sportsdataverse.org/">cfb4th</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslR/">nwslR</a></li>
     <li><a class="external-link dropdown-item" href="https://recruitr.sportsdataverse.org/">recruitR</a></li>
-    <li><a class="external-link dropdown-item" href="https://jacklich10.github.io/gamezoneR/">gamezoneR</a></li>
     <li><a class="external-link dropdown-item" href="https://puntalytics.github.io/puntr/">puntr</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Python Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://py.sportsdataverse.org/">sportsdataverse-py</a></li>
+    <li><a class="external-link dropdown-item" href="https://sportypy.sportsdataverse.org/">sportypy</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslpy/">nwslpy</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/nathanblumenfeld/collegebaseball/">collegebaseball</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Node.js Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://js.sportsdataverse.org/">sportsdataverse.js</a></li>
@@ -118,6 +125,10 @@
 <p>I’m Saiem Gilani, one of the <a href="https://saiemgilani.github.io/oddsapiR/authors.html" title="Authors and contributors to oddsapiR" class="external-link">authors</a> of <a href="https://saiemgilani.github.io/oddsapiR/" class="external-link"><code>oddsapiR</code></a>,
 and I hope to give the community a high-quality resource for accessing
 <a href="https://the-odds-api.com/" class="external-link"><strong><code>The Odds API</code></strong></a>.</p>
+<p><code>oddsapiR</code> provides a tidy R interface to <a href="https://the-odds-api.com" class="external-link">The Odds API</a>, covering sports
+discovery, events, live and historical odds, scores, and quota
+management. All functions return <a href="https://oddsapiR.sportsdataverse.org/reference/index.html"><code>oddsapiR_data</code></a>
+tibbles with quota metadata attached as attributes.</p>
 <div class="section level2">
 <h2 id="install-oddsapir">
 <strong>Install</strong> <a href="https://saiemgilani.github.io/oddsapiR/" class="external-link"><strong><code>oddsapiR</code></strong></a><a class="anchor" aria-label="anchor" href="#install-oddsapir"></a>
@@ -130,20 +141,22 @@ and I hope to give the community a high-quality resource for accessing
 <span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"sportsdataverse/oddsapiR"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load_current_gh.html" class="external-link">p_load_current_gh</a></span><span class="op">(</span><span class="st">"jthomasmock/gtExtras"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu">pacman</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html" class="external-link">p_load</a></span><span class="op">(</span><span class="va">dplyr</span>, <span class="va">knitr</span>, <span class="va">gt</span><span class="op">)</span></span></code></pre></div>
-<div class="section level4">
-<h4 id="odds-api-keys">
+</div>
+<div class="section level2">
+<h2 id="odds-api-keys">
 <strong>Odds API Keys</strong><a class="anchor" aria-label="anchor" href="#odds-api-keys"></a>
-</h4>
+</h2>
 <p>The <a href="https://the-odds-api.com" class="external-link">Odds API</a> requires an API
 key, here’s a quick run-down:</p>
 <ul>
-<li>Using the key: You can save the key for consistent usage by adding
-<code>ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .Renviron
-file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>).
-Run <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>,
-a new script will pop open named <code>.Renviron</code>,
-<strong>THEN</strong> paste the following in the new script that pops up
-(with<strong>out</strong> quotations)</li>
+<li>
+<strong>Persistent usage:</strong> Save the key for consistent usage
+by adding <code>ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your
+<code>.Renviron</code> file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>).
+Run <code><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">usethis::edit_r_environ()</a></code>, a new script will pop open
+named <code>.Renviron</code>, <strong>THEN</strong> paste the following
+in the new script that pops up (with<strong>out</strong>
+quotations):</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ODDS_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></span></code></pre></div>
@@ -154,24 +167,158 @@ the shortcut <code>Ctrl + Shift + F10</code> to restart your session).
 If set correctly, from then on you should be able to use any of the
 functions without any other changes.</p>
 <ul>
-<li>For less consistent usage: At the beginning of every session or
-within an R environment, save your API key as the environment variable
-<code>ODDS_API_KEY</code> (with quotations) using a command like the
-following.</li>
+<li>
+<strong>Session-level usage:</strong> At the beginning of every
+session or within an R environment, save your API key as the environment
+variable <code>ODDS_API_KEY</code> (with quotations) using a command
+like the following.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>ODDS_API_KEY <span class="op">=</span> <span class="st">"XXXX-YOUR-API-KEY-HERE-XXXXX"</span><span class="op">)</span></span></code></pre></div>
+<p>The helper functions <code><a href="../reference/register_toa.html">toa_key()</a></code>,
+<code><a href="../reference/register_toa.html">has_toa_key()</a></code>, and <code><a href="../reference/register_toa.html">check_toa_key()</a></code> let you
+inspect the key at any point. <code><a href="../reference/register_toa.html">has_toa_key()</a></code> returns
+<code>TRUE</code>/<code>FALSE</code>; <code><a href="../reference/register_toa.html">check_toa_key()</a></code> stops
+with a helpful message when no key is found.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/register_toa.html">has_toa_key</a></span><span class="op">(</span><span class="op">)</span>      <span class="co"># TRUE / FALSE</span></span>
+<span><span class="fu"><a href="../reference/register_toa.html">toa_key</a></span><span class="op">(</span><span class="op">)</span>          <span class="co"># the raw key string (or NA)</span></span>
+<span><span class="fu"><a href="../reference/register_toa.html">check_toa_key</a></span><span class="op">(</span><span class="op">)</span>    <span class="co"># errors loudly if key is missing</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="how-oddsapir-talks-to-the-odds-api">
+<strong>How oddsapiR talks to The Odds API</strong><a class="anchor" aria-label="anchor" href="#how-oddsapir-talks-to-the-odds-api"></a>
+</h2>
+<p>Every <code>toa_*()</code> function calls the same underlying HTTP
+layer in <code>R/utils.R</code>:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong><code>toa_api_request(url, query)</code></strong> — builds
+an <code>httr2</code> request, attaches a standard user-agent
+(<code>oddsapiR/...</code>), applies a 3-try retry policy on transient
+network failures, and calls <code><a href="https://httr2.r-lib.org/reference/req_perform.html" class="external-link">httr2::req_perform()</a></code>.</li>
+<li>
+<strong><code>toa_api_call(url, query)</code></strong> — wraps
+<code><a href="../reference/toa_api_request.html">toa_api_request()</a></code>, reads the response body as a string, and
+parses it with <code><a href="https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html" class="external-link">jsonlite::fromJSON()</a></code>. Used by every
+odds/events/scores endpoint.</li>
+<li>
+<strong><code>toa_api_headers(url, query)</code></strong> — wraps
+<code><a href="../reference/toa_api_request.html">toa_api_request()</a></code> and reads only the
+<code>x-requests-remaining</code> / <code>x-requests-used</code>
+headers. Used by <code><a href="../reference/toa_requests.html">toa_requests()</a></code>.</li>
+</ol>
+<p>The base URL pattern for v4 is:</p>
+<pre><code>https://api.the-odds-api.com/v4/sports/{sport_key}/odds
+                                                  /events
+                                                  /participants
+                                                  /scores
+https://api.the-odds-api.com/v4/historical/sports/{sport_key}/odds
+                                                             /events</code></pre>
+<p>The API key is passed as the <code>apiKey</code> query parameter in
+every request.</p>
+<div class="section level3">
+<h3 id="quota-tracking">
+<strong>Quota tracking</strong><a class="anchor" aria-label="anchor" href="#quota-tracking"></a>
+</h3>
+<p>Every successful response from The Odds API includes three
+headers:</p>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">Header</th>
+<th align="left">Meaning</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>x-requests-remaining</code></td>
+<td align="left">Credits remaining until the monthly quota resets</td>
+</tr>
+<tr class="even">
+<td align="left"><code>x-requests-used</code></td>
+<td align="left">Credits consumed since the last quota reset</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>x-requests-last</code></td>
+<td align="left">Cost of the most recent call</td>
+</tr>
+</tbody>
+</table>
+<p><code>oddsapiR</code> caches these after every call in a
+package-private environment (<code>.oddsapiR</code>). They are also
+attached as attributes to every returned tibble so they travel with the
+data:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">odds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports_odds.html">toa_sports_odds</a></span><span class="op">(</span>sport_key <span class="op">=</span> <span class="st">'basketball_nba'</span>, regions <span class="op">=</span> <span class="st">'us'</span>, markets <span class="op">=</span> <span class="st">'h2h'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Inspect quota without making another call</span></span>
+<span><span class="fu"><a href="../reference/toa_quota.html">toa_quota</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># # A tibble: 1 x 3</span></span>
+<span><span class="co"># requests_remaining requests_used requests_last</span></span>
+<span><span class="co">#              &lt;int&gt;         &lt;int&gt;         &lt;int&gt;</span></span>
+<span><span class="co">#               9850           150             1</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">odds</span>, <span class="st">"oddsapiR_requests_remaining"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">odds</span>, <span class="st">"oddsapiR_requests_used"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">odds</span>, <span class="st">"oddsapiR_requests_last"</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>print.oddsapiR_data()</code> method echoes these values
+when you print any result.</p>
 </div>
 <div class="section level3">
-<h3 id="the-included-data">
-<strong>The included data</strong><a class="anchor" aria-label="anchor" href="#the-included-data"></a>
+<h3 id="key-parameters-regions-markets-odds_format">
+<strong>Key parameters: regions, markets, odds_format</strong><a class="anchor" aria-label="anchor" href="#key-parameters-regions-markets-odds_format"></a>
 </h3>
-<p><code>toa_sports_keys</code> - The sports for which
-<code>The Odds API</code> provides coverage</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="va"><a href="../reference/toa_sports_keys.html">toa_sports_keys</a></span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu">gt</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">gtExtras</span><span class="fu">::</span><span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_theme_538.html" class="external-link">gt_theme_538</a></span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">650</span><span class="op">)</span><span class="op">)</span></span>
+<p>Most odds endpoints accept these three shared parameters:</p>
+<ul>
+<li>
+<strong><code>regions</code></strong> — which bookmakers to include:
+<code>"us"</code>, <code>"us2"</code>, <code>"uk"</code>,
+<code>"eu"</code>, <code>"au"</code>. Comma-separate for multiple
+(<code>"us,uk"</code>). Each region counts as 1 unit in the usage quota
+multiplier.</li>
+<li>
+<strong><code>markets</code></strong> — which betting lines to
+return: <code>"h2h"</code> (moneyline), <code>"spreads"</code> (point
+handicap), <code>"totals"</code> (over/under), <code>"outrights"</code>
+(futures). Comma-separate for multiple (<code>"h2h,spreads"</code>).
+Each market counts as 1 unit in the quota multiplier.</li>
+<li>
+<strong><code>odds_format</code></strong> — <code>"decimal"</code>
+(default) or <code>"american"</code>.</li>
+</ul>
+<p><strong>Quota cost</strong> for <code><a href="../reference/toa_sports_odds.html">toa_sports_odds()</a></code> =
+number of markets × number of regions. So pulling
+<code>"h2h,spreads,totals"</code> across <code>"us,uk"</code> costs 3 ×
+2 = 6 credits.</p>
+</div>
+<div class="section level3">
+<h3 id="historical-endpoints-and-the-snapshot-model">
+<strong>Historical endpoints and the snapshot model</strong><a class="anchor" aria-label="anchor" href="#historical-endpoints-and-the-snapshot-model"></a>
+</h3>
+<p><code><a href="../reference/toa_sports_odds_history.html">toa_sports_odds_history()</a></code>,
+<code><a href="../reference/toa_sports_events_history.html">toa_sports_events_history()</a></code>, and
+<code><a href="../reference/toa_event_odds_history.html">toa_event_odds_history()</a></code> operate on a snapshot model: you
+supply an ISO 8601 <code>date</code> timestamp and the API returns the
+state of the data at the closest snapshot equal to or earlier than that
+time. The response always includes <code>timestamp</code>,
+<code>previous_timestamp</code>, and <code>next_timestamp</code> columns
+so you can page through the archive programmatically.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="the-included-data">
+<strong>The included data</strong><a class="anchor" aria-label="anchor" href="#the-included-data"></a>
+</h2>
+<p><code>toa_sports_keys</code> is a bundled data frame listing all
+sports the API covers. This data requires no API key and no network
+access — it is included in the package:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="va"><a href="../reference/toa_sports_keys.html">toa_sports_keys</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">gtExtras</span><span class="fu">::</span><span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_theme_538.html" class="external-link">gt_theme_538</a></span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu"><a href="https://gt.rstudio.com/reference/px.html" class="external-link">px</a></span><span class="op">(</span><span class="fl">650</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Table has no assigned ID, using random ID 'mwlefoodfi' to apply `gt::opt_css()`</span></span>
 <span><span class="co">#&gt; Avoid this message by assigning an ID: `gt(id = '')` or `gt_theme_538(quiet = TRUE)`</span></span></code></pre></div>
 <div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -1183,811 +1330,321 @@ following.</li>
 </table>
 </div>
 </div>
+<div class="section level2">
+<h2 id="function-reference-by-family">
+<strong>Function reference by family</strong><a class="anchor" aria-label="anchor" href="#function-reference-by-family"></a>
+</h2>
 <div class="section level3">
-<h3 id="three-core-functions">
-<strong>Three core functions</strong><a class="anchor" aria-label="anchor" href="#three-core-functions"></a>
+<h3 id="sports-events">
+<strong>Sports &amp; Events</strong><a class="anchor" aria-label="anchor" href="#sports-events"></a>
 </h3>
-<p>One endpoint for looking up the sports the API provides (including
-currently <code>active</code> status): <code>toa_sports</code></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="fu"><a href="../reference/toa_sports.html">toa_sports</a></span><span class="op">(</span>all_sports <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">10</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">gt</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">gtExtras</span><span class="fu">::</span><span class="fu"><a href="https://jthomasmock.github.io/gtExtras/reference/gt_theme_538.html" class="external-link">gt_theme_538</a></span><span class="op">(</span>table.width <span class="op">=</span> <span class="fu">px</span><span class="op">(</span><span class="fl">550</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Table has no assigned ID, using random ID 'eexombwkke' to apply `gt::opt_css()`</span></span>
-<span><span class="co">#&gt; Avoid this message by assigning an ID: `gt(id = '')` or `gt_theme_538(quiet = TRUE)`</span></span></code></pre></div>
-<div id="eexombwkke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cairo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#eexombwkke table {
-  font-family: Cairo, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#eexombwkke thead, #eexombwkke tbody, #eexombwkke tfoot, #eexombwkke tr, #eexombwkke td, #eexombwkke th {
-  border-style: none;
-}
-
-#eexombwkke p {
-  margin: 0;
-  padding: 0;
-}
-
-#eexombwkke .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: 550px;
-  border-top-style: none;
-  border-top-width: 3px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#eexombwkke .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#eexombwkke .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#eexombwkke .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#eexombwkke .gt_heading {
-  background-color: #FFFFFF;
-  text-align: left;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#eexombwkke .gt_bottom_border {
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eexombwkke .gt_col_headings {
-  border-top-style: none;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #000000;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#eexombwkke .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#eexombwkke .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#eexombwkke .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#eexombwkke .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#eexombwkke .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #000000;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#eexombwkke .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#eexombwkke .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: none;
-  border-top-width: 2px;
-  border-top-color: #000000;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#eexombwkke .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: none;
-  border-top-width: 2px;
-  border-top-color: #000000;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-bottom-color: #FFFFFF;
-  vertical-align: middle;
-}
-
-#eexombwkke .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#eexombwkke .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#eexombwkke .gt_row {
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#eexombwkke .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 0px;
-  border-right-color: #FFFFFF;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eexombwkke .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#eexombwkke .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#eexombwkke .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#eexombwkke .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eexombwkke .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#eexombwkke .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#eexombwkke .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eexombwkke .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eexombwkke .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#eexombwkke .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eexombwkke .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#eexombwkke .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#eexombwkke .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#eexombwkke .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eexombwkke .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#eexombwkke .gt_sourcenote {
-  font-size: 12px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#eexombwkke .gt_left {
-  text-align: left;
-}
-
-#eexombwkke .gt_center {
-  text-align: center;
-}
-
-#eexombwkke .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#eexombwkke .gt_font_normal {
-  font-weight: normal;
-}
-
-#eexombwkke .gt_font_bold {
-  font-weight: bold;
-}
-
-#eexombwkke .gt_font_italic {
-  font-style: italic;
-}
-
-#eexombwkke .gt_super {
-  font-size: 65%;
-}
-
-#eexombwkke .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#eexombwkke .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#eexombwkke .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#eexombwkke .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#eexombwkke .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#eexombwkke .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#eexombwkke .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#eexombwkke .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#eexombwkke div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-
-#eexombwkke tbody tr:last-child {
-  border-bottom: 2px solid #ffffff00;
-}
-</style>
-<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="key">key</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="group">group</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="title">title</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="description">description</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="active">active</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-top-width: 0px; border-top-style: solid; border-top-color: black; font-family: Chivo; font-size: 14px; vertical-align: bottom; font-weight: 200; text-transform: uppercase;" scope="col" id="has_outrights">has_outrights</th>
-    </tr></thead>
-<tbody class="gt_table_body">
-<tr>
-<td headers="key" class="gt_row gt_left">americanfootball_cfl</td>
-<td headers="group" class="gt_row gt_left">American Football</td>
-<td headers="title" class="gt_row gt_left">CFL</td>
-<td headers="description" class="gt_row gt_left">Canadian Football League</td>
-<td headers="active" class="gt_row gt_center">TRUE</td>
-<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
-</tr>
-<tr>
-<td headers="key" class="gt_row gt_left">americanfootball_ncaaf</td>
-<td headers="group" class="gt_row gt_left">American Football</td>
-<td headers="title" class="gt_row gt_left">NCAAF</td>
-<td headers="description" class="gt_row gt_left">US College Football</td>
-<td headers="active" class="gt_row gt_center">TRUE</td>
-<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
-</tr>
-<tr>
-<td headers="key" class="gt_row gt_left">americanfootball_ncaaf_championship_winner</td>
-<td headers="group" class="gt_row gt_left">American Football</td>
-<td headers="title" class="gt_row gt_left">NCAAF Championship Winner</td>
-<td headers="description" class="gt_row gt_left">US College Football Championship Winner</td>
-<td headers="active" class="gt_row gt_center">TRUE</td>
-<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
-</tr>
-<tr>
-<td headers="key" class="gt_row gt_left">americanfootball_nfl</td>
-<td headers="group" class="gt_row gt_left">American Football</td>
-<td headers="title" class="gt_row gt_left">NFL</td>
-<td headers="description" class="gt_row gt_left">US Football</td>
-<td headers="active" class="gt_row gt_center">TRUE</td>
-<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
-</tr>
-<tr>
-<td headers="key" class="gt_row gt_left">americanfootball_nfl_preseason</td>
-<td headers="group" class="gt_row gt_left">American Football</td>
-<td headers="title" class="gt_row gt_left">NFL Preseason</td>
-<td headers="description" class="gt_row gt_left">US Football</td>
-<td headers="active" class="gt_row gt_center">TRUE</td>
-<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
-</tr>
-<tr>
-<td headers="key" class="gt_row gt_left">americanfootball_nfl_super_bowl_winner</td>
-<td headers="group" class="gt_row gt_left">American Football</td>
-<td headers="title" class="gt_row gt_left">NFL Super Bowl Winner</td>
-<td headers="description" class="gt_row gt_left">Super Bowl Winner 2026/2027</td>
-<td headers="active" class="gt_row gt_center">TRUE</td>
-<td headers="has_outrights" class="gt_row gt_center">TRUE</td>
-</tr>
-<tr>
-<td headers="key" class="gt_row gt_left">americanfootball_ufl</td>
-<td headers="group" class="gt_row gt_left">American Football</td>
-<td headers="title" class="gt_row gt_left">UFL</td>
-<td headers="description" class="gt_row gt_left">United Football League</td>
-<td headers="active" class="gt_row gt_center">TRUE</td>
-<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
-</tr>
-<tr>
-<td headers="key" class="gt_row gt_left">aussierules_afl</td>
-<td headers="group" class="gt_row gt_left">Aussie Rules</td>
-<td headers="title" class="gt_row gt_left">AFL</td>
-<td headers="description" class="gt_row gt_left">Aussie Football</td>
-<td headers="active" class="gt_row gt_center">TRUE</td>
-<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
-</tr>
-<tr>
-<td headers="key" class="gt_row gt_left">baseball_kbo</td>
-<td headers="group" class="gt_row gt_left">Baseball</td>
-<td headers="title" class="gt_row gt_left">KBO</td>
-<td headers="description" class="gt_row gt_left">KBO League</td>
-<td headers="active" class="gt_row gt_center">TRUE</td>
-<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
-</tr>
-<tr>
-<td headers="key" class="gt_row gt_left">baseball_milb</td>
-<td headers="group" class="gt_row gt_left">Baseball</td>
-<td headers="title" class="gt_row gt_left">MiLB</td>
-<td headers="description" class="gt_row gt_left">Minor League Baseball</td>
-<td headers="active" class="gt_row gt_center">FALSE</td>
-<td headers="has_outrights" class="gt_row gt_center">FALSE</td>
-</tr>
-</tbody>
-</table>
+<div class="section level4">
+<h4 id="toa_sports-discover-active-sports">
+<code>toa_sports()</code> — Discover active sports<a class="anchor" aria-label="anchor" href="#toa_sports-discover-active-sports"></a>
+</h4>
+<p>Returns all sports the API covers (or only in-season ones). The
+<code>key</code> column is the <code>sport_key</code> parameter used by
+every other function. Free — does not count against your quota.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sports</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports.html">toa_sports</a></span><span class="op">(</span>all_sports <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co"># Returns a tibble with columns:</span></span>
+<span><span class="co">#   key, group, title, description, active, has_outrights</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># key              group                title         active</span></span>
+<span><span class="co"># basketball_nba   Basketball           NBA           TRUE</span></span>
+<span><span class="co"># soccer_epl       Soccer               EPL           TRUE</span></span>
+<span><span class="co"># ...</span></span></code></pre></div>
 </div>
-<p>One endpoint for looking up the current odds from the API:
-<code>toa_sports_odds</code></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="fu"><a href="../reference/toa_sports_odds.html">toa_sports_odds</a></span><span class="op">(</span>sport_key <span class="op">=</span> <span class="st">'basketball_nba'</span>, </span>
-<span>                          regions <span class="op">=</span> <span class="st">'us'</span>, </span>
-<span>                          markets <span class="op">=</span> <span class="st">'spreads'</span>, </span>
-<span>                          odds_format <span class="op">=</span> <span class="st">'decimal'</span>,</span>
-<span>                          date_format <span class="op">=</span> <span class="st">'iso'</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bookmaker"</span>,<span class="st">"market_key"</span>, <span class="st">"outcomes_name"</span>,<span class="st">"outcomes_price"</span>,<span class="st">"outcomes_point"</span>,<span class="st">"home_team"</span>,<span class="st">"away_team"</span>,<span class="st">"commence_time"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="10%">
-<col width="8%">
-<col width="14%">
-<col width="11%">
-<col width="11%">
-<col width="12%">
-<col width="14%">
-<col width="16%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">bookmaker</th>
-<th align="left">market_key</th>
-<th align="left">outcomes_name</th>
-<th align="right">outcomes_price</th>
-<th align="right">outcomes_point</th>
-<th align="left">home_team</th>
-<th align="left">away_team</th>
-<th align="left">commence_time</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">FanDuel</td>
-<td align="left">spreads</td>
-<td align="left">New York Knicks</td>
-<td align="right">1.85</td>
-<td align="right">-1.5</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">FanDuel</td>
-<td align="left">spreads</td>
-<td align="left">San Antonio Spurs</td>
-<td align="right">1.96</td>
-<td align="right">1.5</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">BetRivers</td>
-<td align="left">spreads</td>
-<td align="left">New York Knicks</td>
-<td align="right">1.87</td>
-<td align="right">-1.5</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">BetRivers</td>
-<td align="left">spreads</td>
-<td align="left">San Antonio Spurs</td>
-<td align="right">1.93</td>
-<td align="right">1.5</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">DraftKings</td>
-<td align="left">spreads</td>
-<td align="left">New York Knicks</td>
-<td align="right">1.87</td>
-<td align="right">-1.5</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">DraftKings</td>
-<td align="left">spreads</td>
-<td align="left">San Antonio Spurs</td>
-<td align="right">1.95</td>
-<td align="right">1.5</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">BetOnline.ag</td>
-<td align="left">spreads</td>
-<td align="left">New York Knicks</td>
-<td align="right">1.91</td>
-<td align="right">-2.0</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">BetOnline.ag</td>
-<td align="left">spreads</td>
-<td align="left">San Antonio Spurs</td>
-<td align="right">1.91</td>
-<td align="right">2.0</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">LowVig.ag</td>
-<td align="left">spreads</td>
-<td align="left">New York Knicks</td>
-<td align="right">1.94</td>
-<td align="right">-2.0</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">LowVig.ag</td>
-<td align="left">spreads</td>
-<td align="left">San Antonio Spurs</td>
-<td align="right">1.94</td>
-<td align="right">2.0</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">MyBookie.ag</td>
-<td align="left">spreads</td>
-<td align="left">New York Knicks</td>
-<td align="right">1.91</td>
-<td align="right">-2.0</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">MyBookie.ag</td>
-<td align="left">spreads</td>
-<td align="left">San Antonio Spurs</td>
-<td align="right">1.91</td>
-<td align="right">2.0</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">BetMGM</td>
-<td align="left">spreads</td>
-<td align="left">New York Knicks</td>
-<td align="right">1.87</td>
-<td align="right">-1.5</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">BetMGM</td>
-<td align="left">spreads</td>
-<td align="left">San Antonio Spurs</td>
-<td align="right">1.95</td>
-<td align="right">1.5</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="odd">
-<td align="left">Bovada</td>
-<td align="left">spreads</td>
-<td align="left">New York Knicks</td>
-<td align="right">1.95</td>
-<td align="right">-2.0</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-<tr class="even">
-<td align="left">Bovada</td>
-<td align="left">spreads</td>
-<td align="left">San Antonio Spurs</td>
-<td align="right">1.87</td>
-<td align="right">2.0</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-</tr>
-</tbody>
-</table>
-<p>Note: There are two entries per event per bookmaker for the spreads
-for both sides of the event.</p>
-<p>One endpoint for looking up the current scores from the API:
-<code>toa_sports_scores</code></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="fu"><a href="../reference/toa_sports_scores.html">toa_sports_scores</a></span><span class="op">(</span>sport_key <span class="op">=</span> <span class="st">'basketball_nba'</span>, </span>
-<span>                            days_from <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>                            date_format <span class="op">=</span> <span class="st">'iso'</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">20</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="22%">
-<col width="10%">
-<col width="8%">
-<col width="14%">
-<col width="6%">
-<col width="11%">
-<col width="12%">
-<col width="4%">
-<col width="8%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">id</th>
-<th align="left">sport_key</th>
-<th align="left">sport_title</th>
-<th align="left">commence_time</th>
-<th align="left">completed</th>
-<th align="left">home_team</th>
-<th align="left">away_team</th>
-<th align="left">scores</th>
-<th align="left">last_update</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="left">9ea306ebbe68ff94dfa5b88d1e250b37</td>
-<td align="left">basketball_nba</td>
-<td align="left">NBA</td>
-<td align="left">2026-06-11T00:40:00Z</td>
-<td align="left">FALSE</td>
-<td align="left">New York Knicks</td>
-<td align="left">San Antonio Spurs</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr></tbody>
-</table>
+<div class="section level4">
+<h4 id="toa_sports_events-list-upcoming-events-for-a-sport">
+<code>toa_sports_events()</code> — List upcoming events for a
+sport<a class="anchor" aria-label="anchor" href="#toa_sports_events-list-upcoming-events-for-a-sport"></a>
+</h4>
+<p>Returns upcoming and in-play events (without odds). The
+<code>id</code> column from this result is the <code>event_id</code>
+used by <code><a href="../reference/toa_event_odds.html">toa_event_odds()</a></code> and
+<code><a href="../reference/toa_event_markets.html">toa_event_markets()</a></code>. Free — does not count against your
+quota.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports_events.html">toa_sports_events</a></span><span class="op">(</span></span>
+<span>  sport_key          <span class="op">=</span> <span class="st">'basketball_nba'</span>,</span>
+<span>  date_format        <span class="op">=</span> <span class="st">'iso'</span>,</span>
+<span>  commence_time_from <span class="op">=</span> <span class="st">'2025-01-15T00:00:00Z'</span>,</span>
+<span>  commence_time_to   <span class="op">=</span> <span class="st">'2025-01-16T00:00:00Z'</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Returns a tibble: id, sport_key, sport_title, commence_time, home_team, away_team</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># id                                sport_key       home_team          away_team</span></span>
+<span><span class="co"># 48db9c3293a52baab881d95d38f37a98  basketball_nba  Los Angeles Lakers  Boston Celtics</span></span></code></pre></div>
 </div>
+<div class="section level4">
+<h4 id="toa_sports_participants-list-participants-teams-or-players-for-a-sport">
+<code>toa_sports_participants()</code> — List participants (teams or
+players) for a sport<a class="anchor" aria-label="anchor" href="#toa_sports_participants-list-participants-teams-or-players-for-a-sport"></a>
+</h4>
+<p>Returns the whitelist of teams or individual competitors for a sport.
+Cost: 1 credit.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">participants</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports_participants.html">toa_sports_participants</a></span><span class="op">(</span>sport_key <span class="op">=</span> <span class="st">'basketball_nba'</span><span class="op">)</span></span>
+<span><span class="co"># Returns a tibble: sport_key, id, full_name</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># sport_key       id                              full_name</span></span>
+<span><span class="co"># basketball_nba  par_01hqmkq6fdf1pvq7jgdd7hdmpf  Los Angeles Lakers</span></span>
+<span><span class="co"># basketball_nba  par_01hqmkq6fdf1pvq7jgdd7hdmpe  Boston Celtics</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="toa_sports_scores-live-and-recent-scores">
+<code>toa_sports_scores()</code> — Live and recent scores<a class="anchor" aria-label="anchor" href="#toa_sports_scores-live-and-recent-scores"></a>
+</h4>
+<p>Returns live and recently completed games with scores (updated ~30s
+for live games; covers completed games within the last 3 days). Cost: 1
+credit without <code>days_from</code>, 2 credits with it.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">scores</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports_scores.html">toa_sports_scores</a></span><span class="op">(</span></span>
+<span>  sport_key   <span class="op">=</span> <span class="st">'basketball_nba'</span>,</span>
+<span>  days_from   <span class="op">=</span> <span class="fl">1</span>,          <span class="co"># include games completed in the last 1 day</span></span>
+<span>  date_format <span class="op">=</span> <span class="st">'iso'</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Returns a tibble:</span></span>
+<span><span class="co">#   id, sport_key, sport_title, commence_time, completed, home_team, away_team,</span></span>
+<span><span class="co">#   scores (list-col of name/score pairs), last_update</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="current-odds-markets">
+<strong>Current Odds &amp; Markets</strong><a class="anchor" aria-label="anchor" href="#current-odds-markets"></a>
+</h3>
+<div class="section level4">
+<h4 id="toa_sports_odds-featured-market-odds-across-all-events-for-a-sport">
+<code>toa_sports_odds()</code> — Featured-market odds across all
+events for a sport<a class="anchor" aria-label="anchor" href="#toa_sports_odds-featured-market-odds-across-all-events-for-a-sport"></a>
+</h4>
+<p>The primary odds endpoint. Returns a <strong>long-format</strong>
+tibble — one row per (event, bookmaker, market, outcome). Cost = markets
+× regions.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">odds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports_odds.html">toa_sports_odds</a></span><span class="op">(</span></span>
+<span>  sport_key   <span class="op">=</span> <span class="st">'basketball_nba'</span>,</span>
+<span>  regions     <span class="op">=</span> <span class="st">'us'</span>,</span>
+<span>  markets     <span class="op">=</span> <span class="st">'h2h,spreads,totals'</span>,</span>
+<span>  odds_format <span class="op">=</span> <span class="st">'decimal'</span>,</span>
+<span>  date_format <span class="op">=</span> <span class="st">'iso'</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Returns columns:</span></span>
+<span><span class="co">#   id, sport_key, sport_title, commence_time, home_team, away_team,</span></span>
+<span><span class="co">#   bookmaker_key, bookmaker, bookmaker_last_update,</span></span>
+<span><span class="co">#   market_key, market_last_update,</span></span>
+<span><span class="co">#   outcomes_name, outcomes_price, outcomes_point</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Note: spreads and totals have TWO rows per event per bookmaker</span></span>
+<span><span class="co">#       (one for each side / Over / Under).</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="toa_event_odds-full-market-depth-for-a-single-event">
+<code>toa_event_odds()</code> — Full market depth for a single
+event<a class="anchor" aria-label="anchor" href="#toa_event_odds-full-market-depth-for-a-single-event"></a>
+</h4>
+<p>Like <code><a href="../reference/toa_sports_odds.html">toa_sports_odds()</a></code> but scoped to one game and
+supports <strong>all</strong> available market keys, including player
+props (<code>player_points</code>, <code>player_pass_tds</code>,
+<code>player_shots_on_goal</code>, etc.) and alternate lines. Look up
+<code>event_id</code> first with <code><a href="../reference/toa_sports_events.html">toa_sports_events()</a></code>.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">event_odds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_event_odds.html">toa_event_odds</a></span><span class="op">(</span></span>
+<span>  sport_key   <span class="op">=</span> <span class="st">'basketball_nba'</span>,</span>
+<span>  event_id    <span class="op">=</span> <span class="st">'48db9c3293a52baab881d95d38f37a98'</span>,</span>
+<span>  regions     <span class="op">=</span> <span class="st">'us'</span>,</span>
+<span>  markets     <span class="op">=</span> <span class="st">'player_points'</span>,   <span class="co"># player props</span></span>
+<span>  odds_format <span class="op">=</span> <span class="st">'decimal'</span>,</span>
+<span>  date_format <span class="op">=</span> <span class="st">'iso'</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Adds outcomes_description column (player name for props)</span></span></code></pre></div>
+<p>You can also target specific bookmakers with the
+<code>bookmakers</code> parameter (comma-separated slugs like
+<code>"draftkings,fanduel"</code>). When <code>bookmakers</code> and
+<code>regions</code> are both supplied, <code>bookmakers</code> takes
+precedence.</p>
+</div>
+<div class="section level4">
+<h4 id="toa_event_markets-discover-available-market-keys-for-a-game">
+<code>toa_event_markets()</code> — Discover available market keys
+for a game<a class="anchor" aria-label="anchor" href="#toa_event_markets-discover-available-market-keys-for-a-game"></a>
+</h4>
+<p>Returns the recently-seen market keys per bookmaker for a single
+event (no odds). Use the returned <code>market_key</code> values to then
+request odds via <code><a href="../reference/toa_event_odds.html">toa_event_odds()</a></code>. Cost: 1 credit.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">markets</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_event_markets.html">toa_event_markets</a></span><span class="op">(</span></span>
+<span>  sport_key <span class="op">=</span> <span class="st">'basketball_nba'</span>,</span>
+<span>  event_id  <span class="op">=</span> <span class="st">'48db9c3293a52baab881d95d38f37a98'</span>,</span>
+<span>  regions   <span class="op">=</span> <span class="st">'us'</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Returns: id, sport_key, sport_title, commence_time, home_team, away_team,</span></span>
+<span><span class="co">#          bookmaker_key, bookmaker, market_key, market_last_update</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Typical market_key values: h2h, spreads, totals, player_points,</span></span>
+<span><span class="co">#                             player_rebounds, player_assists, ...</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="historical-odds-events-paid-plans">
+<strong>Historical Odds &amp; Events (paid plans)</strong><a class="anchor" aria-label="anchor" href="#historical-odds-events-paid-plans"></a>
+</h3>
+<p>Historical endpoints return the API state at a point in time. All
+three accept an ISO 8601 <code>date</code> string and respond with the
+snapshot closest to (and not after) that time. The
+<code>timestamp</code>, <code>previous_timestamp</code>, and
+<code>next_timestamp</code> columns in the result let you page through
+the archive.</p>
+<p>Historical data covers featured markets back to June 2020, and
+additional markets (props, alternate lines) from 2023-05-03 at 5-minute
+intervals.</p>
+<div class="section level4">
+<h4 id="toa_sports_odds_history-historical-featured-market-odds-for-a-sport">
+<code>toa_sports_odds_history()</code> — Historical featured-market
+odds for a sport<a class="anchor" aria-label="anchor" href="#toa_sports_odds_history-historical-featured-market-odds-for-a-sport"></a>
+</h4>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">hist_odds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports_odds_history.html">toa_sports_odds_history</a></span><span class="op">(</span></span>
+<span>  sport_key   <span class="op">=</span> <span class="st">'basketball_nba'</span>,</span>
+<span>  date        <span class="op">=</span> <span class="st">'2024-01-15T12:15:00Z'</span>,</span>
+<span>  regions     <span class="op">=</span> <span class="st">'us'</span>,</span>
+<span>  markets     <span class="op">=</span> <span class="st">'spreads'</span>,</span>
+<span>  odds_format <span class="op">=</span> <span class="st">'decimal'</span>,</span>
+<span>  date_format <span class="op">=</span> <span class="st">'iso'</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Returns same columns as toa_sports_odds() plus:</span></span>
+<span><span class="co">#   timestamp, previous_timestamp, next_timestamp</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Cost: 10 x markets x regions (10x historical multiplier)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="toa_sports_events_history-historical-event-list-no-odds">
+<code>toa_sports_events_history()</code> — Historical event list (no
+odds)<a class="anchor" aria-label="anchor" href="#toa_sports_events_history-historical-event-list-no-odds"></a>
+</h4>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">hist_events</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports_events_history.html">toa_sports_events_history</a></span><span class="op">(</span></span>
+<span>  sport_key <span class="op">=</span> <span class="st">'basketball_nba'</span>,</span>
+<span>  date      <span class="op">=</span> <span class="st">'2024-01-15T12:15:00Z'</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Returns same columns as toa_sports_events() plus:</span></span>
+<span><span class="co">#   timestamp, previous_timestamp, next_timestamp</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Cost: 1 credit</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="toa_event_odds_history-historical-odds-for-a-single-event">
+<code>toa_event_odds_history()</code> — Historical odds for a single
+event<a class="anchor" aria-label="anchor" href="#toa_event_odds_history-historical-odds-for-a-single-event"></a>
+</h4>
+<p>Like <code><a href="../reference/toa_event_odds.html">toa_event_odds()</a></code> for a specific snapshot time.
+Accepts player props and alternate markets.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">hist_event_odds</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_event_odds_history.html">toa_event_odds_history</a></span><span class="op">(</span></span>
+<span>  sport_key   <span class="op">=</span> <span class="st">'basketball_nba'</span>,</span>
+<span>  event_id    <span class="op">=</span> <span class="st">'93af4b300a4c0dded909234ea32e9abd'</span>,</span>
+<span>  date        <span class="op">=</span> <span class="st">'2024-01-15T12:15:00Z'</span>,</span>
+<span>  regions     <span class="op">=</span> <span class="st">'us'</span>,</span>
+<span>  markets     <span class="op">=</span> <span class="st">'h2h'</span>,</span>
+<span>  odds_format <span class="op">=</span> <span class="st">'decimal'</span>,</span>
+<span>  date_format <span class="op">=</span> <span class="st">'iso'</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># Returns same columns as toa_event_odds() plus:</span></span>
+<span><span class="co">#   timestamp, previous_timestamp, next_timestamp</span></span>
+<span><span class="co">#</span></span>
+<span><span class="co"># Cost: markets x regions (standard rate, no 10x multiplier for event-level)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="account-usage">
+<strong>Account &amp; Usage</strong><a class="anchor" aria-label="anchor" href="#account-usage"></a>
+</h3>
+<div class="section level4">
+<h4 id="toa_quota-inspect-your-current-quota-balance">
+<code>toa_quota()</code> — Inspect your current quota balance<a class="anchor" aria-label="anchor" href="#toa_quota-inspect-your-current-quota-balance"></a>
+</h4>
+<p>Returns a one-row tibble read from the headers of the <strong>most
+recent</strong> API call made in this R session. Calling
+<code><a href="../reference/toa_quota.html">toa_quota()</a></code> does not itself use a quota credit.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># After any toa_* call:</span></span>
+<span><span class="fu"><a href="../reference/toa_quota.html">toa_quota</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># # A tibble: 1 x 3</span></span>
+<span><span class="co">#   requests_remaining requests_used requests_last</span></span>
+<span><span class="co">#                &lt;int&gt;         &lt;int&gt;         &lt;int&gt;</span></span>
+<span><span class="co">#                 9850           150             1</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="toa_requests-fetch-quota-from-the-api-directly">
+<code>toa_requests()</code> — Fetch quota from the API directly<a class="anchor" aria-label="anchor" href="#toa_requests-fetch-quota-from-the-api-directly"></a>
+</h4>
+<p>Hits the free <code>/v4/sports</code> endpoint specifically to read
+the current quota balance from the response headers. Use this at the
+start of a session to check your budget before pulling odds.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/toa_requests.html">toa_requests</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># # A tibble: 1 x 2</span></span>
+<span><span class="co">#   requests_remaining requests_used</span></span>
+<span><span class="co">#                &lt;int&gt;         &lt;int&gt;</span></span>
+<span><span class="co">#                 9850           150</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="key-helpers-toa_key-has_toa_key-check_toa_key">Key helpers: <code>toa_key()</code>, <code>has_toa_key()</code>,
+<code>check_toa_key()</code><a class="anchor" aria-label="anchor" href="#key-helpers-toa_key-has_toa_key-check_toa_key"></a>
+</h4>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/register_toa.html">toa_key</a></span><span class="op">(</span><span class="op">)</span>         <span class="co"># Returns the ODDS_API_KEY env var or NA_character_</span></span>
+<span><span class="fu"><a href="../reference/register_toa.html">has_toa_key</a></span><span class="op">(</span><span class="op">)</span>     <span class="co"># Returns TRUE if key is set, FALSE otherwise</span></span>
+<span><span class="fu"><a href="../reference/register_toa.html">check_toa_key</a></span><span class="op">(</span><span class="op">)</span>   <span class="co"># Stops with a clear error if key is missing</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="worked-example-pulling-moneyline-odds">
+<strong>Worked example — pulling moneyline odds</strong><a class="anchor" aria-label="anchor" href="#worked-example-pulling-moneyline-odds"></a>
+</h2>
+<p>This minimal example shows the basic pattern: check quota first, pull
+odds, inspect the result.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://oddsapiR.sportsdataverse.org/">oddsapiR</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 1. Verify a key exists and check starting budget</span></span>
+<span><span class="fu"><a href="../reference/register_toa.html">check_toa_key</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/toa_requests.html">toa_requests</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># requests_remaining = 500, requests_used = 0</span></span>
+<span></span>
+<span><span class="co"># 2. Pull moneyline (h2h) odds for the NBA from US books</span></span>
+<span><span class="va">nba_h2h</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports_odds.html">toa_sports_odds</a></span><span class="op">(</span></span>
+<span>  sport_key   <span class="op">=</span> <span class="st">"basketball_nba"</span>,</span>
+<span>  regions     <span class="op">=</span> <span class="st">"us"</span>,</span>
+<span>  markets     <span class="op">=</span> <span class="st">"h2h"</span>,</span>
+<span>  odds_format <span class="op">=</span> <span class="st">"decimal"</span>,</span>
+<span>  date_format <span class="op">=</span> <span class="st">"iso"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. Inspect: one row per (event x bookmaker x outcome)</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">nba_h2h</span><span class="op">)</span></span>
+<span><span class="co"># Rows: ~120</span></span>
+<span><span class="co"># Columns: id, sport_key, sport_title, commence_time, home_team, away_team,</span></span>
+<span><span class="co">#           bookmaker_key, bookmaker, bookmaker_last_update,</span></span>
+<span><span class="co">#           market_key, market_last_update, outcomes_name, outcomes_price</span></span>
+<span></span>
+<span><span class="co"># 4. Find the best moneyline price for each team across all books</span></span>
+<span><span class="va">best_lines</span> <span class="op">&lt;-</span> <span class="va">nba_h2h</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">home_team</span>, <span class="va">away_team</span>, <span class="va">outcomes_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">outcomes_price</span>, n <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">home_team</span>, <span class="va">away_team</span>, <span class="va">outcomes_name</span>, <span class="va">bookmaker</span>, <span class="va">outcomes_price</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">best_lines</span></span>
+<span><span class="co"># home_team           away_team      outcomes_name       bookmaker    outcomes_price</span></span>
+<span><span class="co"># Los Angeles Lakers  Boston Celtics Los Angeles Lakers  DraftKings            2.05</span></span>
+<span><span class="co"># Los Angeles Lakers  Boston Celtics Boston Celtics      FanDuel               1.87</span></span>
+<span></span>
+<span><span class="co"># 5. Check how much that cost</span></span>
+<span><span class="fu"><a href="../reference/toa_quota.html">toa_quota</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co"># requests_remaining = 499, requests_used = 1, requests_last = 1</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="our-authors">
@@ -1995,7 +1652,8 @@ for both sides of the event.</p>
 </h2>
 <ul>
 <li>
-<a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a><br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>
+<a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a>
 <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
 </li>
 </ul>
@@ -2007,12 +1665,12 @@ for both sides of the event.</p>
 <p>To cite the <a href="https://oddsapiR.sportsdataverse.org"><strong><code>oddsapiR</code></strong></a>
 R package in publications, use:</p>
 <p>BibTex Citation</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">gilani_2022_oddsapiR</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="dt">author</span> = {Gilani, Saiem},</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="dt">title</span> = {oddsapiR: The SportsDataverse's R Package for The Odds API.},</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://oddsapiR.sportsdataverse.org},</span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="dt">year</span> = {2022}</span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">gilani_2022_oddsapiR</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>  <span class="dt">author</span> = {Gilani, Saiem},</span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>  <span class="dt">title</span> = {oddsapiR: The SportsDataverse's R Package for The Odds API.},</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://oddsapiR.sportsdataverse.org},</span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>  <span class="dt">year</span> = {2022}</span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

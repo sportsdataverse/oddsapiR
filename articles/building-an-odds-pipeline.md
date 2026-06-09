@@ -1,0 +1,589 @@
+# Building a sports-odds pipeline with oddsapiR
+
+This article walks through a realistic end-to-end pipeline for
+collecting, tidying, analysing, and persisting sports-odds data using
+`oddsapiR`. Every chunk that calls the live API is `eval = FALSE`; prose
+and comments describe realistic output shapes.
+
+The companion beginner guide lives at [oddsapiR: Getting
+started](https://oddsapiR.sportsdataverse.org/oddsapiR.md).
+
+``` r
+
+library(oddsapiR)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(ggplot2)
+library(gt)
+library(DBI)
+library(RSQLite)
+```
+
+## 1. Setup — key handling and budgeting your quota
+
+Before pulling any odds, check that a key is configured and inspect the
+current quota balance.
+[`toa_requests()`](https://oddsapiR.sportsdataverse.org/reference/toa_requests.html)
+hits the free `/v4/sports` endpoint, which does not consume a credit,
+and returns your balance as a one-row tibble.
+
+``` r
+
+# Confirm the key is present (errors loudly if not)
+check_toa_key()
+
+# Budget check: how many credits remain before we start pulling?
+budget_before <- toa_requests()
+budget_before
+# # A tibble: 1 x 2
+#   requests_remaining requests_used
+#                <int>         <int>
+#                  480            20
+```
+
+After each pull, call
+[`toa_quota()`](https://oddsapiR.sportsdataverse.org/reference/toa_quota.html)
+to read the headers cached from the most recent response without making
+a new network request:
+
+``` r
+
+toa_quota()
+# # A tibble: 1 x 3
+#   requests_remaining requests_used requests_last
+#                <int>         <int>         <int>
+#                  477            23             3
+```
+
+The `requests_last` column tells you exactly how many credits the last
+call consumed. This is the correct way to audit costs during
+development: pull once, inspect
+[`toa_quota()`](https://oddsapiR.sportsdataverse.org/reference/toa_quota.md),
+then multiply out your full pipeline’s total cost before scheduling it.
+
+## 2. Discover — find active sports and upcoming events
+
+### Find active sport keys
+
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.html)
+lists every sport the API covers. It is free. Filter to `active == TRUE`
+for sports that are currently in season:
+
+``` r
+
+all_sports <- toa_sports(all_sports = TRUE)
+
+# Sports currently in season
+in_season <- all_sports %>%
+  filter(active) %>%
+  select(key, group, title)
+
+in_season
+# key                      group              title
+# basketball_nba           Basketball         NBA
+# americanfootball_nfl     American Football  NFL
+# soccer_epl               Soccer             EPL
+# icehockey_nhl            Ice Hockey         NHL
+# ...
+```
+
+The `key` column is the `sport_key` argument for every downstream
+function. The bundled dataset
+[`toa_sports_keys`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_keys.html)
+provides the same mapping without a network call:
+
+``` r
+
+head(oddsapiR::toa_sports_keys, 10)
+#> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.0 ──
+#> ℹ Data updated: 2022-06-17 05:54:44 UTC
+#> # A tibble: 10 × 5
+#>    key                             group title description has_outrights
+#>    <chr>                           <chr> <chr> <chr>       <lgl>        
+#>  1 americanfootball_ncaaf          Amer… NCAAF US College… FALSE        
+#>  2 americanfootball_nfl            Amer… NFL   US Football FALSE        
+#>  3 americanfootball_nfl_super_bow… Amer… NFL … Super Bowl… TRUE         
+#>  4 aussierules_afl                 Auss… AFL   Aussie Foo… FALSE        
+#>  5 baseball_mlb                    Base… MLB   Major Leag… FALSE        
+#>  6 baseball_mlb_world_series_winn… Base… MLB … World Seri… TRUE         
+#>  7 basketball_euroleague           Bask… Bask… Basketball… FALSE        
+#>  8 basketball_nba                  Bask… NBA   US Basketb… FALSE        
+#>  9 basketball_nba_championship_wi… Bask… NBA … Championsh… TRUE         
+#> 10 basketball_ncaab                Bask… NCAAB US College… FALSE
+```
+
+### List upcoming events for a sport
+
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.html)
+lists in-play and pre-match events without odds. Also free. The `id`
+column is the `event_id` used by
+[`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md)
+and
+[`toa_event_markets()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.md).
+
+``` r
+
+# Events for the next 24 hours
+now      <- format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
+tomorrow <- format(Sys.time() + 86400, "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
+
+nba_events <- toa_sports_events(
+  sport_key          = "basketball_nba",
+  date_format        = "iso",
+  commence_time_from = now,
+  commence_time_to   = tomorrow
+)
+
+nba_events
+# # A tibble: 6 x 6
+#   id                               sport_key       sport_title commence_time         home_team           away_team
+#   <chr>                            <chr>           <chr>       <chr>                 <chr>               <chr>
+# 1 48db9c3293a52baab881d95d38f37a98 basketball_nba  NBA         2025-01-15T00:10:00Z  Los Angeles Lakers  Boston Celtics
+# 2 9a1c3f2e8b7d4e5f6c0a2b3d4e5f6a7b basketball_nba  NBA         2025-01-15T01:00:00Z  Golden State Warriors Milwaukee Bucks
+# ...
+```
+
+### List participants (teams) for a sport
+
+[`toa_sports_participants()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_participants.html)
+returns the whitelist of teams or individual competitors. Cost: 1
+credit.
+
+``` r
+
+nba_teams <- toa_sports_participants(sport_key = "basketball_nba")
+
+nba_teams
+# # A tibble: 30 x 3
+#   sport_key       id                              full_name
+#   <chr>           <chr>                           <chr>
+# 1 basketball_nba  par_01hqmkq6fdf1pvq7jgdd7hdmpf  Los Angeles Lakers
+# 2 basketball_nba  par_01hqmkq6fdf1pvq7jgdd7hdmpe  Boston Celtics
+# ...
+```
+
+## 3. Pull odds across bookmakers
+
+### Featured markets for an entire sport
+
+[`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.html)
+returns a **long-format** tibble — one row per (event, bookmaker,
+market, outcome). The cost equals `markets × regions`.
+
+``` r
+
+# Pull moneyline + spreads + totals from US books
+# Cost: 3 markets x 1 region = 3 credits
+nba_odds <- toa_sports_odds(
+  sport_key   = "basketball_nba",
+  regions     = "us",
+  markets     = "h2h,spreads,totals",
+  odds_format = "decimal",
+  date_format = "iso"
+)
+
+glimpse(nba_odds)
+# Rows: ~360  (6 games x ~5 bookmakers x 3 markets x 2 outcomes per market)
+# Columns: id, sport_key, sport_title, commence_time, home_team, away_team,
+#           bookmaker_key, bookmaker, bookmaker_last_update,
+#           market_key, market_last_update, outcomes_name, outcomes_price,
+#           outcomes_point
+
+toa_quota()
+# requests_remaining = 477, requests_used = 23, requests_last = 3
+```
+
+### Detailed props for a single game
+
+[`toa_event_markets()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.html)
+lists every market key a bookmaker has opened for a game (1 credit).
+Then
+[`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.html)
+fetches the odds for specific market keys. Cost = unique markets
+returned × regions.
+
+``` r
+
+game_id <- "48db9c3293a52baab881d95d38f37a98"  # from toa_sports_events()
+
+# Discover available markets for this game (1 credit)
+available_markets <- toa_event_markets(
+  sport_key = "basketball_nba",
+  event_id  = game_id,
+  regions   = "us"
+)
+
+available_markets %>%
+  distinct(bookmaker, market_key) %>%
+  arrange(bookmaker, market_key)
+# bookmaker    market_key
+# DraftKings   h2h
+# DraftKings   player_points
+# DraftKings   player_rebounds
+# DraftKings   spreads
+# DraftKings   totals
+# FanDuel      h2h
+# FanDuel      player_points
+# ...
+
+# Fetch player-points props (cost: 1 market x 1 region = 1 credit)
+player_pts <- toa_event_odds(
+  sport_key   = "basketball_nba",
+  event_id    = game_id,
+  regions     = "us",
+  markets     = "player_points",
+  odds_format = "decimal",
+  date_format = "iso"
+)
+
+player_pts %>%
+  select(bookmaker, outcomes_name, outcomes_description, outcomes_price, outcomes_point) %>%
+  head(10)
+# bookmaker    outcomes_name  outcomes_description  outcomes_price  outcomes_point
+# DraftKings   Over           LeBron James          1.91            25.5
+# DraftKings   Under          LeBron James          1.91            25.5
+# FanDuel      Over           LeBron James          1.87            25.5
+# FanDuel      Under          LeBron James          1.95            25.5
+```
+
+## 4. Tidy and analyse: de-vig, implied probability, line shopping
+
+The raw data from
+[`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
+is already tidy (one row per outcome), but some light wrangling makes
+analysis easier.
+
+### De-duplicate and compute implied probability
+
+For two-sided markets (spreads, totals) each game has **two rows per
+bookmaker**: one for each side. To pivot wider and compute implied
+probability from decimal odds (`1 / price`), remove the overround (vig)
+by dividing each probability by the sum over all outcomes:
+
+``` r
+
+# Work with h2h (moneyline) only
+h2h <- nba_odds %>%
+  filter(market_key == "h2h")
+
+# Implied probability per outcome, before removing vig
+h2h_prob <- h2h %>%
+  group_by(id, bookmaker_key) %>%
+  mutate(
+    implied_prob_raw = 1 / outcomes_price,
+    total_overround  = sum(implied_prob_raw),
+    # Remove vig: normalise so probs sum to 1
+    implied_prob_fair = implied_prob_raw / total_overround
+  ) %>%
+  ungroup()
+
+h2h_prob %>%
+  select(home_team, away_team, bookmaker, outcomes_name,
+         outcomes_price, implied_prob_raw, implied_prob_fair) %>%
+  head(6)
+# home_team           away_team       bookmaker   outcomes_name       price  raw_prob  fair_prob
+# Los Angeles Lakers  Boston Celtics  DraftKings  Los Angeles Lakers  2.05   0.488     0.490
+# Los Angeles Lakers  Boston Celtics  DraftKings  Boston Celtics      1.90   0.526     0.510
+# Los Angeles Lakers  Boston Celtics  FanDuel     Los Angeles Lakers  2.00   0.500     0.499
+# Los Angeles Lakers  Boston Celtics  FanDuel     Boston Celtics      1.87   0.535     0.501
+```
+
+The `total_overround` column tells you each bookmaker’s vig. A value of
+1.05 means the bookmaker takes a 5% margin.
+
+### Line shopping: best available price per outcome
+
+``` r
+
+best_h2h <- h2h_prob %>%
+  group_by(id, home_team, away_team, outcomes_name) %>%
+  slice_max(outcomes_price, n = 1, with_ties = FALSE) %>%
+  select(home_team, away_team, outcomes_name, bookmaker, outcomes_price, implied_prob_fair) %>%
+  ungroup() %>%
+  arrange(home_team, outcomes_name)
+
+best_h2h
+# home_team           away_team       outcomes_name       bookmaker   price  fair_prob
+# Los Angeles Lakers  Boston Celtics  Boston Celtics      Bet365      1.95   0.505
+# Los Angeles Lakers  Boston Celtics  Los Angeles Lakers  DraftKings  2.10   0.492
+```
+
+### Handling spreads and totals
+
+Spreads and totals each have two rows per (event, bookmaker). The
+`outcomes_point` column carries the handicap or total line:
+
+``` r
+
+spreads <- nba_odds %>%
+  filter(market_key == "spreads") %>%
+  # Label each side more clearly
+  mutate(side = if_else(outcomes_point < 0, "favourite", "underdog"))
+
+# Best spread price per team across bookmakers
+best_spreads <- spreads %>%
+  group_by(id, home_team, away_team, outcomes_name) %>%
+  slice_max(outcomes_price, n = 1, with_ties = FALSE) %>%
+  select(home_team, away_team, outcomes_name, outcomes_point, bookmaker, outcomes_price)
+
+best_spreads
+# home_team           away_team       outcomes_name       outcomes_point  bookmaker   price
+# Los Angeles Lakers  Boston Celtics  Los Angeles Lakers  -3.5            BetMGM      1.95
+# Los Angeles Lakers  Boston Celtics  Boston Celtics      3.5             FanDuel     1.95
+```
+
+## 5. Historical odds — tracking line movement
+
+The historical endpoints require a paid plan. They use a snapshot model:
+supply an ISO 8601 `date` and get back the data state at the closest
+snapshot at or before that time.
+
+### Fetch a single historical snapshot
+
+``` r
+
+# Spreads for an NBA game 48 hours before tip-off
+hist_odds_48h <- toa_sports_odds_history(
+  sport_key   = "basketball_nba",
+  date        = "2024-01-15T00:00:00Z",
+  regions     = "us",
+  markets     = "spreads",
+  odds_format = "decimal",
+  date_format = "iso"
+)
+
+hist_odds_48h %>%
+  select(timestamp, previous_timestamp, next_timestamp,
+         home_team, away_team, bookmaker, outcomes_name,
+         outcomes_price, outcomes_point) %>%
+  head(4)
+# timestamp                 prev_ts                    next_ts                    home_team         ...
+# 2024-01-14T23:58:00Z      2024-01-14T23:53:00Z       2024-01-15T00:03:00Z       Los Angeles Lakers
+```
+
+### Page through snapshots to build a line-movement dataset
+
+Use the `next_timestamp` from one response as the `date` parameter of
+the next call to walk forward in time. The cost for
+[`toa_sports_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds_history.md)
+is 10× the standard rate (10 × markets × regions per call), so plan
+accordingly.
+
+``` r
+
+# Build a 6-snapshot series for a specific event
+event_id   <- "93af4b300a4c0dded909234ea32e9abd"
+start_date <- "2024-01-13T12:00:00Z"
+n_snapshots <- 6
+
+snapshots <- list()
+current_date <- start_date
+
+for (i in seq_len(n_snapshots)) {
+  snap <- toa_event_odds_history(
+    sport_key   = "basketball_nba",
+    event_id    = event_id,
+    date        = current_date,
+    regions     = "us",
+    markets     = "spreads",
+    odds_format = "decimal",
+    date_format = "iso"
+  )
+
+  if (nrow(snap) == 0) break
+
+  snapshots[[i]] <- snap
+  current_date   <- snap$next_timestamp[[1]]
+
+  # Be kind to the API rate limit
+  Sys.sleep(0.5)
+}
+
+line_movement <- bind_rows(snapshots) %>%
+  filter(market_key == "spreads", bookmaker_key == "draftkings") %>%
+  select(timestamp, home_team, away_team, outcomes_name,
+         outcomes_price, outcomes_point)
+
+line_movement
+# timestamp                 home_team           away_team       outcomes_name       price  point
+# 2024-01-13T12:00:00Z      Los Angeles Lakers  Boston Celtics  Los Angeles Lakers  1.91   -4.5
+# 2024-01-13T17:00:00Z      Los Angeles Lakers  Boston Celtics  Los Angeles Lakers  1.91   -5.0
+# 2024-01-14T00:00:00Z      Los Angeles Lakers  Boston Celtics  Los Angeles Lakers  1.95   -5.5
+# ...
+```
+
+## 6. Persist and schedule — SQLite storage + quota-aware scheduling
+
+### Store snapshots to SQLite
+
+Use `DBI` + `RSQLite` to keep a running archive. Key each row by
+`pulled_at` so you can track when each snapshot was collected.
+
+``` r
+
+# --- one-time setup ---
+con <- dbConnect(RSQLite::SQLite(), "odds_archive.sqlite")
+
+# Create the table if it doesn't exist yet
+dbExecute(con, "
+  CREATE TABLE IF NOT EXISTS odds_snapshots (
+    pulled_at         TEXT,
+    snapshot_ts       TEXT,
+    event_id          TEXT,
+    sport_key         TEXT,
+    sport_title       TEXT,
+    commence_time     TEXT,
+    home_team         TEXT,
+    away_team         TEXT,
+    bookmaker_key     TEXT,
+    bookmaker         TEXT,
+    market_key        TEXT,
+    outcomes_name     TEXT,
+    outcomes_price    REAL,
+    outcomes_point    REAL
+  )
+")
+
+# --- called on each scheduled pull ---
+pull_and_store <- function(sport_key, regions = "us", markets = "h2h,spreads") {
+  pulled_at <- format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
+
+  raw <- toa_sports_odds(
+    sport_key   = sport_key,
+    regions     = regions,
+    markets     = markets,
+    odds_format = "decimal",
+    date_format = "iso"
+  )
+
+  if (nrow(raw) == 0) return(invisible(NULL))
+
+  to_store <- raw %>%
+    mutate(pulled_at = pulled_at) %>%
+    select(
+      pulled_at, snapshot_ts = bookmaker_last_update,
+      event_id = id, sport_key, sport_title,
+      commence_time, home_team, away_team,
+      bookmaker_key, bookmaker, market_key,
+      outcomes_name, outcomes_price,
+      # outcomes_point may be NA for h2h
+      outcomes_point = dplyr::any_of("outcomes_point")
+    )
+
+  dbAppendTable(con, "odds_snapshots", to_store)
+  cli::cli_alert_success("Stored {nrow(to_store)} rows at {pulled_at}.")
+}
+
+# Run the pull
+pull_and_store("basketball_nba")
+
+# When done for the session, close the connection
+dbDisconnect(con)
+```
+
+### Quota-aware scheduling
+
+The Odds API’s quota resets monthly. Before each scheduled pull, check
+your remaining balance and bail early if you are running low:
+
+``` r
+
+safe_pull <- function(sport_key, min_remaining = 50, ...) {
+  budget <- toa_requests()
+  if (budget$requests_remaining < min_remaining) {
+    cli::cli_alert_warning(
+      "Only {budget$requests_remaining} credits remain -- skipping pull."
+    )
+    return(invisible(NULL))
+  }
+  pull_and_store(sport_key, ...)
+}
+```
+
+For cron-based scheduling (e.g. via `cronR` on Linux/macOS or Task
+Scheduler on Windows), a pull every 5 minutes for two markets across one
+region costs 2 credits per call. At 12 calls/hour × 24h × 30 days =
+8,640 calls per month. Plan your pull frequency according to your plan’s
+monthly quota.
+
+## 7. Visualize — best lines table and line-movement chart
+
+### Best-lines summary table with `gt`
+
+``` r
+
+best_lines_table <- best_h2h %>%
+  select(
+    Game      = home_team,
+    Opponent  = away_team,
+    Side      = outcomes_name,
+    Book      = bookmaker,
+    `Best Price` = outcomes_price,
+    `Fair Prob`  = implied_prob_fair
+  ) %>%
+  mutate(`Fair Prob` = scales::percent(`Fair Prob`, accuracy = 0.1)) %>%
+  gt() %>%
+  tab_header(
+    title    = "Best Available Moneyline (Decimal)",
+    subtitle = paste("Pulled:", format(Sys.time(), "%Y-%m-%d %H:%M UTC", tz = "UTC"))
+  ) %>%
+  fmt_number(columns = `Best Price`, decimals = 2) %>%
+  cols_align("center", columns = c(`Best Price`, `Fair Prob`))
+
+best_lines_table
+```
+
+### Line-movement chart with `ggplot2`
+
+``` r
+
+line_movement_chart <- line_movement %>%
+  mutate(timestamp = as.POSIXct(timestamp, format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")) %>%
+  ggplot(aes(x = timestamp, y = outcomes_point,
+             colour = outcomes_name, group = outcomes_name)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  scale_colour_brewer(palette = "Set1", name = "Side") +
+  scale_x_datetime(date_labels = "%b %d\n%H:%M", date_breaks = "12 hours") +
+  labs(
+    title    = "DraftKings Spread Line Movement",
+    subtitle = paste(
+      unique(line_movement$home_team),
+      "vs.",
+      unique(line_movement$away_team)
+    ),
+    x = "Snapshot Time (UTC)",
+    y = "Spread Point (negative = favourite)",
+    caption = "Source: The Odds API via oddsapiR"
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom")
+
+line_movement_chart
+```
+
+## Closing notes: SportsDataverse
+
+`oddsapiR` is part of the
+[SportsDataverse](https://sportsdataverse.org/), a collection of
+open-source R and Python packages for sports analytics. Companion
+packages include:
+
+- [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) — college
+  football play-by-play
+- [**hoopR**](https://hoopR.sportsdataverse.org/) — men’s basketball
+  (NBA + MBB)
+- [**wehoop**](https://wehoop.sportsdataverse.org/) — women’s basketball
+  (WNBA + WBB)
+- [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) — hockey
+  (NHL + PHF/PWHL)
+- [**baseballr**](https://BillPetti.github.io/baseballr/) — baseball
+  (MLB + NCAA)
+
+Each package follows the same tidy-data conventions, making it
+straightforward to join odds data from `oddsapiR` with play-by-play or
+box-score data from the other packages.
+
+File issues and feature requests at the [oddsapiR GitHub
+repository](https://github.com/sportsdataverse/oddsapiR/issues).

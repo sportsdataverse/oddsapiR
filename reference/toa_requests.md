@@ -25,17 +25,34 @@ A tibble of The Odds API key usage with the following columns:
 | requests_remaining | integer | Usage credits remaining until the monthly quota resets. |
 | requests_used | integer | Usage credits consumed since the last quota reset. |
 
+## See also
+
+[`toa_quota()`](https://oddsapiR.sportsdataverse.org/reference/toa_quota.md)
+to read cached usage from the most recent call without a network
+round-trip,
+[`toa_key()`](https://oddsapiR.sportsdataverse.org/reference/register_toa.md)
+/
+[register_toa](https://oddsapiR.sportsdataverse.org/reference/register_toa.md)
+to configure your API key, and
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md)
+to start pulling data. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Account & Usage:
+[`register_toa`](https://oddsapiR.sportsdataverse.org/reference/register_toa.md),
+[`toa_quota()`](https://oddsapiR.sportsdataverse.org/reference/toa_quota.md)
+
 ## Examples
 
 ``` r
 # \donttest{
   try(toa_requests())
 #> ── API Key Usage data from the-odds-api.com ────────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-09 08:16:24 UTC
-#> ℹ Odds API quota: 39 used, 461 remaining (last call cost 0)
+#> ℹ Data updated: 2026-06-09 18:23:56 UTC
+#> ℹ Odds API quota: 146 used, 354 remaining (last call cost 0)
 #> # A tibble: 1 × 2
 #>   requests_remaining requests_used
 #>                <int>         <int>
-#> 1                461            39
+#> 1                354           146
 # }
 ```

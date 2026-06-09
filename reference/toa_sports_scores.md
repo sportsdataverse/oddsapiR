@@ -54,6 +54,21 @@ A tibble of scores for the sport The Odds API provides coverage for:
 | scores | list | Per-team `name`/`score` pairs; `NULL`/`NA` before scores post. |
 | last_update | character | Time the scores were last updated; `NA` until a game is live. |
 
+## See also
+
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md)
+to discover `sport_key` values,
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md)
+to list upcoming events, and
+[`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
+for live/upcoming betting lines. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Sports & Events:
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md),
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md),
+[`toa_sports_participants()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_participants.md)
+
 ## Examples
 
 ``` r
@@ -62,8 +77,8 @@ A tibble of scores for the sport The Odds API provides coverage for:
                          days_from = NULL,
                          date_format = 'iso'))
 #> ── Sports scores data from the-odds-api.com ────────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-09 08:16:26 UTC
-#> ℹ Odds API quota: 42 used, 458 remaining (last call cost 1)
+#> ℹ Data updated: 2026-06-09 18:23:58 UTC
+#> ℹ Odds API quota: 149 used, 351 remaining (last call cost 1)
 #> # A tibble: 1 × 9
 #>   id             sport_key sport_title commence_time completed home_team
 #>   <chr>          <chr>     <chr>       <chr>         <lgl>     <chr>    

@@ -104,6 +104,20 @@ A long-format tibble with one row per bookmaker market outcome:
 | outcomes_price | numeric | The price/odds for the outcome. |
 | outcomes_point | numeric | The handicap/total/prop line, when applicable. |
 
+## See also
+
+[`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
+for featured-market odds across all upcoming events,
+[`toa_event_markets()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.md)
+to discover available market keys for an event, and
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md)
+to look up `event_id` values. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Odds & Markets:
+[`toa_event_markets()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.md),
+[`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
+
 ## Examples
 
 ``` r
@@ -114,7 +128,7 @@ A long-format tibble with one row per bookmaker market outcome:
                       markets = 'player_points',
                       odds_format = 'decimal',
                       date_format = 'iso'))
-#> ✖ 2026-06-09 08:16:23.294315: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
+#> ✖ 2026-06-09 18:23:55.145971: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
 #> ✖ Error:
 #> Error in `dplyr::rename()`:
 #> ! Can't rename columns that don't exist.

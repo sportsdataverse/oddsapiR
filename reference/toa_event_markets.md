@@ -80,6 +80,20 @@ A tibble with one row per bookmaker market available for the event:
 | market_key | character | Available market key, e.g. `player_points`. |
 | market_last_update | character | When this market was last seen for the bookmaker. |
 
+## See also
+
+[`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md)
+to pull odds for the market keys discovered here,
+[`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
+for featured-market odds across all events, and
+[`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.md)
+to look up `event_id` values. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Odds & Markets:
+[`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md),
+[`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
+
 ## Examples
 
 ``` r
@@ -87,7 +101,7 @@ A tibble with one row per bookmaker market available for the event:
    try(toa_event_markets(sport_key = 'basketball_nba',
                          event_id = '48db9c3293a52baab881d95d38f37a98',
                          regions = 'us'))
-#> ✖ 2026-06-09 08:16:23.002926: Invalid arguments or no markets data available for event 48db9c3293a52baab881d95d38f37a98!
+#> ✖ 2026-06-09 18:23:54.870673: Invalid arguments or no markets data available for event 48db9c3293a52baab881d95d38f37a98!
 #> ✖ Error:
 #> Error in `dplyr::rename()`:
 #> ! Can't rename columns that don't exist.

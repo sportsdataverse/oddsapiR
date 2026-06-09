@@ -1,14 +1,28 @@
-# 
-
 # **oddsapiR**
 
-To access the API, get a free API key from <https://the-odds-api.com>
+[**`oddsapiR`**](https://oddsapiR.sportsdataverse.org/) is an R package
+for accessing live and historical sports betting odds, scores, events,
+and participants from [**The Odds API**](https://the-odds-api.com/) —
+spanning dozens of sports and 60+ bookmakers worldwide. Every endpoint
+returns a clean, tidy `data.frame`/`tibble` ready for analysis, built on
+a single `httr2`-based request layer with automatic API-key handling and
+usage-quota tracking.
 
-Installation & Usage
+Part of the [SportsDataverse](https://sportsdataverse.org/) family of R
+& Python packages for sports analytics. To access the API, get a free
+API key at <https://the-odds-api.com>.
 
 ## **Installation**
 
-You can install the released version of
+You can install the CRAN version of
+[**`oddsapiR`**](https://CRAN.R-project.org/package=oddsapiR) with:
+
+``` r
+
+install.packages("oddsapiR")
+```
+
+You can install the development version of
 [**`oddsapiR`**](https://github.com/sportsdataverse/oddsapiR) from
 [GitHub](https://github.com/sportsdataverse/oddsapiR) with:
 
@@ -90,9 +104,29 @@ Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%
 [![GitHub
 stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20oddsapiR&maxAge=2592000)](https://github.com/sportsdataverse/oddsapiR/stargazers/)
 
+## **The SportsDataverse**
+
+`oddsapiR` is part of the
+[**SportsDataverse**](https://sportsdataverse.org/), a family of
+open-source R, Python, and Node.js packages for sports data. Related
+packages you can pair odds data with:
+
+| Package | Sport / Scope |
+|----|----|
+| [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) | College football |
+| [**hoopR**](https://hoopR.sportsdataverse.org/) | Men’s basketball (NBA & NCAA) |
+| [**wehoop**](https://wehoop.sportsdataverse.org/) | Women’s basketball (WNBA & NCAA) |
+| [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) | Hockey (NHL & PWHL) |
+| [**baseballr**](https://billpetti.github.io/baseballr/) | Baseball (MLB, MiLB, NCAA) |
+| [**sportsdataverse-R**](https://r.sportsdataverse.org/) | Umbrella R metapackage |
+| [**sportsdataverse-py**](https://py.sportsdataverse.org/) · [**sportsdataverse.js**](https://js.sportsdataverse.org/) | Python & Node.js |
+
+See the full ecosystem at
+[sportsdataverse.org](https://sportsdataverse.org/).
+
 ## **Our Authors**
 
-- [Saiem Gilani](https://twitter.com/saiemgilani)  
+- [Saiem Gilani](https://twitter.com/saiemgilani)
   [![@saiemgilani](https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=twitter&style=for-the-badge)](https://twitter.com/saiemgilani)
   [![@saiemgilani](https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge)](https://github.com/saiemgilani)
 

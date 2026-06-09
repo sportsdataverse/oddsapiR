@@ -28,14 +28,30 @@ A one-row tibble with columns `requests_remaining`, `requests_used` and
 `requests_last`, or `NULL` if no API call has been made yet this
 session.
 
+## See also
+
+[`toa_requests()`](https://oddsapiR.sportsdataverse.org/reference/toa_requests.md)
+to explicitly query usage via an API round-trip,
+[`toa_key()`](https://oddsapiR.sportsdataverse.org/reference/register_toa.md)
+/
+[register_toa](https://oddsapiR.sportsdataverse.org/reference/register_toa.md)
+to set up your API key, and
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md)
+for your first data call. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Account & Usage:
+[`register_toa`](https://oddsapiR.sportsdataverse.org/reference/register_toa.md),
+[`toa_requests()`](https://oddsapiR.sportsdataverse.org/reference/toa_requests.md)
+
 ## Examples
 
 ``` r
 # \donttest{
   try(toa_sports())
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-09 08:16:23 UTC
-#> ℹ Odds API quota: 39 used, 461 remaining (last call cost 0)
+#> ℹ Data updated: 2026-06-09 18:23:55 UTC
+#> ℹ Odds API quota: 146 used, 354 remaining (last call cost 0)
 #> # A tibble: 165 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        
@@ -48,12 +64,12 @@ session.
 #>  7 americanfootball_ufl     Amer… UFL   United Foo… TRUE   FALSE        
 #>  8 aussierules_afl          Auss… AFL   Aussie Foo… TRUE   FALSE        
 #>  9 baseball_kbo             Base… KBO   KBO League  TRUE   FALSE        
-#> 10 baseball_milb            Base… MiLB  Minor Leag… FALSE  FALSE        
+#> 10 baseball_milb            Base… MiLB  Minor Leag… TRUE   FALSE        
 #> # ℹ 155 more rows
   try(toa_quota())
 #> # A tibble: 1 × 3
 #>   requests_remaining requests_used requests_last
 #>                <int>         <int>         <int>
-#> 1                461            39             0
+#> 1                354           146             0
 # }
 ```

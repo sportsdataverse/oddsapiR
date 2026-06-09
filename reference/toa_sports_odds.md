@@ -90,6 +90,20 @@ A long-format tibble with one row per bookmaker market outcome:
 | outcomes_price | numeric | The price/odds for the outcome. |
 | outcomes_point | numeric | The handicap/total line, when applicable. |
 
+## See also
+
+[`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md)
+for a single event's odds (including player props and alternate lines),
+[`toa_event_markets()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.md)
+to list a game's available market keys, and
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md)
+to find `sport_key` values. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Odds & Markets:
+[`toa_event_markets()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.md),
+[`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md)
+
 ## Examples
 
 ``` r
@@ -100,8 +114,8 @@ A long-format tibble with one row per bookmaker market outcome:
                        odds_format = 'decimal',
                        date_format = 'iso'))
 #> ── Sports Odds data from the-odds-api.com ──────────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-09 08:16:25 UTC
-#> ℹ Odds API quota: 40 used, 460 remaining (last call cost 1)
+#> ℹ Data updated: 2026-06-09 18:23:57 UTC
+#> ℹ Odds API quota: 147 used, 353 remaining (last call cost 1)
 #> # A tibble: 16 × 14
 #>    id            sport_key sport_title commence_time home_team away_team
 #>    <chr>         <chr>     <chr>       <chr>         <chr>     <chr>    

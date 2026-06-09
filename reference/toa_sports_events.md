@@ -73,14 +73,29 @@ A tibble with one row per event:
 | home_rotation | integer | Home rotation number (only when `include_rotation_numbers = TRUE`). |
 | away_rotation | integer | Away rotation number (only when `include_rotation_numbers = TRUE`). |
 
+## See also
+
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md)
+to discover `sport_key` values,
+[`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md)
+to pull odds for a specific event by its `id`, and
+[`toa_event_markets()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.md)
+to see available market keys per bookmaker. Part of the
+[SportsDataverse](https://sportsdataverse.org/).
+
+Other The Odds API: Sports & Events:
+[`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.md),
+[`toa_sports_participants()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_participants.md),
+[`toa_sports_scores()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_scores.md)
+
 ## Examples
 
 ``` r
 # \donttest{
    try(toa_sports_events(sport_key = 'basketball_nba'))
 #> ── Sports Events data from the-odds-api.com ────────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-09 08:16:24 UTC
-#> ℹ Odds API quota: 39 used, 461 remaining (last call cost 0)
+#> ℹ Data updated: 2026-06-09 18:23:56 UTC
+#> ℹ Odds API quota: 146 used, 354 remaining (last call cost 0)
 #> # A tibble: 1 × 6
 #>   id             sport_key sport_title commence_time home_team away_team
 #>   <chr>          <chr>     <chr>       <chr>         <chr>     <chr>    

@@ -53,6 +53,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown--articles">
 <li><a class="dropdown-item" href="articles/index.html">Vignettes</a></li>
     <li><a class="dropdown-item" href="articles/oddsapiR.html">oddsapiR beginner's guide</a></li>
+    <li><a class="dropdown-item" href="articles/building-an-odds-pipeline.html">Building a sports-odds pipeline</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="news/index.html"><span class="fa fas fa-newspaper"></span>  News</a></li>
@@ -66,21 +67,27 @@
     <li><a class="external-link dropdown-item" href="https://cfbfastR.sportsdataverse.org/">cfbfastR</a></li>
     <li><a class="external-link dropdown-item" href="https://hoopR.sportsdataverse.org/">hoopR</a></li>
     <li><a class="external-link dropdown-item" href="https://wehoop.sportsdataverse.org/">wehoop</a></li>
-    <li><a class="external-link dropdown-item" href="https://torvik.dev/">toRvik</a></li>
     <li><a class="external-link dropdown-item" href="https://fastRhockey.sportsdataverse.org/">fastRhockey</a></li>
+    <li><a class="external-link dropdown-item" href="https://abhiamishra.github.io/ggshakeR/">ggshakeR</a></li>
     <li><a class="external-link dropdown-item" href="https://BillPetti.github.io/baseballr/">baseballr</a></li>
-    <li><a class="external-link dropdown-item" href="https://jaseziv.github.io/worldfootballR/">worldfootballR</a></li>
+    <li><a class="external-link dropdown-item" href="https://usfootballR.sportsdataverse.org/">usfootballR</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/Dato-Futbol/soccerAnimate/">soccerAnimate</a></li>
     <li><a class="external-link dropdown-item" href="https://jaseziv.github.io/chessR/">chessR</a></li>
+    <li><a class="dropdown-item" href="https://oddsapiR.sportsdataverse.org/">oddsapiR</a></li>
     <li><a class="external-link dropdown-item" href="https://sportyR.sportsdataverse.org/">sportyR</a></li>
-    <li><a class="external-link dropdown-item" href="https://kazink36.github.io/cfbplotR/">cfbplotR</a></li>
-    <li><a class="external-link dropdown-item" href="https://kazink36.github.io/cfb4th/">cfb4th</a></li>
-    <li><a class="external-link dropdown-item" href="https://github.com/camdenk/mlbplotR">mlbplotR</a></li>
+    <li><a class="external-link dropdown-item" href="https://cfbplotR.sportsdataverse.org/">cfbplotR</a></li>
+    <li><a class="external-link dropdown-item" href="https://camdenk.github.io/mlbplotR/">mlbplotR</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/sportsdataverse/softballR/">softballR</a></li>
+    <li><a class="external-link dropdown-item" href="https://cfb4th.sportsdataverse.org/">cfb4th</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslR/">nwslR</a></li>
     <li><a class="external-link dropdown-item" href="https://recruitr.sportsdataverse.org/">recruitR</a></li>
-    <li><a class="external-link dropdown-item" href="https://jacklich10.github.io/gamezoneR/">gamezoneR</a></li>
     <li><a class="external-link dropdown-item" href="https://puntalytics.github.io/puntr/">puntr</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Python Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://py.sportsdataverse.org/">sportsdataverse-py</a></li>
+    <li><a class="external-link dropdown-item" href="https://sportypy.sportsdataverse.org/">sportypy</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/nwslR/nwslpy/">nwslpy</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/nathanblumenfeld/collegebaseball/">collegebaseball</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Node.js Packages</h6></li>
     <li><a class="external-link dropdown-item" href="https://js.sportsdataverse.org/">sportsdataverse.js</a></li>
@@ -100,44 +107,39 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="section"></h1>
-</div>
-</div>
-<div class="section level1">
-<h1 id="oddsapir-">
+<img src="logo.png" class="logo" alt=""><h1 id="oddsapir-">
 <strong>oddsapiR</strong> 
 <a class="anchor" aria-label="anchor" href="#oddsapir-"></a>
 </h1>
+</div>
 <!-- badges: start -->
 
-<!-- badges: end -->
-<p>To access the API, get a free API key from <a href="https://the-odds-api.com" class="external-link uri">https://the-odds-api.com</a></p>
-<p>Installation &amp; Usage</p>
+<p><a href="https://oddsapiR.sportsdataverse.org/"><strong><code>oddsapiR</code></strong></a> is an R package for accessing live and historical sports betting odds, scores, events, and participants from <a href="https://the-odds-api.com/" class="external-link"><strong>The Odds API</strong></a> — spanning dozens of sports and 60+ bookmakers worldwide. Every endpoint returns a clean, tidy <code>data.frame</code>/<code>tibble</code> ready for analysis, built on a single <code>httr2</code>-based request layer with automatic API-key handling and usage-quota tracking.</p>
+<p>Part of the <a href="https://sportsdataverse.org/" class="external-link">SportsDataverse</a> family of R &amp; Python packages for sports analytics. To access the API, get a free API key at <a href="https://the-odds-api.com" class="external-link uri">https://the-odds-api.com</a>.</p>
 <div class="section level2">
 <h2 id="installation">
 <strong>Installation</strong><a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<!-- You can install the CRAN version of [**```oddsapiR```** ](https://CRAN.R-project.org/package=oddsapiR) with: -->
-<!-- ```{r readme_cran_install, eval=FALSE} -->
-<!-- install.packages("oddsapiR") -->
-<!-- ``` -->
-<p>You can install the released version of <a href="https://github.com/sportsdataverse/oddsapiR" class="external-link"><strong><code>oddsapiR</code></strong></a> from <a href="https://github.com/sportsdataverse/oddsapiR" class="external-link">GitHub</a> with:</p>
+<p>You can install the CRAN version of <a href="https://CRAN.R-project.org/package=oddsapiR" class="external-link"><strong><code>oddsapiR</code></strong></a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"oddsapiR"</span><span class="op">)</span></span></code></pre></div>
+<p>You can install the development version of <a href="https://github.com/sportsdataverse/oddsapiR" class="external-link"><strong><code>oddsapiR</code></strong></a> from <a href="https://github.com/sportsdataverse/oddsapiR" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># using the pak package (recommended):</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'pak'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'pak'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"sportsdataverse/oddsapiR"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># or using the devtools package:</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">'devtools'</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span>repo <span class="op">=</span> <span class="st">"sportsdataverse/oddsapiR"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># or clone and install locally</span></span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>sportsdataverse<span class="sc">/</span>oddsapiR</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>cd oddsapiR</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>Rscript <span class="sc">-</span>e <span class="st">"pak::local_install()"</span>  <span class="co"># or: Rscript -e "devtools::install()"</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># or clone and install locally</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>git clone https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>sportsdataverse<span class="sc">/</span>oddsapiR</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>cd oddsapiR</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>Rscript <span class="sc">-</span>e <span class="st">"pak::local_install()"</span>  <span class="co"># or: Rscript -e "devtools::install()"</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="odds-api-keys">
 <strong>Odds API Keys</strong><a class="anchor" aria-label="anchor" href="#odds-api-keys"></a>
@@ -146,13 +148,13 @@
 <ul>
 <li>Using the key: You can save the key for consistent usage by adding <code>ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX</code> to your .Renviron file (easily accessed via <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>). Run <a href="https://usethis.r-lib.org/reference/edit.html" class="external-link"><strong><code>usethis::edit_r_environ()</code></strong></a>, a new script will pop open named <code>.Renviron</code>, <strong>THEN</strong> paste the following in the new script that pops up (with<strong>out</strong> quotations)</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ODDS_API_KEY</span> <span class="op">=</span> <span class="va">XXXX</span><span class="op">-</span><span class="va">YOUR</span><span class="op">-</span><span class="va">API</span><span class="op">-</span><span class="va">KEY</span><span class="op">-</span><span class="va">HERE</span><span class="op">-</span><span class="va">XXXXX</span></span></code></pre></div>
 <p>Save the script and <strong>restart your RStudio session</strong>, by clicking <code>Session</code> (in between <code>Plots</code> and <code>Build</code>) and click <code>Restart R</code> (there also exists the shortcut <code>Ctrl + Shift + F10</code> to restart your session). If set correctly, from then on you should be able to use any of the functions without any other changes.</p>
 <ul>
 <li>For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable <code>ODDS_API_KEY</code> (with quotations) using a command like the following.</li>
 </ul>
-<!-- end list --><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<!-- end list --><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>ODDS_API_KEY <span class="op">=</span> <span class="st">"XXXX-YOUR-API-KEY-HERE-XXXXX"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -175,12 +177,61 @@
 <p><a href="https://github.com/sportsdataverse/oddsapiR/stargazers/" class="external-link"><img src="https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=eee&amp;logo=github&amp;style=for-the-badge&amp;label=Star%20oddsapiR&amp;maxAge=2592000" alt="GitHub stars"></a></p>
 </div>
 <div class="section level2">
+<h2 id="the-sportsdataverse">
+<strong>The SportsDataverse</strong><a class="anchor" aria-label="anchor" href="#the-sportsdataverse"></a>
+</h2>
+<p><code>oddsapiR</code> is part of the <a href="https://sportsdataverse.org/" class="external-link"><strong>SportsDataverse</strong></a>, a family of open-source R, Python, and Node.js packages for sports data. Related packages you can pair odds data with:</p>
+<table class="table">
+<colgroup>
+<col width="78%">
+<col width="21%">
+</colgroup>
+<thead><tr>
+<th>Package</th>
+<th>Sport / Scope</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><a href="https://cfbfastR.sportsdataverse.org/" class="external-link"><strong>cfbfastR</strong></a></td>
+<td>College football</td>
+</tr>
+<tr>
+<td><a href="https://hoopR.sportsdataverse.org/" class="external-link"><strong>hoopR</strong></a></td>
+<td>Men’s basketball (NBA &amp; NCAA)</td>
+</tr>
+<tr>
+<td><a href="https://wehoop.sportsdataverse.org/" class="external-link"><strong>wehoop</strong></a></td>
+<td>Women’s basketball (WNBA &amp; NCAA)</td>
+</tr>
+<tr>
+<td><a href="https://fastRhockey.sportsdataverse.org/" class="external-link"><strong>fastRhockey</strong></a></td>
+<td>Hockey (NHL &amp; PWHL)</td>
+</tr>
+<tr>
+<td><a href="https://billpetti.github.io/baseballr/" class="external-link"><strong>baseballr</strong></a></td>
+<td>Baseball (MLB, MiLB, NCAA)</td>
+</tr>
+<tr>
+<td><a href="https://r.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-R</strong></a></td>
+<td>Umbrella R metapackage</td>
+</tr>
+<tr>
+<td>
+<a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a> · <a href="https://js.sportsdataverse.org/" class="external-link"><strong>sportsdataverse.js</strong></a>
+</td>
+<td>Python &amp; Node.js</td>
+</tr>
+</tbody>
+</table>
+<p>See the full ecosystem at <a href="https://sportsdataverse.org/" class="external-link">sportsdataverse.org</a>.</p>
+</div>
+<div class="section level2">
 <h2 id="our-authors">
 <strong>Our Authors</strong><a class="anchor" aria-label="anchor" href="#our-authors"></a>
 </h2>
 <ul>
 <li>
-<a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a><br><a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a> <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a> <a href="https://twitter.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge" alt="@saiemgilani"></a> <a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
 </li>
 </ul>
 </div>
@@ -190,15 +241,14 @@
 </h2>
 <p>To cite the <a href="https://oddsapiR.sportsdataverse.org"><strong><code>oddsapiR</code></strong></a> R package in publications, use:</p>
 <p>BibTex Citation</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">gilani_2022_oddsapiR</span>,</span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="dt">author</span> = {Gilani, Saiem},</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="dt">title</span> = {oddsapiR: The SportsDataverse's R Package for The Odds API.},</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://oddsapiR.sportsdataverse.org},</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="dt">year</span> = {2022}</span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">gilani_2022_oddsapiR</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="dt">author</span> = {Gilani, Saiem},</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="dt">title</span> = {oddsapiR: The SportsDataverse's R Package for The Odds API.},</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://oddsapiR.sportsdataverse.org},</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="dt">year</span> = {2022}</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
-
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
