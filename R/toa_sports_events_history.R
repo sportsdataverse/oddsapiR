@@ -52,6 +52,11 @@
 #' @importFrom dplyr as_tibble mutate
 #' @importFrom rlang .data
 #' @export
+#' @family The Odds API: Historical
+#' @seealso [toa_event_odds_history()] to pull odds for a historical event by
+#'   its `id`, [toa_sports_odds_history()] for featured-market odds at a
+#'   historical snapshot, and [toa_sports_events()] for current events. Part of
+#'   the \href{https://sportsdataverse.org/}{SportsDataverse}.
 #' @examples \donttest{
 #'    try(toa_sports_events_history(sport_key = 'basketball_nba',
 #'                                  date = '2024-01-15T12:15:00Z'))

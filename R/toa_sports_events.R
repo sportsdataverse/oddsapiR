@@ -41,6 +41,11 @@
 #' @importFrom dplyr as_tibble
 #' @importFrom rlang .data
 #' @export
+#' @family The Odds API: Sports & Events
+#' @seealso [toa_sports()] to discover `sport_key` values, [toa_event_odds()]
+#'   to pull odds for a specific event by its `id`, and [toa_event_markets()]
+#'   to see available market keys per bookmaker. Part of the
+#'   \href{https://sportsdataverse.org/}{SportsDataverse}.
 #' @examples \donttest{
 #'    try(toa_sports_events(sport_key = 'basketball_nba'))
 #' }

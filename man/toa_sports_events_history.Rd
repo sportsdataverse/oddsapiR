@@ -73,4 +73,15 @@ Historical data is available on paid usage plans from June 2020.
                                  date = '2024-01-15T12:15:00Z'))
 }
 }
+\seealso{
+\code{\link[=toa_event_odds_history]{toa_event_odds_history()}} to pull odds for a historical event by
+its \code{id}, \code{\link[=toa_sports_odds_history]{toa_sports_odds_history()}} for featured-market odds at a
+historical snapshot, and \code{\link[=toa_sports_events]{toa_sports_events()}} for current events. Part of
+the \href{https://sportsdataverse.org/}{SportsDataverse}.
+
+Other The Odds API: Historical: 
+\code{\link{toa_event_odds_history}()},
+\code{\link{toa_sports_odds_history}()}
+}
+\concept{The Odds API: Historical}
 \keyword{Events}

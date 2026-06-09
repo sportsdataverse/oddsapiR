@@ -55,6 +55,11 @@
 #' @importFrom rlang .data
 #' @import tidyr
 #' @export
+#' @family The Odds API: Odds & Markets
+#' @seealso [toa_event_odds()] for a single event's odds (including player props
+#'   and alternate lines), [toa_event_markets()] to list a game's available
+#'   market keys, and [toa_sports()] to find `sport_key` values. Part of the
+#'   \href{https://sportsdataverse.org/}{SportsDataverse}.
 #' @examples \donttest{
 #'    try(toa_sports_odds(sport_key = 'basketball_nba',
 #'                        regions = 'us',

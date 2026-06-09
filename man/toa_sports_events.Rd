@@ -59,4 +59,16 @@ Returns a list of events without odds. The \code{id} returned here is the
    try(toa_sports_events(sport_key = 'basketball_nba'))
 }
 }
+\seealso{
+\code{\link[=toa_sports]{toa_sports()}} to discover \code{sport_key} values, \code{\link[=toa_event_odds]{toa_event_odds()}}
+to pull odds for a specific event by its \code{id}, and \code{\link[=toa_event_markets]{toa_event_markets()}}
+to see available market keys per bookmaker. Part of the
+\href{https://sportsdataverse.org/}{SportsDataverse}.
+
+Other The Odds API: Sports & Events: 
+\code{\link{toa_sports}()},
+\code{\link{toa_sports_participants}()},
+\code{\link{toa_sports_scores}()}
+}
+\concept{The Odds API: Sports & Events}
 \keyword{Events}

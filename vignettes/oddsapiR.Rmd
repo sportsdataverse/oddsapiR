@@ -2,7 +2,7 @@
 title: "Getting started with oddsapiR"
 author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
-  image: 
+  image:
     src: "https://github.com/saiemgilani/oddsapiR/blob/main/logo.png?raw=true"
   twitter:
     card: summary
@@ -14,7 +14,7 @@ output: html_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.width=16, 
+  fig.width=16,
   fig.height=8
 )
 library(gtExtras)
@@ -27,7 +27,10 @@ Welcome folks,
 
 I'm Saiem Gilani, one of the [authors](https://saiemgilani.github.io/oddsapiR/authors.html "Authors and contributors to oddsapiR") of [`oddsapiR`](https://saiemgilani.github.io/oddsapiR/), and I hope to give the community a high-quality resource for accessing [**`The Odds API`**](https://the-odds-api.com/).
 
+`oddsapiR` provides a tidy R interface to [The Odds API](https://the-odds-api.com), covering sports discovery, events, live and historical odds, scores, and quota management. All functions return [`oddsapiR_data`](https://oddsapiR.sportsdataverse.org/reference/index.html) tibbles with quota metadata attached as attributes.
+
 ## **Install** [**`oddsapiR`**](https://saiemgilani.github.io/oddsapiR/)
+
 ```{r install_oddsapiR_gs, message=FALSE,eval=FALSE}
 # You can install using the pacman package using the following code:
 if (!requireNamespace('pacman', quietly = TRUE)){
@@ -39,73 +42,376 @@ pacman::p_load(dplyr, knitr, gt)
 ```
 
 
-#### **Odds API Keys**
+## **Odds API Keys**
 
 The [Odds API](https://the-odds-api.com) requires an API key, here's a quick run-down:
 
-* Using the key: You can save the key for consistent usage by adding `ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your .Renviron file (easily accessed via [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)). Run [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html), a new script will pop open named `.Renviron`, **THEN** paste the following in the new script that pops up (with**out** quotations)
+* **Persistent usage:** Save the key for consistent usage by adding `ODDS_API_KEY=XXXX-YOUR-API-KEY-HERE-XXXXX` to your `.Renviron` file (easily accessed via [**`usethis::edit_r_environ()`**](https://usethis.r-lib.org/reference/edit.html)). Run `usethis::edit_r_environ()`, a new script will pop open named `.Renviron`, **THEN** paste the following in the new script that pops up (with**out** quotations):
+
 ```r
 ODDS_API_KEY = XXXX-YOUR-API-KEY-HERE-XXXXX
 ```
+
 Save the script and **restart your RStudio session**, by clicking `Session` (in between `Plots` and `Build`) and click `Restart R` (there also exists the shortcut `Ctrl + Shift + F10` to restart your session). If set correctly, from then on you should be able to use any of the functions without any other changes.
 
-* For less consistent usage: At the beginning of every session or within an R environment, save your API key as the environment variable `ODDS_API_KEY` (with quotations) using a command like the following.
+* **Session-level usage:** At the beginning of every session or within an R environment, save your API key as the environment variable `ODDS_API_KEY` (with quotations) using a command like the following.
 
 ```{r setenv_ex, message=FALSE, eval = FALSE}
 Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
 
+The helper functions `toa_key()`, `has_toa_key()`, and `check_toa_key()` let you inspect the key at any point.  `has_toa_key()` returns `TRUE`/`FALSE`; `check_toa_key()` stops with a helpful message when no key is found.
+
+```{r key_helpers, eval=FALSE}
+has_toa_key()      # TRUE / FALSE
+toa_key()          # the raw key string (or NA)
+check_toa_key()    # errors loudly if key is missing
+```
 
 
-### **The included data**
+## **How oddsapiR talks to The Odds API**
 
-```toa_sports_keys``` - The sports for which `The Odds API` provides coverage
+Every `toa_*()` function calls the same underlying HTTP layer in `R/utils.R`:
+
+1. **`toa_api_request(url, query)`** — builds an `httr2` request, attaches a standard user-agent (`oddsapiR/...`), applies a 3-try retry policy on transient network failures, and calls `httr2::req_perform()`.
+2. **`toa_api_call(url, query)`** — wraps `toa_api_request()`, reads the response body as a string, and parses it with `jsonlite::fromJSON()`. Used by every odds/events/scores endpoint.
+3. **`toa_api_headers(url, query)`** — wraps `toa_api_request()` and reads only the `x-requests-remaining` / `x-requests-used` headers. Used by `toa_requests()`.
+
+The base URL pattern for v4 is:
+
+```
+https://api.the-odds-api.com/v4/sports/{sport_key}/odds
+                                                  /events
+                                                  /participants
+                                                  /scores
+https://api.the-odds-api.com/v4/historical/sports/{sport_key}/odds
+                                                             /events
+```
+
+The API key is passed as the `apiKey` query parameter in every request.
+
+### **Quota tracking**
+
+Every successful response from The Odds API includes three headers:
+
+| Header | Meaning |
+|:---|:---|
+| `x-requests-remaining` | Credits remaining until the monthly quota resets |
+| `x-requests-used` | Credits consumed since the last quota reset |
+| `x-requests-last` | Cost of the most recent call |
+
+`oddsapiR` caches these after every call in a package-private environment (`.oddsapiR`). They are also attached as attributes to every returned tibble so they travel with the data:
+
+```{r quota_attrs, eval=FALSE}
+odds <- toa_sports_odds(sport_key = 'basketball_nba', regions = 'us', markets = 'h2h')
+
+# Inspect quota without making another call
+toa_quota()
+# # A tibble: 1 x 3
+# requests_remaining requests_used requests_last
+#              <int>         <int>         <int>
+#               9850           150             1
+
+attr(odds, "oddsapiR_requests_remaining")
+attr(odds, "oddsapiR_requests_used")
+attr(odds, "oddsapiR_requests_last")
+```
+
+The `print.oddsapiR_data()` method echoes these values when you print any result.
+
+### **Key parameters: regions, markets, odds_format**
+
+Most odds endpoints accept these three shared parameters:
+
+* **`regions`** — which bookmakers to include: `"us"`, `"us2"`, `"uk"`, `"eu"`, `"au"`. Comma-separate for multiple (`"us,uk"`). Each region counts as 1 unit in the usage quota multiplier.
+* **`markets`** — which betting lines to return: `"h2h"` (moneyline), `"spreads"` (point handicap), `"totals"` (over/under), `"outrights"` (futures). Comma-separate for multiple (`"h2h,spreads"`). Each market counts as 1 unit in the quota multiplier.
+* **`odds_format`** — `"decimal"` (default) or `"american"`.
+
+**Quota cost** for `toa_sports_odds()` = number of markets × number of regions. So pulling `"h2h,spreads,totals"` across `"us,uk"` costs 3 × 2 = 6 credits.
+
+### **Historical endpoints and the snapshot model**
+
+`toa_sports_odds_history()`, `toa_sports_events_history()`, and `toa_event_odds_history()` operate on a snapshot model: you supply an ISO 8601 `date` timestamp and the API returns the state of the data at the closest snapshot equal to or earlier than that time. The response always includes `timestamp`, `previous_timestamp`, and `next_timestamp` columns so you can page through the archive programmatically.
+
+
+## **The included data**
+
+`toa_sports_keys` is a bundled data frame listing all sports the API covers. This data requires no API key and no network access — it is included in the package:
+
 ```{r toa_sports_keys_table}
 oddsapiR::toa_sports_keys %>%
-  gt() %>% 
+  gt() %>%
   gtExtras::gt_theme_538(table.width = px(650))
-
 ```
 
-### **Three core functions**
-One endpoint for looking up the sports the API provides (including currently `active` status): ```toa_sports```
-```{r toa_sports_call}
 
-oddsapiR::toa_sports(all_sports = TRUE) %>%
-  head(n=10) %>% 
-  gt() %>% 
-  gtExtras::gt_theme_538(table.width = px(550))
+## **Function reference by family**
 
+### **Sports & Events**
+
+#### `toa_sports()` — Discover active sports
+
+Returns all sports the API covers (or only in-season ones). The `key` column is the `sport_key` parameter used by every other function. Free — does not count against your quota.
+
+```{r toa_sports_call, eval=FALSE}
+sports <- toa_sports(all_sports = TRUE)
+# Returns a tibble with columns:
+#   key, group, title, description, active, has_outrights
+#
+# key              group                title         active
+# basketball_nba   Basketball           NBA           TRUE
+# soccer_epl       Soccer               EPL           TRUE
+# ...
 ```
 
-One endpoint for looking up the current odds from the API: ```toa_sports_odds```
-```{r toa_sports_odds_call}
-oddsapiR::toa_sports_odds(sport_key = 'basketball_nba', 
-                          regions = 'us', 
-                          markets = 'spreads', 
-                          odds_format = 'decimal',
-                          date_format = 'iso') %>% 
-  dplyr::select(c("bookmaker","market_key", "outcomes_name","outcomes_price","outcomes_point","home_team","away_team","commence_time")) %>% 
-  head(n=20) %>% 
-  knitr::kable()
-```
-Note: There are two entries per event per bookmaker for the spreads for both sides of the event.
+#### `toa_sports_events()` — List upcoming events for a sport
 
-One endpoint for looking up the current scores from the API: ```toa_sports_scores```
-```{r toa_sports_scores_call}
-oddsapiR::toa_sports_scores(sport_key = 'basketball_nba', 
-                            days_from = NULL,
-                            date_format = 'iso') %>% 
-  head(n=20) %>% 
-  knitr::kable()
+Returns upcoming and in-play events (without odds). The `id` column from this result is the `event_id` used by `toa_event_odds()` and `toa_event_markets()`. Free — does not count against your quota.
 
+```{r toa_sports_events_call, eval=FALSE}
+events <- toa_sports_events(
+  sport_key          = 'basketball_nba',
+  date_format        = 'iso',
+  commence_time_from = '2025-01-15T00:00:00Z',
+  commence_time_to   = '2025-01-16T00:00:00Z'
+)
+# Returns a tibble: id, sport_key, sport_title, commence_time, home_team, away_team
+#
+# id                                sport_key       home_team          away_team
+# 48db9c3293a52baab881d95d38f37a98  basketball_nba  Los Angeles Lakers  Boston Celtics
 ```
 
+#### `toa_sports_participants()` — List participants (teams or players) for a sport
+
+Returns the whitelist of teams or individual competitors for a sport. Cost: 1 credit.
+
+```{r toa_sports_participants_call, eval=FALSE}
+participants <- toa_sports_participants(sport_key = 'basketball_nba')
+# Returns a tibble: sport_key, id, full_name
+#
+# sport_key       id                              full_name
+# basketball_nba  par_01hqmkq6fdf1pvq7jgdd7hdmpf  Los Angeles Lakers
+# basketball_nba  par_01hqmkq6fdf1pvq7jgdd7hdmpe  Boston Celtics
+```
+
+#### `toa_sports_scores()` — Live and recent scores
+
+Returns live and recently completed games with scores (updated ~30s for live games; covers completed games within the last 3 days). Cost: 1 credit without `days_from`, 2 credits with it.
+
+```{r toa_sports_scores_call, eval=FALSE}
+scores <- toa_sports_scores(
+  sport_key   = 'basketball_nba',
+  days_from   = 1,          # include games completed in the last 1 day
+  date_format = 'iso'
+)
+# Returns a tibble:
+#   id, sport_key, sport_title, commence_time, completed, home_team, away_team,
+#   scores (list-col of name/score pairs), last_update
+```
+
+
+### **Current Odds & Markets**
+
+#### `toa_sports_odds()` — Featured-market odds across all events for a sport
+
+The primary odds endpoint. Returns a **long-format** tibble — one row per (event, bookmaker, market, outcome). Cost = markets × regions.
+
+```{r toa_sports_odds_call, eval=FALSE}
+odds <- toa_sports_odds(
+  sport_key   = 'basketball_nba',
+  regions     = 'us',
+  markets     = 'h2h,spreads,totals',
+  odds_format = 'decimal',
+  date_format = 'iso'
+)
+# Returns columns:
+#   id, sport_key, sport_title, commence_time, home_team, away_team,
+#   bookmaker_key, bookmaker, bookmaker_last_update,
+#   market_key, market_last_update,
+#   outcomes_name, outcomes_price, outcomes_point
+#
+# Note: spreads and totals have TWO rows per event per bookmaker
+#       (one for each side / Over / Under).
+```
+
+#### `toa_event_odds()` — Full market depth for a single event
+
+Like `toa_sports_odds()` but scoped to one game and supports **all** available market keys, including player props (`player_points`, `player_pass_tds`, `player_shots_on_goal`, etc.) and alternate lines. Look up `event_id` first with `toa_sports_events()`.
+
+```{r toa_event_odds_call, eval=FALSE}
+event_odds <- toa_event_odds(
+  sport_key   = 'basketball_nba',
+  event_id    = '48db9c3293a52baab881d95d38f37a98',
+  regions     = 'us',
+  markets     = 'player_points',   # player props
+  odds_format = 'decimal',
+  date_format = 'iso'
+)
+# Adds outcomes_description column (player name for props)
+```
+
+You can also target specific bookmakers with the `bookmakers` parameter (comma-separated slugs like `"draftkings,fanduel"`). When `bookmakers` and `regions` are both supplied, `bookmakers` takes precedence.
+
+#### `toa_event_markets()` — Discover available market keys for a game
+
+Returns the recently-seen market keys per bookmaker for a single event (no odds). Use the returned `market_key` values to then request odds via `toa_event_odds()`. Cost: 1 credit.
+
+```{r toa_event_markets_call, eval=FALSE}
+markets <- toa_event_markets(
+  sport_key = 'basketball_nba',
+  event_id  = '48db9c3293a52baab881d95d38f37a98',
+  regions   = 'us'
+)
+# Returns: id, sport_key, sport_title, commence_time, home_team, away_team,
+#          bookmaker_key, bookmaker, market_key, market_last_update
+#
+# Typical market_key values: h2h, spreads, totals, player_points,
+#                             player_rebounds, player_assists, ...
+```
+
+
+### **Historical Odds & Events (paid plans)**
+
+Historical endpoints return the API state at a point in time. All three accept an ISO 8601 `date` string and respond with the snapshot closest to (and not after) that time. The `timestamp`, `previous_timestamp`, and `next_timestamp` columns in the result let you page through the archive.
+
+Historical data covers featured markets back to June 2020, and additional markets (props, alternate lines) from 2023-05-03 at 5-minute intervals.
+
+#### `toa_sports_odds_history()` — Historical featured-market odds for a sport
+
+```{r toa_sports_odds_history_call, eval=FALSE}
+hist_odds <- toa_sports_odds_history(
+  sport_key   = 'basketball_nba',
+  date        = '2024-01-15T12:15:00Z',
+  regions     = 'us',
+  markets     = 'spreads',
+  odds_format = 'decimal',
+  date_format = 'iso'
+)
+# Returns same columns as toa_sports_odds() plus:
+#   timestamp, previous_timestamp, next_timestamp
+#
+# Cost: 10 x markets x regions (10x historical multiplier)
+```
+
+#### `toa_sports_events_history()` — Historical event list (no odds)
+
+```{r toa_sports_events_history_call, eval=FALSE}
+hist_events <- toa_sports_events_history(
+  sport_key = 'basketball_nba',
+  date      = '2024-01-15T12:15:00Z'
+)
+# Returns same columns as toa_sports_events() plus:
+#   timestamp, previous_timestamp, next_timestamp
+#
+# Cost: 1 credit
+```
+
+#### `toa_event_odds_history()` — Historical odds for a single event
+
+Like `toa_event_odds()` for a specific snapshot time. Accepts player props and alternate markets.
+
+```{r toa_event_odds_history_call, eval=FALSE}
+hist_event_odds <- toa_event_odds_history(
+  sport_key   = 'basketball_nba',
+  event_id    = '93af4b300a4c0dded909234ea32e9abd',
+  date        = '2024-01-15T12:15:00Z',
+  regions     = 'us',
+  markets     = 'h2h',
+  odds_format = 'decimal',
+  date_format = 'iso'
+)
+# Returns same columns as toa_event_odds() plus:
+#   timestamp, previous_timestamp, next_timestamp
+#
+# Cost: markets x regions (standard rate, no 10x multiplier for event-level)
+```
+
+
+### **Account & Usage**
+
+#### `toa_quota()` — Inspect your current quota balance
+
+Returns a one-row tibble read from the headers of the **most recent** API call made in this R session. Calling `toa_quota()` does not itself use a quota credit.
+
+```{r toa_quota_call, eval=FALSE}
+# After any toa_* call:
+toa_quota()
+# # A tibble: 1 x 3
+#   requests_remaining requests_used requests_last
+#                <int>         <int>         <int>
+#                 9850           150             1
+```
+
+#### `toa_requests()` — Fetch quota from the API directly
+
+Hits the free `/v4/sports` endpoint specifically to read the current quota balance from the response headers. Use this at the start of a session to check your budget before pulling odds.
+
+```{r toa_requests_call, eval=FALSE}
+toa_requests()
+# # A tibble: 1 x 2
+#   requests_remaining requests_used
+#                <int>         <int>
+#                 9850           150
+```
+
+#### Key helpers: `toa_key()`, `has_toa_key()`, `check_toa_key()`
+
+```{r key_helpers2, eval=FALSE}
+toa_key()         # Returns the ODDS_API_KEY env var or NA_character_
+has_toa_key()     # Returns TRUE if key is set, FALSE otherwise
+check_toa_key()   # Stops with a clear error if key is missing
+```
+
+
+## **Worked example — pulling moneyline odds**
+
+This minimal example shows the basic pattern: check quota first, pull odds, inspect the result.
+
+```{r worked_example, eval=FALSE}
+library(oddsapiR)
+library(dplyr)
+
+# 1. Verify a key exists and check starting budget
+check_toa_key()
+toa_requests()
+# requests_remaining = 500, requests_used = 0
+
+# 2. Pull moneyline (h2h) odds for the NBA from US books
+nba_h2h <- toa_sports_odds(
+  sport_key   = "basketball_nba",
+  regions     = "us",
+  markets     = "h2h",
+  odds_format = "decimal",
+  date_format = "iso"
+)
+
+# 3. Inspect: one row per (event x bookmaker x outcome)
+glimpse(nba_h2h)
+# Rows: ~120
+# Columns: id, sport_key, sport_title, commence_time, home_team, away_team,
+#           bookmaker_key, bookmaker, bookmaker_last_update,
+#           market_key, market_last_update, outcomes_name, outcomes_price
+
+# 4. Find the best moneyline price for each team across all books
+best_lines <- nba_h2h %>%
+  group_by(home_team, away_team, outcomes_name) %>%
+  slice_max(outcomes_price, n = 1) %>%
+  select(home_team, away_team, outcomes_name, bookmaker, outcomes_price)
+
+best_lines
+# home_team           away_team      outcomes_name       bookmaker    outcomes_price
+# Los Angeles Lakers  Boston Celtics Los Angeles Lakers  DraftKings            2.05
+# Los Angeles Lakers  Boston Celtics Boston Celtics      FanDuel               1.87
+
+# 5. Check how much that cost
+toa_quota()
+# requests_remaining = 499, requests_used = 1, requests_last = 1
+```
 
 
 ## **Our Authors**
 
--   [Saiem Gilani](https://twitter.com/saiemgilani)       
+-   [Saiem Gilani](https://twitter.com/saiemgilani)
 <a href="https://twitter.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=twitter&style=for-the-badge" alt="@saiemgilani" /></a>
 <a href="https://github.com/saiemgilani" target="blank"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge" alt="@saiemgilani" /></a>
 
