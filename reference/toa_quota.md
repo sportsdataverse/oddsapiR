@@ -50,8 +50,8 @@ Other The Odds API: Account & Usage:
 # \donttest{
   try(toa_sports())
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-09 19:56:21 UTC
-#> ℹ Odds API quota: 173 used, 327 remaining (last call cost 0)
+#> ℹ Data updated: 2026-06-12 23:11:06 UTC
+#> ℹ Odds API quota: 621 used, 19379 remaining (last call cost 0)
 #> # A tibble: 165 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        
@@ -70,6 +70,6 @@ Other The Odds API: Account & Usage:
 #> # A tibble: 1 × 3
 #>   requests_remaining requests_used requests_last
 #>                <int>         <int>         <int>
-#> 1                327           173             0
+#> 1              19379           621             0
 # }
 ```

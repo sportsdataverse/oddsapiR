@@ -82,7 +82,7 @@ Snapshots with no events do not count against the quota."><meta property="og:ima
     <li><a class="external-link dropdown-item" href="https://js.sportsdataverse.org/">sportsdataverse.js</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nntrn/nfl-nerd/">nfl-nerd</a></li>
   </ul></li>
-      </ul><ul class="navbar-nav"><li class="nav-item"><a class="external-link nav-link" href="http://twitter.com/saiemgilani" aria-label="Twitter"><span class="fa fab fa-twitter fa-lg"></span></a></li>
+      </ul><ul class="navbar-nav"><li class="nav-item"><a class="external-link nav-link" href="https://x.com/saiemgilani" aria-label="Twitter"><span class="fa fab fa-x-twitter fa-lg"></span></a></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/sportsdataverse/oddsapiR/"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
@@ -200,13 +200,28 @@ odds. Part of the <a href="https://sportsdataverse.org/" class="external-link">S
 <span class="r-in"><span>                               markets <span class="op">=</span> <span class="st">'spreads'</span>,</span></span>
 <span class="r-in"><span>                               odds_format <span class="op">=</span> <span class="st">'decimal'</span>,</span></span>
 <span class="r-in"><span>                               date_format <span class="op">=</span> <span class="st">'iso'</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> 2026-06-09 19:56:23.481854: Invalid arguments or no historical odds available for basketball_nba at 2024-01-15T12:15:00Z!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Error:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `vars_select_eval()`:</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Can't select columns past the end.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Location 1 doesn't exist.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> There are only 0 columns.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> data frame with 0 columns and 0 rows</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ── Historical Sports Odds data from the-odds-api.com ───────────────────</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-06-12 23:11:09 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Odds API quota: <span style="color: #00BB00;">633</span> used, <span style="color: #00BB00;">19367</span> remaining (last call cost <span style="color: #00BB00;">10</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 222 × 17</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    timestamp           previous_timestamp next_timestamp id    sport_key</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 212 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more variables: sport_title &lt;chr&gt;, commence_time &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   home_team &lt;chr&gt;, away_team &lt;chr&gt;, bookmaker_key &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   bookmaker &lt;chr&gt;, bookmaker_last_update &lt;chr&gt;, market_key &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   market_last_update &lt;chr&gt;, outcomes_name &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   outcomes_price &lt;dbl&gt;, outcomes_point &lt;dbl&gt;</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
@@ -215,7 +230,7 @@ odds. Part of the <a href="https://sportsdataverse.org/" class="external-link">S
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://twitter.com/saiemgilani" class="external-link">Saiem Gilani</a>.</p>
+  <p>Developed by <a href="https://x.com/saiemgilani" class="external-link">Saiem Gilani</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

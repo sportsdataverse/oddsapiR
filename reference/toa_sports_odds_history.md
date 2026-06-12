@@ -137,12 +137,27 @@ Other The Odds API: Historical:
                                markets = 'spreads',
                                odds_format = 'decimal',
                                date_format = 'iso'))
-#> ✖ 2026-06-09 19:56:23.481854: Invalid arguments or no historical odds available for basketball_nba at 2024-01-15T12:15:00Z!
-#> ✖ Error:
-#> Error in `vars_select_eval()`:
-#> ! Can't select columns past the end.
-#> ℹ Location 1 doesn't exist.
-#> ℹ There are only 0 columns.
-#> data frame with 0 columns and 0 rows
+#> ── Historical Sports Odds data from the-odds-api.com ───────────────────
+#> ℹ Data updated: 2026-06-12 23:11:09 UTC
+#> ℹ Odds API quota: 633 used, 19367 remaining (last call cost 10)
+#> # A tibble: 222 × 17
+#>    timestamp           previous_timestamp next_timestamp id    sport_key
+#>    <chr>               <chr>              <chr>          <chr> <chr>    
+#>  1 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#>  2 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#>  3 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#>  4 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#>  5 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#>  6 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#>  7 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#>  8 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#>  9 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#> 10 2024-01-15T12:10:3… 2024-01-15T12:05:… 2024-01-15T12… 93af… basketba…
+#> # ℹ 212 more rows
+#> # ℹ 12 more variables: sport_title <chr>, commence_time <chr>,
+#> #   home_team <chr>, away_team <chr>, bookmaker_key <chr>,
+#> #   bookmaker <chr>, bookmaker_last_update <chr>, market_key <chr>,
+#> #   market_last_update <chr>, outcomes_name <chr>,
+#> #   outcomes_price <dbl>, outcomes_point <dbl>
 # }
 ```
