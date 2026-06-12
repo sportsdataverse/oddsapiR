@@ -21,7 +21,7 @@ toc:
 
 authors:
   Saiem Gilani:
-   href: https://twitter.com/saiemgilani
+   href: https://x.com/saiemgilani
    
 code:
   width: 72
@@ -135,8 +135,8 @@ navbar:
       - text: nfl-nerd
         href: https://github.com/nntrn/nfl-nerd/
     twitter:
-      icon: "fab fa-twitter fa-lg"
-      href: http://twitter.com/saiemgilani
+      icon: "fab fa-x-twitter fa-lg"
+      href: https://x.com/saiemgilani
       aria-label: Twitter
     github:
       icon: "fab fa-github fa-lg"
