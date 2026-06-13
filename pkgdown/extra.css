@@ -241,3 +241,11 @@ a {
 [data-bs-theme="dark"] :is(#main, aside) a {
   color: #F57196;
 }
+/* Dark mode: the navbar nav text + brand are dark (designed for the near-white
+   light-mode navbar) and vanish when the navbar darkens in dark mode. Light them.
+   (Light mode untouched; version badge has its own pink pill background.) */
+[data-bs-theme="dark"] #navbar,
+[data-bs-theme="dark"] .navbar-nav .nav-link,
+[data-bs-theme="dark"] .navbar-brand {
+  color: #EED3D6 !important;
+}
