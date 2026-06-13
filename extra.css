@@ -256,3 +256,10 @@ a {
 [data-bs-theme="dark"] .navbar {
   background-color: #3d1419 !important;
 }
+
+/* Light mode: Bootstrap colours the nav text white on this near-white navbar
+   (invisible). Force the site's intended dark mauve. The dark-mode rule above
+   (higher specificity) keeps nav text light pink in dark mode. */
+.navbar-nav .nav-link {
+  color: #775259 !important;
+}
