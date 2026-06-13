@@ -101,7 +101,7 @@ Other The Odds API: Odds & Markets:
    try(toa_event_markets(sport_key = 'basketball_nba',
                          event_id = '48db9c3293a52baab881d95d38f37a98',
                          regions = 'us'))
-#> ✖ 2026-06-13 03:12:03.497332: Invalid arguments or no markets data available for event 48db9c3293a52baab881d95d38f37a98!
+#> ✖ 2026-06-13 03:21:06.577826: Invalid arguments or no markets data available for event 48db9c3293a52baab881d95d38f37a98!
 #> ✖ Error:
 #> Error in `dplyr::rename()`:
 #> ! Can't rename columns that don't exist.
