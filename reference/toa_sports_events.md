@@ -94,8 +94,8 @@ Other The Odds API: Sports & Events:
 # \donttest{
    try(toa_sports_events(sport_key = 'basketball_nba'))
 #> ── Sports Events data from the-odds-api.com ────────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-13 00:16:01 UTC
-#> ℹ Odds API quota: 1033 used, 18967 remaining (last call cost 0)
+#> ℹ Data updated: 2026-06-13 00:49:17 UTC
+#> ℹ Odds API quota: 1265 used, 18735 remaining (last call cost 0)
 #> # A tibble: 1 × 6
 #>   id             sport_key sport_title commence_time home_team away_team
 #>   <chr>          <chr>     <chr>       <chr>         <chr>     <chr>    

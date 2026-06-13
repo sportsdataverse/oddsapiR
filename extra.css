@@ -249,3 +249,10 @@ a {
 [data-bs-theme="dark"] .navbar-brand {
   color: #EED3D6 !important;
 }
+
+/* Dark mode: the navbar bg is hardcoded near-white (#F1EDEE) in both modes, so
+   darken it here (on-brand dark maroon) so the light nav text/brand above
+   contrast. Light mode keeps the near-white navbar. */
+[data-bs-theme="dark"] .navbar {
+  background-color: #3d1419 !important;
+}
