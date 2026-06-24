@@ -123,6 +123,7 @@
 <span></span>
 <span><span class="co"># Install locally (prefer pak)</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/local_install.html" class="external-link">local_install</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><strong>CI</strong> (<code>.github/workflows/</code>): <code>R-CMD-check.yaml</code> (matrix: macOS / Windows / Ubuntu on R <code>release</code>, plus Ubuntu <code>oldrel-1</code>), <code>pkgdown.yaml</code> (site build/deploy), <code>rhub.yaml</code> (R-hub checks). Live tests skip on CI / CRAN without <code>ODDS_API_KEY</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="project-structure">Project Structure<a class="anchor" aria-label="anchor" href="#project-structure"></a></h2>
@@ -205,6 +206,7 @@
 <li>Echoed when an <code>oddsapiR_data</code> tibble is printed (<code>print.oddsapiR_data</code>).</li>
 <li>Exposed via the exported <code><a href="reference/toa_quota.html">toa_quota()</a></code> accessor (last call’s usage this session).</li>
 </ol><p>When adding a wrapper, do nothing special – routing through <code><a href="reference/toa_api_call.html">toa_api_call()</a></code> + <code>make_toa_data()</code> wires the quota capture automatically.</p>
+<p>Two usage accessors, different cost: <code><a href="reference/toa_requests.html">toa_requests()</a></code> makes a fresh (free) call to <code>/v4/sports</code> and returns a 2-column tibble (<code>requests_remaining</code>, <code>requests_used</code>); <code><a href="reference/toa_quota.html">toa_quota()</a></code> reads the session-cached values with no network round-trip and returns 3 columns (adds <code>requests_last</code>, the cost of the most recent call), or <code>NULL</code> if no call has been made yet this session.</p>
 </div>
 <div class="section level3">
 <h3 id="data-processing-pipeline">Data Processing Pipeline<a class="anchor" aria-label="anchor" href="#data-processing-pipeline"></a></h3>
