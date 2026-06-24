@@ -40,6 +40,10 @@ pkgdown::build_site()
 pak::local_install()
 ```
 
+**CI** (`.github/workflows/`): `R-CMD-check.yaml` (matrix: macOS / Windows /
+Ubuntu on R `release`, plus Ubuntu `oldrel-1`), `pkgdown.yaml` (site build/deploy),
+`rhub.yaml` (R-hub checks). Live tests skip on CI / CRAN without `ODDS_API_KEY`.
+
 ## Project Structure
 
 ```
@@ -140,6 +144,12 @@ these in the package-local `.oddsapiR` environment via `.toa_store_quota()`. The
 
 When adding a wrapper, do nothing special -- routing through `toa_api_call()` +
 `make_toa_data()` wires the quota capture automatically.
+
+Two usage accessors, different cost: `toa_requests()` makes a fresh (free) call to
+`/v4/sports` and returns a 2-column tibble (`requests_remaining`, `requests_used`);
+`toa_quota()` reads the session-cached values with no network round-trip and returns
+3 columns (adds `requests_last`, the cost of the most recent call), or `NULL` if no
+call has been made yet this session.
 
 ### Data Processing Pipeline
 
