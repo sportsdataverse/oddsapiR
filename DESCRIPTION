@@ -1,11 +1,15 @@
 Package: oddsapiR
 Title: Access Live Sports Odds from the Odds API
 Version: 1.0.0
-Authors@R: 
-    person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("aut", "cre"),
+Authors@R:
+    person("Saiem", "Gilani", , "saiem.gilani@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-7194-9067"))
 Description: A utility to quickly obtain clean and tidy sports odds from
-    The Odds API <https://the-odds-api.com>.
+    The Odds API <https://the-odds-api.com>. Provides wrappers for every
+    version 4 endpoint -- featured-market and single-event odds (including
+    player props and alternate lines), historical odds snapshots, scores,
+    events, participants, and usage-quota reporting -- returning tidy
+    tibbles ready for analysis.
 License: MIT + file LICENSE
 URL: https://oddsapiR.sportsdataverse.org/,
     https://github.com/sportsdataverse/oddsapiR
