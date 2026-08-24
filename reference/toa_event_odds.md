@@ -132,10 +132,10 @@ Other The Odds API: Odds & Markets:
                       markets = 'player_points',
                       odds_format = 'decimal',
                       date_format = 'iso'))
-#> ℹ 2026-08-24 08:24:46.879466: Event 48db9c3293a52baab881d95d38f37a98 found, but no bookmaker odds are available yet for markets 'player_points' in regions 'us'.
+#> ℹ 2026-08-24 08:27:39.575169: Event 48db9c3293a52baab881d95d38f37a98 found, but no bookmaker odds are available yet for markets 'player_points' in regions 'us'.
 #> ── Event Odds data from the-odds-api.com ───────────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-08-24 08:24:46 UTC
-#> ℹ Odds API quota: 10087 used, 4989913 remaining (last call cost 0)
+#> ℹ Data updated: 2026-08-24 08:27:39 UTC
+#> ℹ Odds API quota: 10513 used, 4989487 remaining (last call cost 0)
 #> # A tibble: 0 × 14
 #> # ℹ 14 variables: id <chr>, sport_key <chr>, sport_title <chr>,
 #> #   commence_time <chr>, home_team <chr>, away_team <chr>,
