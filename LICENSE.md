@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2022 oddsapiR authors
+Copyright (c) 2026 oddsapiR authors
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
