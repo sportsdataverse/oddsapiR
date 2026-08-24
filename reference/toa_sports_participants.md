@@ -55,9 +55,9 @@ Other The Odds API: Sports & Events:
 # \donttest{
    try(toa_sports_participants(sport_key = 'basketball_nba'))
 #> ── Sports Participants data from the-odds-api.com ──── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-06-24 03:15:42 UTC
-#> ℹ Odds API quota: 2448 used, 17552 remaining (last call cost 1)
-#> # A tibble: 30 × 3
+#> ℹ Data updated: 2026-08-24 07:15:17 UTC
+#> ℹ Odds API quota: 8918 used, 4991082 remaining (last call cost 1)
+#> # A tibble: 32 × 3
 #>    sport_key      id                             full_name            
 #>    <chr>          <chr>                          <chr>                
 #>  1 basketball_nba par_01hqmkq6fceknv7cwebesgrx03 Atlanta Hawks        
@@ -70,6 +70,6 @@ Other The Odds API: Sports & Events:
 #>  8 basketball_nba par_01hqmkq6fkf9r8wh7303b8hy40 Denver Nuggets       
 #>  9 basketball_nba par_01hqmkq6fmfyjsnjtexnh7vdwm Detroit Pistons      
 #> 10 basketball_nba par_01hqmkq6fne7nsfvf365y98r0h Golden State Warriors
-#> # ℹ 20 more rows
+#> # ℹ 22 more rows
 # }
 ```
