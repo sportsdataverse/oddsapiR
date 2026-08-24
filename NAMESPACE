@@ -20,25 +20,33 @@ import(rvest)
 import(tidyr)
 import(utils)
 importFrom(cli,cli_alert_danger)
-importFrom(data.table,data.table)
-importFrom(data.table,fread)
-importFrom(data.table,setDT)
-importFrom(dplyr,any_of)
-importFrom(dplyr,as_tibble)
-importFrom(dplyr,mutate)
-importFrom(dplyr,rename)
-importFrom(dplyr,select)
+importFrom(data.table,
+  data.table,
+  fread,
+  setDT
+)
+importFrom(dplyr,
+  any_of,
+  as_tibble,
+  mutate,
+  rename,
+  select
+)
 importFrom(glue,glue)
-importFrom(httr2,req_error)
-importFrom(httr2,req_perform)
-importFrom(httr2,req_retry)
-importFrom(httr2,req_url_query)
-importFrom(httr2,req_user_agent)
-importFrom(httr2,request)
-importFrom(httr2,resp_body_string)
-importFrom(httr2,resp_header)
-importFrom(httr2,resp_status)
+importFrom(httr2,
+  req_error,
+  req_perform,
+  req_retry,
+  req_url_query,
+  req_user_agent,
+  request,
+  resp_body_string,
+  resp_header,
+  resp_status
+)
 importFrom(jsonlite,fromJSON)
 importFrom(magrittr,"%>%")
-importFrom(rlang,.data)
-importFrom(rlang,.env)
+importFrom(rlang,
+  .data,
+  .env
+)

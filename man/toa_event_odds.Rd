@@ -94,9 +94,9 @@ events, \code{\link[=toa_event_markets]{toa_event_markets()}} to discover availa
 event, and \code{\link[=toa_sports_events]{toa_sports_events()}} to look up \code{event_id} values. Part of
 the \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Odds & Markets: 
-\code{\link{toa_event_markets}()},
-\code{\link{toa_sports_odds}()}
+Other The Odds API: Odds & Markets:
+\code{\link[=toa_event_markets]{toa_event_markets()}},
+\code{\link[=toa_sports_odds]{toa_sports_odds()}}
 }
 \concept{The Odds API: Odds & Markets}
 \keyword{Betting}

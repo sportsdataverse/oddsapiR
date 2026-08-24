@@ -84,9 +84,9 @@ and alternate lines), \code{\link[=toa_event_markets]{toa_event_markets()}} to l
 market keys, and \code{\link[=toa_sports]{toa_sports()}} to find \code{sport_key} values. Part of the
 \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Odds & Markets: 
-\code{\link{toa_event_markets}()},
-\code{\link{toa_event_odds}()}
+Other The Odds API: Odds & Markets:
+\code{\link[=toa_event_markets]{toa_event_markets()}},
+\code{\link[=toa_event_odds]{toa_event_odds()}}
 }
 \concept{The Odds API: Odds & Markets}
 \keyword{Betting}

@@ -38,10 +38,10 @@ return individual players on a team.
 to list upcoming events, and \code{\link[=toa_sports_scores]{toa_sports_scores()}} for live/recent scores.
 Part of the \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Sports & Events: 
-\code{\link{toa_sports}()},
-\code{\link{toa_sports_events}()},
-\code{\link{toa_sports_scores}()}
+Other The Odds API: Sports & Events:
+\code{\link[=toa_sports]{toa_sports()}},
+\code{\link[=toa_sports_events]{toa_sports_events()}},
+\code{\link[=toa_sports_scores]{toa_sports_scores()}}
 }
 \concept{The Odds API: Sports & Events}
 \keyword{Participants}

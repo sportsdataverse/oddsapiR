@@ -65,10 +65,10 @@ to pull odds for a specific event by its \code{id}, and \code{\link[=toa_event_m
 to see available market keys per bookmaker. Part of the
 \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Sports & Events: 
-\code{\link{toa_sports}()},
-\code{\link{toa_sports_participants}()},
-\code{\link{toa_sports_scores}()}
+Other The Odds API: Sports & Events:
+\code{\link[=toa_sports]{toa_sports()}},
+\code{\link[=toa_sports_participants]{toa_sports_participants()}},
+\code{\link[=toa_sports_scores]{toa_sports_scores()}}
 }
 \concept{The Odds API: Sports & Events}
 \keyword{Events}

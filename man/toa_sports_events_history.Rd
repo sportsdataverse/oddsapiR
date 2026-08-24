@@ -79,9 +79,9 @@ its \code{id}, \code{\link[=toa_sports_odds_history]{toa_sports_odds_history()}}
 historical snapshot, and \code{\link[=toa_sports_events]{toa_sports_events()}} for current events. Part of
 the \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Historical: 
-\code{\link{toa_event_odds_history}()},
-\code{\link{toa_sports_odds_history}()}
+Other The Odds API: Historical:
+\code{\link[=toa_event_odds_history]{toa_event_odds_history()}},
+\code{\link[=toa_sports_odds_history]{toa_sports_odds_history()}}
 }
 \concept{The Odds API: Historical}
 \keyword{Events}

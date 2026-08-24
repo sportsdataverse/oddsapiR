@@ -109,9 +109,9 @@ values, \code{\link[=toa_sports_odds_history]{toa_sports_odds_history()}} for fe
 events at a snapshot, and \code{\link[=toa_event_odds]{toa_event_odds()}} for current event odds. Part
 of the \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Historical: 
-\code{\link{toa_sports_events_history}()},
-\code{\link{toa_sports_odds_history}()}
+Other The Odds API: Historical:
+\code{\link[=toa_sports_events_history]{toa_sports_events_history()}},
+\code{\link[=toa_sports_odds_history]{toa_sports_odds_history()}}
 }
 \concept{The Odds API: Historical}
 \keyword{Betting}

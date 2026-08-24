@@ -33,9 +33,9 @@ a network round-trip, \code{\link[=toa_key]{toa_key()}} / \link{register_toa} to
 key, and \code{\link[=toa_sports]{toa_sports()}} to start pulling data. Part of the
 \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Account & Usage: 
+Other The Odds API: Account & Usage:
 \code{\link{register_toa}},
-\code{\link{toa_quota}()}
+\code{\link[=toa_quota]{toa_quota()}}
 }
 \concept{The Odds API: Account & Usage}
 \keyword{Usage}

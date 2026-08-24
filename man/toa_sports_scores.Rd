@@ -57,10 +57,10 @@ when \code{days_from} is supplied.
 to list upcoming events, and \code{\link[=toa_sports_odds]{toa_sports_odds()}} for live/upcoming betting
 lines. Part of the \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Sports & Events: 
-\code{\link{toa_sports}()},
-\code{\link{toa_sports_events}()},
-\code{\link{toa_sports_participants}()}
+Other The Odds API: Sports & Events:
+\code{\link[=toa_sports]{toa_sports()}},
+\code{\link[=toa_sports_events]{toa_sports_events()}},
+\code{\link[=toa_sports_participants]{toa_sports_participants()}}
 }
 \concept{The Odds API: Sports & Events}
 \keyword{Scores}

@@ -41,10 +41,10 @@ Returns a list of in-season sports. The \code{key} returned here is the
 to pull featured-market odds. Part of the
 \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Sports & Events: 
-\code{\link{toa_sports_events}()},
-\code{\link{toa_sports_participants}()},
-\code{\link{toa_sports_scores}()}
+Other The Odds API: Sports & Events:
+\code{\link[=toa_sports_events]{toa_sports_events()}},
+\code{\link[=toa_sports_participants]{toa_sports_participants()}},
+\code{\link[=toa_sports_scores]{toa_sports_scores()}}
 }
 \concept{The Odds API: Sports & Events}
 \keyword{Sports}

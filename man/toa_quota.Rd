@@ -36,8 +36,8 @@ by a \verb{toa_*()} function, and are echoed when the tibble is printed.
 for your first data call. Part of the
 \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Account & Usage: 
+Other The Odds API: Account & Usage:
 \code{\link{register_toa}},
-\code{\link{toa_requests}()}
+\code{\link[=toa_requests]{toa_requests()}}
 }
 \concept{The Odds API: Account & Usage}

@@ -75,9 +75,9 @@ returned \code{market_key} values to request odds via \code{\link[=toa_event_odd
 \code{\link[=toa_sports_events]{toa_sports_events()}} to look up \code{event_id} values. Part of the
 \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Odds & Markets: 
-\code{\link{toa_event_odds}()},
-\code{\link{toa_sports_odds}()}
+Other The Odds API: Odds & Markets:
+\code{\link[=toa_event_odds]{toa_event_odds()}},
+\code{\link[=toa_sports_odds]{toa_sports_odds()}}
 }
 \concept{The Odds API: Odds & Markets}
 \keyword{Markets}

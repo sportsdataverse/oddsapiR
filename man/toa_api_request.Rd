@@ -21,7 +21,7 @@ Internal HTTP layer shared by every \verb{toa_*()} wrapper. Builds an \code{httr
 request from a base URL plus a named list of query parameters, applies the
 standard user agent + transient-error retry policy, performs it, and caches
 the \verb{x-requests-*} usage-quota headers for \code{\link[=toa_quota]{toa_quota()}}. \code{NULL} query values
-are dropped automatically by \code{\link[httr2:req_url]{httr2::req_url_query()}}, so optional parameters
+are dropped automatically by \code{\link[httr2:req_url_query]{httr2::req_url_query()}}, so optional parameters
 can be threaded through unconditionally.
 }
 \keyword{internal}

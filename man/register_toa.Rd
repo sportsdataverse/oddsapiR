@@ -51,8 +51,8 @@ using a command like the following.
 \code{\link[=toa_sports]{toa_sports()}} to start exploring available sports. Part of the
 \href{https://sportsdataverse.org/}{SportsDataverse}.
 
-Other The Odds API: Account & Usage: 
-\code{\link{toa_quota}()},
-\code{\link{toa_requests}()}
+Other The Odds API: Account & Usage:
+\code{\link[=toa_quota]{toa_quota()}},
+\code{\link[=toa_requests]{toa_requests()}}
 }
 \concept{The Odds API: Account & Usage}
