@@ -67,6 +67,9 @@
 #'    |outcomes_price        |numeric   |The price/odds for the outcome.                          |
 #'    |outcomes_point        |numeric   |The handicap/total/prop line, when applicable.           |
 #'
+#' If the event exists at the requested snapshot but no bookmaker odds were
+#' posted for the requested markets/regions, a zero-row tibble with the same
+#' columns is returned.
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
 #' @importFrom cli cli_alert_danger
@@ -114,6 +117,17 @@ toa_event_odds_history <- function(sport_key,
     expr = {
       raw <- toa_api_call(base_url, query = query_params)
       event <- raw$data
+      # A valid snapshot can ship an empty bookmakers array (no lines were
+      # posted at that timestamp for the requested markets/regions). Return a
+      # typed zero-row tibble instead of falling through to the rename/unnest
+      # error path (#4).
+      if (length(event$bookmakers) == 0) {
+        cli::cli_alert_info(
+          "{Sys.time()}: Event {event_id} found at {date}, but no bookmaker odds were available for markets '{markets}' in regions '{regions}'.")
+        event_odds_history <- .toa_empty_event_odds(history = TRUE) %>%
+          make_toa_data("Historical Event Odds data from the-odds-api.com", Sys.time())
+        return(event_odds_history)
+      }
       event_odds_history <- tibble::tibble(
         timestamp = raw$timestamp,
         previous_timestamp = raw$previous_timestamp,

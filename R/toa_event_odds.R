@@ -54,6 +54,8 @@
 #'    |outcomes_price       |numeric   |The price/odds for the outcome.                          |
 #'    |outcomes_point       |numeric   |The handicap/total/prop line, when applicable.           |
 #'
+#' If the event exists but no bookmaker odds are posted yet for the requested
+#' markets/regions, a zero-row tibble with the same columns is returned.
 #' @keywords Betting Lines
 #' @importFrom jsonlite fromJSON
 #' @importFrom cli cli_alert_danger
@@ -97,6 +99,16 @@ toa_event_odds <- function(sport_key,
   tryCatch(
     expr = {
       raw <- toa_api_call(base_url, query = query_params)
+      # A valid event can ship an empty bookmakers array (no lines posted yet
+      # for the requested markets/regions). Return a typed zero-row tibble
+      # instead of falling through to the rename/unnest error path (#4).
+      if (length(raw$bookmakers) == 0) {
+        cli::cli_alert_info(
+          "{Sys.time()}: Event {event_id} found, but no bookmaker odds are available yet for markets '{markets}' in regions '{regions}'.")
+        event_odds <- .toa_empty_event_odds() %>%
+          make_toa_data("Event Odds data from the-odds-api.com", Sys.time())
+        return(event_odds)
+      }
       event_odds <- tibble::tibble(
         id = raw$id,
         sport_key = raw$sport_key,

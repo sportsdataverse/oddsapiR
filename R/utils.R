@@ -113,6 +113,45 @@ toa_api_headers <- function(url, query = NULL, ...){
   )
 }
 
+# Zero-row event-odds tibble carrying the documented column schema. Returned by
+# the single-event odds wrappers when the API reports a valid event whose
+# bookmakers array is empty (no lines posted yet) so callers always see a
+# stable column set instead of an error (#4). `history = TRUE` prepends the
+# historical snapshot timestamp columns and adds bookmaker_last_update.
+.toa_empty_event_odds <- function(history = FALSE){
+  out <- tibble::tibble(
+    id = character(0),
+    sport_key = character(0),
+    sport_title = character(0),
+    commence_time = character(0),
+    home_team = character(0),
+    away_team = character(0),
+    bookmaker_key = character(0),
+    bookmaker = character(0),
+    market_key = character(0),
+    market_last_update = character(0),
+    outcomes_name = character(0),
+    outcomes_description = character(0),
+    outcomes_price = numeric(0),
+    outcomes_point = numeric(0)
+  )
+  if (history) {
+    out <- dplyr::bind_cols(
+      tibble::tibble(
+        timestamp = character(0),
+        previous_timestamp = character(0),
+        next_timestamp = character(0)
+      ),
+      out
+    )
+    out <- dplyr::relocate(
+      dplyr::mutate(out, bookmaker_last_update = character(0)),
+      "bookmaker_last_update", .after = "bookmaker"
+    )
+  }
+  out
+}
+
 #' **Progressively**
 #'
 #' This function helps add progress-reporting to any function - given function `f()` and progressor `p()`, it will return a new function that calls `f()` and then (on-exiting) will call `p()` after every iteration.
