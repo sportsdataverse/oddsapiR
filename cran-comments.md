@@ -8,11 +8,20 @@ This is the 1.0.0 major release. It:
 * Adds `toa_quota()` and per-request usage-quota reporting (attributes + print method).
 * Repoints `toa_sports_odds_history()` to the current `/v4/historical/...` endpoint
   (the previous `/odds-history` path was deprecated upstream); the signature changed.
+* Fixes #4: `toa_event_odds()` / `toa_event_odds_history()` return a typed zero-row
+  tibble (with an informative message) when an event exists but has no bookmaker odds
+  posted yet, instead of a misleading "invalid arguments" error.
 * I am ignoring the note on non-ASCII characters in package data because they are proper names.
 
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
+
+One local-only artifact: `R CMD check --as-cran` on a Windows dev machine reports a
+non-standard `''NULL''` directory in the check directory. Phase bisection shows it is
+created by the CRAN-incoming *remote* checks themselves (it disappears with
+`_R_CHECK_CRAN_INCOMING_REMOTE_=false` and does not occur in any other phase), i.e. an
+artifact of the checking environment, not of the package.
 
 ## revdepcheck results
 

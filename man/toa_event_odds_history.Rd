@@ -75,6 +75,11 @@ A long-format tibble with one row per bookmaker market outcome:\tabular{lll}{
    outcomes_price \tab numeric \tab The price/odds for the outcome. \cr
    outcomes_point \tab numeric \tab The handicap/total/prop line, when applicable. \cr
 }
+
+
+If the event exists at the requested snapshot but no bookmaker odds were
+posted for the requested markets/regions, a zero-row tibble with the same
+columns is returned.
 }
 \description{
 \strong{Get bookmaker odds for a single event as they appeared at a point in time.}
