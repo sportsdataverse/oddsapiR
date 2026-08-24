@@ -104,6 +104,10 @@ A long-format tibble with one row per bookmaker market outcome:
 | outcomes_price | numeric | The price/odds for the outcome. |
 | outcomes_point | numeric | The handicap/total/prop line, when applicable. |
 
+If the event exists but no bookmaker odds are posted yet for the
+requested markets/regions, a zero-row tibble with the same columns is
+returned.
+
 ## See also
 
 [`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
@@ -128,11 +132,16 @@ Other The Odds API: Odds & Markets:
                       markets = 'player_points',
                       odds_format = 'decimal',
                       date_format = 'iso'))
-#> ✖ 2026-08-24 07:15:13.197456: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
-#> ✖ Error:
-#> Error in `dplyr::rename()`:
-#> ! Can't rename columns that don't exist.
-#> ✖ Column `key` doesn't exist.
-#> data frame with 0 columns and 0 rows
+#> ℹ 2026-08-24 08:14:14.676958: Event 48db9c3293a52baab881d95d38f37a98 found, but no bookmaker odds are available yet for markets 'player_points' in regions 'us'.
+#> ── Event Odds data from the-odds-api.com ───────────── oddsapiR 1.0.0 ──
+#> ℹ Data updated: 2026-08-24 08:14:14 UTC
+#> ℹ Odds API quota: 9571 used, 4990429 remaining (last call cost 0)
+#> # A tibble: 0 × 14
+#> # ℹ 14 variables: id <chr>, sport_key <chr>, sport_title <chr>,
+#> #   commence_time <chr>, home_team <chr>, away_team <chr>,
+#> #   bookmaker_key <chr>, bookmaker <chr>, market_key <chr>,
+#> #   market_last_update <chr>, outcomes_name <chr>,
+#> #   outcomes_description <chr>, outcomes_price <dbl>,
+#> #   outcomes_point <dbl>
 # }
 ```

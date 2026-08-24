@@ -123,6 +123,10 @@ A long-format tibble with one row per bookmaker market outcome:
 | outcomes_price | numeric | The price/odds for the outcome. |
 | outcomes_point | numeric | The handicap/total/prop line, when applicable. |
 
+If the event exists at the requested snapshot but no bookmaker odds were
+posted for the requested markets/regions, a zero-row tibble with the
+same columns is returned.
+
 ## See also
 
 [`toa_sports_events_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events_history.md)
@@ -149,8 +153,8 @@ Other The Odds API: Historical:
                               odds_format = 'decimal',
                               date_format = 'iso'))
 #> ── Historical Event Odds data from the-odds-api.com ── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-08-24 07:15:13 UTC
-#> ℹ Odds API quota: 8905 used, 4991095 remaining (last call cost 10)
+#> ℹ Data updated: 2026-08-24 08:14:15 UTC
+#> ℹ Odds API quota: 9581 used, 4990419 remaining (last call cost 10)
 #> # A tibble: 20 × 16
 #>    timestamp           previous_timestamp next_timestamp id    sport_key
 #>    <chr>               <chr>              <chr>          <chr> <chr>    

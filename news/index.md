@@ -45,6 +45,15 @@ stack, and per-request usage-quota reporting.
 
 #### Bug fixes
 
+- **[`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md)**
+  and
+  **[`toa_event_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds_history.md)**
+  now return a zero-row tibble carrying the documented column schema
+  (with an informative message) when the event exists but its
+  `bookmakers` array is empty – e.g. no lines posted yet for the
+  requested markets/regions – instead of erroring with a misleading
+  “Invalid arguments” alert
+  ([\#4](https://github.com/sportsdataverse/oddsapiR/issues/4)).
 - Wrappers now initialize their return variable before the `tryCatch`,
   so an API error (500/timeout/connection reset) returns an empty tibble
   and a `cli` message instead of throwing `object '...' not found`.

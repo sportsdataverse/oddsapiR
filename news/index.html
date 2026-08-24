@@ -112,7 +112,9 @@
 </ul></div>
 <div class="section level4">
 <h4 id="bug-fixes-1-0-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-0"></a></h4>
-<ul><li>Wrappers now initialize their return variable before the <code>tryCatch</code>, so an API error (500/timeout/connection reset) returns an empty tibble and a <code>cli</code> message instead of throwing <code>object '...' not found</code>.</li>
+<ul><li>
+<strong><code><a href="../reference/toa_event_odds.html">toa_event_odds()</a></code></strong> and <strong><code><a href="../reference/toa_event_odds_history.html">toa_event_odds_history()</a></code></strong> now return a zero-row tibble carrying the documented column schema (with an informative message) when the event exists but its <code>bookmakers</code> array is empty – e.g. no lines posted yet for the requested markets/regions – instead of erroring with a misleading “Invalid arguments” alert (<a href="https://github.com/sportsdataverse/oddsapiR/issues/4" class="external-link">#4</a>).</li>
+<li>Wrappers now initialize their return variable before the <code>tryCatch</code>, so an API error (500/timeout/connection reset) returns an empty tibble and a <code>cli</code> message instead of throwing <code>object '...' not found</code>.</li>
 <li>
 <strong><code><a href="../reference/toa_event_odds.html">toa_event_odds()</a></code></strong> parsing is more robust (builds an explicit tibble rather than <code>as_tibble(data = ".")</code>) and surfaces <code>outcomes_description</code> for player-prop markets.</li>
 <li>Returns are self-describing: <code><a href="../reference/toa_sports_participants.html">toa_sports_participants()</a></code> echoes <code>sport_key</code>, and the historical wrappers surface the snapshot timestamps.</li>
