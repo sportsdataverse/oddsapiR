@@ -11,7 +11,7 @@ opengraph:
     card: summary
     creator: "@saiemgilani"
 output: html_document
-description: "I'm Saiem Gilani, one of the authors of oddsapiR, and I hope to give the community a high-quality resource for accessing **The Odds API**."
+description: "Getting started with The Odds API in R - authenticating, listing available sports with <code>toa_sports()</code>, and pulling current lines with <code>toa_sports_odds()</code>."
 ---
 
 ```{r setup, include = FALSE}

@@ -11,7 +11,7 @@ opengraph:
     card: summary
     creator: "@saiemgilani"
 output: html_document
-description: "This article walks through a realistic end-to-end pipeline for collecting, tidying, analysing, and persisting sports-odds data using oddsapiR."
+description: "Assembling a repeatable odds-collection pipeline with <code>oddsapiR</code> - scheduling pulls, storing line history, and tracking how a market moves toward close."
 ---
 
 ```{r setup, include = FALSE}
