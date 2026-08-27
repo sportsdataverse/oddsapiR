@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">oddsapiR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,6 +83,20 @@
       <small>Source: <a href="https://github.com/sportsdataverse/oddsapiR/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.1" id="oddsapir-101">oddsapiR 1.0.1<a class="anchor" aria-label="anchor" href="#oddsapir-101"></a></h2>
+<p>CRAN fix release, addressing the <code>--run-donttest</code> check failure reported on 2026-08-25.</p>
+<div class="section level4">
+<h4 id="bug-fixes-1-0-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-1"></a></h4>
+<ul><li>Printing an <code>oddsapiR_data</code> tibble no longer errors with “missing value where TRUE/FALSE needed”. The Odds API omits its <code>x-requests-*</code> usage headers on error responses, which stored a zero-length quota value; the print method’s guard then evaluated to <code>NA</code>. Absent or unparseable headers are now recorded as <code>NA_integer_</code>, and the guard is length-safe.</li>
+<li>
+<strong><code><a href="../reference/toa_event_odds.html">toa_event_odds()</a></code></strong> and <strong><code><a href="../reference/toa_event_odds_history.html">toa_event_odds_history()</a></code></strong> no longer report an API error response (an invalid key, say) as “event found, but no bookmaker odds are available yet”. The API’s own error message is surfaced instead, so a failed request is never mistaken for an event with no odds posted.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="infrastructure--tooling-1-0-1">Infrastructure &amp; tooling<a class="anchor" aria-label="anchor" href="#infrastructure--tooling-1-0-1"></a></h4>
+<ul><li>Examples that call the live API are guarded with <code>@examplesIf has_toa_key()</code>, so they are skipped where no API key is configured rather than making a doomed request.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="oddsapir-100">oddsapiR 1.0.0<a class="anchor" aria-label="anchor" href="#oddsapir-100"></a></h2><p class="text-muted">CRAN release: 2026-08-24</p>
 <p>First major release. Full coverage of The Odds API v4, an <code>httr2</code> HTTP stack, and per-request usage-quota reporting.</p>

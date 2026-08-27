@@ -132,16 +132,9 @@ Other The Odds API: Odds & Markets:
                       markets = 'player_points',
                       odds_format = 'decimal',
                       date_format = 'iso'))
-#> ℹ 2026-08-27 04:13:56.449186: Event 48db9c3293a52baab881d95d38f37a98 found, but no bookmaker odds are available yet for markets 'player_points' in regions 'us'.
-#> ── Event Odds data from the-odds-api.com ───────────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:13:56 UTC
-#> ℹ Odds API quota: 14410 used, 4985590 remaining (last call cost 0)
-#> # A tibble: 0 × 14
-#> # ℹ 14 variables: id <chr>, sport_key <chr>, sport_title <chr>,
-#> #   commence_time <chr>, home_team <chr>, away_team <chr>,
-#> #   bookmaker_key <chr>, bookmaker <chr>, market_key <chr>,
-#> #   market_last_update <chr>, outcomes_name <chr>,
-#> #   outcomes_description <chr>, outcomes_price <dbl>,
-#> #   outcomes_point <dbl>
+#> ✖ 2026-08-27 17:20:01.362599: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
+#> ✖ Error:
+#> Error: Event not found. The event may have expired or the event id is invalid.
+#> data frame with 0 columns and 0 rows
 # }
 ```

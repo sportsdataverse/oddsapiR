@@ -17,8 +17,10 @@
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Building a sports-odds pipeline with oddsapiR">
+<meta name="description" content="Assembling a repeatable odds-collection pipeline with &lt;code&gt;oddsapiR&lt;/code&gt; - scheduling pulls, storing line history, and tracking how a market moves toward close.">
+<meta property="og:description" content="Assembling a repeatable odds-collection pipeline with &lt;code&gt;oddsapiR&lt;/code&gt; - scheduling pulls, storing line history, and tracking how a market moves toward close.">
 <meta property="og:image" content="https://github.com/saiemgilani/oddsapiR/blob/main/logo.png?raw=true">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@saiemgilani">
 <meta name="twitter:site" content="@saiemgilani">
 </head>
@@ -30,7 +32,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">oddsapiR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,8 +122,10 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Building a sports-odds pipeline with oddsapiR</h1>
-                        <h4 data-toc-skip class="author">Saiem
-Gilani</h4>
+                        <h4 data-toc-skip class="author">Saiem Gilani
+<br><a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/sportsdataverse/oddsapiR/blob/main/vignettes/articles/building-an-odds-pipeline.Rmd" class="external-link"><code>vignettes/articles/building-an-odds-pipeline.Rmd</code></a></small>
@@ -145,9 +149,9 @@ shapes.</p>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://gt.rstudio.com" class="external-link">gt</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org" class="external-link">DBI</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org" class="external-link">RSQLite</a></span><span class="op">)</span></span></code></pre></div>
-<div class="section level2">
-<h2 id="setup-key-handling-and-budgeting-your-quota">1. Setup — key handling and budgeting your quota<a class="anchor" aria-label="anchor" href="#setup-key-handling-and-budgeting-your-quota"></a>
-</h2>
+<div class="section level3">
+<h3 id="setup-key-handling-and-budgeting-your-quota">1. Setup — key handling and budgeting your quota<a class="anchor" aria-label="anchor" href="#setup-key-handling-and-budgeting-your-quota"></a>
+</h3>
 <p>Before pulling any odds, check that a key is configured and inspect
 the current quota balance. <a href="https://oddsapiR.sportsdataverse.org/reference/toa_requests.html"><code>toa_requests()</code></a>
 hits the free <code>/v4/sports</code> endpoint, which does not consume a
@@ -177,12 +181,12 @@ credits the last call consumed. This is the correct way to audit costs
 during development: pull once, inspect <code><a href="../reference/toa_quota.html">toa_quota()</a></code>, then
 multiply out your full pipeline’s total cost before scheduling it.</p>
 </div>
-<div class="section level2">
-<h2 id="discover-find-active-sports-and-upcoming-events">2. Discover — find active sports and upcoming events<a class="anchor" aria-label="anchor" href="#discover-find-active-sports-and-upcoming-events"></a>
-</h2>
 <div class="section level3">
-<h3 id="find-active-sport-keys">Find active sport keys<a class="anchor" aria-label="anchor" href="#find-active-sport-keys"></a>
+<h3 id="discover-find-active-sports-and-upcoming-events">2. Discover — find active sports and upcoming events<a class="anchor" aria-label="anchor" href="#discover-find-active-sports-and-upcoming-events"></a>
 </h3>
+<div class="section level4">
+<h4 id="find-active-sport-keys">Find active sport keys<a class="anchor" aria-label="anchor" href="#find-active-sport-keys"></a>
+</h4>
 <p><a href="https://oddsapiR.sportsdataverse.org/reference/toa_sports.html"><code>toa_sports()</code></a>
 lists every sport the API covers. It is free. Filter to
 <code>active == TRUE</code> for sports that are currently in season:</p>
@@ -206,7 +210,7 @@ for every downstream function. The bundled dataset <a href="https://oddsapiR.spo
 provides the same mapping without a network call:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">oddsapiR</span><span class="fu">::</span><span class="va"><a href="../reference/toa_sports_keys.html">toa_sports_keys</a></span>, <span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ── Sports coverage data from the-odds-api.com ──────── <span style="font-style: italic;">oddsapiR 1.0.0</span> ──</span></span>
+<span><span class="co">#&gt; ── Sports coverage data from the-odds-api.com ──────── <span style="font-style: italic;">oddsapiR 1.0.1</span> ──</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2022-06-17 05:54:44 UTC</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 10 × 5</span></span></span>
 <span><span class="co">#&gt;    key                             group title description has_outrights</span></span>
@@ -222,9 +226,9 @@ provides the same mapping without a network call:</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> basketball_nba_championship_wi… Bask… NBA … Championsh… TRUE         </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> basketball_ncaab                Bask… NCAAB US College… FALSE</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="list-upcoming-events-for-a-sport">List upcoming events for a sport<a class="anchor" aria-label="anchor" href="#list-upcoming-events-for-a-sport"></a>
-</h3>
+<div class="section level4">
+<h4 id="list-upcoming-events-for-a-sport">List upcoming events for a sport<a class="anchor" aria-label="anchor" href="#list-upcoming-events-for-a-sport"></a>
+</h4>
 <p><a href="https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.html"><code>toa_sports_events()</code></a>
 lists in-play and pre-match events without odds. Also free. The
 <code>id</code> column is the <code>event_id</code> used by
@@ -249,9 +253,9 @@ lists in-play and pre-match events without odds. Also free. The
 <span><span class="co"># 2 9a1c3f2e8b7d4e5f6c0a2b3d4e5f6a7b basketball_nba  NBA         2025-01-15T01:00:00Z  Golden State Warriors Milwaukee Bucks</span></span>
 <span><span class="co"># ...</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="list-participants-teams-for-a-sport">List participants (teams) for a sport<a class="anchor" aria-label="anchor" href="#list-participants-teams-for-a-sport"></a>
-</h3>
+<div class="section level4">
+<h4 id="list-participants-teams-for-a-sport">List participants (teams) for a sport<a class="anchor" aria-label="anchor" href="#list-participants-teams-for-a-sport"></a>
+</h4>
 <p><a href="https://oddsapiR.sportsdataverse.org/reference/toa_sports_participants.html"><code>toa_sports_participants()</code></a>
 returns the whitelist of teams or individual competitors. Cost: 1
 credit.</p>
@@ -267,12 +271,12 @@ credit.</p>
 <span><span class="co"># ...</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="pull-odds-across-bookmakers">3. Pull odds across bookmakers<a class="anchor" aria-label="anchor" href="#pull-odds-across-bookmakers"></a>
-</h2>
 <div class="section level3">
-<h3 id="featured-markets-for-an-entire-sport">Featured markets for an entire sport<a class="anchor" aria-label="anchor" href="#featured-markets-for-an-entire-sport"></a>
+<h3 id="pull-odds-across-bookmakers">3. Pull odds across bookmakers<a class="anchor" aria-label="anchor" href="#pull-odds-across-bookmakers"></a>
 </h3>
+<div class="section level4">
+<h4 id="featured-markets-for-an-entire-sport">Featured markets for an entire sport<a class="anchor" aria-label="anchor" href="#featured-markets-for-an-entire-sport"></a>
+</h4>
 <p><a href="https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.html"><code>toa_sports_odds()</code></a>
 returns a <strong>long-format</strong> tibble — one row per (event,
 bookmaker, market, outcome). The cost equals
@@ -298,9 +302,9 @@ bookmaker, market, outcome). The cost equals
 <span><span class="fu"><a href="../reference/toa_quota.html">toa_quota</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># requests_remaining = 477, requests_used = 23, requests_last = 3</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="detailed-props-for-a-single-game">Detailed props for a single game<a class="anchor" aria-label="anchor" href="#detailed-props-for-a-single-game"></a>
-</h3>
+<div class="section level4">
+<h4 id="detailed-props-for-a-single-game">Detailed props for a single game<a class="anchor" aria-label="anchor" href="#detailed-props-for-a-single-game"></a>
+</h4>
 <p><a href="https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.html"><code>toa_event_markets()</code></a>
 lists every market key a bookmaker has opened for a game (1 credit).
 Then <a href="https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.html"><code>toa_event_odds()</code></a>
@@ -349,14 +353,14 @@ returned × regions.</p>
 <span><span class="co"># FanDuel      Under          LeBron James          1.95            25.5</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="tidy-and-analyse-de-vig-implied-probability-line-shopping">4. Tidy and analyse: de-vig, implied probability, line shopping<a class="anchor" aria-label="anchor" href="#tidy-and-analyse-de-vig-implied-probability-line-shopping"></a>
-</h2>
+<div class="section level3">
+<h3 id="tidy-and-analyse-de-vig-implied-probability-line-shopping">4. Tidy and analyse: de-vig, implied probability, line shopping<a class="anchor" aria-label="anchor" href="#tidy-and-analyse-de-vig-implied-probability-line-shopping"></a>
+</h3>
 <p>The raw data from <code><a href="../reference/toa_sports_odds.html">toa_sports_odds()</a></code> is already tidy (one
 row per outcome), but some light wrangling makes analysis easier.</p>
-<div class="section level3">
-<h3 id="de-duplicate-and-compute-implied-probability">De-duplicate and compute implied probability<a class="anchor" aria-label="anchor" href="#de-duplicate-and-compute-implied-probability"></a>
-</h3>
+<div class="section level4">
+<h4 id="de-duplicate-and-compute-implied-probability">De-duplicate and compute implied probability<a class="anchor" aria-label="anchor" href="#de-duplicate-and-compute-implied-probability"></a>
+</h4>
 <p>For two-sided markets (spreads, totals) each game has <strong>two
 rows per bookmaker</strong>: one for each side. To pivot wider and
 compute implied probability from decimal odds (<code>1 / price</code>),
@@ -390,9 +394,9 @@ all outcomes:</p>
 <p>The <code>total_overround</code> column tells you each bookmaker’s
 vig. A value of 1.05 means the bookmaker takes a 5% margin.</p>
 </div>
-<div class="section level3">
-<h3 id="line-shopping-best-available-price-per-outcome">Line shopping: best available price per outcome<a class="anchor" aria-label="anchor" href="#line-shopping-best-available-price-per-outcome"></a>
-</h3>
+<div class="section level4">
+<h4 id="line-shopping-best-available-price-per-outcome">Line shopping: best available price per outcome<a class="anchor" aria-label="anchor" href="#line-shopping-best-available-price-per-outcome"></a>
+</h4>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">best_h2h</span> <span class="op">&lt;-</span> <span class="va">h2h_prob</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">home_team</span>, <span class="va">away_team</span>, <span class="va">outcomes_name</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -406,9 +410,9 @@ vig. A value of 1.05 means the bookmaker takes a 5% margin.</p>
 <span><span class="co"># Los Angeles Lakers  Boston Celtics  Boston Celtics      Bet365      1.95   0.505</span></span>
 <span><span class="co"># Los Angeles Lakers  Boston Celtics  Los Angeles Lakers  DraftKings  2.10   0.492</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="handling-spreads-and-totals">Handling spreads and totals<a class="anchor" aria-label="anchor" href="#handling-spreads-and-totals"></a>
-</h3>
+<div class="section level4">
+<h4 id="handling-spreads-and-totals">Handling spreads and totals<a class="anchor" aria-label="anchor" href="#handling-spreads-and-totals"></a>
+</h4>
 <p>Spreads and totals each have two rows per (event, bookmaker). The
 <code>outcomes_point</code> column carries the handicap or total
 line:</p>
@@ -430,15 +434,15 @@ line:</p>
 <span><span class="co"># Los Angeles Lakers  Boston Celtics  Boston Celtics      3.5             FanDuel     1.95</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="historical-odds-tracking-line-movement">5. Historical odds — tracking line movement<a class="anchor" aria-label="anchor" href="#historical-odds-tracking-line-movement"></a>
-</h2>
+<div class="section level3">
+<h3 id="historical-odds-tracking-line-movement">5. Historical odds — tracking line movement<a class="anchor" aria-label="anchor" href="#historical-odds-tracking-line-movement"></a>
+</h3>
 <p>The historical endpoints require a paid plan. They use a snapshot
 model: supply an ISO 8601 <code>date</code> and get back the data state
 at the closest snapshot at or before that time.</p>
-<div class="section level3">
-<h3 id="fetch-a-single-historical-snapshot">Fetch a single historical snapshot<a class="anchor" aria-label="anchor" href="#fetch-a-single-historical-snapshot"></a>
-</h3>
+<div class="section level4">
+<h4 id="fetch-a-single-historical-snapshot">Fetch a single historical snapshot<a class="anchor" aria-label="anchor" href="#fetch-a-single-historical-snapshot"></a>
+</h4>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Spreads for an NBA game 48 hours before tip-off</span></span>
 <span><span class="va">hist_odds_48h</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/toa_sports_odds_history.html">toa_sports_odds_history</a></span><span class="op">(</span></span>
@@ -458,9 +462,9 @@ at the closest snapshot at or before that time.</p>
 <span><span class="co"># timestamp                 prev_ts                    next_ts                    home_team         ...</span></span>
 <span><span class="co"># 2024-01-14T23:58:00Z      2024-01-14T23:53:00Z       2024-01-15T00:03:00Z       Los Angeles Lakers</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="page-through-snapshots-to-build-a-line-movement-dataset">Page through snapshots to build a line-movement dataset<a class="anchor" aria-label="anchor" href="#page-through-snapshots-to-build-a-line-movement-dataset"></a>
-</h3>
+<div class="section level4">
+<h4 id="page-through-snapshots-to-build-a-line-movement-dataset">Page through snapshots to build a line-movement dataset<a class="anchor" aria-label="anchor" href="#page-through-snapshots-to-build-a-line-movement-dataset"></a>
+</h4>
 <p>Use the <code>next_timestamp</code> from one response as the
 <code>date</code> parameter of the next call to walk forward in time.
 The cost for <code><a href="../reference/toa_sports_odds_history.html">toa_sports_odds_history()</a></code> is 10× the standard
@@ -507,13 +511,13 @@ rate (10 × markets × regions per call), so plan accordingly.</p>
 <span><span class="co"># ...</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="persist-and-schedule-sqlite-storage-quota-aware-scheduling">6. Persist and schedule — SQLite storage + quota-aware
-scheduling<a class="anchor" aria-label="anchor" href="#persist-and-schedule-sqlite-storage-quota-aware-scheduling"></a>
-</h2>
 <div class="section level3">
-<h3 id="store-snapshots-to-sqlite">Store snapshots to SQLite<a class="anchor" aria-label="anchor" href="#store-snapshots-to-sqlite"></a>
+<h3 id="persist-and-schedule-sqlite-storage-quota-aware-scheduling">6. Persist and schedule — SQLite storage + quota-aware
+scheduling<a class="anchor" aria-label="anchor" href="#persist-and-schedule-sqlite-storage-quota-aware-scheduling"></a>
 </h3>
+<div class="section level4">
+<h4 id="store-snapshots-to-sqlite">Store snapshots to SQLite<a class="anchor" aria-label="anchor" href="#store-snapshots-to-sqlite"></a>
+</h4>
 <p>Use <code>DBI</code> + <code>RSQLite</code> to keep a running
 archive. Key each row by <code>pulled_at</code> so you can track when
 each snapshot was collected.</p>
@@ -577,9 +581,9 @@ each snapshot was collected.</p>
 <span><span class="co"># When done for the session, close the connection</span></span>
 <span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbDisconnect.html" class="external-link">dbDisconnect</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="quota-aware-scheduling">Quota-aware scheduling<a class="anchor" aria-label="anchor" href="#quota-aware-scheduling"></a>
-</h3>
+<div class="section level4">
+<h4 id="quota-aware-scheduling">Quota-aware scheduling<a class="anchor" aria-label="anchor" href="#quota-aware-scheduling"></a>
+</h4>
 <p>The Odds API’s quota resets monthly. Before each scheduled pull,
 check your remaining balance and bail early if you are running low:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
@@ -600,12 +604,12 @@ days = 8,640 calls per month. Plan your pull frequency according to your
 plan’s monthly quota.</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="visualize-best-lines-table-and-line-movement-chart">7. Visualize — best lines table and line-movement chart<a class="anchor" aria-label="anchor" href="#visualize-best-lines-table-and-line-movement-chart"></a>
-</h2>
 <div class="section level3">
-<h3 id="best-lines-summary-table-with-gt">Best-lines summary table with <code>gt</code><a class="anchor" aria-label="anchor" href="#best-lines-summary-table-with-gt"></a>
+<h3 id="visualize-best-lines-table-and-line-movement-chart">7. Visualize — best lines table and line-movement chart<a class="anchor" aria-label="anchor" href="#visualize-best-lines-table-and-line-movement-chart"></a>
 </h3>
+<div class="section level4">
+<h4 id="best-lines-summary-table-with-gt">Best-lines summary table with <code>gt</code><a class="anchor" aria-label="anchor" href="#best-lines-summary-table-with-gt"></a>
+</h4>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">best_lines_table</span> <span class="op">&lt;-</span> <span class="va">best_h2h</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span></span>
@@ -627,9 +631,9 @@ plan’s monthly quota.</p>
 <span></span>
 <span><span class="va">best_lines_table</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="line-movement-chart-with-ggplot2">Line-movement chart with <code>ggplot2</code><a class="anchor" aria-label="anchor" href="#line-movement-chart-with-ggplot2"></a>
-</h3>
+<div class="section level4">
+<h4 id="line-movement-chart-with-ggplot2">Line-movement chart with <code>ggplot2</code><a class="anchor" aria-label="anchor" href="#line-movement-chart-with-ggplot2"></a>
+</h4>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">line_movement_chart</span> <span class="op">&lt;-</span> <span class="va">line_movement</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>timestamp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="va">timestamp</span>, format <span class="op">=</span> <span class="st">"%Y-%m-%dT%H:%M:%SZ"</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -656,9 +660,9 @@ plan’s monthly quota.</p>
 <span><span class="va">line_movement_chart</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="closing-notes-sportsdataverse">Closing notes: SportsDataverse<a class="anchor" aria-label="anchor" href="#closing-notes-sportsdataverse"></a>
-</h2>
+<div class="section level3">
+<h3 id="closing-notes-sportsdataverse">Closing notes: SportsDataverse<a class="anchor" aria-label="anchor" href="#closing-notes-sportsdataverse"></a>
+</h3>
 <p><code>oddsapiR</code> is part of the <a href="https://sportsdataverse.org/" class="external-link">SportsDataverse</a>, a collection of
 open-source R and Python packages for sports analytics. Companion
 packages include:</p>
@@ -684,6 +688,66 @@ straightforward to join odds data from <code>oddsapiR</code> with
 play-by-play or box-score data from the other packages.</p>
 <p>File issues and feature requests at the <a href="https://github.com/sportsdataverse/oddsapiR/issues" class="external-link">oddsapiR
 GitHub repository</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="our-authors">
+<strong>Our Authors</strong><a class="anchor" aria-label="anchor" href="#our-authors"></a>
+</h2>
+<ul>
+<li>
+<a href="https://x.com/saiemgilani" class="external-link">Saiem Gilani</a>
+<a href="https://x.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge" alt="@saiemgilani"></a>
+<a href="https://github.com/saiemgilani" target="blank" class="external-link"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge" alt="@saiemgilani"></a>
+</li>
+</ul>
+<div class="section level3">
+<h3 id="citation">
+<strong>Citation</strong><a class="anchor" aria-label="anchor" href="#citation"></a>
+</h3>
+<p>To cite the <a href="https://oddsapiR.sportsdataverse.org/"><strong><code>oddsapiR</code></strong></a>
+R package in publications, use:</p>
+<p>BibTeX Citation</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">oddsapir</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>  <span class="dt">author</span> = {Saiem Gilani},</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="dt">title</span> = {oddsapiR: The SportsDataverse},</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="dt">url</span> = {https://oddsapiR.sportsdataverse.org/},</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>  <span class="dt">year</span> = {2026}</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="related-sportsdataverse-packages">
+<strong>Related SportsDataverse packages</strong><a class="anchor" aria-label="anchor" href="#related-sportsdataverse-packages"></a>
+</h3>
+<ul>
+<li>
+<a href="https://cfbfastR.sportsdataverse.org/" class="external-link"><strong>cfbfastR</strong></a>
+- college football</li>
+<li>
+<a href="https://hoopR.sportsdataverse.org/" class="external-link"><strong>hoopR</strong></a> -
+men’s basketball</li>
+<li>
+<a href="https://wehoop.sportsdataverse.org/" class="external-link"><strong>wehoop</strong></a> -
+women’s basketball</li>
+<li>
+<a href="https://baseballr.sportsdataverse.org/" class="external-link"><strong>baseballr</strong></a>
+- baseball</li>
+<li>
+<a href="https://fastRhockey.sportsdataverse.org/" class="external-link"><strong>fastRhockey</strong></a>
+- hockey</li>
+<li>
+<a href="https://oddsapiR.sportsdataverse.org/"><strong>oddsapiR</strong></a>
+- betting odds</li>
+<li>
+<a href="https://sportyR.sportsdataverse.org/" class="external-link"><strong>sportyR</strong></a>
+- playing surfaces</li>
+<li>
+<a href="https://py.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-py</strong></a>
+- the Python package</li>
+<li>
+<a href="https://r.sportsdataverse.org/" class="external-link"><strong>sportsdataverse-R</strong></a>
+- the R meta-package</li>
+</ul>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

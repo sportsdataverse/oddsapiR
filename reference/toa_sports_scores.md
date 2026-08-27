@@ -76,9 +76,9 @@ Other The Odds API: Sports & Events:
    try(toa_sports_scores(sport_key = 'basketball_nba',
                          days_from = NULL,
                          date_format = 'iso'))
-#> ── Sports scores data from the-odds-api.com ────────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-08-27 04:13:59 UTC
-#> ℹ Odds API quota: 14434 used, 4985566 remaining (last call cost 1)
+#> ── Sports scores data from the-odds-api.com ────────── oddsapiR 1.0.1 ──
+#> ℹ Data updated: 2026-08-27 17:20:06 UTC
+#> ℹ Odds API quota: 18791 used, 4981209 remaining (last call cost 1)
 #> # A tibble: 41 × 9
 #>    id            sport_key sport_title commence_time completed home_team
 #>    <chr>         <chr>     <chr>       <chr>         <lgl>     <chr>    

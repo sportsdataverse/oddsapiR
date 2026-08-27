@@ -18,13 +18,16 @@ tibbles with quota metadata attached as attributes.
 
 ``` r
 
-# You can install using the pacman package using the following code:
-if (!requireNamespace('pacman', quietly = TRUE)){
-  install.packages('pacman')
+# You can install using the pak package using the following code:
+if (!requireNamespace('pak', quietly = TRUE)){
+  install.packages('pak')
 }
-pacman::p_load_current_gh("sportsdataverse/oddsapiR", dependencies = TRUE, update = TRUE)
-pacman::p_load_current_gh("jthomasmock/gtExtras", dependencies = TRUE, update = TRUE)
-pacman::p_load(dplyr, knitr, gt)
+pak::pak("sportsdataverse/oddsapiR", dependencies = TRUE, update = TRUE)
+pak::pak("jthomasmock/gtExtras", dependencies = TRUE, update = TRUE)
+pak::pak(c("dplyr", "knitr", "gt"))
+library(dplyr)
+library(knitr)
+library(gt)
 ```
 
 ## **Odds API Keys**
@@ -588,7 +591,7 @@ toa_quota()
 To cite the [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org) R
 package in publications, use:
 
-BibTex Citation
+BibTeX Citation
 
 ``` bibtex
 @misc{gilani_2022_oddsapiR,

@@ -20,7 +20,7 @@ library(DBI)
 library(RSQLite)
 ```
 
-## 1. Setup — key handling and budgeting your quota
+### 1. Setup — key handling and budgeting your quota
 
 Before pulling any odds, check that a key is configured and inspect the
 current quota balance.
@@ -62,9 +62,9 @@ development: pull once, inspect
 [`toa_quota()`](https://oddsapiR.sportsdataverse.org/reference/toa_quota.md),
 then multiply out your full pipeline’s total cost before scheduling it.
 
-## 2. Discover — find active sports and upcoming events
+### 2. Discover — find active sports and upcoming events
 
-### Find active sport keys
+#### Find active sport keys
 
 [`toa_sports()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports.html)
 lists every sport the API covers. It is free. Filter to `active == TRUE`
@@ -96,7 +96,7 @@ provides the same mapping without a network call:
 ``` r
 
 head(oddsapiR::toa_sports_keys, 10)
-#> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.0 ──
+#> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.1 ──
 #> ℹ Data updated: 2022-06-17 05:54:44 UTC
 #> # A tibble: 10 × 5
 #>    key                             group title description has_outrights
@@ -113,7 +113,7 @@ head(oddsapiR::toa_sports_keys, 10)
 #> 10 basketball_ncaab                Bask… NCAAB US College… FALSE
 ```
 
-### List upcoming events for a sport
+#### List upcoming events for a sport
 
 [`toa_sports_events()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_events.html)
 lists in-play and pre-match events without odds. Also free. The `id`
@@ -144,7 +144,7 @@ nba_events
 # ...
 ```
 
-### List participants (teams) for a sport
+#### List participants (teams) for a sport
 
 [`toa_sports_participants()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_participants.html)
 returns the whitelist of teams or individual competitors. Cost: 1
@@ -163,9 +163,9 @@ nba_teams
 # ...
 ```
 
-## 3. Pull odds across bookmakers
+### 3. Pull odds across bookmakers
 
-### Featured markets for an entire sport
+#### Featured markets for an entire sport
 
 [`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.html)
 returns a **long-format** tibble — one row per (event, bookmaker,
@@ -194,7 +194,7 @@ toa_quota()
 # requests_remaining = 477, requests_used = 23, requests_last = 3
 ```
 
-### Detailed props for a single game
+#### Detailed props for a single game
 
 [`toa_event_markets()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_markets.html)
 lists every market key a bookmaker has opened for a game (1 credit).
@@ -247,14 +247,14 @@ player_pts %>%
 # FanDuel      Under          LeBron James          1.95            25.5
 ```
 
-## 4. Tidy and analyse: de-vig, implied probability, line shopping
+### 4. Tidy and analyse: de-vig, implied probability, line shopping
 
 The raw data from
 [`toa_sports_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_sports_odds.md)
 is already tidy (one row per outcome), but some light wrangling makes
 analysis easier.
 
-### De-duplicate and compute implied probability
+#### De-duplicate and compute implied probability
 
 For two-sided markets (spreads, totals) each game has **two rows per
 bookmaker**: one for each side. To pivot wider and compute implied
@@ -292,7 +292,7 @@ h2h_prob %>%
 The `total_overround` column tells you each bookmaker’s vig. A value of
 1.05 means the bookmaker takes a 5% margin.
 
-### Line shopping: best available price per outcome
+#### Line shopping: best available price per outcome
 
 ``` r
 
@@ -309,7 +309,7 @@ best_h2h
 # Los Angeles Lakers  Boston Celtics  Los Angeles Lakers  DraftKings  2.10   0.492
 ```
 
-### Handling spreads and totals
+#### Handling spreads and totals
 
 Spreads and totals each have two rows per (event, bookmaker). The
 `outcomes_point` column carries the handicap or total line:
@@ -333,13 +333,13 @@ best_spreads
 # Los Angeles Lakers  Boston Celtics  Boston Celtics      3.5             FanDuel     1.95
 ```
 
-## 5. Historical odds — tracking line movement
+### 5. Historical odds — tracking line movement
 
 The historical endpoints require a paid plan. They use a snapshot model:
 supply an ISO 8601 `date` and get back the data state at the closest
 snapshot at or before that time.
 
-### Fetch a single historical snapshot
+#### Fetch a single historical snapshot
 
 ``` r
 
@@ -362,7 +362,7 @@ hist_odds_48h %>%
 # 2024-01-14T23:58:00Z      2024-01-14T23:53:00Z       2024-01-15T00:03:00Z       Los Angeles Lakers
 ```
 
-### Page through snapshots to build a line-movement dataset
+#### Page through snapshots to build a line-movement dataset
 
 Use the `next_timestamp` from one response as the `date` parameter of
 the next call to walk forward in time. The cost for
@@ -413,9 +413,9 @@ line_movement
 # ...
 ```
 
-## 6. Persist and schedule — SQLite storage + quota-aware scheduling
+### 6. Persist and schedule — SQLite storage + quota-aware scheduling
 
-### Store snapshots to SQLite
+#### Store snapshots to SQLite
 
 Use `DBI` + `RSQLite` to keep a running archive. Key each row by
 `pulled_at` so you can track when each snapshot was collected.
@@ -482,7 +482,7 @@ pull_and_store("basketball_nba")
 dbDisconnect(con)
 ```
 
-### Quota-aware scheduling
+#### Quota-aware scheduling
 
 The Odds API’s quota resets monthly. Before each scheduled pull, check
 your remaining balance and bail early if you are running low:
@@ -507,9 +507,9 @@ region costs 2 credits per call. At 12 calls/hour × 24h × 30 days =
 8,640 calls per month. Plan your pull frequency according to your plan’s
 monthly quota.
 
-## 7. Visualize — best lines table and line-movement chart
+### 7. Visualize — best lines table and line-movement chart
 
-### Best-lines summary table with `gt`
+#### Best-lines summary table with `gt`
 
 ``` r
 
@@ -534,7 +534,7 @@ best_lines_table <- best_h2h %>%
 best_lines_table
 ```
 
-### Line-movement chart with `ggplot2`
+#### Line-movement chart with `ggplot2`
 
 ``` r
 
@@ -563,7 +563,7 @@ line_movement_chart <- line_movement %>%
 line_movement_chart
 ```
 
-## Closing notes: SportsDataverse
+### Closing notes: SportsDataverse
 
 `oddsapiR` is part of the
 [SportsDataverse](https://sportsdataverse.org/), a collection of
@@ -587,3 +587,40 @@ box-score data from the other packages.
 
 File issues and feature requests at the [oddsapiR GitHub
 repository](https://github.com/sportsdataverse/oddsapiR/issues).
+
+## **Our Authors**
+
+- [Saiem Gilani](https://x.com/saiemgilani)
+  [![@saiemgilani](https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=x&style=for-the-badge)](https://x.com/saiemgilani)
+  [![@saiemgilani](https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge)](https://github.com/saiemgilani)
+
+### **Citation**
+
+To cite the [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org/) R
+package in publications, use:
+
+BibTeX Citation
+
+``` bibtex
+@misc{oddsapir,
+  author = {Saiem Gilani},
+  title = {oddsapiR: The SportsDataverse},
+  url = {https://oddsapiR.sportsdataverse.org/},
+  year = {2026}
+}
+```
+
+### **Related SportsDataverse packages**
+
+- [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) - college
+  football
+- [**hoopR**](https://hoopR.sportsdataverse.org/) - men’s basketball
+- [**wehoop**](https://wehoop.sportsdataverse.org/) - women’s basketball
+- [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
+- [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
+- [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
+- [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+- [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python
+  package
+- [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R
+  meta-package
