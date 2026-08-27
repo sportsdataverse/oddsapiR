@@ -1,3 +1,26 @@
+# oddsapiR 1.0.1
+
+CRAN fix release, addressing the `--run-donttest` check failure reported on
+2026-08-25.
+
+### Bug fixes
+
+* Printing an `oddsapiR_data` tibble no longer errors with "missing value where
+  TRUE/FALSE needed". The Odds API omits its `x-requests-*` usage headers on
+  error responses, which stored a zero-length quota value; the print method's
+  guard then evaluated to `NA`. Absent or unparseable headers are now recorded
+  as `NA_integer_`, and the guard is length-safe.
+* **`toa_event_odds()`** and **`toa_event_odds_history()`** no longer report an
+  API error response (an invalid key, say) as "event found, but no bookmaker
+  odds are available yet". The API's own error message is surfaced instead, so a
+  failed request is never mistaken for an event with no odds posted.
+
+### Infrastructure & tooling
+
+* Examples that call the live API are guarded with
+  `@examplesIf has_toa_key()`, so they are skipped where no API key is
+  configured rather than making a doomed request.
+
 # oddsapiR 1.0.0
 
 First major release. Full coverage of The Odds API v4, an `httr2` HTTP stack, and

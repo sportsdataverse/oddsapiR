@@ -1,21 +1,32 @@
 ## Release summary
 
-This is the 1.0.0 major release. It:
-* Migrates the HTTP stack from `httr` to `httr2` (and removes `janitor`; adds `tibble`).
-* Adds five new endpoint wrappers completing The Odds API v4 surface:
-  `toa_sports_events()`, `toa_event_markets()`, `toa_sports_participants()`,
-  `toa_sports_events_history()`, and `toa_event_odds_history()`.
-* Adds `toa_quota()` and per-request usage-quota reporting (attributes + print method).
-* Repoints `toa_sports_odds_history()` to the current `/v4/historical/...` endpoint
-  (the previous `/odds-history` path was deprecated upstream); the signature changed.
-* Fixes #4: `toa_event_odds()` / `toa_event_odds_history()` return a typed zero-row
-  tibble (with an informative message) when an event exists but has no bookmaker odds
-  posted yet, instead of a misleading "invalid arguments" error.
+This is a fix release for the `--run-donttest` additional-issues failure reported
+for 1.0.0 on 2026-08-25 (correction requested by 2026-09-16).
+
+**Cause.** The Odds API omits its `x-requests-*` usage headers on error responses.
+On the CRAN check machines no API key is configured, so the example request
+returned HTTP 401, `httr2::resp_header()` returned `NULL`, and
+`as.integer(NULL)` stored a zero-length usage value. The print method's guard,
+`!is.null(x) && !is.na(x)`, then evaluated to `NA` on that zero-length value and
+aborted with "missing value where TRUE/FALSE needed".
+
+**Fixes.**
+* Absent or unparseable `x-requests-*` headers are recorded as `NA_integer_`, and
+  the print-method guard is now length-safe.
+* `toa_event_odds()` / `toa_event_odds_history()` surface the API's own error
+  message rather than reporting a failed request as an event with no odds posted.
+* Examples that call the live API are guarded with `@examplesIf has_toa_key()`,
+  so on a machine with no API key they are skipped rather than issuing a request
+  that cannot succeed. This is what makes the `--run-donttest` run clean.
 * I am ignoring the note on non-ASCII characters in package data because they are proper names.
 
 ## R CMD check results
 
 0 errors | 0 warnings | 0 notes
+
+Verified under the reported conditions: `R CMD check --run-donttest` with no
+`ODDS_API_KEY` in the environment (`R_ENVIRON_USER` pointed at an empty file)
+returns `Status: OK`.
 
 One local-only artifact: `R CMD check --as-cran` on a Windows dev machine reports a
 non-standard `''NULL''` directory in the check directory. Phase bisection shows it is
