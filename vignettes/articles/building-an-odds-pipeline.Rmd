@@ -7,9 +7,6 @@ opengraph:
     creator: "@saiemgilani"
   image:
     src: "https://github.com/saiemgilani/oddsapiR/blob/main/logo.png?raw=true"
-  twitter:
-    card: summary
-    creator: "@saiemgilani"
 output: html_document
 description: "Assembling a repeatable odds-collection pipeline with <code>oddsapiR</code> - scheduling pulls, storing line history, and tracking how a market moves toward close."
 ---
