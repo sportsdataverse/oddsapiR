@@ -57,8 +57,8 @@ Other The Odds API: Sports & Events:
 # \donttest{
   try(toa_sports(all_sports = TRUE))
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-08-24 08:27:41 UTC
-#> ℹ Odds API quota: 10525 used, 4989475 remaining (last call cost 0)
+#> ℹ Data updated: 2026-08-27 04:13:57 UTC
+#> ℹ Odds API quota: 14420 used, 4985580 remaining (last call cost 0)
 #> # A tibble: 176 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        
@@ -66,12 +66,12 @@ Other The Odds API: Sports & Events:
 #>  2 americanfootball_ncaaf   Amer… NCAAF US College… TRUE   FALSE        
 #>  3 americanfootball_ncaaf_… Amer… NCAA… US College… TRUE   TRUE         
 #>  4 americanfootball_nfl     Amer… NFL   US Football TRUE   FALSE        
-#>  5 americanfootball_nfl_pr… Amer… NFL … US Football FALSE  FALSE        
+#>  5 americanfootball_nfl_pr… Amer… NFL … US Football TRUE   FALSE        
 #>  6 americanfootball_nfl_su… Amer… NFL … Super Bowl… TRUE   TRUE         
 #>  7 americanfootball_ufl     Amer… UFL   United Foo… FALSE  FALSE        
 #>  8 aussierules_afl          Auss… AFL   Aussie Foo… TRUE   FALSE        
 #>  9 aussierules_aflw         Auss… AFL … Aussie Foo… TRUE   FALSE        
-#> 10 baseball_kbo             Base… KBO   KBO League  FALSE  FALSE        
+#> 10 baseball_kbo             Base… KBO   KBO League  TRUE   FALSE        
 #> # ℹ 166 more rows
 # }
 ```

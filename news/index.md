@@ -2,6 +2,8 @@
 
 ## oddsapiR 1.0.0
 
+CRAN release: 2026-08-24
+
 First major release. Full coverage of The Odds API v4, an `httr2` HTTP
 stack, and per-request usage-quota reporting.
 

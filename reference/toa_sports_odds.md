@@ -114,9 +114,9 @@ Other The Odds API: Odds & Markets:
                        odds_format = 'decimal',
                        date_format = 'iso'))
 #> ── Sports Odds data from the-odds-api.com ──────────── oddsapiR 1.0.0 ──
-#> ℹ Data updated: 2026-08-24 08:27:42 UTC
-#> ℹ Odds API quota: 10539 used, 4989461 remaining (last call cost 1)
-#> # A tibble: 252 × 14
+#> ℹ Data updated: 2026-08-27 04:13:58 UTC
+#> ℹ Odds API quota: 14422 used, 4985578 remaining (last call cost 1)
+#> # A tibble: 250 × 14
 #>    id            sport_key sport_title commence_time home_team away_team
 #>    <chr>         <chr>     <chr>       <chr>         <chr>     <chr>    
 #>  1 26b036ff107f… basketba… NBA         2026-10-20T1… Detroit … Boston C…
@@ -129,7 +129,7 @@ Other The Odds API: Odds & Markets:
 #>  8 26b036ff107f… basketba… NBA         2026-10-20T1… Detroit … Boston C…
 #>  9 26b036ff107f… basketba… NBA         2026-10-20T1… Detroit … Boston C…
 #> 10 26b036ff107f… basketba… NBA         2026-10-20T1… Detroit … Boston C…
-#> # ℹ 242 more rows
+#> # ℹ 240 more rows
 #> # ℹ 8 more variables: bookmaker_key <chr>, bookmaker <chr>,
 #> #   bookmaker_last_update <chr>, market_key <chr>,
 #> #   market_last_update <chr>, outcomes_name <chr>,
