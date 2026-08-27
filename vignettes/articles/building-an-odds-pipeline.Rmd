@@ -529,12 +529,12 @@ File issues and feature requests at the [oddsapiR GitHub repository](https://git
 
 To cite the [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org/) R package in publications, use:
 
-BibTex Citation
+BibTeX Citation
 
 ```bibtex
 @misc{oddsapir,
   author = {Saiem Gilani},
-  title = {oddsapiR: The SportsDataverse's R Package for The Odds API},
+  title = {oddsapiR: The SportsDataverse},
   url = {https://oddsapiR.sportsdataverse.org/},
   year = {2026}
 }
