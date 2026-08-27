@@ -7,9 +7,6 @@ opengraph:
     creator: "@saiemgilani"
   image:
     src: "https://github.com/saiemgilani/oddsapiR/blob/main/logo.png?raw=true"
-  twitter:
-    card: summary
-    creator: "@saiemgilani"
 output: html_document
 description: "Getting started with The Odds API in R - authenticating, listing available sports with <code>toa_sports()</code>, and pulling current lines with <code>toa_sports_odds()</code>."
 ---
