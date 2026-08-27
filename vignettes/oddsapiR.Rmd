@@ -1,13 +1,17 @@
 ---
 title: "Getting started with oddsapiR"
-author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
+author: "Saiem Gilani <br><a href='https://x.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
+  twitter:
+    card: summary_large_image
+    creator: "@saiemgilani"
   image:
     src: "https://github.com/saiemgilani/oddsapiR/blob/main/logo.png?raw=true"
   twitter:
     card: summary
     creator: "@saiemgilani"
 output: html_document
+description: "Getting started with The Odds API in R - authenticating, listing available sports with <code>toa_sports()</code>, and pulling current lines with <code>toa_sports_odds()</code>."
 ---
 
 ```{r setup, include = FALSE}
@@ -32,13 +36,16 @@ I'm Saiem Gilani, one of the [authors](https://saiemgilani.github.io/oddsapiR/au
 ## **Install** [**`oddsapiR`**](https://saiemgilani.github.io/oddsapiR/)
 
 ```{r install_oddsapiR_gs, message=FALSE,eval=FALSE}
-# You can install using the pacman package using the following code:
-if (!requireNamespace('pacman', quietly = TRUE)){
-  install.packages('pacman')
+# You can install using the pak package using the following code:
+if (!requireNamespace('pak', quietly = TRUE)){
+  install.packages('pak')
 }
-pacman::p_load_current_gh("sportsdataverse/oddsapiR", dependencies = TRUE, update = TRUE)
-pacman::p_load_current_gh("jthomasmock/gtExtras", dependencies = TRUE, update = TRUE)
-pacman::p_load(dplyr, knitr, gt)
+pak::pak("sportsdataverse/oddsapiR", dependencies = TRUE, update = TRUE)
+pak::pak("jthomasmock/gtExtras", dependencies = TRUE, update = TRUE)
+pak::pak(c("dplyr", "knitr", "gt"))
+library(dplyr)
+library(knitr)
+library(gt)
 ```
 
 
@@ -421,7 +428,7 @@ toa_quota()
 To cite the [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org) R package
 in publications, use:
 
-BibTex Citation
+BibTeX Citation
 
 ``` bibtex
 @misc{gilani_2022_oddsapiR,
