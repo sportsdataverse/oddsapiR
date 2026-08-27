@@ -45,3 +45,6 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Stray tooling caches -- never part of the repo or the build
+.ruff_cache/

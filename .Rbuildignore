@@ -50,3 +50,4 @@
 ^\.claude$
 ^\.remember$
 ^\.omc$
+^\.ruff_cache$
