@@ -4,13 +4,22 @@
 # by every successful request and read by make_toa_data() / toa_quota().
 .oddsapiR <- new.env(parent = emptyenv())
 
+# Read one x-requests-* usage header as a length-1 integer. The Odds API omits
+# these headers on error responses (401/422), where resp_header() returns NULL
+# and as.integer(NULL) is integer(0) -- a zero-length value poisons every
+# downstream length-1 assumption, so absent/unparseable becomes NA_integer_.
+.toa_header_int <- function(resp, name){
+  val <- suppressWarnings(as.integer(httr2::resp_header(resp, name)))
+  if (length(val) != 1L) NA_integer_ else val
+}
+
 # Read the x-requests-* usage headers off a response and cache them for the
 # session. Returns the parsed values invisibly.
 .toa_store_quota <- function(resp){
   quota <- list(
-    requests_remaining = suppressWarnings(as.integer(httr2::resp_header(resp, "x-requests-remaining"))),
-    requests_used      = suppressWarnings(as.integer(httr2::resp_header(resp, "x-requests-used"))),
-    requests_last      = suppressWarnings(as.integer(httr2::resp_header(resp, "x-requests-last")))
+    requests_remaining = .toa_header_int(resp, "x-requests-remaining"),
+    requests_used      = .toa_header_int(resp, "x-requests-used"),
+    requests_last      = .toa_header_int(resp, "x-requests-last")
   )
   assign("quota", quota, envir = .oddsapiR)
   invisible(quota)
@@ -68,7 +77,8 @@ toa_api_request <- function(url, query = NULL, ...){
 #'   [toa_key()] / [register_toa] to set up your API key, and [toa_sports()]
 #'   for your first data call. Part of the
 #'   \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'   try(toa_sports())
 #'   try(toa_quota())
 #' }
@@ -108,9 +118,22 @@ toa_api_call <- function(url, query = NULL, ...){
 toa_api_headers <- function(url, query = NULL, ...){
   resp <- toa_api_request(url, query = query, ...)
   data.frame(
-    requests_remaining = as.integer(httr2::resp_header(resp, "x-requests-remaining")),
-    requests_used      = as.integer(httr2::resp_header(resp, "x-requests-used"))
+    requests_remaining = .toa_header_int(resp, "x-requests-remaining"),
+    requests_used      = .toa_header_int(resp, "x-requests-used")
   )
+}
+
+# The Odds API reports failures as a JSON error body ({message, error_code,
+# details_url}) rather than an event, and the wrappers deliberately do not raise
+# on HTTP status. Raise the API's own message so an auth/parameter failure is
+# never mistaken for an event that simply has no odds posted yet. `envelope`
+# differs from `payload` for the historical endpoints, which nest the event
+# under `data`.
+.toa_stop_if_error_payload <- function(payload, envelope = payload){
+  if (!is.null(payload$id)) return(invisible(NULL))
+  msg <- envelope$message
+  stop(if (!is.null(msg)) msg else "unexpected response payload (no event id)",
+       call. = FALSE)
 }
 
 # Zero-row event-odds tibble carrying the documented column schema. Returned by
@@ -329,7 +352,10 @@ print.oddsapiR_data <- function(x,...) {
   }
 
   remaining <- attr(x, "oddsapiR_requests_remaining")
-  if (!is.null(remaining) && !is.na(remaining)) {
+  # Length-safe: the attribute is absent (NULL) on frames built before the
+  # first API call, and was zero-length for responses that carried no quota
+  # headers -- both made `!is.null(x) && !is.na(x)` evaluate to NA and abort.
+  if (length(remaining) == 1L && !is.na(remaining)) {
     cli::cli_alert_info(
       "Odds API quota: {.field {attr(x,'oddsapiR_requests_used')}} used, {.field {remaining}} remaining (last call cost {.field {attr(x,'oddsapiR_requests_last')}})"
     )

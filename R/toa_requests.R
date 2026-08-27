@@ -26,7 +26,8 @@
 #'   a network round-trip, [toa_key()] / [register_toa] to configure your API
 #'   key, and [toa_sports()] to start pulling data. Part of the
 #'   \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'   try(toa_requests())
 #' }
 toa_requests <- function(){

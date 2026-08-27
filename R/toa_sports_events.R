@@ -46,7 +46,8 @@
 #'   to pull odds for a specific event by its `id`, and [toa_event_markets()]
 #'   to see available market keys per bookmaker. Part of the
 #'   \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'    try(toa_sports_events(sport_key = 'basketball_nba'))
 #' }
 toa_sports_events <- function(sport_key,

@@ -68,10 +68,12 @@ Historical data is available on paid usage plans from June 2020.
 \strong{Usage quota cost:} 1 credit (0 if no events are found at the snapshot).
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
    try(toa_sports_events_history(sport_key = 'basketball_nba',
                                  date = '2024-01-15T12:15:00Z'))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_event_odds_history]{toa_event_odds_history()}} to pull odds for a historical event by

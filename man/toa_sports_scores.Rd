@@ -46,11 +46,13 @@ seconds.
 when \code{days_from} is supplied.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
    try(toa_sports_scores(sport_key = 'basketball_nba',
                          days_from = NULL,
                          date_format = 'iso'))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_sports]{toa_sports()}} to discover \code{sport_key} values, \code{\link[=toa_sports_events]{toa_sports_events()}}

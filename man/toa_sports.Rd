@@ -31,9 +31,11 @@ Returns a list of in-season sports. The \code{key} returned here is the
 \strong{Usage quota cost:} Free. This endpoint does not count against your quota.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
   try(toa_sports(all_sports = TRUE))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_sports_events]{toa_sports_events()}} to list upcoming events for a sport,

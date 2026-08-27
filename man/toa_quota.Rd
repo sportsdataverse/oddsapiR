@@ -25,10 +25,12 @@ These same values are attached as attributes (\code{oddsapiR_requests_remaining}
 by a \verb{toa_*()} function, and are echoed when the tibble is printed.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
   try(toa_sports())
   try(toa_quota())
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_requests]{toa_requests()}} to explicitly query usage via an API round-trip,

@@ -57,7 +57,8 @@
 #'   its `id`, [toa_sports_odds_history()] for featured-market odds at a
 #'   historical snapshot, and [toa_sports_events()] for current events. Part of
 #'   the \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'    try(toa_sports_events_history(sport_key = 'basketball_nba',
 #'                                  date = '2024-01-15T12:15:00Z'))
 #' }

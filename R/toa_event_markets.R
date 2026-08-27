@@ -55,7 +55,8 @@
 #'   [toa_sports_odds()] for featured-market odds across all events, and
 #'   [toa_sports_events()] to look up `event_id` values. Part of the
 #'   \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'    try(toa_event_markets(sport_key = 'basketball_nba',
 #'                          event_id = '48db9c3293a52baab881d95d38f37a98',
 #'                          regions = 'us'))

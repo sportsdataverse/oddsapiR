@@ -90,6 +90,7 @@ Historical data is available on paid usage plans from June 2020.
 Snapshots with no events do not count against the quota.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
    try(toa_sports_odds_history(sport_key = 'basketball_nba',
                                date = '2024-01-15T12:15:00Z',
@@ -98,6 +99,7 @@ Snapshots with no events do not count against the quota.
                                odds_format = 'decimal',
                                date_format = 'iso'))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_event_odds_history]{toa_event_odds_history()}} for historical odds on a single event
