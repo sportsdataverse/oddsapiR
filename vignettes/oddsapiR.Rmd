@@ -36,13 +36,16 @@ I'm Saiem Gilani, one of the [authors](https://saiemgilani.github.io/oddsapiR/au
 ## **Install** [**`oddsapiR`**](https://saiemgilani.github.io/oddsapiR/)
 
 ```{r install_oddsapiR_gs, message=FALSE,eval=FALSE}
-# You can install using the pacman package using the following code:
-if (!requireNamespace('pacman', quietly = TRUE)){
-  install.packages('pacman')
+# You can install using the pak package using the following code:
+if (!requireNamespace('pak', quietly = TRUE)){
+  install.packages('pak')
 }
-pacman::p_load_current_gh("sportsdataverse/oddsapiR", dependencies = TRUE, update = TRUE)
-pacman::p_load_current_gh("jthomasmock/gtExtras", dependencies = TRUE, update = TRUE)
-pacman::p_load(dplyr, knitr, gt)
+pak::pak("sportsdataverse/oddsapiR", dependencies = TRUE, update = TRUE)
+pak::pak("jthomasmock/gtExtras", dependencies = TRUE, update = TRUE)
+pak::pak(c("dplyr", "knitr", "gt"))
+library(dplyr)
+library(knitr)
+library(gt)
 ```
 
 
