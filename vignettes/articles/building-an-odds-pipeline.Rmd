@@ -1,13 +1,17 @@
 ---
 title: "Building a sports-odds pipeline with oddsapiR"
-author: "Saiem Gilani"
+author: "Saiem Gilani <br><a href='https://x.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
+  twitter:
+    card: summary_large_image
+    creator: "@saiemgilani"
   image:
     src: "https://github.com/saiemgilani/oddsapiR/blob/main/logo.png?raw=true"
   twitter:
     card: summary
     creator: "@saiemgilani"
 output: html_document
+description: "This article walks through a realistic end-to-end pipeline for collecting, tidying, analysing, and persisting sports-odds data using oddsapiR."
 ---
 
 ```{r setup, include = FALSE}
@@ -515,3 +519,35 @@ line_movement_chart
 Each package follows the same tidy-data conventions, making it straightforward to join odds data from `oddsapiR` with play-by-play or box-score data from the other packages.
 
 File issues and feature requests at the [oddsapiR GitHub repository](https://github.com/sportsdataverse/oddsapiR/issues).
+
+# **Our Authors**
+-   [Saiem Gilani](https://x.com/saiemgilani)
+<a href='https://x.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=x&amp;style=for-the-badge' alt='@saiemgilani'/></a>
+<a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>
+
+## **Citation**
+
+To cite the [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org/) R package in publications, use:
+
+BibTex Citation
+
+```bibtex
+@misc{oddsapir,
+  author = {Saiem Gilani},
+  title = {oddsapiR: The SportsDataverse's R Package for The Odds API},
+  url = {https://oddsapiR.sportsdataverse.org/},
+  year = {2026}
+}
+```
+
+## **Related SportsDataverse packages**
+
+-   [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) - college football
+-   [**hoopR**](https://hoopR.sportsdataverse.org/) - men's basketball
+-   [**wehoop**](https://wehoop.sportsdataverse.org/) - women's basketball
+-   [**baseballr**](https://baseballr.sportsdataverse.org/) - baseball
+-   [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) - hockey
+-   [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) - betting odds
+-   [**sportyR**](https://sportyR.sportsdataverse.org/) - playing surfaces
+-   [**sportsdataverse-py**](https://py.sportsdataverse.org/) - the Python package
+-   [**sportsdataverse-R**](https://r.sportsdataverse.org/) - the R meta-package

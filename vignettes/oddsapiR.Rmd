@@ -2,12 +2,16 @@
 title: "Getting started with oddsapiR"
 author: "Saiem Gilani <br><a href='https://twitter.com/saiemgilani' target='blank'><img src='https://img.shields.io/twitter/follow/saiemgilani?color=blue&amp;label=%40saiemgilani&amp;logo=twitter&amp;style=for-the-badge' alt='@saiemgilani'/></a> <a href='https://github.com/saiemgilani' target='blank'><img src='https://img.shields.io/github/followers/saiemgilani?color=eee&amp;logo=Github&amp;style=for-the-badge' alt='@saiemgilani'/></a>"
 opengraph:
+  twitter:
+    card: summary_large_image
+    creator: "@saiemgilani"
   image:
     src: "https://github.com/saiemgilani/oddsapiR/blob/main/logo.png?raw=true"
   twitter:
     card: summary
     creator: "@saiemgilani"
 output: html_document
+description: "I'm Saiem Gilani, one of the authors of oddsapiR, and I hope to give the community a high-quality resource for accessing **The Odds API**."
 ---
 
 ```{r setup, include = FALSE}
