@@ -13,6 +13,9 @@
 DESCRIPTION text eol=lf
 NAMESPACE   text eol=lf
 LICENSE     text eol=lf
+.Rbuildignore   text eol=lf
+.gitignore      text eol=lf
+CRAN-SUBMISSION text eol=lf
 
 # Binary assets (never normalize)
 *.png  binary
