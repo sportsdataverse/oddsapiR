@@ -28,11 +28,11 @@ Verified under the reported conditions: `R CMD check --run-donttest` with no
 `ODDS_API_KEY` in the environment (`R_ENVIRON_USER` pointed at an empty file)
 returns `Status: OK`.
 
-One local-only artifact: `R CMD check --as-cran` on a Windows dev machine reports a
-non-standard `''NULL''` directory in the check directory. Phase bisection shows it is
-created by the CRAN-incoming *remote* checks themselves (it disappears with
-`_R_CHECK_CRAN_INCOMING_REMOTE_=false` and does not occur in any other phase), i.e. an
-artifact of the checking environment, not of the package.
+One local-only artifact, for completeness: `R CMD check --as-cran` on this Windows
+machine reports a non-standard `''NULL''` directory in the check directory. It is
+created by the local toolchain, not by this package -- a trivial three-file control
+package containing no oddsapiR code reproduces the identical NOTE under `--as-cran`,
+and the NOTE does not appear on any of the CRAN check flavors.
 
 ## revdepcheck results
 
