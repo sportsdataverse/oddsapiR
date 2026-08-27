@@ -29,9 +29,11 @@ return individual players on a team.
 \strong{Usage quota cost:} 1 credit.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
    try(toa_sports_participants(sport_key = 'basketball_nba'))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_sports]{toa_sports()}} to discover \code{sport_key} values, \code{\link[=toa_sports_events]{toa_sports_events()}}

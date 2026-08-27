@@ -60,7 +60,8 @@
 #'   and alternate lines), [toa_event_markets()] to list a game's available
 #'   market keys, and [toa_sports()] to find `sport_key` values. Part of the
 #'   \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'    try(toa_sports_odds(sport_key = 'basketball_nba',
 #'                        regions = 'us',
 #'                        markets = 'spreads',

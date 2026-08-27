@@ -33,7 +33,8 @@
 #'   [toa_sports_scores()] for live/recent scores, and [toa_sports_odds()]
 #'   to pull featured-market odds. Part of the
 #'   \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'   try(toa_sports(all_sports = TRUE))
 #' }
 toa_sports <- function(all_sports = TRUE){

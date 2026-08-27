@@ -43,7 +43,8 @@
 #' @seealso [toa_sports()] to discover `sport_key` values, [toa_sports_events()]
 #'   to list upcoming events, and [toa_sports_odds()] for live/upcoming betting
 #'   lines. Part of the \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'    try(toa_sports_scores(sport_key = 'basketball_nba',
 #'                          days_from = NULL,
 #'                          date_format = 'iso'))

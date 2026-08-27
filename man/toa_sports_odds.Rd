@@ -70,6 +70,7 @@ markets, use \code{\link[=toa_event_odds]{toa_event_odds()}} instead.
 \strong{Usage quota cost:} \verb{[number of markets] x [number of regions]}.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
    try(toa_sports_odds(sport_key = 'basketball_nba',
                        regions = 'us',
@@ -77,6 +78,7 @@ markets, use \code{\link[=toa_event_odds]{toa_event_odds()}} instead.
                        odds_format = 'decimal',
                        date_format = 'iso'))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_event_odds]{toa_event_odds()}} for a single event's odds (including player props

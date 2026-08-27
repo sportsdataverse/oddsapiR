@@ -83,7 +83,8 @@
 #'   values, [toa_sports_odds_history()] for featured-market odds across all
 #'   events at a snapshot, and [toa_event_odds()] for current event odds. Part
 #'   of the \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'    try(toa_event_odds_history(sport_key = 'basketball_nba',
 #'                               event_id = '93af4b300a4c0dded909234ea32e9abd',
 #'                               date = '2024-01-15T12:15:00Z',
@@ -117,6 +118,7 @@ toa_event_odds_history <- function(sport_key,
     expr = {
       raw <- toa_api_call(base_url, query = query_params)
       event <- raw$data
+      .toa_stop_if_error_payload(event, raw)
       # A valid snapshot can ship an empty bookmakers array (no lines were
       # posted at that timestamp for the requested markets/regions). Return a
       # typed zero-row tibble instead of falling through to the rename/unnest

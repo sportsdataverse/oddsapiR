@@ -63,11 +63,13 @@ returned \code{market_key} values to request odds via \code{\link[=toa_event_odd
 \strong{Usage quota cost:} 1 credit.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
    try(toa_event_markets(sport_key = 'basketball_nba',
                          event_id = '48db9c3293a52baab881d95d38f37a98',
                          regions = 'us'))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_event_odds]{toa_event_odds()}} to pull odds for the market keys discovered here,

@@ -98,6 +98,7 @@ Historical odds for additional markets are available from 2023-05-03 at
 with no data do not count against the quota.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
    try(toa_event_odds_history(sport_key = 'basketball_nba',
                               event_id = '93af4b300a4c0dded909234ea32e9abd',
@@ -107,6 +108,7 @@ with no data do not count against the quota.
                               odds_format = 'decimal',
                               date_format = 'iso'))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_sports_events_history]{toa_sports_events_history()}} to look up historical \code{event_id}

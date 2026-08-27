@@ -69,7 +69,8 @@
 #'   events, [toa_event_markets()] to discover available market keys for an
 #'   event, and [toa_sports_events()] to look up `event_id` values. Part of
 #'   the \href{https://sportsdataverse.org/}{SportsDataverse}.
-#' @examples \donttest{
+#' @examplesIf has_toa_key()
+#' \donttest{
 #'    try(toa_event_odds(sport_key = 'basketball_nba',
 #'                       event_id = '48db9c3293a52baab881d95d38f37a98',
 #'                       regions = 'us',
@@ -99,6 +100,7 @@ toa_event_odds <- function(sport_key,
   tryCatch(
     expr = {
       raw <- toa_api_call(base_url, query = query_params)
+      .toa_stop_if_error_payload(raw)
       # A valid event can ship an empty bookmakers array (no lines posted yet
       # for the requested markets/regions). Return a typed zero-row tibble
       # instead of falling through to the rename/unnest error path (#4).

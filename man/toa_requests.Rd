@@ -23,9 +23,11 @@ against the free \verb{/v4/sports} endpoint, so it does not consume any quota.
 \strong{Usage quota cost:} Free.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
   try(toa_requests())
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_quota]{toa_quota()}} to read cached usage from the most recent call without

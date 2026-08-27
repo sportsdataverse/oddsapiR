@@ -55,9 +55,11 @@ Returns a list of events without odds. The \code{id} returned here is the
 \strong{Usage quota cost:} Free. This endpoint does not count against your quota.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
    try(toa_sports_events(sport_key = 'basketball_nba'))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_sports]{toa_sports()}} to discover \code{sport_key} values, \code{\link[=toa_event_odds]{toa_event_odds()}}

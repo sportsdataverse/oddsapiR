@@ -83,6 +83,7 @@ available market key, including player props and alternate lines. Look up an
 \strong{Usage quota cost:} \verb{[number of unique markets returned] x [number of regions]}.
 }
 \examples{
+\dontshow{if (has_toa_key()) withAutoprint(\{ # examplesIf}
 \donttest{
    try(toa_event_odds(sport_key = 'basketball_nba',
                       event_id = '48db9c3293a52baab881d95d38f37a98',
@@ -91,6 +92,7 @@ available market key, including player props and alternate lines. Look up an
                       odds_format = 'decimal',
                       date_format = 'iso'))
 }
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 \code{\link[=toa_sports_odds]{toa_sports_odds()}} for featured-market odds across all upcoming
