@@ -57,21 +57,21 @@ Other The Odds API: Sports & Events:
 # \donttest{
   try(toa_sports(all_sports = TRUE))
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-08-28 00:19:37 UTC
-#> ℹ Odds API quota: 19377 used, 4980623 remaining (last call cost 0)
-#> # A tibble: 176 × 6
+#> ℹ Data updated: 2026-09-09 22:08:45 UTC
+#> ℹ Odds API quota: 63920 used, 4936080 remaining (last call cost 0)
+#> # A tibble: 177 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        
 #>  1 americanfootball_cfl     Amer… CFL   Canadian F… TRUE   FALSE        
 #>  2 americanfootball_ncaaf   Amer… NCAAF US College… TRUE   FALSE        
 #>  3 americanfootball_ncaaf_… Amer… NCAA… US College… TRUE   TRUE         
-#>  4 americanfootball_nfl     Amer… NFL   US Football TRUE   FALSE        
-#>  5 americanfootball_nfl_pr… Amer… NFL … US Football TRUE   FALSE        
-#>  6 americanfootball_nfl_su… Amer… NFL … Super Bowl… TRUE   TRUE         
-#>  7 americanfootball_ufl     Amer… UFL   United Foo… FALSE  FALSE        
-#>  8 aussierules_afl          Auss… AFL   Aussie Foo… TRUE   FALSE        
-#>  9 aussierules_aflw         Auss… AFL … Aussie Foo… TRUE   FALSE        
-#> 10 baseball_kbo             Base… KBO   KBO League  TRUE   FALSE        
-#> # ℹ 166 more rows
+#>  4 americanfootball_ncaaf_… Amer… NCAA… US College… TRUE   FALSE        
+#>  5 americanfootball_nfl     Amer… NFL   US Football TRUE   FALSE        
+#>  6 americanfootball_nfl_pr… Amer… NFL … US Football FALSE  FALSE        
+#>  7 americanfootball_nfl_su… Amer… NFL … Super Bowl… TRUE   TRUE         
+#>  8 americanfootball_ufl     Amer… UFL   United Foo… FALSE  FALSE        
+#>  9 aussierules_afl          Auss… AFL   Aussie Foo… TRUE   FALSE        
+#> 10 aussierules_aflw         Auss… AFL … Aussie Foo… TRUE   FALSE        
+#> # ℹ 167 more rows
 # }
 ```

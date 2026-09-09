@@ -2,6 +2,8 @@
 
 ## oddsapiR 1.0.1
 
+CRAN release: 2026-08-27
+
 CRAN fix release, addressing the `--run-donttest` check failure reported
 on 2026-08-25.
 
