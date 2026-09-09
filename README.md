@@ -108,6 +108,9 @@ For more information on the package and function reference, please see
 the [**`oddsapiR`** documentation
 website](https://oddsapiR.sportsdataverse.org).
 
+There is also a printable [**`oddsapiR` cheat sheet (PDF)**](https://sportsdataverse.org/cheatsheets/oddsapiR.pdf), one of [a set covering every SportsDataverse package](https://sportsdataverse.org/cheatsheets).
+
+
 ## **Breaking Changes**
 
 [**Full News on
@@ -146,6 +149,17 @@ See the full ecosystem at
   - [Saiem Gilani](https://twitter.com/saiemgilani)
     <a href="https://twitter.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=twitter&style=for-the-badge" alt="@saiemgilani" /></a>
     <a href="https://github.com/saiemgilani" target="blank"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge" alt="@saiemgilani" /></a>
+
+<!-- cheatsheet-section -->
+## **Cheat sheet**
+
+A printable one-page reference for **`oddsapiR`** — the function families, the loaders, and what each one returns.
+
+📄 **[Download the oddsapiR cheat sheet (PDF)](https://sportsdataverse.org/cheatsheets/oddsapiR.pdf)**
+
+Free to download, print and hand out; light and dark, US Letter landscape.
+Every SportsDataverse package has one — browse them all at
+**[sportsdataverse.org/cheatsheets](https://sportsdataverse.org/cheatsheets)**.
 
 ## **Citations**
 

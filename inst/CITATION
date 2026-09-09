@@ -6,7 +6,7 @@ bibentry(
   bibtype  = "Misc",
   header   = "To cite the oddsapiR R package in publications, use:",
   key      = "gilani_oddsapiR",
-  author   = c(person("Saiem", "Gilani")),
+  author   = c(person("Saiem", "Gilani", comment = c(ORCID = "0000-0002-7194-9067"))),
   title    = "oddsapiR: The SportsDataverse's R Package for The Odds API.",
   url      = "https://oddsapiR.sportsdataverse.org",
   year     = year,

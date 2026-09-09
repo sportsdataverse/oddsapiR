@@ -136,3 +136,10 @@ test_that("The Odds API - Resource", {
 - Update `NEWS.md` + `cran-comments.md` for user-visible changes.
 - `devtools::build_readme()` if `README.Rmd` changed.
 - Commit with Conventional Commits (`feat(toa):`, `fix(toa):`, ...). No AI co-authors.
+
+## Cheat sheet
+
+There is a printable one-page reference for this package at
+<https://sportsdataverse.org/cheatsheets/oddsapiR.pdf>, one of [a set covering every SportsDataverse package](https://sportsdataverse.org/cheatsheets).
+Keep it in mind when adding or renaming an exported function: the sheet is a
+hand-built canvas, so a surface change means the sheet needs a revision too.
