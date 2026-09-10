@@ -13,6 +13,7 @@ bibentry(
   author   = c(person("Saiem", "Gilani", comment = c(ORCID = "0000-0002-7194-9067"))),
   title    = "oddsapiR: The SportsDataverse's R Package for The Odds API.",
   url      = "https://oddsapiR.sportsdataverse.org",
+  doi      = "10.32614/CRAN.package.oddsapiR",
   year     = year,
   note     = note,
   textVersion = paste0(
