@@ -159,6 +159,6 @@ BibTex Citation
   author = {Gilani, Saiem},
   title = {oddsapiR: The SportsDataverse's R Package for The Odds API.},
   url = {https://oddsapiR.sportsdataverse.org},
-  year = {2022}
+  year = {2026}
 }
 ```
