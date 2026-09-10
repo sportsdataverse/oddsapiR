@@ -18,6 +18,7 @@ https://oddsapiR.sportsdataverse.org
       author = {Saiem Gilani},
       title = {oddsapiR: The SportsDataverse's R Package for The Odds API.},
       url = {https://oddsapiR.sportsdataverse.org},
+      doi = {10.32614/CRAN.package.oddsapiR},
       year = {2026},
       note = {R package version 1.0.1},
     }
