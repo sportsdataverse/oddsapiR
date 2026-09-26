@@ -57,9 +57,9 @@ Other The Odds API: Sports & Events:
 # \donttest{
   try(toa_sports(all_sports = TRUE))
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-09-10 00:46:53 UTC
-#> ℹ Odds API quota: 65112 used, 4934888 remaining (last call cost 0)
-#> # A tibble: 177 × 6
+#> ℹ Data updated: 2026-09-26 06:32:26 UTC
+#> ℹ Odds API quota: 293517 used, 4706483 remaining (last call cost 0)
+#> # A tibble: 179 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        
 #>  1 americanfootball_cfl     Amer… CFL   Canadian F… TRUE   FALSE        
@@ -72,6 +72,6 @@ Other The Odds API: Sports & Events:
 #>  8 americanfootball_ufl     Amer… UFL   United Foo… FALSE  FALSE        
 #>  9 aussierules_afl          Auss… AFL   Aussie Foo… TRUE   FALSE        
 #> 10 aussierules_aflw         Auss… AFL … Aussie Foo… TRUE   FALSE        
-#> # ℹ 167 more rows
+#> # ℹ 169 more rows
 # }
 ```
