@@ -94,9 +94,9 @@ Other The Odds API: Sports & Events:
 # \donttest{
    try(toa_sports_events(sport_key = 'basketball_nba'))
 #> ── Sports Events data from the-odds-api.com ────────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-09-26 06:32:26 UTC
-#> ℹ Odds API quota: 293517 used, 4706483 remaining (last call cost 0)
-#> # A tibble: 41 × 6
+#> ℹ Data updated: 2026-09-30 14:52:30 UTC
+#> ℹ Odds API quota: 443927 used, 4556073 remaining (last call cost 0)
+#> # A tibble: 44 × 6
 #>    id            sport_key sport_title commence_time home_team away_team
 #>    <chr>         <chr>     <chr>       <chr>         <chr>     <chr>    
 #>  1 26b036ff107f… basketba… NBA         2026-10-20T1… Detroit … Boston C…
@@ -109,6 +109,6 @@ Other The Odds API: Sports & Events:
 #>  8 fd33c09c84ab… basketba… NBA         2026-10-22T0… New Orle… Indiana …
 #>  9 e6769c813dd6… basketba… NBA         2026-10-22T0… Memphis … Utah Jazz
 #> 10 af2f08407539… basketba… NBA         2026-10-22T0… Houston … Dallas M…
-#> # ℹ 31 more rows
+#> # ℹ 34 more rows
 # }
 ```

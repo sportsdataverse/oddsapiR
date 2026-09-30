@@ -77,9 +77,9 @@ Other The Odds API: Sports & Events:
                          days_from = NULL,
                          date_format = 'iso'))
 #> ── Sports scores data from the-odds-api.com ────────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-09-26 06:32:29 UTC
-#> ℹ Odds API quota: 293531 used, 4706469 remaining (last call cost 1)
-#> # A tibble: 41 × 9
+#> ℹ Data updated: 2026-09-30 14:52:32 UTC
+#> ℹ Odds API quota: 443941 used, 4556059 remaining (last call cost 1)
+#> # A tibble: 44 × 9
 #>    id            sport_key sport_title commence_time completed home_team
 #>    <chr>         <chr>     <chr>       <chr>         <lgl>     <chr>    
 #>  1 26b036ff107f… basketba… NBA         2026-10-20T1… FALSE     Detroit …
@@ -92,7 +92,7 @@ Other The Odds API: Sports & Events:
 #>  8 fd33c09c84ab… basketba… NBA         2026-10-22T0… FALSE     New Orle…
 #>  9 e6769c813dd6… basketba… NBA         2026-10-22T0… FALSE     Memphis …
 #> 10 af2f08407539… basketba… NBA         2026-10-22T0… FALSE     Houston …
-#> # ℹ 31 more rows
+#> # ℹ 34 more rows
 #> # ℹ 3 more variables: away_team <chr>, scores <lgl>, last_update <lgl>
 # }
 ```

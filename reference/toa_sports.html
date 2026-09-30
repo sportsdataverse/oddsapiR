@@ -72,6 +72,7 @@ Usage quota cost: Free. This endpoint does not count against your quota."><meta 
     <li><a class="external-link dropdown-item" href="https://js.sportsdataverse.org/">sportsdataverse.js</a></li>
     <li><a class="external-link dropdown-item" href="https://github.com/nntrn/nfl-nerd/">nfl-nerd</a></li>
   </ul></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://sportsdataverse.org/status">Data status</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://x.com/saiemgilani" aria-label="X (Twitter)"><span class="fa fab fa-x-twitter fa-lg"></span></a></li>
@@ -136,9 +137,9 @@ to pull featured-market odds. Part of the
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">toa_sports</span><span class="op">(</span>all_sports <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Sports coverage data from the-odds-api.com ──────── <span style="font-style: italic;">oddsapiR 1.0.1</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-26 06:32:26 UTC</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Odds API quota: <span style="color: #00BB00;">293517</span> used, <span style="color: #00BB00;">4706483</span> remaining (last call cost <span style="color: #00BB00;">0</span>)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 179 × 6</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-09-30 14:52:29 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Odds API quota: <span style="color: #00BB00;">443927</span> used, <span style="color: #00BB00;">4556073</span> remaining (last call cost <span style="color: #00BB00;">0</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 180 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    key                      group title description active has_outrights</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> americanfootball_cfl     Amer… CFL   Canadian F… TRUE   FALSE        </span>
@@ -149,9 +150,9 @@ to pull featured-market odds. Part of the
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> americanfootball_nfl_pr… Amer… NFL … US Football FALSE  FALSE        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> americanfootball_nfl_su… Amer… NFL … Super Bowl… TRUE   TRUE         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> americanfootball_ufl     Amer… UFL   United Foo… FALSE  FALSE        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> aussierules_afl          Auss… AFL   Aussie Foo… TRUE   FALSE        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> aussierules_afl          Auss… AFL   Aussie Foo… FALSE  FALSE        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> aussierules_aflw         Auss… AFL … Aussie Foo… TRUE   FALSE        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 169 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 170 more rows</span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

@@ -153,8 +153,8 @@ Other The Odds API: Historical:
                               odds_format = 'decimal',
                               date_format = 'iso'))
 #> ── Historical Event Odds data from the-odds-api.com ── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-09-26 06:32:25 UTC
-#> ℹ Odds API quota: 293517 used, 4706483 remaining (last call cost 10)
+#> ℹ Data updated: 2026-09-30 14:52:29 UTC
+#> ℹ Odds API quota: 443927 used, 4556073 remaining (last call cost 10)
 #> # A tibble: 20 × 16
 #>    timestamp           previous_timestamp next_timestamp id    sport_key
 #>    <chr>               <chr>              <chr>          <chr> <chr>    

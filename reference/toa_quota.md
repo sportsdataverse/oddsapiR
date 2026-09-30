@@ -50,9 +50,9 @@ Other The Odds API: Account & Usage:
 # \donttest{
   try(toa_sports())
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-09-26 06:32:25 UTC
-#> ℹ Odds API quota: 293517 used, 4706483 remaining (last call cost 0)
-#> # A tibble: 179 × 6
+#> ℹ Data updated: 2026-09-30 14:52:29 UTC
+#> ℹ Odds API quota: 443927 used, 4556073 remaining (last call cost 0)
+#> # A tibble: 180 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        
 #>  1 americanfootball_cfl     Amer… CFL   Canadian F… TRUE   FALSE        
@@ -63,13 +63,13 @@ Other The Odds API: Account & Usage:
 #>  6 americanfootball_nfl_pr… Amer… NFL … US Football FALSE  FALSE        
 #>  7 americanfootball_nfl_su… Amer… NFL … Super Bowl… TRUE   TRUE         
 #>  8 americanfootball_ufl     Amer… UFL   United Foo… FALSE  FALSE        
-#>  9 aussierules_afl          Auss… AFL   Aussie Foo… TRUE   FALSE        
+#>  9 aussierules_afl          Auss… AFL   Aussie Foo… FALSE  FALSE        
 #> 10 aussierules_aflw         Auss… AFL … Aussie Foo… TRUE   FALSE        
-#> # ℹ 169 more rows
+#> # ℹ 170 more rows
   try(toa_quota())
 #> # A tibble: 1 × 3
 #>   requests_remaining requests_used requests_last
 #>                <int>         <int>         <int>
-#> 1            4706483        293517             0
+#> 1            4556073        443927             0
 # }
 ```
