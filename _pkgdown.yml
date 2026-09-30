@@ -60,7 +60,7 @@ home:
     
 navbar:
   structure:
-    left:  [home, reference, articles, news, network, repo]
+    left:  [home, reference, articles, news, network, repo, status]
     right: [search, twitter, github, lightswitch]
   title: "oddsapiR"
   components:
@@ -154,6 +154,9 @@ navbar:
         href: https://js.sportsdataverse.org/
       - text: nfl-nerd
         href: https://github.com/nntrn/nfl-nerd/
+    status:
+      text: "Data status"
+      href: https://sportsdataverse.org/status
     twitter:
       icon: "fab fa-x-twitter fa-lg"
       href: https://x.com/saiemgilani

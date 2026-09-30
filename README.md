@@ -29,6 +29,9 @@ Part of the [SportsDataverse](https://sportsdataverse.org/) family of R
 & Python packages for sports analytics. To access the API, get a free
 API key at <https://the-odds-api.com>.
 
+Data freshness and pipeline status for every SportsDataverse dataset:
+[sportsdataverse.org/status](https://sportsdataverse.org/status).
+
 ## **Installation**
 
 You can install the CRAN version of
