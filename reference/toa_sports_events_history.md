@@ -107,8 +107,8 @@ Other The Odds API: Historical:
    try(toa_sports_events_history(sport_key = 'basketball_nba',
                                  date = '2024-01-15T12:15:00Z'))
 #> ── Historical Sports Events data from the-odds-api.com ─────────────────
-#> ℹ Data updated: 2026-09-30 14:52:30 UTC
-#> ℹ Odds API quota: 443928 used, 4556072 remaining (last call cost 1)
+#> ℹ Data updated: 2026-10-09 03:14:33 UTC
+#> ℹ Odds API quota: 208343 used, 4791657 remaining (last call cost 1)
 #> # A tibble: 11 × 9
 #>    timestamp           previous_timestamp next_timestamp id    sport_key
 #>    <chr>               <chr>              <chr>          <chr> <chr>    
