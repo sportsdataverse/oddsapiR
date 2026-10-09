@@ -169,7 +169,7 @@ Every SportsDataverse package has one — browse them all at
 To cite the [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org) R
 package in publications, use:
 
-BibTex Citation
+BibTeX Citation
 
 ``` bibtex
 @misc{gilani_2022_oddsapiR,
