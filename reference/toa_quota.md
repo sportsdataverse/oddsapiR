@@ -50,15 +50,15 @@ Other The Odds API: Account & Usage:
 # \donttest{
   try(toa_sports())
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-10-09 05:38:12 UTC
-#> ℹ Odds API quota: 208904 used, 4791096 remaining (last call cost 0)
+#> ℹ Data updated: 2026-10-12 12:02:21 UTC
+#> ℹ Odds API quota: 319879 used, 4680121 remaining (last call cost 0)
 #> # A tibble: 180 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        
 #>  1 americanfootball_cfl     Amer… CFL   Canadian F… TRUE   FALSE        
 #>  2 americanfootball_ncaaf   Amer… NCAAF US College… TRUE   FALSE        
 #>  3 americanfootball_ncaaf_… Amer… NCAA… US College… TRUE   TRUE         
-#>  4 americanfootball_ncaaf_… Amer… NCAA… US College… TRUE   FALSE        
+#>  4 americanfootball_ncaaf_… Amer… NCAA… US College… FALSE  FALSE        
 #>  5 americanfootball_nfl     Amer… NFL   US Football TRUE   FALSE        
 #>  6 americanfootball_nfl_pr… Amer… NFL … US Football FALSE  FALSE        
 #>  7 americanfootball_nfl_su… Amer… NFL … Super Bowl… TRUE   TRUE         
@@ -70,6 +70,6 @@ Other The Odds API: Account & Usage:
 #> # A tibble: 1 × 3
 #>   requests_remaining requests_used requests_last
 #>                <int>         <int>         <int>
-#> 1            4791096        208904             0
+#> 1            4680121        319879             0
 # }
 ```
