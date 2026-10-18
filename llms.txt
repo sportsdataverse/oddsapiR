@@ -112,6 +112,9 @@ Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%
 [![GitHub
 stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20oddsapiR&maxAge=2592000)](https://github.com/sportsdataverse/oddsapiR)
 
+[![Star history of
+sportsdataverse/oddsapiR](https://raw.githubusercontent.com/sportsdataverse/oddsapiR/star-history/star-history.png)](https://github.com/sportsdataverse/oddsapiR/stargazers)
+
 ## **The SportsDataverse**
 
 `oddsapiR` is part of the

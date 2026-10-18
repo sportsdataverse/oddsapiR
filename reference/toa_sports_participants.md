@@ -55,8 +55,8 @@ Other The Odds API: Sports & Events:
 # \donttest{
    try(toa_sports_participants(sport_key = 'basketball_nba'))
 #> ── Sports Participants data from the-odds-api.com ──── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-10-12 12:02:25 UTC
-#> ℹ Odds API quota: 319892 used, 4680108 remaining (last call cost 1)
+#> ℹ Data updated: 2026-10-18 11:14:13 UTC
+#> ℹ Odds API quota: 475233 used, 4524767 remaining (last call cost 1)
 #> # A tibble: 32 × 3
 #>    sport_key      id                             full_name            
 #>    <chr>          <chr>                          <chr>                
