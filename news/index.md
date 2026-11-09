@@ -1,5 +1,17 @@
 # Changelog
 
+## oddsapiR (development version)
+
+#### Tests
+
+- Every wrapper now has an offline test that replays a recorded Odds API
+  response (`tests/testthat/fixtures/http/`, recorded by
+  `data-raw/http_fixtures/record_fixtures.R`), so the suite covers the
+  parsers without an `ODDS_API_KEY` or network access. The API key is
+  replaced by `REDACTED` in every recorded URL. New tests also cover
+  each wrapper’s error and warning paths and the internal helpers; local
+  coverage without a key is 100%.
+
 ## oddsapiR 1.0.1
 
 CRAN release: 2026-08-27

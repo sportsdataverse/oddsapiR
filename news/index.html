@@ -93,6 +93,13 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="oddsapir-development-version">oddsapiR (development version)<a class="anchor" aria-label="anchor" href="#oddsapir-development-version"></a></h2>
+<div class="section level4">
+<h4 id="tests-development-version">Tests<a class="anchor" aria-label="anchor" href="#tests-development-version"></a></h4>
+<ul><li>Every wrapper now has an offline test that replays a recorded Odds API response (<code>tests/testthat/fixtures/http/</code>, recorded by <code>data-raw/http_fixtures/record_fixtures.R</code>), so the suite covers the parsers without an <code>ODDS_API_KEY</code> or network access. The API key is replaced by <code>REDACTED</code> in every recorded URL. New tests also cover each wrapper’s error and warning paths and the internal helpers; local coverage without a key is 100%.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.1" id="oddsapir-101">oddsapiR 1.0.1<a class="anchor" aria-label="anchor" href="#oddsapir-101"></a></h2><p class="text-muted">CRAN release: 2026-08-27</p>
 <p>CRAN fix release, addressing the <code>--run-donttest</code> check failure reported on 2026-08-25.</p>
 <div class="section level4">
