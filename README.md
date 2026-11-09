@@ -3,18 +3,18 @@
 
 <!-- badges: start -->
 
-[![CRAN
-version](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=CRAN%20version&prefix=v&query=%24.Version&url=https%3A%2F%2Fcrandb.r-pkg.org%2FoddsapiR)](https://CRAN.R-project.org/package=oddsapiR)
-[![CRAN
-downloads](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=Downloads&query=%24%5B0%5D.downloads&url=https%3A%2F%2Fcranlogs.r-pkg.org%2Fdownloads%2Ftotal%2F2022-12-29%3Alast-day%2FoddsapiR)](https://CRAN.R-project.org/package=oddsapiR)
-[![R-universe
-version](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=R-universe&prefix=v&query=%24.Version&url=https%3A%2F%2Fsportsdataverse.r-universe.dev%2Fapi%2Fpackages%2FoddsapiR)](https://sportsdataverse.r-universe.dev/oddsapiR)
-[![Version-Number](https://img.shields.io/github/r-package/v/sportsdataverse/oddsapiR?label=oddsapiR&logo=R&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR)
+[![CRAN version](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=CRAN%20version&prefix=v&query=%24.Version&url=https%3A%2F%2Fcrandb.r-pkg.org%2FoddsapiR)](https://CRAN.R-project.org/package=oddsapiR)
+[![CRAN downloads](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=Downloads&query=%24%5B0%5D.downloads&url=https%3A%2F%2Fcranlogs.r-pkg.org%2Fdownloads%2Ftotal%2F2022-12-29%3Alast-day%2FoddsapiR)](https://CRAN.R-project.org/package=oddsapiR)
+[![R-universe](https://img.shields.io/badge/dynamic/json?style=for-the-badge&color=success&label=r-universe&prefix=v&query=%24.Version&url=https%3A%2F%2Fsportsdataverse.r-universe.dev%2Fapi%2Fpackages%2FoddsapiR)](https://sportsdataverse.r-universe.dev/oddsapiR)
+[![Version-Number](https://img.shields.io/github/r-package/v/sportsdataverse/oddsapiR?label=oddsapiR&logo=R&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/)
 [![R-CMD-check](https://img.shields.io/github/actions/workflow/status/sportsdataverse/oddsapiR/R-CMD-check.yaml?branch=main&label=R-CMD-Check&logo=R&logoColor=white&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/actions/workflows/R-CMD-check.yaml)
-[![Lifecycle:maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/oddsapiR)
+[![Codecov](https://img.shields.io/codecov/c/github/sportsdataverse/oddsapiR?logo=codecov&style=for-the-badge)](https://app.codecov.io/gh/sportsdataverse/oddsapiR)
+[![pkgdown](https://img.shields.io/github/actions/workflow/status/sportsdataverse/oddsapiR/pkgdown.yaml?branch=main&label=pkgdown&logo=github&style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/actions/workflows/pkgdown.yaml)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg?style=for-the-badge&logo=github)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/blob/main/LICENSE.md)
 [![Contributors](https://img.shields.io/github/contributors/sportsdataverse/oddsapiR?style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/graphs/contributors)
-[![Twitter
-Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://twitter.com/SportsDataverse)
+[![GitHub stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/oddsapiR/stargazers)
+[![X Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://x.com/SportsDataverse)
 <!-- badges: end -->
 
 [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org/) is an R package
@@ -34,34 +34,27 @@ Data freshness and pipeline status for every SportsDataverse dataset:
 
 ## **Installation**
 
-You can install the CRAN version of
-[**`oddsapiR`**](https://CRAN.R-project.org/package=oddsapiR) with:
+You can install the CRAN version of [**`oddsapiR`**](https://CRAN.R-project.org/package=oddsapiR) with:
 
-``` r
+```r
 install.packages("oddsapiR")
 ```
 
-You can install the development version of
-[**`oddsapiR`**](https://github.com/sportsdataverse/oddsapiR) from
-[GitHub](https://github.com/sportsdataverse/oddsapiR) with:
+You can install the latest build from [R-universe](https://sportsdataverse.r-universe.dev/oddsapiR) with:
 
-``` r
-# using the pak package (recommended):
-if (!requireNamespace('pak', quietly = TRUE)){
-  install.packages('pak')
-}
+```r
+install.packages("oddsapiR", repos = c("https://sportsdataverse.r-universe.dev", getOption("repos")))
+```
+
+You can install the development version of [**`oddsapiR`**](https://github.com/sportsdataverse/oddsapiR/) from GitHub with:
+
+```r
+if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
 pak::pak("sportsdataverse/oddsapiR")
+# or: remotes::install_github("sportsdataverse/oddsapiR")
 ```
 
-``` r
-# or using the devtools package:
-if (!requireNamespace('devtools', quietly = TRUE)){
-  install.packages('devtools')
-}
-devtools::install_github(repo = "sportsdataverse/oddsapiR")
-```
-
-``` r
+```r
 # or clone and install locally
 git clone https://github.com/sportsdataverse/oddsapiR
 cd oddsapiR
@@ -105,6 +98,27 @@ functions without any other changes.
 Sys.setenv(ODDS_API_KEY = "XXXX-YOUR-API-KEY-HERE-XXXXX")
 ```
 
+## **Quick start**
+
+With `ODDS_API_KEY` set (see above):
+
+```r
+library(oddsapiR)
+
+# sports that are in season, with the sport_key each endpoint takes
+toa_sports(all_sports = FALSE)
+
+# current NFL spreads from US bookmakers, in American odds
+toa_sports_odds(sport_key = "americanfootball_nfl", regions = "us",
+                markets = "spreads", odds_format = "american")
+
+# NBA scores, including games completed in the last 3 days
+toa_sports_scores(sport_key = "basketball_nba", days_from = 3)
+
+# requests used and remaining after the last call
+toa_quota()
+```
+
 ## **Documentation**
 
 For more information on the package and function reference, please see
@@ -113,16 +127,51 @@ website](https://oddsapiR.sportsdataverse.org).
 
 There is also a printable [**`oddsapiR` cheat sheet (PDF)**](https://sportsdataverse.org/cheatsheets/oddsapiR.pdf), one of [a set covering every SportsDataverse package](https://sportsdataverse.org/cheatsheets).
 
+- [Package site](https://oddsapiR.sportsdataverse.org/)
+- [Function reference](https://oddsapiR.sportsdataverse.org/reference/index.html)
+- Vignettes:
+  - [Getting started with oddsapiR](https://oddsapiR.sportsdataverse.org/articles/oddsapiR.html)
+  - [Building a sports-odds pipeline with oddsapiR](https://oddsapiR.sportsdataverse.org/articles/building-an-odds-pipeline.html)
+- [News and release notes](https://oddsapiR.sportsdataverse.org/news/index.html)
 
 ## **Breaking Changes**
 
 [**Full News on
 Releases**](https://oddsapiR.sportsdataverse.org/news/index.html)
 
-## Follow the [SportsDataverse](https://twitter.com/SportsDataverse) on Twitter and star this repo
+## **Companion packages**
 
-[![Twitter
-Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=twitter&style=for-the-badge)](https://twitter.com/SportsDataverse)
+`oddsapiR` returns odds keyed by team names and start times; these packages supply the games, results and visuals to pair them with:
+
+* [**`cfbfastR`**](https://cfbfastR.sportsdataverse.org/), [**`hoopR`**](https://hoopR.sportsdataverse.org/), [**`wehoop`**](https://wehoop.sportsdataverse.org/), [**`fastRhockey`**](https://fastRhockey.sportsdataverse.org/) and [**`baseballr`**](https://billpetti.github.io/baseballr/) — schedules, scores and play-by-play to join odds onto.
+* [**`sdvplotR`**](https://sdvplotR.sportsdataverse.org/) — team logos, colors and `gt` tables for every SportsDataverse league. r-universe only.
+
+## **The SportsDataverse**
+
+[**`oddsapiR`**](https://oddsapiR.sportsdataverse.org/) is part of the [SportsDataverse](https://sportsdataverse.org/), a set of
+open-source packages for sports data.
+
+| Package | Sport / Scope |
+|---|---|
+| [**cfbfastR**](https://cfbfastR.sportsdataverse.org/) | College football |
+| [**hoopR**](https://hoopR.sportsdataverse.org/) | Men's basketball (NBA and NCAA) |
+| [**wehoop**](https://wehoop.sportsdataverse.org/) | Women's basketball (WNBA and NCAA) |
+| [**fastRhockey**](https://fastRhockey.sportsdataverse.org/) | Hockey (NHL and PWHL) |
+| [**baseballr**](https://billpetti.github.io/baseballr/) | Baseball (MLB, MiLB, NCAA) |
+| [**softballR**](https://github.com/sportsdataverse/softballR) | College softball |
+| [**oddsapiR**](https://oddsapiR.sportsdataverse.org/) | Sports betting odds |
+| [**recruitR**](https://recruitR.sportsdataverse.org/) | College football recruiting |
+| [**usfootballR**](https://usfootballR.sportsdataverse.org/) | US soccer |
+| [**cfbseedR**](https://cfbseedR.sportsdataverse.org/) · [**cfb4th**](https://cfb4th.sportsdataverse.org/) | CFB playoff simulation · fourth-down decisions |
+| [**cfbplotR**](https://cfbplotR.sportsdataverse.org/) · [**sdvplotR**](https://sdvplotR.sportsdataverse.org/) · [**sportyR**](https://sportyR.sportsdataverse.org/) | Logos, colors, tables · playing surfaces |
+| [**sportsdataverse-R**](https://r.sportsdataverse.org/) | Umbrella R metapackage |
+| [**sportsdataverse-py**](https://py.sportsdataverse.org/) · [**sportsdataverse.js**](https://js.sportsdataverse.org/) | Python and Node.js |
+
+See the full ecosystem at [sportsdataverse.org](https://sportsdataverse.org/).
+
+## **Follow the [SportsDataverse](https://x.com/SportsDataverse) on X and star this repo**
+
+[![X Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://x.com/SportsDataverse)
 
 [![GitHub
 stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20oddsapiR&maxAge=2592000)](https://github.com/sportsdataverse/oddsapiR)
@@ -134,30 +183,10 @@ stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=ee
   </picture>
 </a>
 
-## **The SportsDataverse**
-
-`oddsapiR` is part of the
-[**SportsDataverse**](https://sportsdataverse.org/), a family of
-open-source R, Python, and Node.js packages for sports data. Related
-packages you can pair odds data with:
-
-| Package                                                                                                               | Sport / Scope                    |
-| --------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [**cfbfastR**](https://cfbfastR.sportsdataverse.org/)                                                                 | College football                 |
-| [**hoopR**](https://hoopR.sportsdataverse.org/)                                                                       | Men’s basketball (NBA & NCAA)    |
-| [**wehoop**](https://wehoop.sportsdataverse.org/)                                                                     | Women’s basketball (WNBA & NCAA) |
-| [**fastRhockey**](https://fastRhockey.sportsdataverse.org/)                                                           | Hockey (NHL & PWHL)              |
-| [**baseballr**](https://billpetti.github.io/baseballr/)                                                               | Baseball (MLB, MiLB, NCAA)       |
-| [**sportsdataverse-R**](https://r.sportsdataverse.org/)                                                               | Umbrella R metapackage           |
-| [**sportsdataverse-py**](https://py.sportsdataverse.org/) · [**sportsdataverse.js**](https://js.sportsdataverse.org/) | Python & Node.js                 |
-
-See the full ecosystem at
-[sportsdataverse.org](https://sportsdataverse.org/).
-
 ## **Our Authors**
 
-  - [Saiem Gilani](https://twitter.com/saiemgilani)
-    <a href="https://twitter.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=twitter&style=for-the-badge" alt="@saiemgilani" /></a>
+  - [Saiem Gilani](https://x.com/saiemgilani)
+    <a href="https://x.com/saiemgilani" target="blank"><img src="https://img.shields.io/twitter/follow/saiemgilani?color=blue&label=%40saiemgilani&logo=x&style=for-the-badge" alt="@saiemgilani" /></a>
     <a href="https://github.com/saiemgilani" target="blank"><img src="https://img.shields.io/github/followers/saiemgilani?color=eee&logo=Github&style=for-the-badge" alt="@saiemgilani" /></a>
 
 <!-- cheatsheet-section -->
@@ -171,6 +200,11 @@ Free to download, print and hand out; light and dark, US Letter landscape.
 Every SportsDataverse package has one — browse them all at
 **[sportsdataverse.org/cheatsheets](https://sportsdataverse.org/cheatsheets)**.
 
+## **Code of Conduct**
+
+Please note that the oddsapiR project is released with a [Contributor Code of Conduct](https://oddsapiR.sportsdataverse.org/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
+
 ## **Citations**
 
 To cite the [**`oddsapiR`**](https://oddsapiR.sportsdataverse.org) R
@@ -179,7 +213,7 @@ package in publications, use:
 BibTeX Citation
 
 ``` bibtex
-@misc{gilani_2022_oddsapiR,
+@misc{gilani_oddsapiR,
   author = {Gilani, Saiem},
   title = {oddsapiR: The SportsDataverse's R Package for The Odds API.},
   url = {https://oddsapiR.sportsdataverse.org},
@@ -187,3 +221,7 @@ BibTeX Citation
   year = {2026}
 }
 ```
+
+## **License**
+
+[MIT](https://github.com/sportsdataverse/oddsapiR/blob/main/LICENSE.md) © oddsapiR authors. See [LICENSE.md](https://github.com/sportsdataverse/oddsapiR/blob/main/LICENSE.md).
