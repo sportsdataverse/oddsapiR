@@ -6,8 +6,8 @@ for [The Odds API v4](https://the-odds-api.com). Every exported function
 is prefixed `toa_` and returns an `oddsapiR_data` tibble.
 
 For the authoritative, fuller guide see
-[CLAUDE.md](https://oddsapiR.sportsdataverse.org/CLAUDE.md) and
-[CONTRIBUTING.md](https://oddsapiR.sportsdataverse.org/CONTRIBUTING.md).
+[CLAUDE.md](https://oddsapiR.sportsdataverse.org/../CLAUDE.md) and
+[CONTRIBUTING.md](https://oddsapiR.sportsdataverse.org/../CONTRIBUTING.md).
 
 ## Golden rules
 
