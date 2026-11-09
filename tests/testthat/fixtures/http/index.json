@@ -1,0 +1,98 @@
+{
+  "https://api.the-odds-api.com/v4/historical/sports/basketball_nba/events/93af4b300a4c0dded909234ea32e9abd/odds?apiKey=REDACTED&date=2024-01-15T12%3A15%3A00Z&regions=us&markets=h2h&oddsFormat=decimal&dateFormat=iso": {
+    "file": "0012.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "10"
+    }
+  },
+  "https://api.the-odds-api.com/v4/historical/sports/basketball_nba/events?apiKey=REDACTED&date=2024-01-15T12%3A15%3A00Z&dateFormat=iso": {
+    "file": "0011.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "1"
+    }
+  },
+  "https://api.the-odds-api.com/v4/historical/sports/basketball_nba/odds?apiKey=REDACTED&date=2024-01-15T12%3A15%3A00Z&regions=us&markets=spreads&oddsFormat=decimal&dateFormat=iso": {
+    "file": "0010.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "10"
+    }
+  },
+  "https://api.the-odds-api.com/v4/sports/basketball_nba/events/07361a8381206817e27bd2697fad7479/markets?apiKey=REDACTED&regions=us&dateFormat=iso": {
+    "file": "0009.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "1"
+    }
+  },
+  "https://api.the-odds-api.com/v4/sports/basketball_nba/events/07361a8381206817e27bd2697fad7479/odds?apiKey=REDACTED&regions=us&markets=player_points&oddsFormat=american&dateFormat=iso": {
+    "file": "0008.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "1"
+    }
+  },
+  "https://api.the-odds-api.com/v4/sports/basketball_nba/events/07361a8381206817e27bd2697fad7479/odds?apiKey=REDACTED&regions=us&markets=spreads&oddsFormat=decimal&dateFormat=iso": {
+    "file": "0007.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "1"
+    }
+  },
+  "https://api.the-odds-api.com/v4/sports/basketball_nba/events?apiKey=REDACTED&dateFormat=iso&includeRotationNumbers=true": {
+    "file": "0003.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "0"
+    }
+  },
+  "https://api.the-odds-api.com/v4/sports/basketball_nba/odds?apiKey=REDACTED&regions=us&markets=spreads&oddsFormat=decimal&dateFormat=iso": {
+    "file": "0006.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "1"
+    }
+  },
+  "https://api.the-odds-api.com/v4/sports/basketball_nba/participants?apiKey=REDACTED": {
+    "file": "0004.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "1"
+    }
+  },
+  "https://api.the-odds-api.com/v4/sports/basketball_nba/scores?apiKey=REDACTED&daysFrom=1&dateFormat=iso": {
+    "file": "0005.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "2"
+    }
+  },
+  "https://api.the-odds-api.com/v4/sports?apiKey=REDACTED&all=false": {
+    "file": "0002.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "0"
+    }
+  },
+  "https://api.the-odds-api.com/v4/sports?apiKey=REDACTED&all=true": {
+    "file": "0001.gz",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "headers": {
+      "x-requests-last": "0"
+    }
+  }
+}
