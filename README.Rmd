@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-# **oddsapiR** <a href='https://oddsapiR.sportsdataverse.org/'><img src='https://raw.githubusercontent.com/sportsdataverse/oddsapiR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
+# **oddsapiR** <a href='https://oddsapiR.sportsdataverse.org/'><img alt="oddsapiR hex logo" src='https://raw.githubusercontent.com/sportsdataverse/oddsapiR/main/logo.png' align="right" width="20%" min-width="100px"/></a>
 
 <!-- badges: start -->
 
@@ -16,7 +16,7 @@ output: github_document
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg?style=for-the-badge&logo=github)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/blob/main/LICENSE.md)
 [![Contributors](https://img.shields.io/github/contributors/sportsdataverse/oddsapiR?style=for-the-badge)](https://github.com/sportsdataverse/oddsapiR/graphs/contributors)
-[![GitHub stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/oddsapiR/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR?style=for-the-badge&logo=github)](https://github.com/sportsdataverse/oddsapiR)
 [![X Follow](https://img.shields.io/twitter/follow/SportsDataverse?color=blue&label=%40SportsDataverse&logo=x&style=for-the-badge)](https://x.com/SportsDataverse)
 <!-- badges: end -->
 
@@ -54,7 +54,9 @@ You can install the development version of [**`oddsapiR`**](https://github.com/s
 ```r
 if (!requireNamespace("pak", quietly = TRUE)) install.packages("pak")
 pak::pak("sportsdataverse/oddsapiR")
-# or: remotes::install_github("sportsdataverse/oddsapiR")
+# or, with remotes:
+# if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+# remotes::install_github("sportsdataverse/oddsapiR")
 ```
 
 ```r
@@ -158,7 +160,7 @@ See the full ecosystem at [sportsdataverse.org](https://sportsdataverse.org/).
 [![GitHub
 stars](https://img.shields.io/github/stars/sportsdataverse/oddsapiR.svg?color=eee&logo=github&style=for-the-badge&label=Star%20oddsapiR&maxAge=2592000)](https://github.com/sportsdataverse/oddsapiR)
 
-<a href="https://github.com/sportsdataverse/oddsapiR/stargazers">
+<a href="https://github.com/sportsdataverse/oddsapiR">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/sportsdataverse/oddsapiR/star-history/star-history-dark.svg">
     <img alt="Star history of sportsdataverse/oddsapiR" src="https://raw.githubusercontent.com/sportsdataverse/oddsapiR/star-history/star-history.png" width="600">
