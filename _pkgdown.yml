@@ -43,9 +43,6 @@ authors:
 code:
   width: 72
   
-development:
-  mode: auto       
-   
 home:
   title: oddsapiR
   description: Access Sports Odds Data from the Odds API
