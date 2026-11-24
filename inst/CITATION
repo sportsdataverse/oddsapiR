@@ -1,4 +1,4 @@
-## Citation year is PINNED to the first-release year (CRAN 2022-06-22).
+## Citation year is PINNED (below) rather than derived from the date.
 ## DESCRIPTION has no Date field, so deriving it from meta$Date yielded an
 ## empty year, and a current-date fallback made the same package version
 ## cite as a different year every calendar year. Keep this in sync with the
