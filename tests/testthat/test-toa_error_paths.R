@@ -79,3 +79,22 @@ test_that("toa_quota() is NULL before any call and a tibble after one", {
   expect_identical(attr(x, "oddsapiR_requests_used"), 5L)
   expect_no_error(capture.output(print(x)))
 })
+
+test_that("an error payload without a message still raises", {
+  expect_error(.toa_stop_if_error_payload(list()), "unexpected response payload")
+})
+
+test_that("toa_sports_events_history() sends includeRotationNumbers only when asked", {
+  sent <- list()
+  local_mocked_bindings(toa_api_call = function(url, query = NULL, ...) {
+    sent[[length(sent) + 1L]] <<- query
+    stop("not needed")
+  })
+  suppressMessages({
+    toa_sports_events_history("basketball_nba", date = "2024-01-15T12:15:00Z",
+                              include_rotation_numbers = TRUE)
+    toa_sports_events_history("basketball_nba", date = "2024-01-15T12:15:00Z")
+  })
+  expect_identical(sent[[1]]$includeRotationNumbers, "true")
+  expect_null(sent[[2]]$includeRotationNumbers)
+})
