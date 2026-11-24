@@ -218,7 +218,6 @@ csv_from_url <- function(...){
 #' @return a dataframe as created by [`readRDS()`]
 #' @keywords Internal
 #' @importFrom data.table data.table setDT
-#' @import rvest
 rds_from_url <- function(url) {
   con <- url(url)
   on.exit(close(con))
