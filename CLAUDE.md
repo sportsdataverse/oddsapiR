@@ -96,17 +96,14 @@ toa_function <- function(sport_key, regions = 'us', markets = 'h2h', date_format
   odds <- data.frame()   # initialize return var BEFORE tryCatch (see below)
 
   tryCatch(
-    expr = {
+    expr = .oddsapiR_with_warnings("toa_function", {
       odds <- toa_api_call(base_url, query = query_params) %>%
         # ... parse ...
         make_toa_data("Sports Odds data from the-odds-api.com", Sys.time())
-    },
+    }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no data available for {sport_key}!")
-      cli::cli_alert_danger("Error:\n{e}")
-    },
-    warning = function(w) {
-      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
+      cli::cli_alert_danger("Error: {conditionMessage(e)}")
     },
     finally = {}
   )
@@ -129,6 +126,10 @@ Every wrapper assigns its return variable **inside** `tryCatch` but returns it
 the `tryCatch`, otherwise an API error leaves the variable unbound and `return(<var>)`
 throws `object '<var>' not found` instead of the intended `cli` message + empty fallback.
 This applies to every return name (`odds`, `events`, `scores`, `participants`, etc.).
+
+### Warnings and error causes (CRITICAL)
+
+Do not give a wrapper's `tryCatch` a `warning =` handler. Any handler there, even one that only reports, stops `expr` at the first warning and returns the empty frame. Wrap the body in `.oddsapiR_with_warnings("<function name>", { ... })` (`R/utils.R`) instead: it re-raises each warning as a classed `oddsapiR_warning` that names the function (keeping the warning's original classes), and lets the body finish. Every `error =` handler includes `{conditionMessage(e)}`; `tests/testthat/test-handler_causes.R` mocks `httr2::req_perform()` to fail and checks that every wrapper passes the cause on.
 
 ### Usage-Quota Header Capture
 
@@ -200,7 +201,7 @@ Include a **Usage quota cost** note in the `@description` (see the table below).
 ### Messaging Layer
 
 User-facing messages use `cli`: `cli::cli_alert_danger()` (errors),
-`cli::cli_alert_warning()` (warnings), `cli::cli_alert_success()` (success). Do not use bare
+`cli::cli_alert_warning()` (a degraded-but-continuing result, never from a `tryCatch(warning =)` handler), `cli::cli_alert_success()` (success). Do not use bare
 `message()` in new code.
 
 ## The Odds API v4 Endpoints & Quota Costs
@@ -273,6 +274,7 @@ all `Co-Authored-By` trailers referencing AI tools.
 ## Common Pitfalls
 
 - Initialize the return variable (`data.frame()`) before `tryCatch` -- always.
+- No `warning =` handler on a wrapper's `tryCatch`: wrap the body in `.oddsapiR_with_warnings("<fn>", { ... })`, and include `{conditionMessage(e)}` in the `error =` handler.
 - Build the query list unconditionally; let `httr2::req_url_query()` drop `NULL` values.
 - The **current** event-odds endpoint has no bookmaker-level `last_update`; the `/odds` and
   historical endpoints do. Don't blindly copy the bookmaker rename across wrappers.
