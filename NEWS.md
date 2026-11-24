@@ -9,9 +9,9 @@
   warning is now raised as an R warning of class `oddsapiR_warning` that names
   the function, for example `toa_sports_odds(): NAs introduced by coercion`,
   and the function finishes and returns its data. Since these are now warnings
-  rather than messages, `suppressMessages()` no longer hides them; use
-  `suppressWarnings(classes = "oddsapiR_warning")`. A classed warning (an rlang
-  or lifecycle one, say) also keeps its own class.
+  rather than messages, `suppressMessages()` no longer hides them; wrap the
+  call as `suppressWarnings(toa_sports(), classes = "oddsapiR_warning")`. A
+  classed warning (an rlang or lifecycle one, say) also keeps its own class.
 * Error messages now print the underlying error message
   (`conditionMessage()`) instead of the whole condition object.
 * `inst/CITATION` is now included in the package: an `^inst*` pattern in
