@@ -28,18 +28,21 @@ test_that("a failed request is reported and returns an empty data.frame", {
   expect_identical(nrow(out), 0L)
 })
 
-test_that("a warning during parsing is reported and returns an empty data.frame", {
+test_that("a warning during a request is re-raised with the wrapper's name", {
   local_mocked_bindings(
     toa_api_call = function(url, query = NULL, ...) warning("odd payload"),
     toa_api_headers = function(url, query = NULL, ...) warning("odd payload")
   )
-  for (nm in names(wrapper_calls)) {
-    out <- NULL
-    suppressMessages(expect_message(out <- wrapper_calls[[nm]](), "odd payload"))
-    expect_identical(nrow(out), 0L, label = nm)
+  for (nm in c(names(wrapper_calls), "toa_requests")) {
+    call <- if (nm == "toa_requests") function() toa_requests() else wrapper_calls[[nm]]
+    # The body carries on past the warning; what it makes of the mock's
+    # return value is not under test here (test-oddsapiR_with_warnings.R
+    # checks a real payload keeps its rows).
+    suppressMessages(expect_warning(
+      call(), class = "oddsapiR_warning",
+      regexp = paste0(nm, "\\(\\): odd payload")
+    ))
   }
-  suppressMessages(expect_message(out <- toa_requests(), "odd payload"))
-  expect_identical(nrow(out), 0L)
 })
 
 test_that("the key helpers read ODDS_API_KEY", {

@@ -1,5 +1,24 @@
 .datatable.aware <- TRUE
 
+# Evaluate a wrapper's body, re-raising each warning as a classed
+# `oddsapiR_warning` that names the wrapper, and carry on. A
+# `tryCatch(warning =)` handler would instead stop the body at the first
+# warning and return the empty frame. `expr` is a promise, so its
+# assignments (and a `return()`) land in the caller's frame.
+.oddsapiR_with_warnings <- function(fn, expr) {
+  withCallingHandlers(
+    expr,
+    warning = function(w) {
+      if (inherits(w, "oddsapiR_warning")) return() # already named by an inner wrapper
+      msg <- conditionMessage(w)
+      # keep the original classes, so suppressWarnings(classes = <original>) still matches
+      orig <- setdiff(class(w), c("simpleWarning", "warning", "condition"))
+      cli::cli_warn(c("!" = "{fn}(): {msg}"), class = c("oddsapiR_warning", orig), call = NULL)
+      invokeRestart("muffleWarning")
+    }
+  )
+}
+
 # Package-local store for the most recent Odds API usage-quota headers. Populated
 # by every successful request and read by make_toa_data() / toa_quota().
 .oddsapiR <- new.env(parent = emptyenv())

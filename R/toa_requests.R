@@ -40,16 +40,13 @@ toa_requests <- function(){
   usage <- data.frame()
 
   tryCatch(
-    expr = {
+    expr = .oddsapiR_with_warnings("toa_requests", {
       usage <- toa_api_headers(base_url, query = query_params) %>%
         make_toa_data("API Key Usage data from the-odds-api.com", Sys.time())
-    },
+    }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no usage data available!")
-      cli::cli_alert_danger("Error:\n{e}")
-    },
-    warning = function(w) {
-      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
+      cli::cli_alert_danger("Error: {conditionMessage(e)}")
     },
     finally = {
     }

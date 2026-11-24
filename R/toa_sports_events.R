@@ -69,17 +69,14 @@ toa_sports_events <- function(sport_key,
   events <- data.frame()
 
   tryCatch(
-    expr = {
+    expr = .oddsapiR_with_warnings("toa_sports_events", {
       events <- toa_api_call(base_url, query = query_params) %>%
         dplyr::as_tibble() %>%
         make_toa_data("Sports Events data from the-odds-api.com", Sys.time())
-    },
+    }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no events data available for {sport_key}!")
-      cli::cli_alert_danger("Error:\n{e}")
-    },
-    warning = function(w) {
-      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
+      cli::cli_alert_danger("Error: {conditionMessage(e)}")
     },
     finally = {
     }

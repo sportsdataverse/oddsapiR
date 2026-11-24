@@ -83,7 +83,7 @@ toa_sports_events_history <- function(sport_key,
   events_history <- data.frame()
 
   tryCatch(
-    expr = {
+    expr = .oddsapiR_with_warnings("toa_sports_events_history", {
       raw <- toa_api_call(base_url, query = query_params)
       events_history <- raw$data %>%
         dplyr::as_tibble() %>%
@@ -94,13 +94,10 @@ toa_sports_events_history <- function(sport_key,
           .before = 1
         ) %>%
         make_toa_data("Historical Sports Events data from the-odds-api.com", Sys.time())
-    },
+    }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no historical events available for {sport_key} at {date}!")
-      cli::cli_alert_danger("Error:\n{e}")
-    },
-    warning = function(w) {
-      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
+      cli::cli_alert_danger("Error: {conditionMessage(e)}")
     },
     finally = {
     }

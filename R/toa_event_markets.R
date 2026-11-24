@@ -77,7 +77,7 @@ toa_event_markets <- function(sport_key,
   event_markets <- data.frame()
 
   tryCatch(
-    expr = {
+    expr = .oddsapiR_with_warnings("toa_event_markets", {
       raw <- toa_api_call(base_url, query = query_params)
       event_markets <- tibble::tibble(
         id = raw$id,
@@ -97,13 +97,10 @@ toa_event_markets <- function(sport_key,
           "market_key" = "key",
           "market_last_update" = "last_update") %>%
         make_toa_data("Event Markets data from the-odds-api.com", Sys.time())
-    },
+    }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no markets data available for event {event_id}!")
-      cli::cli_alert_danger("Error:\n{e}")
-    },
-    warning = function(w) {
-      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
+      cli::cli_alert_danger("Error: {conditionMessage(e)}")
     },
     finally = {
     }
