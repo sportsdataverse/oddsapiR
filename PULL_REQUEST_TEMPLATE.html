@@ -124,7 +124,7 @@
 <ul class="task-list"><li><label><input type="checkbox"><code>devtools::check()</code> passes with no ERRORs or WARNINGs</label></li>
 <li><label><input type="checkbox"><code>devtools::test()</code> – all existing tests pass</label></li>
 <li><label><input type="checkbox">New tests added for new/changed functions</label></li>
-<li><label><input type="checkbox"><code>tryCatch</code> bodies are wrapped in <code>.oddsapiR_with_warnings("&lt;fn&gt;", { ... })</code> with no <code>warning =</code> handler, and every <code>error =</code> handler includes <code>{conditionMessage(e)}</code></label></li>
+<li><label><input type="checkbox"><code>tryCatch</code> bodies are wrapped in <code>.oddsapiR_with_warnings("&lt;fn&gt;", { ... })</code> with no <code>warning =</code> handler, and every <code>error =</code> handler reports the cause with <code>.oddsapiR_alert_error(e)</code></label></li>
 <li><label><input type="checkbox">Verified against the live API with a valid <code>ODDS_API_KEY</code> (no key committed)</label></li>
 <li><label><input type="checkbox">Tested on at least one platform (macOS / Windows / Linux)</label></li>
 </ul><div class="section level3">

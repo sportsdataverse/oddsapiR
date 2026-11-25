@@ -108,7 +108,7 @@ toa_function <- function(sport_key, regions = 'us', markets = 'h2h', date_format
     }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no data available for {sport_key}!")
-      cli::cli_alert_danger("Error: {conditionMessage(e)}")
+      .oddsapiR_alert_error(e)   # the cause, with the API key scrubbed
     },
     finally = {}
   )
@@ -150,8 +150,10 @@ returns the empty frame. Wrap the body in
 `.oddsapiR_with_warnings("<function name>", { ... })` (`R/utils.R`)
 instead: it re-raises each warning as a classed `oddsapiR_warning` that
 names the function (keeping the warning’s original classes), and lets
-the body finish. Every `error =` handler includes
-`{conditionMessage(e)}`; `tests/testthat/test-handler_causes.R` mocks
+the body finish. Every `error =` handler reports the cause with
+`.oddsapiR_alert_error(e)`, which prints `conditionMessage(e)` with the
+API key scrubbed (the cause can quote the request URL);
+`tests/testthat/test-handler_causes.R` mocks
 [`httr2::req_perform()`](https://httr2.r-lib.org/reference/req_perform.html)
 to fail and checks that every wrapper passes the cause on.
 
@@ -334,8 +336,8 @@ co-authors.** Omit all `Co-Authored-By` trailers referencing AI tools.
   ([`data.frame()`](https://rdrr.io/r/base/data.frame.html)) before
   `tryCatch` – always.
 - No `warning =` handler on a wrapper’s `tryCatch`: wrap the body in
-  `.oddsapiR_with_warnings("<fn>", { ... })`, and include
-  `{conditionMessage(e)}` in the `error =` handler.
+  `.oddsapiR_with_warnings("<fn>", { ... })`, and report the cause with
+  `.oddsapiR_alert_error(e)` (key scrubbed) in the `error =` handler.
 - Build the query list unconditionally; let
   [`httr2::req_url_query()`](https://httr2.r-lib.org/reference/req_url.html)
   drop `NULL` values.

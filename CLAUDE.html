@@ -187,7 +187,7 @@
 <span>    <span class="op">}</span><span class="op">)</span>,</span>
 <span>    error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_danger</a></span><span class="op">(</span><span class="st">"{Sys.time()}: Invalid arguments or no data available for {sport_key}!"</span><span class="op">)</span></span>
-<span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_danger</a></span><span class="op">(</span><span class="st">"Error: {conditionMessage(e)}"</span><span class="op">)</span></span>
+<span>      <span class="fu">.oddsapiR_alert_error</span><span class="op">(</span><span class="va">e</span><span class="op">)</span>   <span class="co"># the cause, with the API key scrubbed</span></span>
 <span>    <span class="op">}</span>,</span>
 <span>    finally <span class="op">=</span> <span class="op">{</span><span class="op">}</span></span>
 <span>  <span class="op">)</span></span>
@@ -207,7 +207,7 @@
 </div>
 <div class="section level3">
 <h3 id="warnings-and-error-causes-critical">Warnings and error causes (CRITICAL)<a class="anchor" aria-label="anchor" href="#warnings-and-error-causes-critical"></a></h3>
-<p>Do not give a wrapper’s <code>tryCatch</code> a <code>warning =</code> handler. Any handler there, even one that only reports, stops <code>expr</code> at the first warning and returns the empty frame. Wrap the body in <code>.oddsapiR_with_warnings("&lt;function name&gt;", { ... })</code> (<code>R/utils.R</code>) instead: it re-raises each warning as a classed <code>oddsapiR_warning</code> that names the function (keeping the warning’s original classes), and lets the body finish. Every <code>error =</code> handler includes <code>{conditionMessage(e)}</code>; <code>tests/testthat/test-handler_causes.R</code> mocks <code><a href="https://httr2.r-lib.org/reference/req_perform.html" class="external-link">httr2::req_perform()</a></code> to fail and checks that every wrapper passes the cause on.</p>
+<p>Do not give a wrapper’s <code>tryCatch</code> a <code>warning =</code> handler. Any handler there, even one that only reports, stops <code>expr</code> at the first warning and returns the empty frame. Wrap the body in <code>.oddsapiR_with_warnings("&lt;function name&gt;", { ... })</code> (<code>R/utils.R</code>) instead: it re-raises each warning as a classed <code>oddsapiR_warning</code> that names the function (keeping the warning’s original classes), and lets the body finish. Every <code>error =</code> handler reports the cause with <code>.oddsapiR_alert_error(e)</code>, which prints <code>conditionMessage(e)</code> with the API key scrubbed (the cause can quote the request URL); <code>tests/testthat/test-handler_causes.R</code> mocks <code><a href="https://httr2.r-lib.org/reference/req_perform.html" class="external-link">httr2::req_perform()</a></code> to fail and checks that every wrapper passes the cause on.</p>
 </div>
 <div class="section level3">
 <h3 id="usage-quota-header-capture">Usage-Quota Header Capture<a class="anchor" aria-label="anchor" href="#usage-quota-header-capture"></a></h3>
@@ -322,7 +322,7 @@
 <div class="section level2">
 <h2 id="common-pitfalls">Common Pitfalls<a class="anchor" aria-label="anchor" href="#common-pitfalls"></a></h2>
 <ul><li>Initialize the return variable (<code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame()</a></code>) before <code>tryCatch</code> – always.</li>
-<li>No <code>warning =</code> handler on a wrapper’s <code>tryCatch</code>: wrap the body in <code>.oddsapiR_with_warnings("&lt;fn&gt;", { ... })</code>, and include <code>{conditionMessage(e)}</code> in the <code>error =</code> handler.</li>
+<li>No <code>warning =</code> handler on a wrapper’s <code>tryCatch</code>: wrap the body in <code>.oddsapiR_with_warnings("&lt;fn&gt;", { ... })</code>, and report the cause with <code>.oddsapiR_alert_error(e)</code> (key scrubbed) in the <code>error =</code> handler.</li>
 <li>Build the query list unconditionally; let <code><a href="https://httr2.r-lib.org/reference/req_url.html" class="external-link">httr2::req_url_query()</a></code> drop <code>NULL</code> values.</li>
 <li>The <strong>current</strong> event-odds endpoint has no bookmaker-level <code>last_update</code>; the <code>/odds</code> and historical endpoints do. Don’t blindly copy the bookmaker rename across wrappers.</li>
 <li>Historical responses are wrapped in a snapshot envelope; current responses are not.</li>

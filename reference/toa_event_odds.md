@@ -132,7 +132,7 @@ Other The Odds API: Odds & Markets:
                       markets = 'player_points',
                       odds_format = 'decimal',
                       date_format = 'iso'))
-#> ✖ 2026-11-25 05:37:21.464663: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
+#> ✖ 2026-11-25 07:23:00.890987: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
 #> ✖ Error: HTTP 404 Not Found from https://api.the-odds-api.com/v4/sports/basketball_nba/events/48db9c3293a52baab881d95d38f37a98/odds: Event not found. The event may have expired or the event id is invalid.
 #> data frame with 0 columns and 0 rows
 # }

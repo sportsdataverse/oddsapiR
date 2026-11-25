@@ -77,8 +77,8 @@ Other The Odds API: Sports & Events:
                          days_from = NULL,
                          date_format = 'iso'))
 #> ── Sports scores data from the-odds-api.com ────────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-11-25 05:37:24 UTC
-#> ℹ Odds API quota: 4852364 used, 147636 remaining (last call cost 1)
+#> ℹ Data updated: 2026-11-25 07:23:05 UTC
+#> ℹ Odds API quota: 4852815 used, 147185 remaining (last call cost 1)
 #> # A tibble: 9 × 9
 #>   id             sport_key sport_title commence_time completed home_team
 #>   <chr>          <chr>     <chr>       <chr>         <lgl>     <chr>    

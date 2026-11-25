@@ -35,7 +35,8 @@ New tests added for new/changed functions
 
 `tryCatch` bodies are wrapped in
 `.oddsapiR_with_warnings("<fn>", { ... })` with no `warning =` handler,
-and every `error =` handler includes `{conditionMessage(e)}`
+and every `error =` handler reports the cause with
+`.oddsapiR_alert_error(e)`
 
 Verified against the live API with a valid `ODDS_API_KEY` (no key
 committed)
