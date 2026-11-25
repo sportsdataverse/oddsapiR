@@ -81,10 +81,11 @@ toa_api_request <- function(url, query = NULL, ...){
 .oddsapiR_stop_for_http_status <- function(resp){
   status <- httr2::resp_status(resp)
   if (status >= 200L && status < 300L) return(resp)
-  detail <- tryCatch({
-    body <- jsonlite::fromJSON(httr2::resp_body_string(resp), simplifyVector = TRUE)
-    if (is.list(body)) body$message else NULL
-  }, error = function(e) NULL)
+  # `$` on a non-object body (plain text, a JSON array or scalar) errors too
+  detail <- tryCatch(
+    jsonlite::fromJSON(httr2::resp_body_string(resp), simplifyVector = TRUE)$message,
+    error = function(e) NULL
+  )
   detail <- if (is.character(detail) && length(detail) == 1L && nzchar(detail)) detail else NULL
   key <- tryCatch(httr2::url_parse(resp$url)$query$apiKey, error = function(e) NULL)
   if (!is.null(detail) && is.character(key) && nzchar(key)) {

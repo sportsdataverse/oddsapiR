@@ -61,7 +61,8 @@ test_that("a non-2xx answer is reported by every wrapper, not returned as a row"
     for (nm in .toa_wrappers) {
       res <- .call_collecting(nm)
       label <- paste0(nm, "() on HTTP ", status)
-      expect_identical(NROW(res$x), 0L, label = label)
+      expect_s3_class(res$x, "data.frame")
+      expect_identical(nrow(res$x), 0L, label = label)
       expect_false(inherits(res$x, "oddsapiR_data"), label = label)
       expect_true(any(grepl(paste0("HTTP ", status), res$msgs, fixed = TRUE)), label = label)
       expect_false(any(grepl(.fake_key, res$msgs, fixed = TRUE)), label = label)

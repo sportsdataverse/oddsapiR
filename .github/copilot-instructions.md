@@ -24,8 +24,9 @@ For the authoritative, fuller guide see [CLAUDE.md](../CLAUDE.md) and
 `R/utils.R` provides the shared stack. Do not reimplement it:
 
 - `toa_api_request(url, query)` -- builds an `httr2` request, applies the user agent +
-  retry policy, performs it, and caches the `x-requests-*` usage headers. Returns the
-  response.
+  retry policy, performs it, and caches the `x-requests-*` usage headers. Returns a 2xx
+  response; any other status raises `oddsapiR_http_error` (status, query-free URL, the
+  API's `message`), which the wrapper's `error =` handler reports.
 - `toa_api_call(url, query)` -- `toa_api_request()` + parse JSON body. Returns a
   list/data.frame.
 - `toa_api_headers(url, query)` -- `toa_api_request()` + return the quota usage data.frame.
