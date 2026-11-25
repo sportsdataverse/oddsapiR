@@ -189,7 +189,7 @@ toa_api_headers <- function(url, query = NULL, ...){
 # defaults to the session key; a missing or empty key leaves `x` unchanged.
 .oddsapiR_scrub_key <- function(x, key = toa_key()){
   if (!is.character(key) || length(key) != 1L || is.na(key) || !nzchar(key)) return(x)
-  for (k in unique(c(key, utils::URLencode(key, reserved = TRUE)))) {
+  for (k in unique(c(key, utils::URLencode(key, reserved = TRUE, repeated = TRUE)))) {
     x <- gsub(k, "<apiKey>", x, fixed = TRUE)
   }
   x

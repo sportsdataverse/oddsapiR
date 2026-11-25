@@ -40,6 +40,13 @@ test_that("the key and its URL-encoded copy are scrubbed from any text", {
   expect_identical(.oddsapiR_scrub_key(.echo_message), .echo_message)
 })
 
+test_that("a key holding a literal %XX escape has its URL-encoded copy scrubbed", {
+  # curl encodes the `%` itself, so this key goes out as fake%252Fkey%2B.
+  withr::local_envvar(ODDS_API_KEY = "fake%2Fkey+")
+  out <- .oddsapiR_scrub_key("sent fake%2Fkey+ as fake%252Fkey%2B")
+  expect_identical(out, "sent <apiKey> as <apiKey>")
+})
+
 test_that("a 200 error body does not leak the key (toa_event_odds)", {
   withr::local_envvar(ODDS_API_KEY = .scrub_key)
   err <- list(message = .echo_message, error_code = "INVALID_KEY")
