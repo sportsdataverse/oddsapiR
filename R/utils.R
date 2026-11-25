@@ -10,7 +10,7 @@
     expr,
     warning = function(w) {
       if (inherits(w, "oddsapiR_warning")) return() # already named by an inner wrapper
-      msg <- conditionMessage(w)
+      msg <- .oddsapiR_scrub_key(conditionMessage(w)) # a warning can quote the request URL
       # keep the original classes, so suppressWarnings(classes = <original>) still matches
       orig <- setdiff(class(w), c("simpleWarning", "warning", "condition"))
       cli::cli_warn(c("!" = "{fn}(): {msg}"), class = c("oddsapiR_warning", orig), call = NULL)
@@ -69,7 +69,7 @@ toa_api_request <- function(url, query = NULL, ...){
     httr2::req_error(is_error = function(resp) FALSE) %>%
     httr2::req_perform()
   .toa_store_quota(resp)
-  .oddsapiR_stop_for_http_status(resp)
+  .oddsapiR_stop_for_http_status(resp, key = query[["apiKey"]])
 }
 
 # Return a 2xx response unchanged; otherwise raise an `oddsapiR_http_error`
@@ -77,8 +77,10 @@ toa_api_request <- function(url, query = NULL, ...){
 # 422 (bad parameter) or 429 (quota) body is reported by the wrapper's error
 # handler instead of parsed as data. The URL's query holds the `apiKey`, so it
 # is dropped from both the message and the `url` field, and the key is also
-# scrubbed from the API's message in case it is echoed back.
-.oddsapiR_stop_for_http_status <- function(resp){
+# scrubbed from the API's message in case it is echoed back. `key` is the key
+# the request was sent with: a redirect can drop the query from the response
+# URL, so the scrub uses it and the session key as well as the URL's.
+.oddsapiR_stop_for_http_status <- function(resp, key = NULL){
   status <- httr2::resp_status(resp)
   if (status >= 200L && status < 300L) return(resp)
   # `$` on a non-object body (plain text, a JSON array or scalar) errors too
@@ -87,8 +89,9 @@ toa_api_request <- function(url, query = NULL, ...){
     error = function(e) NULL
   )
   detail <- if (is.character(detail) && length(detail) == 1L && nzchar(detail)) detail else NULL
-  key <- tryCatch(httr2::url_parse(resp$url)$query$apiKey, error = function(e) NULL)
-  if (!is.null(detail)) detail <- .oddsapiR_scrub_key(detail, key)
+  url_key <- tryCatch(httr2::url_parse(resp$url)$query[["apiKey"]], error = function(e) NULL)
+  keys <- c(as.character(url_key), as.character(key), toa_key())
+  if (!is.null(detail)) detail <- .oddsapiR_scrub_key(detail, keys)
   desc <- httr2::resp_status_desc(resp)
   url <- sub("\\?.*$", "", resp$url)
   stop(errorCondition(
@@ -186,13 +189,26 @@ toa_api_headers <- function(url, query = NULL, ...){
 # Replace the API key, and its URL-encoded copy, with "<apiKey>" in `x`. The
 # Odds API echoes the key in some error messages (the 401 for an invalid key),
 # so every message built from an API answer goes through here first. `key`
-# defaults to the session key; a missing or empty key leaves `x` unchanged.
+# defaults to the session key and may hold several keys; missing or empty
+# ones are skipped, so no key at all leaves `x` unchanged.
 .oddsapiR_scrub_key <- function(x, key = toa_key()){
-  if (!is.character(key) || length(key) != 1L || is.na(key) || !nzchar(key)) return(x)
-  for (k in unique(c(key, utils::URLencode(key, reserved = TRUE, repeated = TRUE)))) {
-    x <- gsub(k, "<apiKey>", x, fixed = TRUE)
-  }
+  key <- as.character(key)
+  key <- key[!is.na(key) & nzchar(key)]
+  # URLencode() writes uppercase escapes only; real keys are hex, nothing to encode
+  forms <- unique(c(key, vapply(
+    key, utils::URLencode, character(1), reserved = TRUE, repeated = TRUE, USE.NAMES = FALSE
+  )))
+  # longest first, so a key that contains another is replaced whole
+  for (k in forms[order(-nchar(forms))]) x <- gsub(k, "<apiKey>", x, fixed = TRUE)
   x
+}
+
+# The cause line every wrapper's error handler prints. The condition can come
+# from anywhere below the wrapper (a curl failure or a JSON parse error quoting
+# the request URL, not only the two status checks), so it is scrubbed here.
+.oddsapiR_alert_error <- function(e){
+  msg <- .oddsapiR_scrub_key(conditionMessage(e))
+  cli::cli_alert_danger("Error: {msg}")
 }
 
 # Zero-row event-odds tibble carrying the documented column schema. Returned by

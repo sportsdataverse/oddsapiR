@@ -53,7 +53,7 @@ toa_sports_participants <- function(sport_key){
     }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no participants data available for {sport_key}!")
-      cli::cli_alert_danger("Error: {conditionMessage(e)}")
+      .oddsapiR_alert_error(e)
     },
     finally = {
     }
