@@ -39,7 +39,9 @@ For the authoritative, fuller guide see
 
 - `toa_api_request(url, query)` – builds an `httr2` request, applies the
   user agent + retry policy, performs it, and caches the `x-requests-*`
-  usage headers. Returns the response.
+  usage headers. Returns a 2xx response; any other status raises
+  `oddsapiR_http_error` (status, query-free URL, the API’s `message`),
+  which the wrapper’s `error =` handler reports.
 - `toa_api_call(url, query)` –
   [`toa_api_request()`](https://oddsapiR.sportsdataverse.org/reference/toa_api_request.md) +
   parse JSON body. Returns a list/data.frame.

@@ -101,8 +101,8 @@ Other The Odds API: Odds & Markets:
    try(toa_event_markets(sport_key = 'basketball_nba',
                          event_id = '48db9c3293a52baab881d95d38f37a98',
                          regions = 'us'))
-#> ✖ 2026-11-25 00:07:30.801136: Invalid arguments or no markets data available for event 48db9c3293a52baab881d95d38f37a98!
-#> ✖ Error: Can't rename columns that don't exist. ✖ Column `key` doesn't exist.
+#> ✖ 2026-11-25 03:51:06.200681: Invalid arguments or no markets data available for event 48db9c3293a52baab881d95d38f37a98!
+#> ✖ Error: HTTP 404 Not Found from https://api.the-odds-api.com/v4/sports/basketball_nba/events/48db9c3293a52baab881d95d38f37a98/markets: Event not found. The event may have expired or the event id is invalid.
 #> data frame with 0 columns and 0 rows
 # }
 ```

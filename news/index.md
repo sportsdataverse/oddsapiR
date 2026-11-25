@@ -4,6 +4,17 @@
 
 #### Bug fixes
 
+- An HTTP error from The Odds API is now reported instead of returned as
+  data. The request layer turned off httr2’s status errors, so a 401
+  (invalid key), 422 (invalid parameter) or 429 (usage quota reached)
+  error body was parsed like a result, and most wrappers returned it as
+  a one-row data frame; only the single-event odds wrappers checked for
+  it. Every request now raises an error of class `oddsapiR_http_error`,
+  carrying `status` and `url`, on any non-2xx answer, and the function
+  reports it (for example
+  `HTTP 429 Too Many Requests from https://api.the-odds-api.com/v4/sports/basketball_nba/odds: Usage quota has been reached`)
+  and returns an empty data frame. The URL is shown without its query
+  string, so the API key never appears in a message.
 - Warnings no longer cut a result short. All 11 wrappers ran their
   request and parse inside a
   [`tryCatch()`](https://rdrr.io/r/base/conditions.html) with a

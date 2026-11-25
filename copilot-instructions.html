@@ -117,7 +117,7 @@
 <h2 id="the-http-layer">The HTTP layer<a class="anchor" aria-label="anchor" href="#the-http-layer"></a></h2>
 <p><code>R/utils.R</code> provides the shared stack. Do not reimplement it:</p>
 <ul><li>
-<code>toa_api_request(url, query)</code> – builds an <code>httr2</code> request, applies the user agent + retry policy, performs it, and caches the <code>x-requests-*</code> usage headers. Returns the response.</li>
+<code>toa_api_request(url, query)</code> – builds an <code>httr2</code> request, applies the user agent + retry policy, performs it, and caches the <code>x-requests-*</code> usage headers. Returns a 2xx response; any other status raises <code>oddsapiR_http_error</code> (status, query-free URL, the API’s <code>message</code>), which the wrapper’s <code>error =</code> handler reports.</li>
 <li>
 <code>toa_api_call(url, query)</code> – <code><a href="reference/toa_api_request.html">toa_api_request()</a></code> + parse JSON body. Returns a list/data.frame.</li>
 <li>

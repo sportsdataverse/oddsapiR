@@ -42,10 +42,11 @@ pkgdown::build_site()
 pak::local_install()
 ```
 
-**CI** (`.github/workflows/`): `R-CMD-check.yaml` (matrix: macOS /
-Windows / Ubuntu on R `release`, plus Ubuntu `oldrel-1`), `pkgdown.yaml`
-(site build/deploy), `rhub.yaml` (R-hub checks). Live tests skip on CI /
-CRAN without `ODDS_API_KEY`.
+**CI** (`.github/workflows/`): `R-CMD-check.yaml` (macOS + Ubuntu on R
+`release` on push/PR; a weekly cron and manual dispatch add Windows
+`release` + Ubuntu `devel`), `pkgdown.yaml` (site build/deploy),
+`rhub.yaml` (R-hub checks). Live tests skip on CI / CRAN without
+`ODDS_API_KEY`.
 
 ## Project Structure
 
@@ -116,7 +117,10 @@ toa_function <- function(sport_key, regions = 'us', markets = 'h2h', date_format
 ```
 
 - `toa_api_call(url, query)` – builds the request, performs it, returns
-  the parsed JSON.
+  the parsed JSON. A non-2xx answer raises `oddsapiR_http_error`
+  (`.oddsapiR_stop_for_http_status()`, status + query-free URL + the
+  API’s `message`; the URL’s query holds the key, so never put it in a
+  message) before anything is parsed.
 - `toa_api_headers(url, query)` – same, but returns the
   `requests_remaining`/`requests_used` quota data.frame (used by
   [`toa_requests()`](https://oddsapiR.sportsdataverse.org/reference/toa_requests.md)).

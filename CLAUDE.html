@@ -132,7 +132,7 @@
 <span></span>
 <span><span class="co"># Install locally (prefer pak)</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/local_install.html" class="external-link">local_install</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><strong>CI</strong> (<code>.github/workflows/</code>): <code>R-CMD-check.yaml</code> (matrix: macOS / Windows / Ubuntu on R <code>release</code>, plus Ubuntu <code>oldrel-1</code>), <code>pkgdown.yaml</code> (site build/deploy), <code>rhub.yaml</code> (R-hub checks). Live tests skip on CI / CRAN without <code>ODDS_API_KEY</code>.</p>
+<p><strong>CI</strong> (<code>.github/workflows/</code>): <code>R-CMD-check.yaml</code> (macOS + Ubuntu on R <code>release</code> on push/PR; a weekly cron and manual dispatch add Windows <code>release</code> + Ubuntu <code>devel</code>), <code>pkgdown.yaml</code> (site build/deploy), <code>rhub.yaml</code> (R-hub checks). Live tests skip on CI / CRAN without <code>ODDS_API_KEY</code>.</p>
 </div>
 <div class="section level2">
 <h2 id="project-structure">Project Structure<a class="anchor" aria-label="anchor" href="#project-structure"></a></h2>
@@ -194,7 +194,7 @@
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">odds</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <ul><li>
-<code>toa_api_call(url, query)</code> – builds the request, performs it, returns the parsed JSON.</li>
+<code>toa_api_call(url, query)</code> – builds the request, performs it, returns the parsed JSON. A non-2xx answer raises <code>oddsapiR_http_error</code> (<code>.oddsapiR_stop_for_http_status()</code>, status + query-free URL + the API’s <code>message</code>; the URL’s query holds the key, so never put it in a message) before anything is parsed.</li>
 <li>
 <code>toa_api_headers(url, query)</code> – same, but returns the <code>requests_remaining</code>/<code>requests_used</code> quota data.frame (used by <code><a href="reference/toa_requests.html">toa_requests()</a></code>).</li>
 <li>
