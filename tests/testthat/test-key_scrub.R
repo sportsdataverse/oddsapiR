@@ -146,3 +146,33 @@ test_that("a warning re-raised by a wrapper does not leak the key", {
   expect_match(conditionMessage(w), "API key <apiKey> is not valid", fixed = TRUE)
   .expect_no_key(conditionMessage(w), "oddsapiR_warning")
 })
+
+test_that("the key a request was sent with is scrubbed when the session has none", {
+  # The request key differs from the (empty) session key and the response URL
+  # holds no query, so only the forwarded request key can scrub the body.
+  withr::local_envvar(ODDS_API_KEY = "")
+  body <- charToRaw(as.character(jsonlite::toJSON(
+    list(message = .echo_message), auto_unbox = TRUE
+  )))
+  resp <- httr2::response(
+    status_code = 401L, url = "https://api.the-odds-api.com/v4/sports",
+    headers = list(`Content-Type` = "application/json"), body = body
+  )
+  cnd <- expect_error(
+    .oddsapiR_stop_for_http_status(resp, key = .scrub_key),
+    class = "oddsapiR_http_error"
+  )
+  .expect_no_key(conditionMessage(cnd), ".oddsapiR_stop_for_http_status(key =)")
+
+  skip_if_not(
+    exists("local_mocked_responses", envir = asNamespace("httr2")),
+    "httr2 >= 1.1.0 is needed to mock responses"
+  )
+  httr2::local_mocked_responses(function(req) resp)
+  cnd <- expect_error(
+    toa_api_request("https://api.the-odds-api.com/v4/sports", query = list(apiKey = .scrub_key)),
+    class = "oddsapiR_http_error"
+  )
+  expect_match(conditionMessage(cnd), "API key <apiKey> is not valid", fixed = TRUE)
+  .expect_no_key(conditionMessage(cnd), "toa_api_request()")
+})
