@@ -17,6 +17,13 @@
   repeats the key. That message is now scrubbed the same way as a non-2xx
   error's: both checks share one helper, which replaces the key, and also its
   URL-encoded copy, with `<apiKey>`.
+* The API key is now scrubbed from every error a function reports, not only
+  the two status checks. Each wrapper's error handler printed the cause as it
+  came, so a network failure or a parse error whose message quoted the request
+  URL showed the key; all 11 wrappers now print the cause through the same
+  scrub, and so does the `oddsapiR_warning` a wrapper re-raises. A non-2xx answer is also scrubbed with the key the request was sent
+  with and the session key (`ODDS_API_KEY`), not only the key in the response
+  URL, which a redirect can drop.
 * `testthat` in Suggests now requires version 3.1.9 or later, the release
   that added `expect_in()`, which the tests use.
 * Warnings no longer cut a result short. All 11 wrappers ran their request and

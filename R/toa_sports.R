@@ -53,7 +53,7 @@ toa_sports <- function(all_sports = TRUE){
     }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no sports data available!")
-      cli::cli_alert_danger("Error: {conditionMessage(e)}")
+      .oddsapiR_alert_error(e)
     },
     finally = {
     }
