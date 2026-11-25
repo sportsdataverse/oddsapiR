@@ -88,9 +88,7 @@ toa_api_request <- function(url, query = NULL, ...){
   )
   detail <- if (is.character(detail) && length(detail) == 1L && nzchar(detail)) detail else NULL
   key <- tryCatch(httr2::url_parse(resp$url)$query$apiKey, error = function(e) NULL)
-  if (!is.null(detail) && is.character(key) && nzchar(key)) {
-    detail <- gsub(key, "<apiKey>", detail, fixed = TRUE)
-  }
+  if (!is.null(detail)) detail <- .oddsapiR_scrub_key(detail, key)
   desc <- httr2::resp_status_desc(resp)
   url <- sub("\\?.*$", "", resp$url)
   stop(errorCondition(
@@ -180,8 +178,21 @@ toa_api_headers <- function(url, query = NULL, ...){
 .toa_stop_if_error_payload <- function(payload, envelope = payload){
   if (!is.null(payload$id)) return(invisible(NULL))
   msg <- envelope$message
-  stop(if (!is.null(msg)) msg else "unexpected response payload (no event id)",
+  stop(if (!is.null(msg)) .oddsapiR_scrub_key(msg) else
+         "unexpected response payload (no event id)",
        call. = FALSE)
+}
+
+# Replace the API key, and its URL-encoded copy, with "<apiKey>" in `x`. The
+# Odds API echoes the key in some error messages (the 401 for an invalid key),
+# so every message built from an API answer goes through here first. `key`
+# defaults to the session key; a missing or empty key leaves `x` unchanged.
+.oddsapiR_scrub_key <- function(x, key = toa_key()){
+  if (!is.character(key) || length(key) != 1L || is.na(key) || !nzchar(key)) return(x)
+  for (k in unique(c(key, utils::URLencode(key, reserved = TRUE)))) {
+    x <- gsub(k, "<apiKey>", x, fixed = TRUE)
+  }
+  x
 }
 
 # Zero-row event-odds tibble carrying the documented column schema. Returned by
