@@ -11,7 +11,7 @@ For the authoritative, fuller guide see [CLAUDE.md](../CLAUDE.md) and
 
 1. **Never call `httr2`/`httr` directly from a wrapper.** Route every request through
    `toa_api_call()` / `toa_api_headers()` in `R/utils.R`.
-2. **Initialize the return variable before `tryCatch`** (e.g. `odds <- data.frame()`), wrap its body in `.oddsapiR_with_warnings("<fn>", { ... })`, give it **no** `warning =` handler, and report `{conditionMessage(e)}` in the `error =` handler.
+2. **Initialize the return variable before `tryCatch`** (e.g. `odds <- data.frame()`), wrap its body in `.oddsapiR_with_warnings("<fn>", { ... })`, give it **no** `warning =` handler, and report the cause with `.oddsapiR_alert_error(e)` (key scrubbed) in the `error =` handler.
 3. **Build the query list unconditionally** -- `httr2::req_url_query()` drops `NULL` values.
 4. **`@return` tables are 3-column**: `col_name | types | description`.
 5. **Tests use subset-direction assertions** (`expect_in(sort(cols), sort(colnames(x)))`).
@@ -80,7 +80,7 @@ toa_resource <- function(sport_key, regions = 'us', date_format = 'iso'){
     }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no data available for {sport_key}!")
-      cli::cli_alert_danger("Error: {conditionMessage(e)}")
+      .oddsapiR_alert_error(e)   # the cause, with the API key scrubbed
     },
     finally = {}
   )
@@ -88,7 +88,7 @@ toa_resource <- function(sport_key, regions = 'us', date_format = 'iso'){
 }
 ```
 
-Do not give a wrapper's `tryCatch` a `warning =` handler. Any handler there, even one that only reports, stops `expr` at the first warning and returns the empty frame. Wrap the body in `.oddsapiR_with_warnings("<function name>", { ... })` (`R/utils.R`) instead: it re-raises each warning as a classed `oddsapiR_warning` that names the function (keeping the warning's original classes), and lets the body finish. Every `error =` handler includes `{conditionMessage(e)}`; `tests/testthat/test-handler_causes.R` mocks `httr2::req_perform()` to fail and checks that every wrapper passes the cause on.
+Do not give a wrapper's `tryCatch` a `warning =` handler. Any handler there, even one that only reports, stops `expr` at the first warning and returns the empty frame. Wrap the body in `.oddsapiR_with_warnings("<function name>", { ... })` (`R/utils.R`) instead: it re-raises each warning as a classed `oddsapiR_warning` that names the function (keeping the warning's original classes), and lets the body finish. Every `error =` handler reports the cause with `.oddsapiR_alert_error(e)`, which prints `conditionMessage(e)` with the API key scrubbed (the cause can quote the request URL); `tests/testthat/test-handler_causes.R` mocks `httr2::req_perform()` to fail and checks that every wrapper passes the cause on.
 
 ## Parsing notes
 
