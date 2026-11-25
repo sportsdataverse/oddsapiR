@@ -15,6 +15,16 @@
   `HTTP 429 Too Many Requests from https://api.the-odds-api.com/v4/sports/basketball_nba/odds: Usage quota has been reached`)
   and returns an empty data frame. The URL is shown without its query
   string, so the API key never appears in a message.
+- [`toa_event_odds()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds.md)
+  and
+  [`toa_event_odds_history()`](https://oddsapiR.sportsdataverse.org/reference/toa_event_odds_history.md)
+  no longer print the API key when The Odds API answers with status 200
+  but an error body whose message repeats the key. That message is now
+  scrubbed the same way as a non-2xx error’s: both checks share one
+  helper, which replaces the key, and also its URL-encoded copy, with
+  `<apiKey>`.
+- `testthat` in Suggests now requires version 3.1.9 or later, the
+  release that added `expect_in()`, which the tests use.
 - Warnings no longer cut a result short. All 11 wrappers ran their
   request and parse inside a
   [`tryCatch()`](https://rdrr.io/r/base/conditions.html) with a

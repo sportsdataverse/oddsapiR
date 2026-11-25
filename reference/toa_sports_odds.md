@@ -114,8 +114,8 @@ Other The Odds API: Odds & Markets:
                        odds_format = 'decimal',
                        date_format = 'iso'))
 #> ── Sports Odds data from the-odds-api.com ──────────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-11-25 03:51:08 UTC
-#> ℹ Odds API quota: 4851773 used, 148227 remaining (last call cost 1)
+#> ℹ Data updated: 2026-11-25 05:37:23 UTC
+#> ℹ Odds API quota: 4852352 used, 147648 remaining (last call cost 1)
 #> # A tibble: 230 × 14
 #>    id            sport_key sport_title commence_time home_team away_team
 #>    <chr>         <chr>     <chr>       <chr>         <chr>     <chr>    
