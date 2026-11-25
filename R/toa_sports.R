@@ -47,16 +47,13 @@ toa_sports <- function(all_sports = TRUE){
   sports <- data.frame()
 
   tryCatch(
-    expr = {
+    expr = .oddsapiR_with_warnings("toa_sports", {
       sports <- toa_api_call(base_url, query = query_params) %>%
         make_toa_data("Sports coverage data from the-odds-api.com", Sys.time())
-    },
+    }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no sports data available!")
-      cli::cli_alert_danger("Error:\n{e}")
-    },
-    warning = function(w) {
-      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
+      cli::cli_alert_danger("Error: {conditionMessage(e)}")
     },
     finally = {
     }

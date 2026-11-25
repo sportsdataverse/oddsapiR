@@ -44,19 +44,16 @@ toa_sports_participants <- function(sport_key){
   participants <- data.frame()
 
   tryCatch(
-    expr = {
+    expr = .oddsapiR_with_warnings("toa_sports_participants", {
       participants <- toa_api_call(base_url, query = query_params) %>%
         dplyr::as_tibble() %>%
         dplyr::mutate(sport_key = .env$sport_key, .before = 1) %>%
         dplyr::select(dplyr::any_of(c("sport_key", "id", "full_name"))) %>%
         make_toa_data("Sports Participants data from the-odds-api.com", Sys.time())
-    },
+    }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no participants data available for {sport_key}!")
-      cli::cli_alert_danger("Error:\n{e}")
-    },
-    warning = function(w) {
-      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
+      cli::cli_alert_danger("Error: {conditionMessage(e)}")
     },
     finally = {
     }

@@ -26,6 +26,7 @@
 - [ ] `devtools::check()` passes with no ERRORs or WARNINGs
 - [ ] `devtools::test()` -- all existing tests pass
 - [ ] New tests added for new/changed functions
+- [ ] `tryCatch` bodies are wrapped in `.oddsapiR_with_warnings("<fn>", { ... })` with no `warning =` handler, and every `error =` handler includes `{conditionMessage(e)}`
 - [ ] Verified against the live API with a valid `ODDS_API_KEY` (no key committed)
 - [ ] Tested on at least one platform (macOS / Windows / Linux)
 

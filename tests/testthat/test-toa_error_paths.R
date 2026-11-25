@@ -28,18 +28,21 @@ test_that("a failed request is reported and returns an empty data.frame", {
   expect_identical(nrow(out), 0L)
 })
 
-test_that("a warning during parsing is reported and returns an empty data.frame", {
+test_that("a warning during a request is re-raised with the wrapper's name", {
   local_mocked_bindings(
     toa_api_call = function(url, query = NULL, ...) warning("odd payload"),
     toa_api_headers = function(url, query = NULL, ...) warning("odd payload")
   )
-  for (nm in names(wrapper_calls)) {
-    out <- NULL
-    suppressMessages(expect_message(out <- wrapper_calls[[nm]](), "odd payload"))
-    expect_identical(nrow(out), 0L, label = nm)
+  for (nm in c(names(wrapper_calls), "toa_requests")) {
+    call <- if (nm == "toa_requests") function() toa_requests() else wrapper_calls[[nm]]
+    # The body carries on past the warning; what it makes of the mock's
+    # return value is not under test here (test-oddsapiR_with_warnings.R
+    # checks a real payload keeps its rows).
+    suppressMessages(expect_warning(
+      call(), class = "oddsapiR_warning",
+      regexp = paste0(nm, "\\(\\): odd payload")
+    ))
   }
-  suppressMessages(expect_message(out <- toa_requests(), "odd payload"))
-  expect_identical(nrow(out), 0L)
 })
 
 test_that("the key helpers read ODDS_API_KEY", {
@@ -75,4 +78,23 @@ test_that("toa_quota() is NULL before any call and a tibble after one", {
   x <- make_toa_data(data.frame(a = 1), "Test data", Sys.time())
   expect_identical(attr(x, "oddsapiR_requests_used"), 5L)
   expect_no_error(capture.output(print(x)))
+})
+
+test_that("an error payload without a message still raises", {
+  expect_error(.toa_stop_if_error_payload(list()), "unexpected response payload")
+})
+
+test_that("toa_sports_events_history() sends includeRotationNumbers only when asked", {
+  sent <- list()
+  local_mocked_bindings(toa_api_call = function(url, query = NULL, ...) {
+    sent[[length(sent) + 1L]] <<- query
+    stop("not needed")
+  })
+  suppressMessages({
+    toa_sports_events_history("basketball_nba", date = "2024-01-15T12:15:00Z",
+                              include_rotation_numbers = TRUE)
+    toa_sports_events_history("basketball_nba", date = "2024-01-15T12:15:00Z")
+  })
+  expect_identical(sent[[1]]$includeRotationNumbers, "true")
+  expect_null(sent[[2]]$includeRotationNumbers)
 })

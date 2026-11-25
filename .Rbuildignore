@@ -22,7 +22,6 @@
 ^pkgdown$
 ^logo.png
 ^\.github$
-^inst*
 ^vignette*
 ^website$
 ^website/*
