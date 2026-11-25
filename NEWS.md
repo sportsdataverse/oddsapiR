@@ -17,6 +17,8 @@
   repeats the key. That message is now scrubbed the same way as a non-2xx
   error's: both checks share one helper, which replaces the key, and also its
   URL-encoded copy, with `<apiKey>`.
+* `testthat` in Suggests now requires version 3.1.9 or later, the release
+  that added `expect_in()`, which the tests use.
 * Warnings no longer cut a result short. All 11 wrappers ran their request and
   parse inside a `tryCatch()` with a `warning =` handler, so any warning (a
   coercion `NA`, a partial read) stopped the parse there: the warning was
