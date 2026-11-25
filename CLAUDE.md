@@ -112,6 +112,9 @@ toa_function <- function(sport_key, regions = 'us', markets = 'h2h', date_format
 ```
 
 - `toa_api_call(url, query)` -- builds the request, performs it, returns the parsed JSON.
+  A non-2xx answer raises `oddsapiR_http_error` (`.oddsapiR_stop_for_http_status()`,
+  status + query-free URL + the API's `message`; the URL's query holds the key, so
+  never put it in a message) before anything is parsed.
 - `toa_api_headers(url, query)` -- same, but returns the `requests_remaining`/`requests_used`
   quota data.frame (used by `toa_requests()`).
 - `NULL` query values are dropped automatically by `httr2::req_url_query()`, so optional

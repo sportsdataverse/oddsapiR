@@ -64,13 +64,42 @@ toa_api_request <- function(url, query = NULL, ...){
     httr2::req_url_query(!!!query) %>%
     httr2::req_user_agent("oddsapiR (https://github.com/sportsdataverse/oddsapiR)") %>%
     httr2::req_retry(max_tries = 3) %>%
-    # Do not raise on HTTP errors -- let the calling wrapper's tryCatch handle a
-    # non-200 body (the API returns an error JSON object that fails downstream
-    # parsing, which the wrapper reports via cli).
+    # httr2's own status error would carry the request, whose URL holds the
+    # API key; .oddsapiR_stop_for_http_status() raises one without it.
     httr2::req_error(is_error = function(resp) FALSE) %>%
     httr2::req_perform()
   .toa_store_quota(resp)
-  resp
+  .oddsapiR_stop_for_http_status(resp)
+}
+
+# Return a 2xx response unchanged; otherwise raise an `oddsapiR_http_error`
+# carrying `status`, `url` and the API's JSON `message`, so a 401 (bad key),
+# 422 (bad parameter) or 429 (quota) body is reported by the wrapper's error
+# handler instead of parsed as data. The URL's query holds the `apiKey`, so it
+# is dropped from both the message and the `url` field, and the key is also
+# scrubbed from the API's message in case it is echoed back.
+.oddsapiR_stop_for_http_status <- function(resp){
+  status <- httr2::resp_status(resp)
+  if (status >= 200L && status < 300L) return(resp)
+  # `$` on a non-object body (plain text, a JSON array or scalar) errors too
+  detail <- tryCatch(
+    jsonlite::fromJSON(httr2::resp_body_string(resp), simplifyVector = TRUE)$message,
+    error = function(e) NULL
+  )
+  detail <- if (is.character(detail) && length(detail) == 1L && nzchar(detail)) detail else NULL
+  key <- tryCatch(httr2::url_parse(resp$url)$query$apiKey, error = function(e) NULL)
+  if (!is.null(detail) && is.character(key) && nzchar(key)) {
+    detail <- gsub(key, "<apiKey>", detail, fixed = TRUE)
+  }
+  desc <- httr2::resp_status_desc(resp)
+  url <- sub("\\?.*$", "", resp$url)
+  stop(errorCondition(
+    paste0(
+      "HTTP ", status, if (!is.na(desc)) paste0(" ", desc), " from ", url,
+      if (!is.null(detail)) paste0(": ", detail)
+    ),
+    class = "oddsapiR_http_error", status = status, url = url, call = NULL
+  ))
 }
 
 #' @name toa_quota
@@ -142,10 +171,10 @@ toa_api_headers <- function(url, query = NULL, ...){
   )
 }
 
-# The Odds API reports failures as a JSON error body ({message, error_code,
-# details_url}) rather than an event, and the wrappers deliberately do not raise
-# on HTTP status. Raise the API's own message so an auth/parameter failure is
-# never mistaken for an event that simply has no odds posted yet. `envelope`
+# A non-2xx answer is raised by toa_api_request(); a 200 that carries an error
+# body ({message, error_code, details_url}) instead of an event is still caught
+# here. Raise the API's own message so an auth/parameter failure is never
+# mistaken for an event that simply has no odds posted yet. `envelope`
 # differs from `payload` for the historical endpoints, which nest the event
 # under `data`.
 .toa_stop_if_error_payload <- function(payload, envelope = payload){
