@@ -104,6 +104,14 @@ essentials:
 - **Initialize the return variable** (e.g. `odds <- data.frame()`)
   **before** the `tryCatch` so an API error returns an empty tibble
   instead of erroring on an unbound name.
+- **No `warning =` handler on the `tryCatch`.** It stops the body at the
+  first warning and returns the empty frame. Write
+  `expr = .oddsapiR_with_warnings("<function name>", { ... })` instead:
+  each warning is re-raised as an `oddsapiR_warning` naming the
+  function, and the body finishes. Every `error =` handler includes
+  `{conditionMessage(e)}`, so a transport or parse failure is reported
+  with its cause; `tests/testthat/test-handler_causes.R` fails any
+  handler that drops it.
 - **Parse to a tidy tibble** with
   [`tidyr::unnest()`](https://tidyr.tidyverse.org/reference/unnest.html)
   over `bookmakers -> markets -> outcomes`, renaming the ambiguous

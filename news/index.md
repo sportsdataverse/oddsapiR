@@ -2,6 +2,35 @@
 
 ## oddsapiR (development version)
 
+#### Bug fixes
+
+- Warnings no longer cut a result short. All 11 wrappers ran their
+  request and parse inside a
+  [`tryCatch()`](https://rdrr.io/r/base/conditions.html) with a
+  `warning =` handler, so any warning (a coercion `NA`, a partial read)
+  stopped the parse there: the warning was printed as a message and the
+  function returned an empty data frame. Each warning is now raised as
+  an R warning of class `oddsapiR_warning` that names the function, for
+  example `toa_sports_odds(): NAs introduced by coercion`, and the
+  function finishes and returns its data. Since these are now warnings
+  rather than messages,
+  [`suppressMessages()`](https://rdrr.io/r/base/message.html) no longer
+  hides them; wrap the call as
+  `suppressWarnings(toa_sports(), classes = "oddsapiR_warning")`. A
+  classed warning (an rlang or lifecycle one, say) also keeps its own
+  class.
+- Error messages now print the underlying error message
+  ([`conditionMessage()`](https://rdrr.io/r/base/conditions.html))
+  instead of the whole condition object.
+- `inst/CITATION` is now included in the package: an `^inst*` pattern in
+  `.Rbuildignore`, which matches every path starting with `ins`, dropped
+  it from the built tarball, so `citation("oddsapiR")` fell back to the
+  auto-generated entry.
+
+#### Dependencies
+
+- rvest is no longer imported; nothing in the package used it.
+
 #### Tests
 
 - Every wrapper now has an offline test that replays a recorded Odds API

@@ -173,24 +173,18 @@ to see available market keys per bookmaker. Part of the
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>   <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">toa_sports_events</span><span class="op">(</span>sport_key <span class="op">=</span> <span class="st">'basketball_nba'</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── Sports Events data from the-odds-api.com ────────── <span style="font-style: italic;">oddsapiR 1.0.1</span> ──</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-09 21:57:44 UTC</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Odds API quota: <span style="color: #00BB00;">3959429</span> used, <span style="color: #00BB00;">1040571</span> remaining (last call cost <span style="color: #00BB00;">0</span>)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 13 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id            sport_key sport_title commence_time home_team away_team</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 07361a838120… basketba… NBA         2026-11-10T0… Atlanta … Los Ange…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1df5ff8fe9c6… basketba… NBA         2026-11-10T0… Charlott… Clevelan…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 929b863acede… basketba… NBA         2026-11-10T0… Detroit … Washingt…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 56efae2815b3… basketba… NBA         2026-11-10T0… Toronto … Memphis …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 9866fa22adc8… basketba… NBA         2026-11-10T0… Dallas M… Indiana …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> dc61de43b5db… basketba… NBA         2026-11-10T0… Houston … Denver N…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> dc4eb6ae9979… basketba… NBA         2026-11-10T0… Phoenix … San Anto…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 3619e1cf4b0a… basketba… NBA         2026-11-10T0… Golden S… New Orle…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> cfa503c66cd5… basketba… NBA         2026-11-11T0… Philadel… Boston C…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> a6555e8b7252… basketba… NBA         2026-12-25T1… New York… San Anto…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> d60e7fc0690e… basketba… NBA         2026-12-25T1… Boston C… Miami He…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> dfd908bad3a3… basketba… NBA         2026-12-25T2… Los Ange… Philadel…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 85a2379bc491… basketba… NBA         2026-12-26T0… Golden S… Denver N…</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Data updated: <span style="color: #00BB00;">2026-11-25 00:07:32 UTC</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Odds API quota: <span style="color: #00BB00;">4847149</span> used, <span style="color: #00BB00;">152851</span> remaining (last call cost <span style="color: #00BB00;">0</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   id             sport_key sport_title commence_time home_team away_team</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 42f48a4769eab… basketba… NBA         2026-11-25T0… Orlando … Detroit …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 3167a4072c65c… basketba… NBA         2026-11-25T0… Washingt… Boston C…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 6bfadbd22ed8a… basketba… NBA         2026-11-25T0… Denver N… Dallas M…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 4f6d199bb67cf… basketba… NBA         2026-11-25T2… Philadel… Miami He…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> f08629281f151… basketba… NBA         2026-11-26T0… New York… Clevelan…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> 07421d1675d6b… basketba… NBA         2026-11-26T0… Oklahoma… Minnesot…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> 60fd73164f7b0… basketba… NBA         2026-11-26T0… Houston … Phoenix …</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>

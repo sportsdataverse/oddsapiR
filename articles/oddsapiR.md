@@ -94,7 +94,7 @@ Every `toa_*()` function calls the same underlying HTTP layer in
 2.  **`toa_api_call(url, query)`** — wraps
     [`toa_api_request()`](https://oddsapiR.sportsdataverse.org/reference/toa_api_request.md),
     reads the response body as a string, and parses it with
-    [`jsonlite::fromJSON()`](https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html).
+    [`jsonlite::fromJSON()`](https://rdrr.io/pkg/jsonlite/man/fromJSON.html).
     Used by every odds/events/scores endpoint.
 3.  **`toa_api_headers(url, query)`** — wraps
     [`toa_api_request()`](https://oddsapiR.sportsdataverse.org/reference/toa_api_request.md)

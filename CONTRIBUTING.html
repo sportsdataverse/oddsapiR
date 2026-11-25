@@ -167,6 +167,8 @@
 <li>
 <strong>Initialize the return variable</strong> (e.g. <code>odds &lt;- data.frame()</code>) <strong>before</strong> the <code>tryCatch</code> so an API error returns an empty tibble instead of erroring on an unbound name.</li>
 <li>
+<strong>No <code>warning =</code> handler on the <code>tryCatch</code>.</strong> It stops the body at the first warning and returns the empty frame. Write <code>expr = .oddsapiR_with_warnings("&lt;function name&gt;", { ... })</code> instead: each warning is re-raised as an <code>oddsapiR_warning</code> naming the function, and the body finishes. Every <code>error =</code> handler includes <code>{conditionMessage(e)}</code>, so a transport or parse failure is reported with its cause; <code>tests/testthat/test-handler_causes.R</code> fails any handler that drops it.</li>
+<li>
 <strong>Parse to a tidy tibble</strong> with <code><a href="https://tidyr.tidyverse.org/reference/unnest.html" class="external-link">tidyr::unnest()</a></code> over <code>bookmakers -&gt; markets -&gt; outcomes</code>, renaming the ambiguous <code>key</code>/<code>last_update</code> fields at each level, then finish with <code>make_toa_data(&lt;description&gt;, Sys.time())</code>.</li>
 <li>
 <strong>Self-describing returns.</strong> Echo identity columns the API omits (e.g. <code>sport_key</code> on participants; snapshot timestamps on historical wrappers).</li>

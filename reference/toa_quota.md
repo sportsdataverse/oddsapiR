@@ -50,26 +50,26 @@ Other The Odds API: Account & Usage:
 # \donttest{
   try(toa_sports())
 #> ── Sports coverage data from the-odds-api.com ──────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-11-09 21:57:43 UTC
-#> ℹ Odds API quota: 3959429 used, 1040571 remaining (last call cost 0)
-#> # A tibble: 184 × 6
+#> ℹ Data updated: 2026-11-25 00:07:31 UTC
+#> ℹ Odds API quota: 4847149 used, 152851 remaining (last call cost 0)
+#> # A tibble: 187 × 6
 #>    key                      group title description active has_outrights
 #>    <chr>                    <chr> <chr> <chr>       <lgl>  <lgl>        
-#>  1 americanfootball_cfl     Amer… CFL   Canadian F… TRUE   FALSE        
+#>  1 americanfootball_cfl     Amer… CFL   Canadian F… FALSE  FALSE        
 #>  2 americanfootball_ncaaf   Amer… NCAAF US College… TRUE   FALSE        
 #>  3 americanfootball_ncaaf_… Amer… NCAA… US College… TRUE   TRUE         
-#>  4 americanfootball_ncaaf_… Amer… NCAA… US College… FALSE  FALSE        
+#>  4 americanfootball_ncaaf_… Amer… NCAA… US College… TRUE   FALSE        
 #>  5 americanfootball_nfl     Amer… NFL   US Football TRUE   FALSE        
 #>  6 americanfootball_nfl_pr… Amer… NFL … US Football FALSE  FALSE        
 #>  7 americanfootball_nfl_su… Amer… NFL … Super Bowl… TRUE   TRUE         
 #>  8 americanfootball_ufl     Amer… UFL   United Foo… FALSE  FALSE        
 #>  9 aussierules_afl          Auss… AFL   Aussie Foo… TRUE   FALSE        
 #> 10 aussierules_aflw         Auss… AFL … Aussie Foo… TRUE   FALSE        
-#> # ℹ 174 more rows
+#> # ℹ 177 more rows
   try(toa_quota())
 #> # A tibble: 1 × 3
 #>   requests_remaining requests_used requests_last
 #>                <int>         <int>         <int>
-#> 1            1040571       3959429             0
+#> 1             152851       4847149             0
 # }
 ```

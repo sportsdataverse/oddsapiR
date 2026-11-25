@@ -180,17 +180,14 @@
 <span>  <span class="va">odds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span>   <span class="co"># initialize return var BEFORE tryCatch (see below)</span></span>
 <span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span></span>
-<span>    expr <span class="op">=</span> <span class="op">{</span></span>
+<span>    expr <span class="op">=</span> <span class="fu">.oddsapiR_with_warnings</span><span class="op">(</span><span class="st">"toa_function"</span>, <span class="op">{</span></span>
 <span>      <span class="va">odds</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/toa_api_call.html">toa_api_call</a></span><span class="op">(</span><span class="va">base_url</span>, query <span class="op">=</span> <span class="va">query_params</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>        <span class="co"># ... parse ...</span></span>
 <span>        <span class="fu">make_toa_data</span><span class="op">(</span><span class="st">"Sports Odds data from the-odds-api.com"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">}</span>,</span>
+<span>    <span class="op">}</span><span class="op">)</span>,</span>
 <span>    error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_danger</a></span><span class="op">(</span><span class="st">"{Sys.time()}: Invalid arguments or no data available for {sport_key}!"</span><span class="op">)</span></span>
-<span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_danger</a></span><span class="op">(</span><span class="st">"Error:\n{e}"</span><span class="op">)</span></span>
-<span>    <span class="op">}</span>,</span>
-<span>    warning <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">w</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_warning</a></span><span class="op">(</span><span class="st">"{Sys.time()}: Warning:\n{w}"</span><span class="op">)</span></span>
+<span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_danger</a></span><span class="op">(</span><span class="st">"Error: {conditionMessage(e)}"</span><span class="op">)</span></span>
 <span>    <span class="op">}</span>,</span>
 <span>    finally <span class="op">=</span> <span class="op">{</span><span class="op">}</span></span>
 <span>  <span class="op">)</span></span>
@@ -207,6 +204,10 @@
 <div class="section level3">
 <h3 id="return-value-initialization-critical">Return-Value Initialization (CRITICAL)<a class="anchor" aria-label="anchor" href="#return-value-initialization-critical"></a></h3>
 <p>Every wrapper assigns its return variable <strong>inside</strong> <code>tryCatch</code> but returns it <strong>unconditionally</strong>. Initialize that variable to an empty value (<code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame()</a></code>) <em>before</em> the <code>tryCatch</code>, otherwise an API error leaves the variable unbound and <code>return(&lt;var&gt;)</code> throws <code>object '&lt;var&gt;' not found</code> instead of the intended <code>cli</code> message + empty fallback. This applies to every return name (<code>odds</code>, <code>events</code>, <code>scores</code>, <code>participants</code>, etc.).</p>
+</div>
+<div class="section level3">
+<h3 id="warnings-and-error-causes-critical">Warnings and error causes (CRITICAL)<a class="anchor" aria-label="anchor" href="#warnings-and-error-causes-critical"></a></h3>
+<p>Do not give a wrapper’s <code>tryCatch</code> a <code>warning =</code> handler. Any handler there, even one that only reports, stops <code>expr</code> at the first warning and returns the empty frame. Wrap the body in <code>.oddsapiR_with_warnings("&lt;function name&gt;", { ... })</code> (<code>R/utils.R</code>) instead: it re-raises each warning as a classed <code>oddsapiR_warning</code> that names the function (keeping the warning’s original classes), and lets the body finish. Every <code>error =</code> handler includes <code>{conditionMessage(e)}</code>; <code>tests/testthat/test-handler_causes.R</code> mocks <code><a href="https://httr2.r-lib.org/reference/req_perform.html" class="external-link">httr2::req_perform()</a></code> to fail and checks that every wrapper passes the cause on.</p>
 </div>
 <div class="section level3">
 <h3 id="usage-quota-header-capture">Usage-Quota Header Capture<a class="anchor" aria-label="anchor" href="#usage-quota-header-capture"></a></h3>
@@ -248,7 +249,7 @@
 </div>
 <div class="section level3">
 <h3 id="messaging-layer">Messaging Layer<a class="anchor" aria-label="anchor" href="#messaging-layer"></a></h3>
-<p>User-facing messages use <code>cli</code>: <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert_danger()</a></code> (errors), <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert_warning()</a></code> (warnings), <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert_success()</a></code> (success). Do not use bare <code><a href="https://rdrr.io/r/base/message.html" class="external-link">message()</a></code> in new code.</p>
+<p>User-facing messages use <code>cli</code>: <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert_danger()</a></code> (errors), <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert_warning()</a></code> (a degraded-but-continuing result, never from a <code>tryCatch(warning =)</code> handler), <code><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli::cli_alert_success()</a></code> (success). Do not use bare <code><a href="https://rdrr.io/r/base/message.html" class="external-link">message()</a></code> in new code.</p>
 </div>
 </div>
 <div class="section level2">
@@ -321,6 +322,7 @@
 <div class="section level2">
 <h2 id="common-pitfalls">Common Pitfalls<a class="anchor" aria-label="anchor" href="#common-pitfalls"></a></h2>
 <ul><li>Initialize the return variable (<code><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame()</a></code>) before <code>tryCatch</code> – always.</li>
+<li>No <code>warning =</code> handler on a wrapper’s <code>tryCatch</code>: wrap the body in <code>.oddsapiR_with_warnings("&lt;fn&gt;", { ... })</code>, and include <code>{conditionMessage(e)}</code> in the <code>error =</code> handler.</li>
 <li>Build the query list unconditionally; let <code><a href="https://httr2.r-lib.org/reference/req_url.html" class="external-link">httr2::req_url_query()</a></code> drop <code>NULL</code> values.</li>
 <li>The <strong>current</strong> event-odds endpoint has no bookmaker-level <code>last_update</code>; the <code>/odds</code> and historical endpoints do. Don’t blindly copy the bookmaker rename across wrappers.</li>
 <li>Historical responses are wrapped in a snapshot envelope; current responses are not.</li>

@@ -101,7 +101,7 @@
 <ol style="list-style-type: decimal"><li>
 <strong>Never call <code>httr2</code>/<code>httr</code> directly from a wrapper.</strong> Route every request through <code><a href="reference/toa_api_call.html">toa_api_call()</a></code> / <code><a href="reference/toa_api_headers.html">toa_api_headers()</a></code> in <code>R/utils.R</code>.</li>
 <li>
-<strong>Initialize the return variable before <code>tryCatch</code></strong> (e.g. <code>odds &lt;- data.frame()</code>).</li>
+<strong>Initialize the return variable before <code>tryCatch</code></strong> (e.g. <code>odds &lt;- data.frame()</code>), wrap its body in <code>.oddsapiR_with_warnings("&lt;fn&gt;", { ... })</code>, give it <strong>no</strong> <code>warning =</code> handler, and report <code>{conditionMessage(e)}</code> in the <code>error =</code> handler.</li>
 <li>
 <strong>Build the query list unconditionally</strong> – <code><a href="https://httr2.r-lib.org/reference/req_url.html" class="external-link">httr2::req_url_query()</a></code> drops <code>NULL</code> values.</li>
 <li>
@@ -166,22 +166,20 @@
 <span>  <span class="va">resource</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span>   <span class="co"># MANDATORY: initialize before tryCatch</span></span>
 <span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch</a></span><span class="op">(</span></span>
-<span>    expr <span class="op">=</span> <span class="op">{</span></span>
+<span>    expr <span class="op">=</span> <span class="fu">.oddsapiR_with_warnings</span><span class="op">(</span><span class="st">"toa_resource"</span>, <span class="op">{</span></span>
 <span>      <span class="va">resource</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/toa_api_call.html">toa_api_call</a></span><span class="op">(</span><span class="va">base_url</span>, query <span class="op">=</span> <span class="va">query_params</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>        <span class="co"># parse: unnest bookmakers -&gt; markets -&gt; outcomes, rename key/last_update</span></span>
 <span>        <span class="fu">make_toa_data</span><span class="op">(</span><span class="st">"Resource data from the-odds-api.com"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="op">}</span>,</span>
+<span>    <span class="op">}</span><span class="op">)</span>,</span>
 <span>    error <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_danger</a></span><span class="op">(</span><span class="st">"{Sys.time()}: Invalid arguments or no data available for {sport_key}!"</span><span class="op">)</span></span>
-<span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_danger</a></span><span class="op">(</span><span class="st">"Error:\n{e}"</span><span class="op">)</span></span>
-<span>    <span class="op">}</span>,</span>
-<span>    warning <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">w</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_warning</a></span><span class="op">(</span><span class="st">"{Sys.time()}: Warning:\n{w}"</span><span class="op">)</span></span>
+<span>      <span class="fu">cli</span><span class="fu">::</span><span class="fu"><a href="https://cli.r-lib.org/reference/cli_alert.html" class="external-link">cli_alert_danger</a></span><span class="op">(</span><span class="st">"Error: {conditionMessage(e)}"</span><span class="op">)</span></span>
 <span>    <span class="op">}</span>,</span>
 <span>    finally <span class="op">=</span> <span class="op">{</span><span class="op">}</span></span>
 <span>  <span class="op">)</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">resource</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
+<p>Do not give a wrapper’s <code>tryCatch</code> a <code>warning =</code> handler. Any handler there, even one that only reports, stops <code>expr</code> at the first warning and returns the empty frame. Wrap the body in <code>.oddsapiR_with_warnings("&lt;function name&gt;", { ... })</code> (<code>R/utils.R</code>) instead: it re-raises each warning as a classed <code>oddsapiR_warning</code> that names the function (keeping the warning’s original classes), and lets the body finish. Every <code>error =</code> handler includes <code>{conditionMessage(e)}</code>; <code>tests/testthat/test-handler_causes.R</code> mocks <code><a href="https://httr2.r-lib.org/reference/req_perform.html" class="external-link">httr2::req_perform()</a></code> to fail and checks that every wrapper passes the cause on.</p>
 </div>
 <div class="section level2">
 <h2 id="parsing-notes">Parsing notes<a class="anchor" aria-label="anchor" href="#parsing-notes"></a></h2>

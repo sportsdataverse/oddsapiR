@@ -132,9 +132,8 @@ Other The Odds API: Odds & Markets:
                       markets = 'player_points',
                       odds_format = 'decimal',
                       date_format = 'iso'))
-#> ✖ 2026-11-09 21:57:43.011322: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
-#> ✖ Error:
-#> Error: Event not found. The event may have expired or the event id is invalid.
+#> ✖ 2026-11-25 00:07:31.150815: Invalid arguments or no odds data available for event 48db9c3293a52baab881d95d38f37a98!
+#> ✖ Error: Event not found. The event may have expired or the event id is invalid.
 #> data frame with 0 columns and 0 rows
 # }
 ```

@@ -100,17 +100,14 @@ toa_function <- function(sport_key, regions = 'us', markets = 'h2h', date_format
   odds <- data.frame()   # initialize return var BEFORE tryCatch (see below)
 
   tryCatch(
-    expr = {
+    expr = .oddsapiR_with_warnings("toa_function", {
       odds <- toa_api_call(base_url, query = query_params) %>%
         # ... parse ...
         make_toa_data("Sports Odds data from the-odds-api.com", Sys.time())
-    },
+    }),
     error = function(e) {
       cli::cli_alert_danger("{Sys.time()}: Invalid arguments or no data available for {sport_key}!")
-      cli::cli_alert_danger("Error:\n{e}")
-    },
-    warning = function(w) {
-      cli::cli_alert_warning("{Sys.time()}: Warning:\n{w}")
+      cli::cli_alert_danger("Error: {conditionMessage(e)}")
     },
     finally = {}
   )
@@ -140,6 +137,19 @@ value ([`data.frame()`](https://rdrr.io/r/base/data.frame.html))
 unbound and `return(<var>)` throws `object '<var>' not found` instead of
 the intended `cli` message + empty fallback. This applies to every
 return name (`odds`, `events`, `scores`, `participants`, etc.).
+
+### Warnings and error causes (CRITICAL)
+
+Do not give a wrapper’s `tryCatch` a `warning =` handler. Any handler
+there, even one that only reports, stops `expr` at the first warning and
+returns the empty frame. Wrap the body in
+`.oddsapiR_with_warnings("<function name>", { ... })` (`R/utils.R`)
+instead: it re-raises each warning as a classed `oddsapiR_warning` that
+names the function (keeping the warning’s original classes), and lets
+the body finish. Every `error =` handler includes
+`{conditionMessage(e)}`; `tests/testthat/test-handler_causes.R` mocks
+[`httr2::req_perform()`](https://httr2.r-lib.org/reference/req_perform.html)
+to fail and checks that every wrapper passes the cause on.
 
 ### Usage-Quota Header Capture
 
@@ -230,7 +240,8 @@ User-facing messages use `cli`:
 [`cli::cli_alert_danger()`](https://cli.r-lib.org/reference/cli_alert.html)
 (errors),
 [`cli::cli_alert_warning()`](https://cli.r-lib.org/reference/cli_alert.html)
-(warnings),
+(a degraded-but-continuing result, never from a `tryCatch(warning =)`
+handler),
 [`cli::cli_alert_success()`](https://cli.r-lib.org/reference/cli_alert.html)
 (success). Do not use bare
 [`message()`](https://rdrr.io/r/base/message.html) in new code.
@@ -318,6 +329,9 @@ co-authors.** Omit all `Co-Authored-By` trailers referencing AI tools.
 - Initialize the return variable
   ([`data.frame()`](https://rdrr.io/r/base/data.frame.html)) before
   `tryCatch` – always.
+- No `warning =` handler on a wrapper’s `tryCatch`: wrap the body in
+  `.oddsapiR_with_warnings("<fn>", { ... })`, and include
+  `{conditionMessage(e)}` in the `error =` handler.
 - Build the query list unconditionally; let
   [`httr2::req_url_query()`](https://httr2.r-lib.org/reference/req_url.html)
   drop `NULL` values.

@@ -48,11 +48,11 @@ Other The Odds API: Account & Usage:
 # \donttest{
   try(toa_requests())
 #> ── API Key Usage data from the-odds-api.com ────────── oddsapiR 1.0.1 ──
-#> ℹ Data updated: 2026-11-09 21:57:44 UTC
-#> ℹ Odds API quota: 3959429 used, 1040571 remaining (last call cost 0)
+#> ℹ Data updated: 2026-11-25 00:07:32 UTC
+#> ℹ Odds API quota: 4847149 used, 152851 remaining (last call cost 0)
 #> # A tibble: 1 × 2
 #>   requests_remaining requests_used
 #>                <int>         <int>
-#> 1            1040571       3959429
+#> 1             152851       4847149
 # }
 ```

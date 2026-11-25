@@ -95,6 +95,17 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="oddsapir-development-version">oddsapiR (development version)<a class="anchor" aria-label="anchor" href="#oddsapir-development-version"></a></h2>
 <div class="section level4">
+<h4 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h4>
+<ul><li>Warnings no longer cut a result short. All 11 wrappers ran their request and parse inside a <code><a href="https://rdrr.io/r/base/conditions.html" class="external-link">tryCatch()</a></code> with a <code>warning =</code> handler, so any warning (a coercion <code>NA</code>, a partial read) stopped the parse there: the warning was printed as a message and the function returned an empty data frame. Each warning is now raised as an R warning of class <code>oddsapiR_warning</code> that names the function, for example <code>toa_sports_odds(): NAs introduced by coercion</code>, and the function finishes and returns its data. Since these are now warnings rather than messages, <code><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages()</a></code> no longer hides them; wrap the call as <code>suppressWarnings(toa_sports(), classes = "oddsapiR_warning")</code>. A classed warning (an rlang or lifecycle one, say) also keeps its own class.</li>
+<li>Error messages now print the underlying error message (<code><a href="https://rdrr.io/r/base/conditions.html" class="external-link">conditionMessage()</a></code>) instead of the whole condition object.</li>
+<li>
+<code>inst/CITATION</code> is now included in the package: an <code>^inst*</code> pattern in <code>.Rbuildignore</code>, which matches every path starting with <code>ins</code>, dropped it from the built tarball, so <code>citation("oddsapiR")</code> fell back to the auto-generated entry.</li>
+</ul></div>
+<div class="section level4">
+<h4 id="dependencies-development-version">Dependencies<a class="anchor" aria-label="anchor" href="#dependencies-development-version"></a></h4>
+<ul><li>rvest is no longer imported; nothing in the package used it.</li>
+</ul></div>
+<div class="section level4">
 <h4 id="tests-development-version">Tests<a class="anchor" aria-label="anchor" href="#tests-development-version"></a></h4>
 <ul><li>Every wrapper now has an offline test that replays a recorded Odds API response (<code>tests/testthat/fixtures/http/</code>, recorded by <code>data-raw/http_fixtures/record_fixtures.R</code>), so the suite covers the parsers without an <code>ODDS_API_KEY</code> or network access. The API key is replaced by <code>REDACTED</code> in every recorded URL. New tests also cover each wrapper’s error and warning paths and the internal helpers; local coverage without a key is 100%.</li>
 </ul></div>
