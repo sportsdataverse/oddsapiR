@@ -40,8 +40,8 @@ pkgdown::build_site()
 pak::local_install()
 ```
 
-**CI** (`.github/workflows/`): `R-CMD-check.yaml` (matrix: macOS / Windows /
-Ubuntu on R `release`, plus Ubuntu `oldrel-1`), `pkgdown.yaml` (site build/deploy),
+**CI** (`.github/workflows/`): `R-CMD-check.yaml` (macOS + Ubuntu on R `release`
+on push/PR; a weekly cron and manual dispatch add Windows `release` + Ubuntu `devel`), `pkgdown.yaml` (site build/deploy),
 `rhub.yaml` (R-hub checks). Live tests skip on CI / CRAN without `ODDS_API_KEY`.
 
 ## Project Structure
